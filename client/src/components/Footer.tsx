@@ -40,33 +40,33 @@ export function Footer() {
           <div>
             <h3 className="font-semibold mb-4">Categories</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/category/writing"><a className="text-muted-foreground hover:text-primary transition">Writing Tools</a></Link></li>
-              <li><Link href="/category/developer"><a className="text-muted-foreground hover:text-primary transition">Developer Tools</a></Link></li>
-              <li><Link href="/category/design"><a className="text-muted-foreground hover:text-primary transition">Design Tools</a></Link></li>
-              <li><Link href="/category/seo"><a className="text-muted-foreground hover:text-primary transition">SEO & Marketing</a></Link></li>
-              <li><Link href="/categories"><a className="text-muted-foreground hover:text-primary transition">All Categories</a></Link></li>
+              <li><Link href="/category/writing" className="text-muted-foreground hover:text-primary transition">Writing Tools</Link></li>
+              <li><Link href="/category/developer" className="text-muted-foreground hover:text-primary transition">Developer Tools</Link></li>
+              <li><Link href="/category/design" className="text-muted-foreground hover:text-primary transition">Design Tools</Link></li>
+              <li><Link href="/category/seo" className="text-muted-foreground hover:text-primary transition">SEO & Marketing</Link></li>
+              <li><Link href="/categories" className="text-muted-foreground hover:text-primary transition">All Categories</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-4">Resources</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/blog"><a className="text-muted-foreground hover:text-primary transition">Blog</a></Link></li>
-              <li><Link href="/docs"><a className="text-muted-foreground hover:text-primary transition">Documentation</a></Link></li>
-              <li><Link href="/api"><a className="text-muted-foreground hover:text-primary transition">API</a></Link></li>
-              <li><Link href="/changelog"><a className="text-muted-foreground hover:text-primary transition">Changelog</a></Link></li>
-              <li><Link href="/status"><a className="text-muted-foreground hover:text-primary transition">Status</a></Link></li>
+              <li><Link href="/blog" className="text-muted-foreground hover:text-primary transition">Blog</Link></li>
+              <li><Link href="/docs" className="text-muted-foreground hover:text-primary transition">Documentation</Link></li>
+              <li><Link href="/api" className="text-muted-foreground hover:text-primary transition">API</Link></li>
+              <li><Link href="/changelog" className="text-muted-foreground hover:text-primary transition">Changelog</Link></li>
+              <li><Link href="/status" className="text-muted-foreground hover:text-primary transition">Status</Link></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/about"><a className="text-muted-foreground hover:text-primary transition">About Us</a></Link></li>
-              <li><Link href="/careers"><a className="text-muted-foreground hover:text-primary transition">Careers</a></Link></li>
-              <li><Link href="/privacy"><a className="text-muted-foreground hover:text-primary transition">Privacy Policy</a></Link></li>
-              <li><Link href="/terms"><a className="text-muted-foreground hover:text-primary transition">Terms of Service</a></Link></li>
-              <li><Link href="/contact"><a className="text-muted-foreground hover:text-primary transition">Contact Us</a></Link></li>
+              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition">About Us</Link></li>
+              <li><Link href="/careers" className="text-muted-foreground hover:text-primary transition">Careers</Link></li>
+              <li><Link href="/privacy" className="text-muted-foreground hover:text-primary transition">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-muted-foreground hover:text-primary transition">Terms of Service</Link></li>
+              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition">Contact Us</Link></li>
             </ul>
           </div>
         </div>
@@ -76,9 +76,9 @@ export function Footer() {
             © {new Date().getFullYear()} ToolHub. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm">
-            <Link href="/privacy"><a className="text-muted-foreground hover:text-primary transition">Privacy</a></Link>
-            <Link href="/terms"><a className="text-muted-foreground hover:text-primary transition">Terms</a></Link>
-            <Link href="/cookies"><a className="text-muted-foreground hover:text-primary transition">Cookies</a></Link>
+            <Link href="/privacy" className="text-muted-foreground hover:text-primary transition">Privacy</Link>
+            <Link href="/terms" className="text-muted-foreground hover:text-primary transition">Terms</Link>
+            <Link href="/cookies" className="text-muted-foreground hover:text-primary transition">Cookies</Link>
           </div>
         </div>
       </div>

@@ -3,6 +3,9 @@ import { categories } from '@/data/categories';
 import { tools } from '@/data/tools';
 import { apiRequest } from '@/lib/queryClient';
 
+// Export data for testing or direct use if needed
+export { categories, tools };
+
 interface ToolsContextType {
   categories: typeof categories;
   tools: typeof tools;
@@ -12,7 +15,7 @@ interface ToolsContextType {
   error: Error | null;
 }
 
-const ToolsContext = createContext<ToolsContextType | undefined>(undefined);
+export const ToolsContext = createContext<ToolsContextType | undefined>(undefined);
 
 export function ToolsProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -45,17 +48,20 @@ export function ToolsProvider({ children }: { children: ReactNode }) {
     fetchToolData();
   }, []);
 
+  // Log for debugging
+  console.log("ToolsProvider rendering with categories:", categories.length);
+  
+  const contextValue = {
+    categories,
+    tools,
+    popularTools,
+    recentTools,
+    isLoading,
+    error
+  };
+  
   return (
-    <ToolsContext.Provider
-      value={{
-        categories,
-        tools,
-        popularTools,
-        recentTools,
-        isLoading,
-        error
-      }}
-    >
+    <ToolsContext.Provider value={contextValue}>
       {children}
     </ToolsContext.Provider>
   );
