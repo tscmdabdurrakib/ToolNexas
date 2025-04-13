@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Menu, Search, X } from "lucide-react";
 import { useState } from "react";
+import { MainNavigationMenu } from "./NavigationMenu";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -34,7 +35,7 @@ export function Header() {
         </div>
         
         <div className="flex items-center space-x-4">
-          <div className="relative hidden md:block">
+          <div className="relative hidden lg:block">
             <form onSubmit={handleSearch}>
               <Input
                 type="text"
@@ -49,18 +50,6 @@ export function Header() {
           
           <ThemeToggle />
           
-          <div className="hidden md:block">
-            <Button 
-              className="flex items-center space-x-1"
-              onClick={() => setLocation("/popular")}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-              </svg>
-              Popular Tools
-            </Button>
-          </div>
-
           {/* Mobile menu button */}
           <Button 
             variant={mobileMenuOpen ? "default" : "outline"}
@@ -74,6 +63,11 @@ export function Header() {
             }
           </Button>
         </div>
+      </div>
+
+      {/* Navigation Menu below header */}
+      <div className="container mx-auto mt-2 hidden md:block">
+        <MainNavigationMenu />
       </div>
 
       {/* Mobile menu - with animation */}
@@ -134,6 +128,12 @@ export function Header() {
                 </svg>
                 Home
               </Button>
+            </div>
+            
+            {/* Mobile Category Navigation */}
+            <div className="pt-4 border-t border-border">
+              <h3 className="font-medium text-sm mb-2">Browse Categories</h3>
+              <MainNavigationMenu />
             </div>
           </div>
         </div>
