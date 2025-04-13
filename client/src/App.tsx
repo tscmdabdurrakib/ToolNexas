@@ -8,6 +8,8 @@ import CategoryPage from "@/pages/CategoryPage";
 import ToolPage from "@/pages/ToolPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ToolsProvider } from "@/context/ToolsContext";
+import { ThemeProvider } from "@/lib/ThemeProvider";
 
 function Router() {
   return (
@@ -28,10 +30,14 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router />
-      <Toaster />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <ToolsProvider>
+        <QueryClientProvider client={queryClient}>
+          <Router />
+          <Toaster />
+        </QueryClientProvider>
+      </ToolsProvider>
+    </ThemeProvider>
   );
 }
 

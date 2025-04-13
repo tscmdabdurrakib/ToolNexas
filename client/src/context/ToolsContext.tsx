@@ -3,7 +3,7 @@ import { categories } from '@/data/categories';
 import { tools } from '@/data/tools';
 import { apiRequest } from '@/lib/queryClient';
 
-// Export data for testing or direct use if needed
+// Make categories and tools available directly
 export { categories, tools };
 
 interface ToolsContextType {
