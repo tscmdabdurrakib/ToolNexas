@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react';
-import { useLocation, Link } from 'wouter';
+import { useLocation } from 'wouter';
 import { 
   NavigationMenu, 
   NavigationMenuContent, 
   NavigationMenuItem, 
-  NavigationMenuLink, 
   NavigationMenuList, 
   NavigationMenuTrigger, 
   NavigationMenuViewport 
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { useTools } from '@/context/ToolsContext';
+import { categories } from '@/data/categories';
+import { tools } from '@/data/tools';
 import { ChevronUp } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
 
 export function MainNavigationMenu() {
-  const { categories, tools } = useTools();
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [_location, setLocation] = useLocation();
 
@@ -159,8 +158,8 @@ function MobileNav({
   categories, 
   toolsByCategory 
 }: { 
-  categories: ReturnType<typeof useTools>['categories'], 
-  toolsByCategory: Record<string, ReturnType<typeof useTools>['tools']> 
+  categories: typeof categories, 
+  toolsByCategory: Record<string, typeof tools> 
 }) {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [_location, setLocation] = useLocation();
