@@ -122,10 +122,20 @@ export function MainNavigationMenu() {
         </NavigationMenu>
       </div>
 
-      {/* Mobile Navigation - Simplified dropdown list */}
+      {/* Mobile Navigation - Simplified dropdown list with scrolling */}
       <div className="md:hidden">
-        <div className="px-4 pb-2">
-          <MobileNav categories={categories} toolsByCategory={toolsByCategory} />
+        <div className="px-4 pb-2 max-h-[70vh] overflow-y-auto custom-scrollbar">
+          <MobileNav categories={categories.slice(0, 12)} toolsByCategory={toolsByCategory} />
+          
+          {/* Show "View All Categories" button at the bottom */}
+          <div className="mt-4 mb-2">
+            <button
+              className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-white hover:bg-primary/90"
+              onClick={() => setLocation("/categories")}
+            >
+              View All 35 Categories
+            </button>
+          </div>
         </div>
       </div>
 
@@ -158,8 +168,8 @@ function MobileNav({
   categories, 
   toolsByCategory 
 }: { 
-  categories: typeof categories, 
-  toolsByCategory: Record<string, typeof tools> 
+  categories: Array<(typeof categories)[number]>, 
+  toolsByCategory: Record<string, Array<(typeof tools)[number]>> 
 }) {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [_location, setLocation] = useLocation();
@@ -196,21 +206,25 @@ function MobileNav({
                 transition={{ duration: 0.3 }}
                 className="overflow-hidden"
               >
-                <div className="p-3 space-y-2 bg-card/50">
-                  {toolsByCategory[category.id]?.map((tool) => (
-                    <button
-                      key={tool.id}
-                      className="flex items-center w-full p-2 rounded-md hover:bg-secondary/50"
-                      onClick={() => {
-                        setLocation(`/tool/${tool.id}`);
-                        setOpenCategory(null);
-                      }}
-                    >
-                      <span className="mr-2 text-primary">{tool.icon}</span>
-                      <span className="text-sm">{tool.name}</span>
-                    </button>
-                  ))}
-                  <div className="pt-2">
+                <div className="p-2 space-y-1.5 bg-card/50">
+                  <div className="max-h-[35vh] overflow-y-auto custom-scrollbar pr-1">
+                    <div className="grid grid-cols-1 gap-1.5">
+                      {toolsByCategory[category.id]?.slice(0, 8)?.map((tool) => (
+                        <button
+                          key={tool.id}
+                          className="flex items-center w-full p-2 rounded-md hover:bg-secondary/50 text-left"
+                          onClick={() => {
+                            setLocation(`/tool/${tool.id}`);
+                            setOpenCategory(null);
+                          }}
+                        >
+                          <span className="mr-2 text-primary flex-shrink-0">{tool.icon}</span>
+                          <span className="text-sm truncate">{tool.name}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="pt-1.5">
                     <button
                       className="w-full rounded-md bg-primary/10 py-2 text-sm font-medium text-primary hover:bg-primary/20"
                       onClick={() => {
@@ -218,7 +232,7 @@ function MobileNav({
                         setOpenCategory(null);
                       }}
                     >
-                      View All {category.name}
+                      View All {category.name} ({toolsByCategory[category.id]?.length || 0})
                     </button>
                   </div>
                 </div>

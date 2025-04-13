@@ -23,8 +23,8 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border py-4">
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+    <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border">
+      <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
@@ -66,8 +66,10 @@ export function Header() {
       </div>
 
       {/* Navigation Menu below header */}
-      <div className="container mx-auto mt-2 hidden md:block">
-        <MainNavigationMenu />
+      <div className="border-t border-border/40 bg-background/50 py-0.5 hidden md:block">
+        <div className="container mx-auto">
+          <MainNavigationMenu />
+        </div>
       </div>
 
       {/* Mobile menu - with animation */}
