@@ -16,33 +16,37 @@ export function FeaturedTool({ tool }: FeaturedToolProps) {
           <h2 className="text-3xl font-bold mb-4">{tool.name}</h2>
           <p className="text-muted-foreground mb-6">{tool.description}</p>
           
-          <div className="flex flex-wrap gap-4 mb-8">
-            {tool.features.map((feature, index) => (
-              <div key={index} className="flex items-center">
-                <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center text-green-600 dark:text-green-400 mr-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
+          {tool.features && tool.features.length > 0 && (
+            <div className="flex flex-wrap gap-4 mb-8">
+              {tool.features.map((feature, index) => (
+                <div key={index} className="flex items-center">
+                  <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/20 flex items-center justify-center text-green-600 dark:text-green-400 mr-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </div>
+                  <span className="text-sm">{feature}</span>
                 </div>
-                <span className="text-sm">{feature}</span>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
           
           <div className="flex flex-wrap gap-4">
-            <Link href={`/tool/${tool.id}`}>
-              <a className="px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white transition flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                </svg>
-                Try Tool Now
-              </a>
-            </Link>
-            <Link href={`/docs/tool/${tool.id}`}>
-              <a className="px-6 py-3 rounded-lg bg-gray-100 dark:bg-secondary hover:bg-gray-200 dark:hover:bg-secondary/80 text-foreground transition">
-                View Documentation
-              </a>
-            </Link>
+            <button 
+              onClick={() => window.location.href = `/tool/${tool.id}`}
+              className="px-6 py-3 rounded-lg bg-primary hover:bg-primary/90 text-white transition flex items-center"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+              </svg>
+              Try Tool Now
+            </button>
+            <button 
+              onClick={() => window.location.href = `/docs/tool/${tool.id}`}
+              className="px-6 py-3 rounded-lg bg-gray-100 dark:bg-secondary hover:bg-gray-200 dark:hover:bg-secondary/80 text-foreground transition"
+            >
+              View Documentation
+            </button>
           </div>
         </div>
         
@@ -56,7 +60,7 @@ export function FeaturedTool({ tool }: FeaturedToolProps) {
             <div className="text-xs text-muted-foreground">{tool.name}</div>
           </div>
           <div className="font-mono text-sm bg-gray-900 rounded-lg p-4 h-52 overflow-auto text-gray-200">
-            {tool.codePreview}
+            {tool.codePreview || 'No code preview available'}
           </div>
         </div>
       </div>

@@ -114,12 +114,15 @@ export default function Home() {
             </svg>
             Popular Tools
           </h2>
-          <Link href="/popular" className="text-primary hover:text-primary/90 text-sm font-medium flex items-center">
+          <button 
+            onClick={() => window.location.href = '/popular'}
+            className="text-primary hover:text-primary/90 text-sm font-medium flex items-center bg-transparent border-none cursor-pointer"
+          >
             View all
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
             </svg>
-          </Link>
+          </button>
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -155,12 +158,15 @@ export default function Home() {
             </svg>
             Recently Added
           </h2>
-          <Link href="/recent" className="text-primary hover:text-primary/90 text-sm font-medium flex items-center">
+          <button 
+            onClick={() => window.location.href = '/recent'}
+            className="text-primary hover:text-primary/90 text-sm font-medium flex items-center bg-transparent border-none cursor-pointer"
+          >
             View all
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
             </svg>
-          </Link>
+          </button>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
