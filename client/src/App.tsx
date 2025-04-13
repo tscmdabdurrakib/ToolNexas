@@ -30,14 +30,10 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <ToolsProvider>
-        <QueryClientProvider client={queryClient}>
-          <Router />
-          <Toaster />
-        </QueryClientProvider>
-      </ToolsProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <Router />
+      <Toaster />
+    </QueryClientProvider>
   );
 }
 

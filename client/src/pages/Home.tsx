@@ -6,11 +6,14 @@ import { FeaturedTool } from "@/components/FeaturedTool";
 import { RecentToolCard } from "@/components/RecentToolCard";
 import { Newsletter } from "@/components/Newsletter";
 import { Button } from "@/components/ui/button";
-import { useTools } from "@/context/ToolsContext";
+import { categories } from "@/data/categories";
+import { tools } from "@/data/tools";
 
 export default function Home() {
-  // Use the context to get data
-  const { categories, tools, popularTools, recentTools, isLoading } = useTools();
+  // Use direct imports for now
+  const popularTools = tools.slice(0, 4);
+  const recentTools = tools.slice(4, 7);
+  const isLoading = false;
 
   const container = {
     hidden: { opacity: 0 },
