@@ -5,9 +5,6 @@ import { Button } from "./ui/button";
 import { Menu, Search, X } from "lucide-react";
 import { useState } from "react";
 import { MainNavigationMenu } from "./NavigationMenu";
-import { categories } from "@/data/categories";
-import { tools } from "@/data/tools";
-import { cn } from "@/lib/utils";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -28,18 +25,14 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border">
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center space-x-2">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
           </svg>
-          <Link href="/" className="text-xl font-bold cursor-pointer ml-2">
+          <Link href="/" className="text-xl font-bold cursor-pointer">
             ToolHub
           </Link>
         </div>
-        
-        {/* Empty middle section for desktop (we use the navigation under the header) */}
-        <div className="hidden md:block"></div>
         
         <div className="flex items-center space-x-4">
           <div className="relative hidden lg:block">
@@ -72,7 +65,7 @@ export function Header() {
         </div>
       </div>
 
-      {/* Navigation Menu below header for desktop only */}
+      {/* Navigation Menu below header */}
       <div className="border-t border-border/40 bg-background/50 py-0.5 hidden md:block">
         <div className="container mx-auto">
           <MainNavigationMenu />
@@ -142,30 +135,7 @@ export function Header() {
             {/* Mobile Category Navigation */}
             <div className="pt-4 border-t border-border">
               <h3 className="font-medium text-sm mb-2">Browse Categories</h3>
-              <div className="space-y-2">
-                {categories.slice(0, 8).map((category) => (
-                  <button
-                    key={category.id}
-                    className="flex items-center w-full p-2 rounded-md hover:bg-secondary/50 text-left"
-                    onClick={() => {
-                      setLocation(`/category/${category.id}`);
-                      setMobileMenuOpen(false);
-                    }}
-                  >
-                    <span className={cn("mr-2", category.color.text)}>{category.icon}</span>
-                    <span className="text-sm">{category.name}</span>
-                  </button>
-                ))}
-                <button
-                  className="w-full mt-2 rounded-md bg-primary/10 py-2 text-sm font-medium text-primary hover:bg-primary/20"
-                  onClick={() => {
-                    setLocation("/categories");
-                    setMobileMenuOpen(false);
-                  }}
-                >
-                  View All Categories
-                </button>
-              </div>
+              <MainNavigationMenu />
             </div>
           </div>
         </div>
