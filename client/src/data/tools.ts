@@ -803,4 +803,364 @@ export const tools: Tool[] = [
       'Digital signature support'
     ]
   },
+  
+  // 8. Code & Developer Tools
+  {
+    id: 'json-formatter',
+    name: 'JSON Formatter',
+    description: 'Format, validate, and beautify JSON data with ease',
+    category: getCategoryById('developer'),
+    icon: createIcon("M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"),
+    views: 14680,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Format and beautify JSON with customizable indentation',
+      'Validate JSON for syntax errors',
+      'Compare JSON files side by side',
+      'Minify JSON to reduce file size',
+      'Convert JSON to/from YAML, XML, and CSV',
+      'Tree view for easier navigation of complex structures'
+    ]
+  },
+  {
+    id: 'html-beautifier',
+    name: 'HTML Beautifier',
+    description: 'Format and beautify HTML code for better readability',
+    category: getCategoryById('developer'),
+    icon: createIcon("M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    views: 9870,
+    gradient: 'from-blue-500 to-cyan-500',
+    features: [
+      'Format HTML with customizable indentation',
+      'Fix common HTML syntax errors',
+      'Remove unnecessary attributes and comments',
+      'Sort HTML attributes alphabetically',
+      'Convert HTML to/from Markdown or JSX',
+      'Syntax highlighting for easier editing'
+    ]
+  },
+  
+  // 9. SEO & Marketing Tools
+  {
+    id: 'keyword-generator',
+    name: 'Keyword Generator',
+    description: 'Generate relevant keywords for your content and SEO strategy',
+    category: getCategoryById('seo'),
+    icon: createIcon("M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"),
+    views: 11250,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Generate keywords based on your topic or niche',
+      'Analyze keyword difficulty and search volume',
+      'Find long-tail keyword opportunities',
+      'Group keywords by semantic relevance',
+      'Export results to CSV or Excel',
+      'Track keyword ranking over time'
+    ]
+  },
+  {
+    id: 'meta-tag-generator',
+    name: 'Meta Tag Generator',
+    description: 'Create optimized meta tags for better SEO performance',
+    category: getCategoryById('seo'),
+    icon: createIcon("M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802"),
+    views: 8340,
+    gradient: 'from-red-500 to-orange-500',
+    features: [
+      'Generate title, description, and keyword meta tags',
+      'Preview how your page will appear in search results',
+      'Create Open Graph and Twitter Card tags for social sharing',
+      'Analyze meta tag length and optimize for search engines',
+      'Generate structured data markup (JSON-LD)',
+      'Check for missing or duplicate meta tags'
+    ]
+  },
+
+  // 10. Writing & Content Tools
+  {
+    id: 'blog-idea-generator',
+    name: 'Blog Idea Generator',
+    description: 'Generate creative blog post ideas for your content strategy',
+    category: getCategoryById('writing'),
+    icon: createIcon("M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"),
+    views: 10120,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Generate blog post ideas based on your niche or target audience',
+      'Find trending topics in your industry',
+      'Create clickable headlines that drive traffic',
+      'Suggest content structures and outlines',
+      'Analyze competition for similar content',
+      'Schedule content ideas for your editorial calendar'
+    ]
+  },
+  {
+    id: 'headline-analyzer',
+    name: 'Headline Analyzer',
+    description: 'Analyze and optimize headlines for better engagement',
+    category: getCategoryById('writing'),
+    icon: createIcon("M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"),
+    views: 7840,
+    gradient: 'from-indigo-500 to-blue-500',
+    features: [
+      'Score headlines for emotional appeal and impact',
+      'Analyze word balance and readability',
+      'Get suggestions for power words to improve click-through rates',
+      'Compare multiple headline variations',
+      'Check length for SEO and social media optimization',
+      'Historical data on successful headline patterns'
+    ]
+  },
+  
+  // 11. Grammar & Plagiarism Tools
+  {
+    id: 'grammar-checker',
+    name: 'Grammar Checker',
+    description: 'Check and correct grammar, spelling, and punctuation errors',
+    category: getCategoryById('grammar-plagiarism'),
+    icon: createIcon("M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"),
+    views: 15320,
+    gradient: 'from-amber-500 to-yellow-500',
+    features: [
+      'Check grammar, spelling, and punctuation in real-time',
+      'Advanced AI-powered language suggestions',
+      'Style and tone recommendations',
+      'Vocabulary enhancement suggestions',
+      'Support for multiple languages and dialects',
+      'Browser extension for checking anywhere on the web'
+    ]
+  },
+  {
+    id: 'plagiarism-checker',
+    name: 'Plagiarism Checker',
+    description: 'Scan your content for potential plagiarism and duplication',
+    category: getCategoryById('grammar-plagiarism'),
+    icon: createIcon("M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"),
+    views: 13250,
+    gradient: 'from-green-500 to-teal-500',
+    features: [
+      'Check content against billions of web pages and publications',
+      'Highlight exact matches and similar content',
+      'Calculate originality score and similarity percentage',
+      'Suggest ways to rewrite problematic sections',
+      'Citation assistant for academic writing',
+      'Batch checking for multiple documents'
+    ]
+  },
+  
+  // 12. AI & Automation Tools
+  {
+    id: 'ai-writer',
+    name: 'AI Writer',
+    description: 'Generate high-quality content with advanced AI technology',
+    category: getCategoryById('ai-automation'),
+    icon: createIcon("M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"),
+    views: 18470,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Generate articles, blog posts, and marketing copy',
+      'Customize tone, style, and length of content',
+      'Research-based content generation with citations',
+      'Multi-language content creation',
+      'Rewrite and paraphrase existing content',
+      'Content templates for various industries and purposes'
+    ]
+  },
+  {
+    id: 'image-generator',
+    name: 'AI Image Generator',
+    description: 'Create unique images with AI from text descriptions',
+    category: getCategoryById('ai-automation'),
+    icon: createIcon("M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
+    views: 16840,
+    gradient: 'from-fuchsia-500 to-pink-500',
+    features: [
+      'Generate unique images from text descriptions',
+      'Customize art style, mood, and composition',
+      'Create variations of existing images',
+      'Upscale and enhance image quality',
+      'Remove backgrounds and edit generated images',
+      'Commercial usage rights for created content'
+    ]
+  },
+
+  // 13. Social Media Tools
+  {
+    id: 'hashtag-generator',
+    name: 'Hashtag Generator',
+    description: 'Find relevant hashtags to boost your social media reach',
+    category: getCategoryById('social-media'),
+    icon: createIcon("M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"),
+    views: 9540,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Generate trending hashtags for your content',
+      'Platform-specific hashtag recommendations',
+      'Analyze hashtag popularity and competition',
+      'Group hashtags by relevance and reach',
+      'Track hashtag performance over time',
+      'Save hashtag sets for different content types'
+    ]
+  },
+  {
+    id: 'post-scheduler',
+    name: 'Social Media Scheduler',
+    description: 'Plan and schedule your social media posts in advance',
+    category: getCategoryById('social-media'),
+    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
+    views: 8750,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Schedule posts across multiple social platforms',
+      'Visual content calendar with drag-and-drop',
+      'Best time to post recommendations',
+      'Content recycling for evergreen posts',
+      'Performance analytics for scheduled content',
+      'Team collaboration tools for content approval'
+    ]
+  },
+
+  // 14. Privacy & Security Tools
+  {
+    id: 'password-generator-sec',
+    name: 'Password Generator',
+    description: 'Create strong, unique passwords to secure your accounts',
+    category: getCategoryById('privacy-security'),
+    icon: createIcon("M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"),
+    views: 14210,
+    gradient: 'from-red-500 to-pink-500',
+    features: [
+      'Generate secure passwords with customizable parameters',
+      'Password strength assessment',
+      'Create memorable passphrases',
+      'Password history and storage',
+      'Check passwords against breach databases',
+      'Generate password reset instructions for popular sites'
+    ]
+  },
+  {
+    id: 'two-factor-auth',
+    name: '2FA Tool',
+    description: 'Generate and manage two-factor authentication codes',
+    category: getCategoryById('privacy-security'),
+    icon: createIcon("M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"),
+    views: 7840,
+    gradient: 'from-amber-500 to-orange-500',
+    features: [
+      'Generate time-based one-time passwords (TOTP)',
+      'QR code scanner for adding accounts',
+      'Secure backup and sync across devices',
+      'Offline code generation',
+      'Organize accounts by categories',
+      'Recovery code management'
+    ]
+  },
+
+  // 15. Email & Communication Tools
+  {
+    id: 'email-verifier',
+    name: 'Email Verifier',
+    description: 'Verify email addresses for deliverability and validity',
+    category: getCategoryById('email-communication'),
+    icon: createIcon("M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"),
+    views: 9870,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Verify email address format and syntax',
+      'Check domain DNS records and mail server',
+      'Detect disposable email addresses',
+      'Bulk verification for email lists',
+      'Remove duplicate and invalid emails',
+      'Generate verification reports with deliverability scores'
+    ]
+  },
+  {
+    id: 'temp-mail',
+    name: 'Temporary Email',
+    description: 'Create disposable email addresses for privacy and security',
+    category: getCategoryById('email-communication'),
+    icon: createIcon("M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859M12 3v8.25m0 0l-3-3m3 3l3-3"),
+    views: 12480,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Create temporary email addresses instantly',
+      'Auto-refreshing inbox with real-time updates',
+      'Custom domain options for disposable emails',
+      'Download and forward received messages',
+      'Set auto-expiry for temporary addresses',
+      'No registration required for basic usage'
+    ]
+  },
+
+  // 16. Data Analysis & Visualization Tools
+  {
+    id: 'chart-maker',
+    name: 'Chart Maker',
+    description: 'Create professional charts and graphs for data visualization',
+    category: getCategoryById('data-visualization'),
+    icon: createIcon("M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    views: 11250,
+    gradient: 'from-blue-500 to-cyan-500',
+    features: [
+      'Create various chart types (bar, line, pie, scatter, etc.)',
+      'Interactive charts with hover and zoom features',
+      'Customizable colors, fonts, and layouts',
+      'Import data from Excel, CSV, or Google Sheets',
+      'Responsive charts for websites and presentations',
+      'Export in multiple formats (PNG, SVG, PDF)'
+    ]
+  },
+  {
+    id: 'graph-tool',
+    name: 'Graph Tool',
+    description: 'Create and analyze graphs and networks with powerful visualization',
+    category: getCategoryById('data-visualization'),
+    icon: createIcon("M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"),
+    views: 8320,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Create node-link diagrams and network visualizations',
+      'Analyze network properties and metrics',
+      'Interactive graph exploration tools',
+      'Support for directed and undirected graphs',
+      'Import data from various formats',
+      'Apply layout algorithms for optimal visualization'
+    ]
+  },
+  
+  // 17. Website & Domain Tools
+  {
+    id: 'domain-checker',
+    name: 'Domain Checker',
+    description: 'Check domain availability and registration information',
+    category: getCategoryById('website-domain'),
+    icon: createIcon("M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"),
+    views: 10480,
+    gradient: 'from-amber-500 to-yellow-500',
+    features: [
+      'Check domain name availability across TLDs',
+      'View WHOIS information for registered domains',
+      'Domain price comparison across registrars',
+      'Bulk domain search for multiple names',
+      'Domain name suggestions and alternatives',
+      'Expiry monitoring for owned domains'
+    ]
+  },
+  {
+    id: 'whois-lookup',
+    name: 'WHOIS Lookup',
+    description: 'Lookup domain registration and ownership information',
+    category: getCategoryById('website-domain'),
+    icon: createIcon("M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"),
+    views: 8750,
+    gradient: 'from-green-500 to-teal-500',
+    features: [
+      'Access detailed domain registration information',
+      'Find domain owner and contact details',
+      'Check registration and expiry dates',
+      'View name server and DNS information',
+      'Historical WHOIS data for ownership changes',
+      'Privacy-protected domain detection'
+    ]
+  }
 ];
