@@ -38,6 +38,300 @@ function createIcon(pathD: string) {
 
 // Tool data
 export const tools: Tool[] = [
+  // 1. Unit & Conversion Tools
+  {
+    id: 'length-converter',
+    name: 'Length Converter',
+    description: 'Convert between various units of length and distance',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M6 6V5a3 3 0 013-3h2.25M6 6h12M6 6v1a3 3 0 01-3 3m12-3v1a3 3 0 01-3 3M3 10v5a2 2 0 002 2h3.75M3 10h1m8-3v5a2 2 0 01-2 2H5.75m8 0h3.75a2 2 0 002-2v-5"),
+    views: 8965,
+    gradient: 'from-blue-500 to-cyan-500',
+    features: [
+      'Convert between metric and imperial units',
+      'Support for over 20 different length units',
+      'Real-time conversion as you type',
+      'History of recent conversions',
+      'Precision control up to 10 decimal places',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'weight-converter',
+    name: 'Weight Converter',
+    description: 'Convert between different units of weight and mass',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M3 4.5h10A2.5 2.5 0 0115.5 7v10a2.5 2.5 0 01-2.5 2.5H3A2.5 2.5 0 01.5 17V7A2.5 2.5 0 013 4.5zm0 6v1.5m0 3v1.5m3-6v1.5m0 3v1.5m3-6v1.5m0 3v1.5m3-6v1.5m0 3v1.5m-9-9h1.5m3 0h1.5m3 0h1.5m3 0h7.5a2.5 2.5 0 012.5 2.5v10a2.5 2.5 0 01-2.5 2.5H16"),
+    views: 7845,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Convert between grams, kilograms, pounds, ounces, and more',
+      'Support for traditional units like stone and ton',
+      'Batch conversion for multiple values at once',
+      'Save favorite conversion pairs',
+      'Formula explanation for educational purposes',
+      'Copy results with a single click'
+    ]
+  },
+  {
+    id: 'temperature-converter',
+    name: 'Temperature Converter',
+    description: 'Convert between Celsius, Fahrenheit, and Kelvin temperature scales',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M15.75 15.75V18m-7.5-10.5H4.5m6.75 6.75v-3m3 3h.75m-3.75 3h-3M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    views: 9578,
+    gradient: 'from-red-500 to-orange-500',
+    features: [
+      'Convert between Celsius, Fahrenheit, and Kelvin',
+      'Real-time bidirectional conversion',
+      'Visual temperature scale comparison',
+      'Temperature history by location (with weather integration)',
+      'Cooking temperature reference guide',
+      'Temperature facts and trivia'
+    ]
+  },
+  {
+    id: 'area-converter',
+    name: 'Area Converter',
+    description: 'Convert between square meters, acres, hectares and more',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"),
+    views: 6320,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Convert between 30+ area units',
+      'Special tools for land measurement',
+      'Real estate specific conversions',
+      'Visual size comparisons',
+      'Calculate area from dimensions',
+      'Land price calculator integration'
+    ]
+  },
+  {
+    id: 'volume-converter',
+    name: 'Volume Converter',
+    description: 'Convert between liters, gallons, cubic meters and more',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"),
+    views: 5490,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Convert between fluid ounces, gallons, liters, and more',
+      'Specialized for cooking measurements',
+      'Tank volume calculator',
+      'Fuel efficiency converter (MPG to L/100km)',
+      'Chemistry specific volume units',
+      'Visual container size comparisons'
+    ]
+  },
+  {
+    id: 'currency-converter',
+    name: 'Currency Converter',
+    description: 'Live currency exchange rates with historical data',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"),
+    views: 15670,
+    gradient: 'from-yellow-500 to-amber-500',
+    features: [
+      'Real-time exchange rates for 170+ currencies',
+      'Historical rate charts and trends',
+      'Currency pair watchlist',
+      'Rate alerts for target exchanges',
+      'Offline mode with cached rates',
+      'Commission calculator for money transfers'
+    ]
+  },
+  
+  // 2. Calculation Tools
+  {
+    id: 'age-calculator',
+    name: 'Age Calculator',
+    description: 'Calculate exact age in years, months, weeks, and days',
+    category: getCategoryById('calculation'),
+    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
+    views: 8230,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Calculate age down to seconds',
+      'Find days until next birthday',
+      'Calculate age on other planets',
+      'Generate personalized age timeline',
+      'Discover celebrities sharing your birthdate',
+      'Save important dates with notifications'
+    ]
+  },
+  {
+    id: 'loan-calculator',
+    name: 'Loan Calculator',
+    description: 'Calculate loan payments, interest, and amortization schedules',
+    category: getCategoryById('calculation'),
+    icon: createIcon("M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 01-.75.75h-.75m-6-1.5H2.25m19.5 0h-6.75"),
+    views: 11320,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Calculate monthly payments for any loan',
+      'Generate detailed amortization schedules',
+      'Compare multiple loan scenarios',
+      'Early payoff calculator',
+      'Export results to PDF or Excel',
+      'Mortgage, auto, and personal loan presets'
+    ]
+  },
+  {
+    id: 'emi-calculator',
+    name: 'EMI Calculator',
+    description: 'Calculate Equated Monthly Installments for loans with interest',
+    category: getCategoryById('calculation'),
+    icon: createIcon("M6 6h.008v.008H6V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 6h.008v.008H12V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 6h.008v.008H18V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM6 12h.008v.008H6V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 12h.008v.008H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 12h.008v.008H18V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM6 18h.008v.008H6V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 18h.008v.008H12V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 18h.008v.008H18V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
+    views: 9845,
+    gradient: 'from-indigo-500 to-purple-500',
+    features: [
+      'Calculate EMIs for home, car, and personal loans',
+      'Adjustable interest rates and loan terms',
+      'Principal vs. interest breakdowns',
+      'Payment schedule with calendar integration',
+      'Loan affordability analysis',
+      'Compare banks and their EMI offers'
+    ]
+  },
+  {
+    id: 'bmi-calculator',
+    name: 'BMI Calculator',
+    description: 'Calculate Body Mass Index and get health insights',
+    category: getCategoryById('calculation'),
+    icon: createIcon("M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"),
+    views: 10478,
+    gradient: 'from-green-500 to-teal-500',
+    features: [
+      'Calculate BMI with metric or imperial units',
+      'Visual weight range guide',
+      'Personalized health recommendations',
+      'Track BMI changes over time',
+      'Age and gender adjusted calculations',
+      'Body fat percentage estimator'
+    ]
+  },
+  {
+    id: 'discount-calculator',
+    name: 'Discount Calculator',
+    description: 'Calculate sale prices, discounts, and savings',
+    category: getCategoryById('calculation'),
+    icon: createIcon("M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"),
+    views: 7320,
+    gradient: 'from-orange-500 to-amber-500',
+    features: [
+      'Calculate final price after discount',
+      'Find the discount percentage from original and sale prices',
+      'Compare multiple discounts',
+      'Bulk discount calculations',
+      'Tax calculations on discounted prices',
+      'Split bill calculator with discounts'
+    ]
+  },
+  {
+    id: 'percentage-calculator',
+    name: 'Percentage Calculator',
+    description: 'Calculate percentages, increases, decreases, and more',
+    category: getCategoryById('calculation'),
+    icon: createIcon("M15.75 15.75V18m-7.5-10.5H4.5m6.75 6.75v-3m3 3h.75m-3.75 3h-3M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    views: 8925,
+    gradient: 'from-red-500 to-orange-500',
+    features: [
+      'Calculate percentages of numbers',
+      'Find percentage increases and decreases',
+      'Calculate tips and commissions',
+      'Percent change calculator',
+      'Percentage point difference calculator',
+      'Proportional division of values'
+    ]
+  },
+  
+  // 3. Text & String Tools
+  {
+    id: 'case-converter',
+    name: 'Case Converter',
+    description: 'Convert text between uppercase, lowercase, title case, and more',
+    category: getCategoryById('text-string'),
+    icon: createIcon("M19 15V10.82a3 3 0 00-1.5-2.6l-9-5.4a3 3 0 00-3 0l-9 5.4A3 3 0 003 10.82V21a3 3 0 003 3h8M11 21l3-1.5m0 0L17 16m-3 3.5L17 22"),
+    views: 9520,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Convert to UPPERCASE, lowercase, Title Case, Sentence case',
+      'Alternate case and inVeRsE case options',
+      'camelCase, PascalCase, snake_case, and kebab-case',
+      'Preserve special characters option',
+      'Batch processing for multiple texts',
+      'Copy to clipboard with one click'
+    ]
+  },
+  {
+    id: 'text-repeater',
+    name: 'Text Repeater',
+    description: 'Repeat text with custom separators and patterns',
+    category: getCategoryById('text-string'),
+    icon: createIcon("M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    views: 4820,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Repeat text a specified number of times',
+      'Add custom separators (spaces, newlines, commas)',
+      'Create patterns and sequences',
+      'Generate dummy text for testing',
+      'Preview output as you type',
+      'Character and word count tracking'
+    ]
+  },
+  {
+    id: 'line-break-remover',
+    name: 'Line Break Remover',
+    description: 'Remove unwanted line breaks from text while preserving paragraphs',
+    category: getCategoryById('text-string'),
+    icon: createIcon("M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"),
+    views: 5420,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Remove single line breaks while preserving paragraphs',
+      'Consolidate multiple blank lines',
+      'Convert between different line ending types',
+      'Optional paragraph indentation',
+      'Preserve list formatting option',
+      'Handle copied text from PDFs and ebooks'
+    ]
+  },
+  {
+    id: 'character-counter',
+    name: 'Character Counter',
+    description: 'Count characters, words, sentences, and paragraphs in your text',
+    category: getCategoryById('text-string'),
+    icon: createIcon("M15.75 15.75V18m-7.5-10.5H4.5m6.75 6.75v-3m3 3h.75m-3.75 3h-3M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    views: 7840,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Count characters (with and without spaces)',
+      'Word, sentence, and paragraph counting',
+      'Reading time estimation',
+      'Keyword density analysis',
+      'Social media character limit checker',
+      'Text statistics and readability scores'
+    ]
+  },
+  {
+    id: 'string-reverser',
+    name: 'String Reverser',
+    description: 'Reverse text characters, words, or lines',
+    category: getCategoryById('text-string'),
+    icon: createIcon("M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"),
+    views: 3760,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Reverse text character by character',
+      'Reverse words while keeping word order',
+      'Reverse lines while maintaining line order',
+      'Generate palindrome text',
+      'Analyze reversed text statistics',
+      'Mirrored text generator'
+    ]
+  },
   {
     id: 'json-formatter',
     name: 'JSON Formatter',
