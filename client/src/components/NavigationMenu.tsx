@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { categories } from '@/data/categories';
 import { tools } from '@/data/tools';
-import { ChevronUp } from 'lucide-react';
+import { ChevronUp, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
 
@@ -55,46 +55,53 @@ export function MainNavigationMenu() {
           <NavigationMenuList className="flex-wrap justify-center">
             <NavigationMenuItem>
               <NavigationMenuTrigger className="bg-background hover:bg-secondary">Browse Categories</NavigationMenuTrigger>
-              <NavigationMenuContent>
+              <NavigationMenuContent className="z-50">
                 <div className="grid w-[800px] grid-cols-3 gap-3 p-4">
-                  {categories.map((category) => (
-                    <NavigationMenuItem key={category.id} className="row-span-1">
-                      <NavigationMenuTrigger className="mb-1 w-full justify-between">
+                  {categories.map((category: import('@/data/categories').CategoryWithIcon) => (
+                    <div key={category.id} className="row-span-1 relative group">
+                      <button 
+                        className="flex items-center p-3 rounded-md w-full justify-between hover:bg-accent transition-colors"
+                        onClick={() => setLocation(`/category/${category.id}`)}
+                      >
                         <div className="flex items-center">
                           <span className={cn("mr-2", category.color.text)}>{category.icon}</span>
                           <span>{category.name}</span>
                         </div>
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[250px] gap-2 p-4">
-                          {toolsByCategory[category.id]?.map((tool) => (
-                            <li key={tool.id}>
-                              <button 
-                                className="w-full block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-left"
+                        <ChevronRight className="h-4 w-4" />
+                      </button>
+                      
+                      <div className="absolute left-full top-0 ml-2 hidden group-hover:block">
+                        <div className="bg-popover rounded-md shadow-md border w-[250px] p-4">
+                          <ul className="grid gap-2">
+                            {toolsByCategory[category.id]?.map((tool) => (
+                              <li key={tool.id}>
+                                <button 
+                                  className="w-full block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-left"
+                                  onClick={() => {
+                                    setLocation(`/tool/${tool.id}`);
+                                  }}
+                                >
+                                  <div className="flex items-center">
+                                    <span className="mr-2 text-primary">{tool.icon}</span>
+                                    <span className="text-sm font-medium leading-none">{tool.name}</span>
+                                  </div>
+                                </button>
+                              </li>
+                            ))}
+                            <li className="mt-3">
+                              <button
+                                className="block w-full rounded-md bg-primary/10 px-4 py-2 text-center text-sm font-medium text-primary hover:bg-primary/20"
                                 onClick={() => {
-                                  setLocation(`/tool/${tool.id}`);
+                                  setLocation(`/category/${category.id}`);
                                 }}
                               >
-                                <div className="flex items-center">
-                                  <span className="mr-2 text-primary">{tool.icon}</span>
-                                  <span className="text-sm font-medium leading-none">{tool.name}</span>
-                                </div>
+                                View All {category.name}
                               </button>
                             </li>
-                          ))}
-                          <li className="mt-3">
-                            <button
-                              className="block w-full rounded-md bg-primary/10 px-4 py-2 text-center text-sm font-medium text-primary hover:bg-primary/20"
-                              onClick={() => {
-                                setLocation(`/category/${category.id}`);
-                              }}
-                            >
-                              View All {category.name}
-                            </button>
-                          </li>
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   ))}
                 </div>
               </NavigationMenuContent>
@@ -168,15 +175,15 @@ function MobileNav({
   categories, 
   toolsByCategory 
 }: { 
-  categories: Array<(typeof categories)[number]>, 
-  toolsByCategory: Record<string, Array<(typeof tools)[number]>> 
+  categories: typeof import('@/data/categories').categories, 
+  toolsByCategory: Record<string, typeof import('@/data/tools').tools> 
 }) {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [_location, setLocation] = useLocation();
   
   return (
     <div className="space-y-2">
-      {categories.map((category) => (
+      {categories.map((category: import('@/data/categories').CategoryWithIcon) => (
         <div key={category.id} className="border rounded-lg overflow-hidden">
           <button
             className={cn(
