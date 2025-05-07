@@ -1162,5 +1162,653 @@ export const tools: Tool[] = [
       'Historical WHOIS data for ownership changes',
       'Privacy-protected domain detection'
     ]
+  },
+  
+  // 18. Network & IP Tools
+  {
+    id: 'ip-lookup',
+    name: 'IP Lookup',
+    description: 'Look up detailed information about any IP address',
+    category: getCategoryById('network-ip'),
+    icon: createIcon("M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7"),
+    views: 11250,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Detailed IP information including location and ISP',
+      'Geolocation mapping of IP addresses',
+      'Abuse and spam database checking',
+      'IP reputation scoring',
+      'Reverse DNS lookup',
+      'IPv4 and IPv6 support'
+    ]
+  },
+  {
+    id: 'port-scanner',
+    name: 'Port Scanner',
+    description: 'Scan and check for open ports on a server or IP address',
+    category: getCategoryById('network-ip'),
+    icon: createIcon("M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3"),
+    views: 8430,
+    gradient: 'from-purple-500 to-violet-500',
+    features: [
+      'Scan common ports or custom port ranges',
+      'TCP and UDP port scanning',
+      'Service detection for open ports',
+      'Scan multiple IPs simultaneously',
+      'Port vulnerability checking',
+      'Detailed report generation'
+    ]
+  },
+  
+  // 19. Timer & Scheduling Tools
+  {
+    id: 'countdown-timer',
+    name: 'Countdown Timer',
+    description: 'Create customizable countdown timers for events and deadlines',
+    category: getCategoryById('timer-scheduling'),
+    icon: createIcon("M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"),
+    views: 9125,
+    gradient: 'from-orange-500 to-amber-500',
+    features: [
+      'Create multiple customizable countdown timers',
+      'Set recurring or one-time countdowns',
+      'Visual and audio alerts when timer ends',
+      'Share countdown links with others',
+      'Calendar integration for event countdowns',
+      'Countdown to specific dates and times'
+    ]
+  },
+  {
+    id: 'meeting-scheduler',
+    name: 'Meeting Scheduler',
+    description: 'Schedule meetings and appointments with availability checking',
+    category: getCategoryById('timer-scheduling'),
+    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
+    views: 12450,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Schedule meetings across different time zones',
+      'Availability checking with calendar integration',
+      'Automated reminder emails and notifications',
+      'Customizable meeting duration and buffer times',
+      'Group scheduling for multiple participants',
+      'Meeting link generation for video conferences'
+    ]
+  },
+  
+  // 20. Randomization Tools
+  {
+    id: 'random-generator',
+    name: 'Random Generator',
+    description: 'Generate random numbers, letters, and other data',
+    category: getCategoryById('randomization'),
+    icon: createIcon("M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"),
+    views: 10760,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Generate random numbers in custom ranges',
+      'Create random passwords and strings',
+      'Random list item selection and shuffling',
+      'Dice roller with customizable dice types',
+      'Random data generation (names, addresses, etc.)',
+      'Lottery number generator with historical patterns'
+    ]
+  },
+  {
+    id: 'card-shuffler',
+    name: 'Card Shuffler',
+    description: 'Shuffle and draw cards for games and simulations',
+    category: getCategoryById('randomization'),
+    icon: createIcon("M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"),
+    views: 7830,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Shuffle standard playing card decks',
+      'Create and shuffle custom card decks',
+      'Draw random cards with or without replacement',
+      'Deal cards to multiple players',
+      'Save and load custom deck configurations',
+      'Statistical analysis of card distribution'
+    ]
+  },
+  
+  // 21. Fake Data & Identity Tools
+  {
+    id: 'fake-data-generator',
+    name: 'Fake Data Generator',
+    description: 'Generate realistic fake data for testing and development',
+    category: getCategoryById('fake-data'),
+    icon: createIcon("M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122"),
+    views: 14320,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Generate realistic personal data (names, addresses, etc.)',
+      'Create mock data in various formats (JSON, CSV, SQL)',
+      'Custom data templates with specific fields',
+      'Bulk data generation with thousands of records',
+      'Region-specific data generation',
+      'Data export and API integration options'
+    ]
+  },
+  {
+    id: 'test-credit-card',
+    name: 'Test Credit Card Generator',
+    description: 'Generate valid test credit card numbers for development',
+    category: getCategoryById('fake-data'),
+    icon: createIcon("M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"),
+    views: 10240,
+    gradient: 'from-amber-500 to-orange-500',
+    features: [
+      'Generate valid test credit card numbers for all major networks',
+      'Create numbers that pass Luhn algorithm validation',
+      'Generate matching CVV and expiration dates',
+      'Support for specific BIN ranges',
+      'Test data for payment gateway development',
+      'No real credit card numbers are ever generated'
+    ]
+  },
+  
+  // 22. QR Code & Barcode Tools
+  {
+    id: 'qr-generator',
+    name: 'QR Code Generator',
+    description: 'Create customizable QR codes for links, text, and more',
+    category: getCategoryById('qrcode-barcode'),
+    icon: createIcon("M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z"),
+    views: 15870,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Generate QR codes for URLs, text, vCards, and more',
+      'Customize QR code color and style',
+      'Add logos to the center of QR codes',
+      'Error correction level adjustment',
+      'Download QR codes in various formats (PNG, SVG, PDF)',
+      'Batch QR code generation'
+    ]
+  },
+  {
+    id: 'barcode-generator',
+    name: 'Barcode Generator',
+    description: 'Create barcodes in multiple formats for products and inventory',
+    category: getCategoryById('qrcode-barcode'),
+    icon: createIcon("M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5z"),
+    views: 9430,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Generate barcodes in multiple formats (EAN, UPC, CODE128, etc.)',
+      'Add text labels and customize barcode appearance',
+      'Verify barcode validity and readability',
+      'Batch barcode generation with sequential numbering',
+      'Download barcodes in various formats (PNG, SVG, PDF)',
+      'Generate barcodes for product and inventory management'
+    ]
+  },
+  
+  // 23. Education & Learning Tools
+  {
+    id: 'flashcard-maker',
+    name: 'Flashcard Maker',
+    description: 'Create and study digital flashcards for effective learning',
+    category: getCategoryById('education-learning'),
+    icon: createIcon("M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"),
+    views: 12760,
+    gradient: 'from-green-500 to-teal-500',
+    features: [
+      'Create digital flashcards with text, images, and audio',
+      'Organize flashcards into decks and categories',
+      'Study with spaced repetition learning algorithms',
+      'Track learning progress and statistics',
+      'Import and export flashcards in various formats',
+      'Collaborative study with shared decks'
+    ]
+  },
+  {
+    id: 'study-timer',
+    name: 'Study Timer',
+    description: 'Focus timer with Pomodoro technique for efficient studying',
+    category: getCategoryById('education-learning'),
+    icon: createIcon("M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"),
+    views: 8950,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Pomodoro technique timer with customizable intervals',
+      'Track study sessions and breaks',
+      'Task planning and organization',
+      'Statistics and insights on study habits',
+      'Focus mode with website blocking',
+      'Sound notifications and alarms'
+    ]
+  },
+  
+  // 24. Audio & Music Tools
+  {
+    id: 'audio-converter',
+    name: 'Audio Converter',
+    description: 'Convert audio files between different formats',
+    category: getCategoryById('audio-music'),
+    icon: createIcon("M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"),
+    views: 11450,
+    gradient: 'from-amber-500 to-orange-500',
+    features: [
+      'Convert between MP3, WAV, FLAC, AAC, and other formats',
+      'Adjust bitrate and audio quality settings',
+      'Batch conversion for multiple files',
+      'Extract audio from video files',
+      'Apply basic audio effects and normalization',
+      'ID3 tag editor for music files'
+    ]
+  },
+  {
+    id: 'audio-editor',
+    name: 'Audio Editor',
+    description: 'Edit and enhance audio files with various tools',
+    category: getCategoryById('audio-music'),
+    icon: createIcon("M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"),
+    views: 9780,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Cut, trim, and merge audio files',
+      'Apply effects like fade, echo, and reverb',
+      'Noise reduction and audio enhancement',
+      'Multi-track editing and mixing',
+      'Waveform visualization and analysis',
+      'Audio recording with microphone input'
+    ]
+  },
+  
+  // 25. Video Tools
+  {
+    id: 'video-converter',
+    name: 'Video Converter',
+    description: 'Convert videos between different formats and resolutions',
+    category: getCategoryById('video-tools'),
+    icon: createIcon("M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M12 18.75H4.5a2.25 2.25 0 01-2.25-2.25V9m12.841 9.091L16.5 19.5m-1.409-1.409c.407-.407.659-.97.659-1.591v-9a2.25 2.25 0 00-2.25-2.25h-9c-.621 0-1.184.252-1.591.659m12.182 12.182L2.909 5.909M1.5 4.5l1.409 1.409"),
+    views: 14250,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Convert between MP4, AVI, MOV, MKV, and other formats',
+      'Change video resolution and quality',
+      'Compress videos to reduce file size',
+      'Extract audio from video files',
+      'Batch conversion for multiple videos',
+      'Custom output settings for specific devices'
+    ]
+  },
+  {
+    id: 'video-editor',
+    name: 'Video Editor',
+    description: 'Edit videos with basic trimming, cropping, and effects',
+    category: getCategoryById('video-tools'),
+    icon: createIcon("M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 0h-17.25m0 0h-1.5c-.621 0-1.125.504-1.125 1.125m0 0h1.5m-1.5 0V5.625m0 0c0-.621.504-1.125 1.125-1.125h17.25c.621 0 1.125.504 1.125 1.125m-17.25 0h17.25m-17.25 0h-1.5m17.25 0h-1.5m-16.5 11.25c0 .621.504 1.125 1.125 1.125h15.75c.621 0 1.125-.504 1.125-1.125v-7.5c0-.621-.504-1.125-1.125-1.125h-15.75c-.621 0-1.125.504-1.125 1.125v7.5z"),
+    views: 12340,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Trim and cut video clips',
+      'Crop and resize video frames',
+      'Add text overlays and captions',
+      'Apply filters and visual effects',
+      'Merge multiple video clips',
+      'Add background music and adjust audio'
+    ]
+  },
+  
+  // 26. Screen & Webcam Tools
+  {
+    id: 'screen-recorder',
+    name: 'Screen Recorder',
+    description: 'Record your screen for tutorials and demonstrations',
+    category: getCategoryById('screen-webcam'),
+    icon: createIcon("M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z"),
+    views: 13570,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Record screen with audio narration',
+      'Capture specific windows or applications',
+      'Select screen area for recording',
+      'Show mouse clicks and keystrokes',
+      'Export in multiple formats and qualities',
+      'Schedule automated recordings'
+    ]
+  },
+  {
+    id: 'webcam-tools',
+    name: 'Webcam Tools',
+    description: 'Capture, enhance, and apply effects to webcam video',
+    category: getCategoryById('screen-webcam'),
+    icon: createIcon("M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"),
+    views: 8430,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Webcam recording and photo capture',
+      'Apply filters and effects in real-time',
+      'Virtual backgrounds and green screen effects',
+      'Adjust brightness, contrast, and color balance',
+      'Face tracking and augmented reality features',
+      'Time-lapse and stop motion recording'
+    ]
+  },
+  
+  // 27. Language & Translation Tools
+  {
+    id: 'translator',
+    name: 'Text Translator',
+    description: 'Translate text between multiple languages',
+    category: getCategoryById('language-translation'),
+    icon: createIcon("M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802"),
+    views: 15980,
+    gradient: 'from-amber-500 to-orange-500',
+    features: [
+      'Translate text between 100+ languages',
+      'Auto-detect source language',
+      'Text-to-speech pronunciation',
+      'Offline translation for common languages',
+      'Save and organize translation history',
+      'OCR translation from images'
+    ]
+  },
+  {
+    id: 'language-detector',
+    name: 'Language Detector',
+    description: 'Automatically identify the language of any text',
+    category: getCategoryById('language-translation'),
+    icon: createIcon("M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"),
+    views: 7650,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Identify language from text samples',
+      'Support for 170+ languages',
+      'Confidence score for language detection',
+      'Detect multiple languages in the same text',
+      'Statistical analysis of language probability',
+      'Batch processing for multiple texts'
+    ]
+  },
+  
+  // 28. Measurement Tools
+  {
+    id: 'ruler',
+    name: 'Online Ruler',
+    description: 'Measure physical objects using your screen',
+    category: getCategoryById('measurement'),
+    icon: createIcon("M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5"),
+    views: 9870,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Screen calibration for accurate measurements',
+      'Metric and imperial units',
+      'Multiple ruler types (straight, angle, protractor)',
+      'Customizable ruler size and appearance',
+      'Save measurements with annotations',
+      'Camera-based measurement with reference object'
+    ]
+  },
+  {
+    id: 'screen-measurer',
+    name: 'Screen Measurer',
+    description: 'Measure distances and angles on your screen',
+    category: getCategoryById('measurement'),
+    icon: createIcon("M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"),
+    views: 7850,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Measure pixel distances on screen',
+      'Calculate angles between points',
+      'Color picking at measurement points',
+      'Grid overlay for precise alignment',
+      'Screenshot capability with measurements',
+      'Responsive design measurements for web development'
+    ]
+  },
+  
+  // 29. Health & Fitness Tools
+  {
+    id: 'bmi-calculator-health',
+    name: 'BMI Calculator',
+    description: 'Calculate your Body Mass Index and understand your results',
+    category: getCategoryById('health'),
+    icon: createIcon("M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"),
+    views: 12450,
+    gradient: 'from-amber-500 to-orange-500',
+    features: [
+      'Calculate BMI with metric or imperial units',
+      'Personalized weight category assessment',
+      'Body fat percentage estimation',
+      'Track BMI changes over time',
+      'Recommended weight ranges for your height',
+      'Health insights based on your BMI'
+    ]
+  },
+  {
+    id: 'calorie-calculator',
+    name: 'Calorie Calculator',
+    description: 'Calculate daily calorie needs based on your profile',
+    category: getCategoryById('health'),
+    icon: createIcon("M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"),
+    views: 10980,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Calculate basal metabolic rate (BMR)',
+      'Determine daily calorie needs based on activity level',
+      'Weight loss and gain calorie targets',
+      'Macronutrient distribution recommendations',
+      'Meal planning suggestions',
+      'Calorie tracking with food database'
+    ]
+  },
+  
+  // 30. Finance & Budget Tools
+  {
+    id: 'budget-calculator',
+    name: 'Budget Calculator',
+    description: 'Create and manage your personal or business budget',
+    category: getCategoryById('finance'),
+    icon: createIcon("M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"),
+    views: 14520,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Create detailed income and expense budgets',
+      'Track spending across categories',
+      'Set financial goals and track progress',
+      'Generate budget reports and insights',
+      'Forecast future financial scenarios',
+      'Export budgets to Excel or PDF'
+    ]
+  },
+  {
+    id: 'mortgage-calculator',
+    name: 'Mortgage Calculator',
+    description: 'Calculate mortgage payments and amortization schedules',
+    category: getCategoryById('finance'),
+    icon: createIcon("M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"),
+    views: 12350,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Calculate monthly mortgage payments',
+      'Generate complete amortization schedules',
+      'Compare different loan terms and rates',
+      'Include property taxes and insurance',
+      'Early payoff and refinancing calculators',
+      'Affordability analysis based on income'
+    ]
+  },
+  
+  // 31. Legal & Policy Tools
+  {
+    id: 'privacy-policy-generator',
+    name: 'Privacy Policy Generator',
+    description: 'Create a customized privacy policy for your website or app',
+    category: getCategoryById('legal-policy'),
+    icon: createIcon("M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"),
+    views: 9540,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Generate GDPR and CCPA compliant privacy policies',
+      'Customized for websites, apps, and businesses',
+      'Legal clause templates for specific industries',
+      'Update notifications for privacy law changes',
+      'Multiple language versions available',
+      'Export in HTML, PDF, or Word formats'
+    ]
+  },
+  {
+    id: 'terms-generator',
+    name: 'Terms & Conditions Generator',
+    description: 'Create legal terms and conditions for websites and apps',
+    category: getCategoryById('legal-policy'),
+    icon: createIcon("M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"),
+    views: 8230,
+    gradient: 'from-amber-500 to-orange-500',
+    features: [
+      'Generate legally-sound terms and conditions',
+      'Customized for websites, apps, and e-commerce',
+      'Include specific clauses based on your business',
+      'User-friendly questionnaire for policy creation',
+      'Regular updates for changing legal requirements',
+      'Export in multiple formats (HTML, PDF, Word)'
+    ]
+  },
+  
+  // 32. E-commerce & Product Tools
+  {
+    id: 'product-description-generator',
+    name: 'Product Description Generator',
+    description: 'Create compelling product descriptions for e-commerce',
+    category: getCategoryById('ecommerce-product'),
+    icon: createIcon("M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
+    views: 11250,
+    gradient: 'from-green-500 to-teal-500',
+    features: [
+      'Generate SEO-optimized product descriptions',
+      'Customize tone and style for your brand',
+      'Create variations for different marketplaces',
+      'Highlight key product features automatically',
+      'Support for multiple product categories',
+      'Bulk generation for product catalogs'
+    ]
+  },
+  {
+    id: 'price-calculator',
+    name: 'Pricing Calculator',
+    description: 'Calculate optimal pricing for products and services',
+    category: getCategoryById('ecommerce-product'),
+    icon: createIcon("M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"),
+    views: 9430,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Calculate profit margins and breakeven points',
+      'Compare different pricing strategies',
+      'Factor in costs, overhead, and competition',
+      'Analyze price elasticity and market sensitivity',
+      'Create tiered pricing models',
+      'Seasonal pricing adjustments calculator'
+    ]
+  },
+  
+  // 33. Blogging & Publishing Tools
+  {
+    id: 'blog-title-generator',
+    name: 'Blog Title Generator',
+    description: 'Generate engaging titles for blog posts and articles',
+    category: getCategoryById('blogging-publishing'),
+    icon: createIcon("M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"),
+    views: 13570,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Generate attention-grabbing blog titles',
+      'Optimize titles for SEO and click-through rates',
+      'Create variations with different emotional appeals',
+      'Analyze title effectiveness with scoring',
+      'Generate titles based on keywords or topics',
+      'Title A/B testing suggestions'
+    ]
+  },
+  {
+    id: 'content-calendar',
+    name: 'Content Calendar',
+    description: 'Plan and schedule your content publishing strategy',
+    category: getCategoryById('blogging-publishing'),
+    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
+    views: 8950,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Plan content publishing across multiple platforms',
+      'Visual calendar interface with drag-and-drop',
+      'Content categorization and tagging',
+      'Team collaboration for content creation',
+      'Analytics integration for performance tracking',
+      'Content idea bank and topic clustering'
+    ]
+  },
+  
+  // 34. Game & Entertainment Tools
+  {
+    id: 'dice-roller',
+    name: 'Dice Roller',
+    description: 'Virtual dice roller for games and random number generation',
+    category: getCategoryById('game-entertainment'),
+    icon: createIcon("M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"),
+    views: 10480,
+    gradient: 'from-amber-500 to-orange-500',
+    features: [
+      'Roll various dice types (d4, d6, d8, d10, d12, d20, etc.)',
+      'Custom dice with specific number ranges',
+      'Dice combinations with modifiers',
+      'Save favorite dice combinations',
+      'Statistical analysis of roll results',
+      'Visual 3D dice animation'
+    ]
+  },
+  {
+    id: 'random-name-picker',
+    name: 'Random Name Picker',
+    description: 'Pick random names from a list for contests and selections',
+    category: getCategoryById('game-entertainment'),
+    icon: createIcon("M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"),
+    views: 7850,
+    gradient: 'from-green-500 to-teal-500',
+    features: [
+      'Random selection from lists of names',
+      'Spinning wheel animation for selection',
+      'Exclude previously selected entries option',
+      'Import names from text or CSV files',
+      'Team generator with balanced groups',
+      'Drawing order randomizer'
+    ]
+  },
+  
+  // 35. Resume & Career Tools
+  {
+    id: 'resume-builder',
+    name: 'Resume Builder',
+    description: 'Create professional resumes with customizable templates',
+    category: getCategoryById('resume-career'),
+    icon: createIcon("M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"),
+    views: 15830,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Professional resume templates with customization',
+      'ATS-friendly formatting options',
+      'Content suggestions for different job roles',
+      'Skills database for relevant keyword inclusion',
+      'Export to PDF, Word, or HTML formats',
+      'Achievement statement generator'
+    ]
+  },
+  {
+    id: 'job-interview',
+    name: 'Interview Question Generator',
+    description: 'Prepare for job interviews with practice questions',
+    category: getCategoryById('resume-career'),
+    icon: createIcon("M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"),
+    views: 12460,
+    gradient: 'from-violet-500 to-purple-500',
+    features: [
+      'Generate interview questions by job role and industry',
+      'Common and behavioral question libraries',
+      'STAR method answer framework guidance',
+      'Interview question and answer practice mode',
+      'Industry-specific technical question database',
+      'Record and review practice answers'
+    ]
   }
 ];
