@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { Menu, Search, X } from "lucide-react";
 import { useState } from "react";
+import { MainNavigationMenu } from "./NavigationMenu";
 import { categories } from "@/data/categories";
 import { tools } from "@/data/tools";
 import { cn } from "@/lib/utils";
@@ -37,56 +38,8 @@ export function Header() {
           </Link>
         </div>
         
-        {/* Navigation Menu - Desktop Only - Centered */}
-        <div className="hidden md:flex items-center justify-center space-x-1 absolute left-1/2 transform -translate-x-1/2">
-          {/* Categories Dropdown */}
-          <div className="relative group">
-            <Button 
-              variant="ghost" 
-              className="px-3 py-2 text-sm"
-            >
-              Browse Categories
-            </Button>
-            
-            <div className="hidden group-hover:block absolute left-1/2 top-full mt-2 w-[800px] -translate-x-1/2 bg-popover rounded-md shadow-lg border z-50">
-              <div className="grid grid-cols-3 gap-3 p-4">
-                {categories.map((category) => (
-                  <div key={category.id} className="relative group/sub">
-                    <button 
-                      className="flex items-center p-3 rounded-md w-full justify-between hover:bg-accent transition-colors"
-                      onClick={() => setLocation(`/category/${category.id}`)}
-                    >
-                      <div className="flex items-center">
-                        <span className={cn("mr-2", category.color.text)}>
-                          {category.icon}
-                        </span>
-                        <span>{category.name}</span>
-                      </div>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          
-          {/* Popular Tools Button */}
-          <Button 
-            variant="ghost" 
-            className="px-3 py-2 text-sm"
-            onClick={() => setLocation("/popular")}
-          >
-            Popular Tools
-          </Button>
-          
-          {/* Recent Tools Button */}
-          <Button 
-            variant="ghost" 
-            className="px-3 py-2 text-sm"
-            onClick={() => setLocation("/recent")}
-          >
-            Recent Tools
-          </Button>
-        </div>
+        {/* Empty middle section for desktop (we use the navigation under the header) */}
+        <div className="hidden md:block"></div>
         
         <div className="flex items-center space-x-4">
           <div className="relative hidden lg:block">
@@ -119,7 +72,12 @@ export function Header() {
         </div>
       </div>
 
-      {/* Navigation Menu below header is removed as we moved it to the header */}
+      {/* Navigation Menu below header for desktop only */}
+      <div className="border-t border-border/40 bg-background/50 py-0.5 hidden md:block">
+        <div className="container mx-auto">
+          <MainNavigationMenu />
+        </div>
+      </div>
 
       {/* Mobile menu - with animation */}
       {mobileMenuOpen && (
