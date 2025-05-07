@@ -13,41 +13,29 @@ export default function ToolPage() {
   const toolId = params?.id;
   const tool = tools.find(t => t.id === toolId);
   
-  // Tool-specific state
-  const [jsonInput, setJsonInput] = useState<string>('{\n  "example": "data",\n  "number": 42,\n  "nested": {\n    "array": [1, 2, 3],\n    "boolean": true\n  }\n}');
-  const [formattedJson, setFormattedJson] = useState<string>('');
-  const [jsonError, setJsonError] = useState<string>('');
-  const [indentation, setIndentation] = useState<number>(2);
+  // Common state
+  const [inputValue, setInputValue] = useState("");
+  const [outputValue, setOutputValue] = useState("");
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     // Simulate loading
     const timer = setTimeout(() => {
       setIsLoading(false);
-      
-      // For JSON formatter, initialize with formatted JSON
-      if (toolId === 'json-formatter') {
-        handleFormatJson();
-      }
     }, 500);
     
     return () => clearTimeout(timer);
-  }, [toolId]);
+  }, []);
 
-  // Tool-specific functionality
-  const handleFormatJson = () => {
-    try {
-      const parsed = JSON.parse(jsonInput);
-      setFormattedJson(JSON.stringify(parsed, null, indentation));
-      setJsonError('');
-    } catch (err) {
-      setJsonError(err instanceof Error ? err.message : 'Invalid JSON');
-      setFormattedJson('');
-    }
+  // Generic handlers
+  const handleProcess = () => {
+    setOutputValue(`Processed: ${inputValue}`);
   };
 
-  const handleCopyJson = () => {
-    navigator.clipboard.writeText(formattedJson);
-    // You could add a toast notification here
+  const handleCopy = () => {
+    navigator.clipboard.writeText(outputValue);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   if (isLoading) {
@@ -72,24 +60,6 @@ export default function ToolPage() {
 
   // Render specific tool interfaces based on tool ID and category
   const renderToolInterface = () => {
-    // States for conversion tools
-    const [conversionInput, setConversionInput] = useState("");
-    const [conversionOutput, setConversionOutput] = useState("");
-    const [conversionFrom, setConversionFrom] = useState("meter");
-    const [conversionTo, setConversionTo] = useState("kilometer");
-    
-    // For Text & String tools
-    const [textInput, setTextInput] = useState("");
-    const [textOutput, setTextOutput] = useState("");
-    
-    // For Calculator tools
-    const [calculatorInput1, setCalculatorInput1] = useState("");
-    const [calculatorInput2, setCalculatorInput2] = useState("");
-    const [calculatorResult, setCalculatorResult] = useState("");
-    
-    // For color tools
-    const [colorInput, setColorInput] = useState("#3b82f6");
-    const [colorOutput, setColorOutput] = useState("");
     
     // For Code & Developer tools
     if (toolId === 'json-formatter') {
@@ -228,8 +198,7 @@ export default function ToolPage() {
               <div className="flex space-x-3">
                 <select 
                   className="w-full bg-background border border-border rounded px-3 py-2"
-                  value={conversionFrom}
-                  onChange={(e) => setConversionFrom(e.target.value)}
+                  defaultValue={fromOptions[0]}
                 >
                   {fromOptions.map(option => (
                     <option key={option} value={option}>{option.charAt(0).toUpperCase() + option.slice(1)}</option>
@@ -1230,7 +1199,7 @@ export default function ToolPage() {
               <div className="mt-6 p-4 bg-secondary/30 rounded-md">
                 <h4 className="font-medium mb-2">Need help?</h4>
                 <p className="text-sm">
-                  If you have any questions or encounter issues, please <Link href="/contact"><a className="text-primary hover:underline">contact our support team</a></Link>.
+                  If you have any questions or encounter issues, please <Link href="/contact" className="text-primary hover:underline">contact our support team</Link>.
                 </p>
               </div>
             </div>
