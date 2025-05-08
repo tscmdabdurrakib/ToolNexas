@@ -1,13 +1,17 @@
 import { Link } from "wouter";
 import { CategoryWithIcon } from "@/data/categories";
 import { motion } from "framer-motion";
+import { tools } from "@/data/tools";
 
 interface CategoryCardProps {
   category: CategoryWithIcon;
 }
 
 export function CategoryCard({ category }: CategoryCardProps) {
-  const { id, name, description, count, icon, color } = category;
+  const { id, name, description, icon, color } = category;
+  
+  // Count the number of tools in this category dynamically
+  const toolCount = tools.filter(tool => tool.category.id === id).length;
 
   return (
     <motion.div
@@ -33,7 +37,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
             <span
               className={`text-xs font-medium px-2 py-1 rounded-full ${color.badge.bg} ${color.badge.text}`}
             >
-              {count} Tools
+              {toolCount} Tools
             </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
