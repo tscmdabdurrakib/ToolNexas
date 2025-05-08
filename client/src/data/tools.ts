@@ -57,90 +57,537 @@ export const tools: Tool[] = [
     ]
   },
   {
-    id: 'weight-converter',
-    name: 'Weight Converter',
-    description: 'Convert between different units of weight and mass',
+    id: 'weight-mass-converter',
+    name: 'Weight and Mass Converter',
+    description: 'Convert between various units of weight and mass',
     category: getCategoryById('unit-conversion'),
-    icon: createIcon("M3 4.5h10A2.5 2.5 0 0115.5 7v10a2.5 2.5 0 01-2.5 2.5H3A2.5 2.5 0 01.5 17V7A2.5 2.5 0 013 4.5zm0 6v1.5m0 3v1.5m3-6v1.5m0 3v1.5m3-6v1.5m0 3v1.5m3-6v1.5m0 3v1.5m-9-9h1.5m3 0h1.5m3 0h1.5m3 0h7.5a2.5 2.5 0 012.5 2.5v10a2.5 2.5 0 01-2.5 2.5H16"),
-    views: 7845,
-    gradient: 'from-violet-500 to-purple-500',
-    features: [
-      'Convert between grams, kilograms, pounds, ounces, and more',
-      'Support for traditional units like stone and ton',
-      'Batch conversion for multiple values at once',
-      'Save favorite conversion pairs',
-      'Formula explanation for educational purposes',
-      'Copy results with a single click'
-    ]
-  },
-  {
-    id: 'temperature-converter',
-    name: 'Temperature Converter',
-    description: 'Convert between Celsius, Fahrenheit, and Kelvin temperature scales',
-    category: getCategoryById('unit-conversion'),
-    icon: createIcon("M15.75 15.75V18m-7.5-10.5H4.5m6.75 6.75v-3m3 3h.75m-3.75 3h-3M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
-    views: 9578,
-    gradient: 'from-red-500 to-orange-500',
-    features: [
-      'Convert between Celsius, Fahrenheit, and Kelvin',
-      'Real-time bidirectional conversion',
-      'Visual temperature scale comparison',
-      'Temperature history by location (with weather integration)',
-      'Cooking temperature reference guide',
-      'Temperature facts and trivia'
-    ]
-  },
-  {
-    id: 'area-converter',
-    name: 'Area Converter',
-    description: 'Convert between square meters, acres, hectares and more',
-    category: getCategoryById('unit-conversion'),
-    icon: createIcon("M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"),
-    views: 6320,
+    icon: createIcon("M4 6h16M4 10h16M4 14h16M4 18h16"),
+    views: 7523,
     gradient: 'from-green-500 to-emerald-500',
     features: [
-      'Convert between 30+ area units',
-      'Special tools for land measurement',
-      'Real estate specific conversions',
-      'Visual size comparisons',
-      'Calculate area from dimensions',
-      'Land price calculator integration'
+      'Supports metric and imperial units',
+      'Includes grams, kilograms, pounds, and ounces',
+      'Instant conversion results',
+      'User-friendly interface',
+      'Mobile responsive design'
     ]
   },
   {
     id: 'volume-converter',
     name: 'Volume Converter',
-    description: 'Convert between liters, gallons, cubic meters and more',
+    description: 'Convert between various units of volume',
     category: getCategoryById('unit-conversion'),
-    icon: createIcon("M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5"),
-    views: 5490,
-    gradient: 'from-blue-500 to-indigo-500',
+    icon: createIcon("M3 3h18v18H3V3z"),
+    views: 6342,
+    gradient: 'from-purple-500 to-indigo-500',
     features: [
-      'Convert between fluid ounces, gallons, liters, and more',
-      'Specialized for cooking measurements',
-      'Tank volume calculator',
-      'Fuel efficiency converter (MPG to L/100km)',
-      'Chemistry specific volume units',
-      'Visual container size comparisons'
+      'Covers liters, milliliters, gallons, and more',
+      'Easy-to-use input fields',
+      'Accurate and fast conversions',
+      'Supports both US and UK measurements'
     ]
   },
   {
-    id: 'currency-converter',
-    name: 'Currency Converter',
-    description: 'Live currency exchange rates with historical data',
+    id: 'temperature-converter',
+    name: 'Temperature Converter',
+    description: 'Convert between Celsius, Fahrenheit, and Kelvin',
     category: getCategoryById('unit-conversion'),
-    icon: createIcon("M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"),
-    views: 15670,
-    gradient: 'from-yellow-500 to-amber-500',
+    icon: createIcon("M12 2a10 10 0 100 20 10 10 0 000-20z"),
+    views: 5891,
+    gradient: 'from-red-500 to-orange-500',
     features: [
-      'Real-time exchange rates for 170+ currencies',
-      'Historical rate charts and trends',
-      'Currency pair watchlist',
-      'Rate alerts for target exchanges',
-      'Offline mode with cached rates',
-      'Commission calculator for money transfers'
+      'Supports all major temperature units',
+      'Real-time conversion',
+      'Simple and intuitive design',
+      'No internet required after initial load'
     ]
   },
+  {
+    id: 'area-converter',
+    name: 'Area Converter',
+    description: 'Convert between various units of area',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 4h16v16H4V4z"),
+    views: 4782,
+    gradient: 'from-yellow-500 to-amber-500',
+    features: [
+      'Includes square meters, acres, hectares, and more',
+      'Instant results',
+      'User-friendly interface',
+      'Supports both metric and imperial units'
+    ]
+  },
+  {
+    id: 'pressure-converter',
+    name: 'Pressure Converter',
+    description: 'Convert between various units of pressure',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 2v20M2 12h20"),
+    views: 3654,
+    gradient: 'from-teal-500 to-cyan-500',
+    features: [
+      'Supports pascal, bar, psi, and more',
+      'Accurate conversions',
+      'Easy-to-use interface',
+      'Responsive design for all devices'
+    ]
+  },
+  {
+    id: 'energy-converter',
+    name: 'Energy Converter',
+    description: 'Convert between various units of energy',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M13 10V3L4 14h7v7l9-11h-7z"),
+    views: 2987,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Includes joules, calories, kilowatt-hours, and more',
+      'Real-time conversion',
+      'Supports scientific and everyday units',
+      'Clean and intuitive layout'
+    ]
+  },
+  {
+    id: 'power-converter',
+    name: 'Power Converter',
+    description: 'Convert between various units of power',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 2a10 10 0 100 20 10 10 0 000-20z"),
+    views: 2543,
+    gradient: 'from-indigo-500 to-violet-500',
+    features: [
+      'Supports watts, kilowatts, horsepower, and more',
+      'Instant results',
+      'User-friendly design',
+      'Mobile-friendly interface'
+    ]
+  },
+  {
+    id: 'force-converter',
+    name: 'Force Converter',
+    description: 'Convert between various units of force',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M2 12h20M12 2v20"),
+    views: 2120,
+    gradient: 'from-lime-500 to-green-500',
+    features: [
+      'Includes newtons, pound-force, and more',
+      'Accurate and fast conversions',
+      'Simple input and output fields',
+      'Responsive design'
+    ]
+  },
+  {
+    id: 'time-converter',
+    name: 'Time Converter',
+    description: 'Convert between various units of time',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 6v6l4 2"),
+    views: 1987,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Supports seconds, minutes, hours, days, and more',
+      'Real-time conversion',
+      'Clean and intuitive interface',
+      'Works offline after initial load'
+    ]
+  },
+  {
+    id: 'speed-converter',
+    name: 'Speed Converter',
+    description: 'Convert between various units of speed',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 4h16v16H4V4z"),
+    views: 1765,
+    gradient: 'from-orange-500 to-yellow-500',
+    features: [
+      'Includes km/h, m/s, mph, and more',
+      'Instant results',
+      'User-friendly design',
+      'Supports both metric and imperial units'
+    ]
+  },
+  {
+    id: 'angle-converter',
+    name: 'Angle Converter',
+    description: 'Convert between various units of angle',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 2a10 10 0 100 20 10 10 0 000-20z"),
+    views: 1543,
+    gradient: 'from-purple-500 to-pink-500',
+    features: [
+      'Supports degrees, radians, and gradians',
+      'Real-time conversion',
+      'Simple and intuitive interface',
+      'Responsive design for all devices'
+    ]
+  },
+  {
+    id: 'fuel-consumption-converter',
+    name: 'Fuel Consumption Converter',
+    description: 'Convert between various units of fuel consumption',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M3 3h18v18H3V3z"),
+    views: 1321,
+    gradient: 'from-teal-500 to-green-500',
+    features: [
+      'Includes km/l, mpg, and more',
+      'Accurate conversions',
+      'User-friendly interface',
+      'Supports both US and UK measurements'
+    ]
+  },
+  {
+    id: 'numbers-converter',
+    name: 'Numbers Converter',
+    description: 'Convert between various number systems',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 2v20M2 12h20"),
+    views: 1109,
+    gradient: 'from-red-500 to-orange-500',
+    features: [
+      'Supports binary, decimal, hexadecimal, and more',
+      'Real-time conversion',
+      'Clean and intuitive layout',
+      'Mobile-friendly design'
+    ]
+  },
+  {
+    id: 'data-storage-converter',
+    name: 'Data Storage Converter',
+    description: 'Convert between various units of data storage',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 4h16v16H4V4z"),
+    views: 987,
+    gradient: 'from-blue-500 to-cyan-500',
+    features: [
+      'Includes bits, bytes, kilobytes, megabytes, and more',
+      'Instant results',
+      'User-friendly interface',
+      'Responsive design for all devices'
+    ]
+  },
+  {
+    id: 'volume-dry-converter',
+    name: 'Volume - Dry Converter',
+    description: 'Convert between various units of dry volume',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M3 3h18v18H3V3z"),
+    views: 876,
+    gradient: 'from-purple-500 to-indigo-500',
+    features: [
+      'Covers bushels, pecks, dry gallons, and more',
+      'Easy-to-use input fields',
+      'Accurate and fast conversions',
+      'Supports both US and UK measurements'
+       ]
+  },{
+    id: 'currency-converter',
+    name: 'Currency Converter',
+    description: 'Convert between world currencies using real-time exchange rates',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 8c-1.333 2-2.667 2-4 0m4 8c1.333-2 2.667-2 4 0M6 6h12M6 18h12M4 12h16"),
+    views: 15342,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Live exchange rate updates',
+      'Supports 160+ currencies worldwide',
+      'Automatic base currency detection',
+      'Historical exchange charts',
+      'Offline cached conversion',
+      'Precise up-to-date rates from global APIs'
+    ]
+  },
+  {
+    id: 'case-converter',
+    name: 'Case Converter',
+    description: 'Convert text between upper case, lower case, title case, and more',
+    category: getCategoryById('text-tools'),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 7243,
+    gradient: 'from-purple-500 to-pink-500',
+    features: [
+      'Convert to UPPERCASE, lowercase, Title Case, and more',
+      'Instant conversion on typing',
+      'Copy to clipboard with one click',
+      'No data is sent to the server',
+      'Mobile-friendly interface',
+      'Lightweight and fast'
+    ]
+  },
+  {
+    id: 'velocity-angular-converter',
+    name: 'Velocity - Angular Converter',
+    description: 'Convert between linear velocity and angular velocity units',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M13 16h-1v-4h-1m4-4h.01M12 8v.01M4.05 4.05l15.9 15.9"),
+    views: 2740,
+    gradient: 'from-indigo-500 to-purple-500',
+    features: [
+      'Convert between rad/s, deg/s, rpm, and more',
+      'Instant value update',
+      'Support for engineering and physics units',
+      'Mobile-optimized UI',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'acceleration-converter',
+    name: 'Acceleration Converter',
+    description: 'Convert units of acceleration including gravity-based and metric units',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M13 10V3L4 14h7v7l9-11h-7z"),
+    views: 3482,
+    gradient: 'from-yellow-500 to-orange-500',
+    features: [
+      'Supports m/s², ft/s², g-force, and more',
+      'Accurate scientific rounding',
+      'Instant conversion interface',
+      'Easy to copy and reuse results',
+      'History tracking'
+    ]
+  },
+  {
+    id: 'acceleration-angular-converter',
+    name: 'Acceleration - Angular Converter',
+    description: 'Convert between angular and linear acceleration units',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 6v6l4 2"),
+    views: 1987,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Convert between rad/s², deg/s², rpm/s, etc.',
+      'Scientific precision',
+      'Lightweight design',
+      'Advanced user-friendly UI',
+      'Clipboard-ready output'
+    ]
+  },
+  {
+    id: 'density-converter',
+    name: 'Density Converter',
+    description: 'Convert between units of mass per volume such as kg/m³ and g/cm³',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M8 10h.01M12 10h.01M16 10h.01M4 6h16M4 18h16M4 12h16"),
+    views: 5593,
+    gradient: 'from-blue-600 to-indigo-600',
+    features: [
+      'Supports 15+ density units',
+      'Metric and imperial options',
+      'Live updates as you type',
+      'Supports reverse conversion',
+      'Light & dark themes'
+    ]
+  },
+  {
+    id: 'specific-volume-converter',
+    name: 'Specific Volume Converter',
+    description: 'Convert units of specific volume for fluid and gas systems',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M9 12l2 2 4-4M3 6h18M3 18h18M4 6v12"),
+    views: 1620,
+    gradient: 'from-teal-500 to-cyan-500',
+    features: [
+      'Includes m³/kg, ft³/lb, and more',
+      'Precise thermodynamics conversions',
+      'Easy copy button',
+      'Responsive for mobile and desktop',
+      'Offline usability'
+    ]
+  },
+  {
+    id: 'moment-of-inertia-converter',
+    name: 'Moment of Inertia Converter',
+    description: 'Convert between various moment of inertia units used in physics',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 6v12M6 12h12"),
+    views: 2470,
+    gradient: 'from-slate-500 to-gray-700',
+    features: [
+      'Supports kg·m², g·cm², slug·ft² etc.',
+      'Useful for engineering calculations',
+      'Clear and intuitive layout',
+      'History of recent entries',
+      'Keyboard input supported'
+    ]
+  },
+  {
+    id: 'moment-of-force-converter',
+    name: 'Moment of Force Converter',
+    description: 'Convert between torque or moment of force units',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M13 16h-1v-4h-1m4-4h.01"),
+    views: 2103,
+    gradient: 'from-amber-500 to-lime-500',
+    features: [
+      'Units: N·m, lb·ft, kg·cm, and more',
+      'Interactive calculator',
+      'Precision conversion support',
+      'Reverse calculation toggle',
+      'Lightweight interface'
+    ]
+  },
+  {
+    id: 'torque-converter',
+    name: 'Torque Converter',
+    description: 'Convert torque values between various measurement units',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 6v6l4 2"),
+    views: 3798,
+    gradient: 'from-emerald-500 to-teal-600',
+    features: [
+      'Units include Nm, lb-ft, kgf·m, etc.',
+      'Real-time calculation',
+      'Accurate for mechanics and engineers',
+      'Dark mode supported',
+      'Multi-device compatible'
+    ]
+  },
+  {
+    id: 'fuel-efficiency-mass-converter',
+    name: 'Fuel Efficiency - Mass Converter',
+    description: 'Convert fuel efficiency in terms of mass-based units',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M5 13l4 4L19 7"),
+    views: 1902,
+    gradient: 'from-cyan-600 to-sky-500',
+    features: [
+      'Units: km/kg, mi/lb, etc.',
+      'Great for logistics and transport',
+      'Customizable decimal accuracy',
+      'Reverse unit switching',
+      'Fast and minimal UI'
+    ]
+  },
+  {
+    id: 'fuel-efficiency-volume-converter',
+    name: 'Fuel Efficiency - Volume Converter',
+    description: 'Convert fuel efficiency between volume-based units',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M3 10h11M9 21V3M16 13l-4-4 4-4"),
+    views: 2246,
+    gradient: 'from-indigo-500 to-blue-500',
+    features: [
+      'Units: mpg, km/L, L/100km, etc.',
+      'Vehicle efficiency calculator',
+      'Data rounding options',
+      'Optimized for all browsers',
+      'Offline enabled'
+    ]
+  },
+  {
+    id: 'temperature-interval-converter',
+    name: 'Temperature Interval Converter',
+    description: 'Convert temperature differences like delta Celsius to delta Kelvin',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M8 18L16 6M4 6h16"),
+    views: 1350,
+    gradient: 'from-orange-400 to-red-500',
+    features: [
+      'Convert between °C, °F, K intervals',
+      'Handles delta values accurately',
+      'Easy to use for physics and labs',
+      'Decimal precision control',
+      'Quick copy function'
+    ]
+  },
+  {
+    id: 'thermal-expansion-converter',
+    name: 'Thermal Expansion Converter',
+    description: 'Convert coefficients of linear thermal expansion across materials',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 4v16h16"),
+    views: 1288,
+    gradient: 'from-red-500 to-pink-600',
+    features: [
+      'Supports µm/m·K, in/in·°F, etc.',
+      'Great for material science',
+      'Live conversion results',
+      'Auto unit suggestion',
+      'Clear visual feedback'
+    ]
+  },
+  {
+    id: 'thermal-resistance-converter',
+    name: 'Thermal Resistance Converter',
+    description: 'Convert units of thermal resistance across materials and layers',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M6 9l6 6 6-6"),
+    views: 990,
+    gradient: 'from-gray-600 to-zinc-700',
+    features: [
+      'Units: °C/W, K/W, etc.',
+      'Thermal interface calculations',
+      'Supports advanced material parameters',
+      'Instant result updates',
+      'Responsive layout'
+    ]
+  },
+  {
+    id: 'thermal-conductivity-converter',
+    name: 'Thermal Conductivity Converter',
+    description: 'Convert thermal conductivity units for materials and fluids',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 1175,
+    gradient: 'from-fuchsia-500 to-purple-700',
+    features: [
+      'Units include W/m·K, Btu/hr·ft·°F, etc.',
+      'Scientific calculation ready',
+      'Toggleable input & output',
+      'Rounded display values',
+      'Mobile responsive'
+    ]
+  },
+  {
+    id: 'specific-heat-capacity-converter',
+    name: 'Specific Heat Capacity Converter',
+    description: 'Convert specific heat capacity units for various substances',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M16 17l-4-4-4 4"),
+    views: 1542,
+    gradient: 'from-red-400 to-yellow-400',
+    features: [
+      'Units: J/kg·K, cal/g·°C, etc.',
+      'Useful for energy analysis',
+      'Fast conversion as you type',
+      'Clean and simple UI',
+      'Support for dark mode'
+    ]
+  },
+  {
+    id: 'heat-density-converter',
+    name: 'Heat Density Converter',
+    description: 'Convert between units of energy density such as J/m³ and Btu/ft³',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 12h16M12 4v16"),
+    views: 1670,
+    gradient: 'from-yellow-600 to-orange-600',
+    features: [
+      'Thermal and combustion unit support',
+      'Scientific constants included',
+      'Instant preview',
+      'Compact interface',
+      'Error-checking features'
+    ]
+  },
+  {
+    id: 'heat-flux-density-converter',
+    name: 'Heat Flux Density Converter',
+    description: 'Convert units of heat flux density for thermal system analysis',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M9 5l7 7-7 7"),
+    views: 1433,
+    gradient: 'from-orange-500 to-red-600',
+    features: [
+      'Units: W/m², Btu/hr·ft², etc.',
+      'Graphical support available',
+      'Scroll-free responsive form',
+      'Quick copy-paste output',
+      'Configurable rounding'
+    ]
+  },
+
   
   // 2. Calculation Tools
   {
@@ -245,6 +692,709 @@ export const tools: Tool[] = [
       'Proportional division of values'
     ]
   },
+  {
+    id: 'heat-transfer-coefficient-converter',
+    name: 'Heat Transfer Coefficient Converter',
+    description: 'Convert between units of heat transfer coefficient like W/m²·K and Btu/hr·ft²·°F',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 1450,
+    gradient: 'from-orange-500 to-red-500',
+    features: [
+      'Supports W/m²·K, Btu/hr·ft²·°F, and more',
+      'Ideal for thermal engineering applications',
+      'Real-time conversion updates',
+      'User-friendly interface',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'flow-converter',
+    name: 'Flow Converter',
+    description: 'Convert between various flow rate units such as m³/s and ft³/min',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 2100,
+    gradient: 'from-blue-500 to-cyan-500',
+    features: [
+      'Supports m³/s, ft³/min, L/min, and more',
+      'Suitable for fluid dynamics calculations',
+      'Instant conversion results',
+      'Responsive design',
+      'History tracking'
+    ]
+  },
+  {
+    id: 'flow-mass-converter',
+    name: 'Flow - Mass Converter',
+    description: 'Convert between mass flow rate units like kg/s and lb/hr',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M13 16h-1v-4h-1m4-4h.01"),
+    views: 1800,
+    gradient: 'from-teal-500 to-green-500',
+    features: [
+      'Supports kg/s, lb/hr, g/min, and more',
+      'Essential for process engineering',
+      'Real-time calculations',
+      'Mobile-friendly interface',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'flow-molar-converter',
+    name: 'Flow - Molar Converter',
+    description: 'Convert between molar flow rate units such as mol/s and kmol/hr',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 6v12M6 12h12"),
+    views: 1600,
+    gradient: 'from-purple-500 to-indigo-500',
+    features: [
+      'Supports mol/s, kmol/hr, and more',
+      'Useful for chemical engineering',
+      'Instant conversion updates',
+      'User-friendly layout',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'mass-flux-density-converter',
+    name: 'Mass Flux Density Converter',
+    description: 'Convert between units of mass flux density like kg/m²·s and lb/ft²·hr',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M9 5l7 7-7 7"),
+    views: 1300,
+    gradient: 'from-gray-500 to-slate-500',
+    features: [
+      'Supports kg/m²·s, lb/ft²·hr, and more',
+      'Ideal for material flow analysis',
+      'Real-time conversion',
+      'Clean interface',
+      'Offline access'
+    ]
+  },
+  {
+    id: 'concentration-molar-converter',
+    name: 'Concentration - Molar Converter',
+    description: 'Convert between molar concentration units like mol/L and mmol/m³',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 1500,
+    gradient: 'from-pink-500 to-rose-500',
+    features: [
+      'Supports mol/L, mmol/m³, and more',
+      'Useful for laboratory calculations',
+      'Instant results',
+      'Responsive design',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'concentration-solution-converter',
+    name: 'Concentration - Solution Converter',
+    description: 'Convert between solution concentration units like % w/w and ppm',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M6 9l6 6 6-6"),
+    views: 1400,
+    gradient: 'from-yellow-500 to-amber-500',
+    features: [
+      'Supports % w/w, ppm, ppb, and more',
+      'Essential for chemical solutions',
+      'Real-time conversion',
+      'User-friendly interface',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'viscosity-dynamic-converter',
+    name: 'Viscosity - Dynamic Converter',
+    description: 'Convert between dynamic viscosity units like Pa·s and poise',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 1700,
+    gradient: 'from-indigo-500 to-blue-500',
+    features: [
+      'Supports Pa·s, poise, and more',
+      'Ideal for fluid mechanics',
+      'Instant conversion updates',
+      'Responsive layout',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'viscosity-kinematic-converter',
+    name: 'Viscosity - Kinematic Converter',
+    description: 'Convert between kinematic viscosity units like m²/s and stokes',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M16 17l-4-4-4 4"),
+    views: 1600,
+    gradient: 'from-green-500 to-emerald-500',
+    features: [
+      'Supports m²/s, stokes, and more',
+      'Useful for fluid flow analysis',
+      'Real-time calculations',
+      'Mobile-friendly design',
+      'Offline access'
+    ]
+  },
+  {
+    id: 'surface-tension-converter',
+    name: 'Surface Tension Converter',
+    description: 'Convert between surface tension units like N/m and dyne/cm',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
+    views: 1200,
+    gradient: 'from-red-500 to-pink-500',
+    features: [
+      'Supports N/m, dyne/cm, and more',
+      'Essential for material science',
+      'Instant conversion results',
+      'User-friendly interface',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'permeability-converter',
+    name: 'Permeability Converter',
+    description: 'Convert between permeability units like darcy and m²',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 6v6l4 2"),
+    views: 1100,
+    gradient: 'from-teal-500 to-cyan-500',
+    features: [
+      'Supports darcy, m², and more',
+      'Useful for geotechnical studies',
+      'Real-time conversion',
+      'Clean layout',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'luminance-converter',
+    name: 'Luminance Converter',
+    description: 'Convert between luminance units like cd/m² and nit',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 4v16h16"),
+    views: 1300,
+    gradient: 'from-yellow-400 to-orange-400',
+    features: [
+      'Supports cd/m², nit, and more',
+      'Ideal for display technology',
+      'Instant conversion updates',
+      'Responsive design',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'luminous-intensity-converter',
+    name: 'Luminous Intensity Converter',
+    description: 'Convert between luminous intensity units like candela and lumen/steradian',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 1250,
+    gradient: 'from-purple-500 to-indigo-500',
+    features: [
+      'Supports candela, lumen/steradian, and more',
+      'Useful for lighting design',
+      'Real-time calculations',
+      'User-friendly interface',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'illumination-converter',
+    name: 'Illumination Converter',
+    description: 'Convert between illumination units like lux and foot-candle',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M6 9l6 6 6-6"),
+    views: 1400,
+    gradient: 'from-blue-500 to-cyan-500',
+    features: [
+      'Supports lux, foot-candle, and more',
+      'Ideal for architectural lighting',
+      'Instant conversion results',
+      'Responsive layout',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'digital-image-resolution-converter',
+    name: 'Digital Image Resolution Converter',
+    description: 'Convert between digital image resolution units like dpi and ppi',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 1500,
+    gradient: 'from-gray-500 to-slate-500',
+    features: [
+      'Supports dpi, ppi, and more',
+      'Essential for graphic design',
+      'Real-time conversion',
+      'User-friendly interface',
+      'Offline access'
+    ]
+  },
+  {
+    id: 'frequency-wavelength-converter',
+    name: 'Frequency Wavelength Converter',
+    description: 'Convert between frequency and wavelength units like Hz and nm',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M13 16h-1v-4h-1m4-4h.01"),
+    views: 1600,
+    gradient: 'from-indigo-500 to-blue-500',
+    features: [
+      'Supports Hz, nm, and more',
+      'Useful for physics and engineering',
+      'Instant conversion updates',
+      'Responsive design',
+      'Offline functionality'
+    ]
+  },{
+    id: 'charge-converter',
+    name: 'Charge Converter',
+    description: 'Convert between electric charge units like Coulomb, Ampere-hour, and more.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 1700,
+    gradient: 'from-green-500 to-teal-500',
+    features: [
+      'Supports Coulomb, Ampere-hour, and more',
+      'Ideal for electrical engineering applications',
+      'Instant conversion updates',
+      'Responsive design',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'linear-charge-density-converter',
+    name: 'Linear Charge Density Converter',
+    description: 'Convert between linear charge density units like Coulomb/meter and nC/m.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M10 18l6-6-6-6"),
+    views: 1600,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Supports Coulomb/meter, nC/m, and more',
+      'Useful for charge distribution calculations',
+      'Real-time conversion updates',
+      'User-friendly interface',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'surface-charge-density-converter',
+    name: 'Surface Charge Density Converter',
+    description: 'Convert between surface charge density units like Coulomb/m² and micro-Coulomb/cm².',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M6 10h12M6 14h12"),
+    views: 1500,
+    gradient: 'from-purple-500 to-indigo-500',
+    features: [
+      'Supports Coulomb/m², micro-Coulomb/cm², and more',
+      'Essential for electrostatic calculations',
+      'Instant conversion results',
+      'Responsive design',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'volume-charge-density-converter',
+    name: 'Volume Charge Density Converter',
+    description: 'Convert between volume charge density units like Coulomb/m³ and nC/m³.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
+    views: 1400,
+    gradient: 'from-red-500 to-pink-500',
+    features: [
+      'Supports Coulomb/m³, nC/m³, and more',
+      'Useful for volume charge calculations',
+      'Real-time conversion updates',
+      'Responsive layout',
+      'Offline access'
+    ]
+  },
+  {
+    id: 'current-converter',
+    name: 'Current Converter',
+    description: 'Convert between electrical current units like Ampere and Milliampere.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M4 4h16M4 12h16M4 18h16"),
+    views: 1300,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Supports Ampere, Milliampere, and more',
+      'Essential for electrical engineering',
+      'Instant conversion results',
+      'Mobile-friendly design',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'linear-current-density-converter',
+    name: 'Linear Current Density Converter',
+    description: 'Convert between linear current density units like A/m and kA/m.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 1200,
+    gradient: 'from-teal-500 to-green-500',
+    features: [
+      'Supports A/m, kA/m, and more',
+      'Ideal for current distribution analysis',
+      'Real-time conversion updates',
+      'Responsive layout',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'surface-current-density-converter',
+    name: 'Surface Current Density Converter',
+    description: 'Convert between surface current density units like A/m² and mA/cm².',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
+    views: 1100,
+    gradient: 'from-orange-500 to-yellow-500',
+    features: [
+      'Supports A/m², mA/cm², and more',
+      'Ideal for electrical field calculations',
+      'Instant conversion results',
+      'User-friendly interface',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'electric-field-strength-converter',
+    name: 'Electric Field Strength Converter',
+    description: 'Convert between electric field strength units like N/C and V/m.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 8h8v8H4V8h8z"),
+    views: 1000,
+    gradient: 'from-indigo-500 to-cyan-500',
+    features: [
+      'Supports N/C, V/m, and more',
+      'Useful for electric field analysis',
+      'Real-time conversion',
+      'Mobile-friendly design',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'electric-potential-converter',
+    name: 'Electric Potential Converter',
+    description: 'Convert between electric potential units like Volt and Millivolt.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M6 9l6 6 6-6"),
+    views: 1500,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Supports Volt, Millivolt, and more',
+      'Essential for electrical engineering applications',
+      'Instant conversion updates',
+      'User-friendly interface',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'electric-resistance-converter',
+    name: 'Electric Resistance Converter',
+    description: 'Convert between resistance units like Ohm, Kiloohm, and Megaohm.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
+    views: 1400,
+    gradient: 'from-red-500 to-pink-500',
+    features: [
+      'Supports Ohm, Kiloohm, Megaohm, and more',
+      'Useful for circuit analysis',
+      'Real-time conversion results',
+      'Responsive design',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'electric-resistivity-converter',
+    name: 'Electric Resistivity Converter',
+    description: 'Convert between electric resistivity units like Ohm·meter and Ohm·centimeter.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 1200,
+    gradient: 'from-pink-500 to-purple-500',
+    features: [
+      'Supports Ohm·meter, Ohm·centimeter, and more',
+      'Essential for materials science',
+      'Instant conversion updates',
+      'User-friendly interface',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'electric-conductance-converter',
+    name: 'Electric Conductance Converter',
+    description: 'Convert between conductance units like Siemens and Mho.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M9 6h2M9 12h2"),
+    views: 1100,
+    gradient: 'from-teal-500 to-cyan-500',
+    features: [
+      'Supports Siemens, Mho, and more',
+      'Ideal for electrical circuit design',
+      'Real-time conversion results',
+      'Responsive layout',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'electric-conductivity-converter',
+    name: 'Electric Conductivity Converter',
+    description: 'Convert between conductivity units like Siemens per meter and microsiemens per centimeter.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M10 18l6-6-6-6"),
+    views: 1000,
+    gradient: 'from-orange-500 to-yellow-500',
+    features: [
+      'Supports Siemens/m, microsiemens/cm, and more',
+      'Useful for materials engineering',
+      'Instant conversion results',
+      'User-friendly interface',
+      'Offline functionality'
+    ]
+  },{
+    id: 'electrostatic-capacitance-converter',
+    name: 'Electrostatic Capacitance Converter',
+    description: 'Convert between electrostatic capacitance units like Farad, Microfarad, and Picofarad.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 900,
+    gradient: 'from-purple-500 to-blue-500',
+    features: [
+      'Supports Farad, Microfarad, Picofarad, and more',
+      'Ideal for electronics and electrical engineering',
+      'Instant conversion updates',
+      'Responsive design',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'inductance-converter',
+    name: 'Inductance Converter',
+    description: 'Convert between inductance units like Henry, Millihenry, and Microhenry.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 800,
+    gradient: 'from-blue-500 to-indigo-500',
+    features: [
+      'Supports Henry, Millihenry, Microhenry, and more',
+      'Essential for circuit analysis',
+      'Real-time conversion results',
+      'User-friendly interface',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'magnetomotive-force-converter',
+    name: 'Magnetomotive Force Converter',
+    description: 'Convert between magnetomotive force units like Ampere-turns and Gilbert.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 700,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Supports Ampere-turns, Gilbert, and more',
+      'Used in magnetic field calculations',
+      'Instant conversion results',
+      'Responsive design',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'magnetic-field-strength-converter',
+    name: 'Magnetic Field Strength Converter',
+    description: 'Convert between magnetic field strength units like Ampere per meter and Oersted.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 750,
+    gradient: 'from-teal-500 to-green-500',
+    features: [
+      'Supports Ampere/meter, Oersted, and more',
+      'Useful for magnetism and electromagnetism calculations',
+      'Real-time conversion updates',
+      'Responsive layout',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'magnetic-flux-converter',
+    name: 'Magnetic Flux Converter',
+    description: 'Convert between magnetic flux units like Weber and Maxwell.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 850,
+    gradient: 'from-orange-500 to-red-500',
+    features: [
+      'Supports Weber, Maxwell, and more',
+      'Ideal for magnetic field analysis',
+      'Instant conversion updates',
+      'Mobile-friendly design',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'magnetic-flux-density-converter',
+    name: 'Magnetic Flux Density Converter',
+    description: 'Convert between magnetic flux density units like Tesla and Gauss.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 950,
+    gradient: 'from-pink-500 to-purple-500',
+    features: [
+      'Supports Tesla, Gauss, and more',
+      'Essential for magnetic field studies',
+      'Real-time conversion results',
+      'Responsive layout',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'radiation-converter',
+    name: 'Radiation Converter',
+    description: 'Convert between radiation units like Becquerel, Curie, and Gray.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 800,
+    gradient: 'from-yellow-500 to-orange-500',
+    features: [
+      'Supports Becquerel, Curie, Gray, and more',
+      'Ideal for radiation protection and analysis',
+      'Instant conversion updates',
+      'Responsive interface',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'radiation-activity-converter',
+    name: 'Radiation Activity Converter',
+    description: 'Convert between radiation activity units like Curie, Becquerel, and more.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 600,
+    gradient: 'from-teal-500 to-cyan-500',
+    features: [
+      'Supports Curie, Becquerel, and more',
+      'Used in nuclear science and radiology',
+      'Real-time conversion results',
+      'User-friendly interface',
+      'Offline access'
+    ]
+  },
+  {
+    id: 'radiation-exposure-converter',
+    name: 'Radiation Exposure Converter',
+    description: 'Convert between radiation exposure units like Roentgen and Coulomb per kilogram.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 700,
+    gradient: 'from-red-500 to-pink-500',
+    features: [
+      'Supports Roentgen, Coulomb/kg, and more',
+      'Important for radiation safety',
+      'Instant conversion results',
+      'Responsive design',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'radiation-absorbed-dose-converter',
+    name: 'Radiation Absorbed Dose Converter',
+    description: 'Convert between radiation absorbed dose units like Gray and Rad.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 650,
+    gradient: 'from-cyan-500 to-blue-500',
+    features: [
+      'Supports Gray, Rad, and more',
+      'Essential for radiation therapy and protection',
+      'Real-time conversion results',
+      'Mobile-friendly design',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'prefixes-converter',
+    name: 'Prefixes Converter',
+    description: 'Convert between various prefixes like kilo, mega, milli, and more.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 600,
+    gradient: 'from-green-500 to-yellow-500',
+    features: [
+      'Supports kilo, mega, milli, and more',
+      'Ideal for metric system conversions',
+      'Real-time conversion updates',
+      'Responsive layout',
+      'Offline functionality'
+    ]
+  },
+  {
+    id: 'data-transfer-converter',
+    name: 'Data Transfer Converter',
+    description: 'Convert between data transfer units like bits per second, bytes per second, and more.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 750,
+    gradient: 'from-blue-500 to-green-500',
+    features: [
+      'Supports bits per second, bytes per second, and more',
+      'Essential for networking and internet speed analysis',
+      'Instant conversion updates',
+      'User-friendly interface',
+      'Offline capability'
+    ]
+  },
+  {
+    id: 'sound-converter',
+    name: 'Sound Converter',
+    description: 'Convert between sound units like decibels and sound intensity.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 800,
+    gradient: 'from-purple-500 to-indigo-500',
+    features: [
+      'Supports decibels, sound intensity, and more',
+      'Used in acoustics and audio engineering',
+      'Real-time conversion results',
+      'Responsive design',
+      'Offline support'
+    ]
+  },
+  {
+    id: 'typography-converter',
+    name: 'Typography Converter',
+    description: 'Convert between typography units like points, picas, and pixels.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M6 4h12M6 10h12"),
+    views: 650,
+    gradient: 'from-teal-500 to-cyan-500',
+    features: [
+      'Supports points, picas, pixels, and more',
+      'Ideal for graphic design and web development',
+      'Real-time conversion updates',
+      'Mobile-friendly interface',
+      'Offline access'
+    ]
+  },
+  {
+    id: 'volume-lumber-converter',
+    name: 'Volume - Lumber Converter',
+    description: 'Convert between lumber volume units like board feet, cubic feet, and more.',
+    category: getCategoryById('unit-conversion'),
+    icon: createIcon("M12 4v16m8-8H4"),
+    views: 500,
+    gradient: 'from-orange-500 to-yellow-500',
+    features: [
+      'Supports board feet, cubic feet, and more',
+      'Ideal for construction and carpentry',
+      'Instant conversion results',
+      'Responsive design',
+      'Offline functionality'
+      ]
+  },
+
   
   // 3. Text & String Tools
   {

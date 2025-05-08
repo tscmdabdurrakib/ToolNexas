@@ -91,7 +91,7 @@ export default function Home() {
           Categories
         </h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {categories.map((category) => (
             <motion.div key={category.id} variants={item}>
               <CategoryCard category={category} />
@@ -125,7 +125,7 @@ export default function Home() {
           </button>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {popularTools.map((tool) => (
             <motion.div key={tool.id} variants={item}>
               <ToolCard tool={tool} />
@@ -169,7 +169,7 @@ export default function Home() {
           </button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {recentTools.map((tool, index) => (
             <motion.div key={tool.id} variants={item}>
               <RecentToolCard tool={tool} daysAgo={index + 2} />
