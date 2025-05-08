@@ -149,6 +149,99 @@ export default function ToolPage() {
             </div>
           </CardFooter>
         </Card>
+
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle>
+              <div className="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                </svg>
+                <span>Tool Details</span>
+              </div>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <div>
+                <h4 className="text-sm font-medium mb-2">Description</h4>
+                <p className="text-sm text-muted-foreground">{tool.description}</p>
+              </div>
+              
+              <div>
+                <h4 className="text-sm font-medium mb-2">How to use</h4>
+                <ol className="list-decimal ml-4 text-sm text-muted-foreground space-y-1">
+                  <li>Enter your input in the text area above</li>
+                  <li>Click the "Process" button to perform the operation</li>
+                  <li>View the results in the output area</li>
+                  <li>Use the "Copy" button to copy the results to clipboard</li>
+                </ol>
+              </div>
+              
+              <div>
+                <h4 className="text-sm font-medium mb-2">Use cases</h4>
+                <ul className="list-disc ml-4 text-sm text-muted-foreground space-y-1">
+                  {tool.category.id === 'unit-conversion' && (
+                    <>
+                      <li>Converting between different measurement units</li>
+                      <li>Scientific calculations requiring unit conversions</li>
+                      <li>International recipe conversion</li>
+                      <li>Educational purposes for teaching about measurement systems</li>
+                    </>
+                  )}
+                  
+                  {tool.category.id === 'text-string' && (
+                    <>
+                      <li>Formatting text for different requirements</li>
+                      <li>Cleaning up text data from various sources</li>
+                      <li>Preparing content for publication</li>
+                      <li>Text analysis and manipulation</li>
+                    </>
+                  )}
+                  
+                  {tool.category.id !== 'unit-conversion' && tool.category.id !== 'text-string' && (
+                    <>
+                      <li>Simplifying everyday tasks related to {tool.category.name.toLowerCase()}</li>
+                      <li>Professional applications in {tool.category.name.toLowerCase()} field</li>
+                      <li>Personal productivity and efficiency</li>
+                      <li>Educational purposes</li>
+                    </>
+                  )}
+                </ul>
+              </div>
+              
+              <div>
+                <h4 className="text-sm font-medium mb-2">Technical specifications</h4>
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Browser-based processing</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>No data storage</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Responsive design</span>
+                  </div>
+                  <div className="flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Instant results</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </motion.div>
     </div>
   );
