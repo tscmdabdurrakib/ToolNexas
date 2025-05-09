@@ -1,0 +1,104 @@
+import { useLocation } from "wouter";
+import { useTools } from "@/context/ToolsContext";
+import { ToolCard } from "@/components/ToolCard";
+import { CategoryCard } from "@/components/CategoryCard";
+import { useEffect, useState } from "react";
+import { Tool } from "@/data/tools";
+import { CategoryWithIcon } from "@/data/categories";
+
+export default function SearchPage() {
+  // Parse query from URL
+  const [location] = useLocation();
+  const query = new URLSearchParams(location.split("?")[1] || "").get("q") || "";
+  
+  const { tools, categories } = useTools();
+  const [searchResults, setSearchResults] = useState<{
+    tools: Tool[];
+    categories: CategoryWithIcon[];
+  }>({
+    tools: [],
+    categories: [],
+  });
+  
+  // Perform search whenever query changes
+  useEffect(() => {
+    if (!query) return;
+    
+    const lowerQuery = query.toLowerCase();
+    
+    // Search in tools
+    const toolResults = tools.filter(tool => 
+      tool.name.toLowerCase().includes(lowerQuery) || 
+      tool.description.toLowerCase().includes(lowerQuery)
+    );
+    
+    // Search in categories
+    const categoryResults = categories.filter(cat => 
+      cat.name.toLowerCase().includes(lowerQuery) || 
+      cat.description.toLowerCase().includes(lowerQuery)
+    );
+    
+    setSearchResults({
+      tools: toolResults,
+      categories: categoryResults,
+    });
+  }, [query, tools, categories]);
+  
+  const { tools: foundTools, categories: foundCategories } = searchResults;
+  const hasResults = foundTools.length > 0 || foundCategories.length > 0;
+  
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col gap-8">
+        {/* Search header */}
+        <div className="flex flex-col space-y-1">
+          <h1 className="text-2xl font-bold">Search results for "{query}"</h1>
+          <p className="text-muted-foreground">
+            Found {foundTools.length} tools and {foundCategories.length} categories
+          </p>
+        </div>
+        
+        {/* Categories section */}
+        {foundCategories.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold">Categories</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {foundCategories.map((category) => (
+                <CategoryCard key={category.id} category={category} />
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* Tools section */}
+        {foundTools.length > 0 && (
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold">Tools</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {foundTools.map((tool) => (
+                <ToolCard key={tool.id} tool={tool} />
+              ))}
+            </div>
+          </div>
+        )}
+        
+        {/* No results */}
+        {!hasResults && (
+          <div className="py-20 text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+            </div>
+            <h2 className="text-xl font-semibold mb-2">No results found</h2>
+            <p className="text-muted-foreground max-w-md mx-auto">
+              We couldn't find any tools or categories matching your search.
+              Try using different keywords or browse our categories.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
