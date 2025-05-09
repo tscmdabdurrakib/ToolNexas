@@ -12,40 +12,36 @@ export default function SearchPage() {
   const query = new URLSearchParams(location.split("?")[1] || "").get("q") || "";
   
   const { tools, categories } = useTools();
-  const [searchResults, setSearchResults] = useState<{
-    tools: Tool[];
-    categories: CategoryWithIcon[];
-  }>({
-    tools: [],
-    categories: [],
-  });
+  const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
+  const [filteredCategories, setFilteredCategories] = useState<CategoryWithIcon[]>([]);
   
   // Perform search whenever query changes
   useEffect(() => {
-    if (!query) return;
+    if (!query.trim()) {
+      setFilteredTools([]);
+      setFilteredCategories([]);
+      return;
+    }
     
     const lowerQuery = query.toLowerCase();
     
     // Search in tools
-    const toolResults = tools.filter(tool => 
+    const matchedTools = tools.filter(tool => 
       tool.name.toLowerCase().includes(lowerQuery) || 
       tool.description.toLowerCase().includes(lowerQuery)
     );
     
     // Search in categories
-    const categoryResults = categories.filter(cat => 
+    const matchedCategories = categories.filter(cat => 
       cat.name.toLowerCase().includes(lowerQuery) || 
       cat.description.toLowerCase().includes(lowerQuery)
     );
     
-    setSearchResults({
-      tools: toolResults,
-      categories: categoryResults,
-    });
+    setFilteredTools(matchedTools);
+    setFilteredCategories(matchedCategories);
   }, [query, tools, categories]);
   
-  const { tools: foundTools, categories: foundCategories } = searchResults;
-  const hasResults = foundTools.length > 0 || foundCategories.length > 0;
+  const hasResults = filteredTools.length > 0 || filteredCategories.length > 0;
   
   return (
     <div className="container mx-auto px-4 py-8">
@@ -54,16 +50,16 @@ export default function SearchPage() {
         <div className="flex flex-col space-y-1">
           <h1 className="text-2xl font-bold">Search results for "{query}"</h1>
           <p className="text-muted-foreground">
-            Found {foundTools.length} tools and {foundCategories.length} categories
+            Found {filteredTools.length} tools and {filteredCategories.length} categories
           </p>
         </div>
         
         {/* Categories section */}
-        {foundCategories.length > 0 && (
+        {filteredCategories.length > 0 && (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Categories</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {foundCategories.map((category) => (
+              {filteredCategories.map((category) => (
                 <CategoryCard key={category.id} category={category} />
               ))}
             </div>
@@ -71,11 +67,11 @@ export default function SearchPage() {
         )}
         
         {/* Tools section */}
-        {foundTools.length > 0 && (
+        {filteredTools.length > 0 && (
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Tools</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {foundTools.map((tool) => (
+              {filteredTools.map((tool) => (
                 <ToolCard key={tool.id} tool={tool} />
               ))}
             </div>

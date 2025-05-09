@@ -2,12 +2,20 @@ import { useState, useRef, useEffect } from "react";
 import { Search as SearchIcon, X as XIcon } from "lucide-react";
 import { useTools } from "@/context/ToolsContext";
 import { useLocation } from "wouter";
+import { Tool } from "@/data/tools";
+import { CategoryWithIcon } from "@/data/categories";
+
+interface Suggestion {
+  text: string;
+  type: "tool" | "category" | "general";
+  id?: string;
+}
 
 export function SearchBar() {
   const { tools, categories } = useTools();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [, setLocation] = useLocation();
@@ -20,58 +28,76 @@ export function SearchBar() {
     }
 
     const lowerQuery = query.toLowerCase();
+    const newSuggestions: Suggestion[] = [];
     
-    // Get matches from tool names and descriptions
-    const toolMatches = tools
-      .filter(tool => 
-        tool.name.toLowerCase().includes(lowerQuery) || 
-        tool.description.toLowerCase().includes(lowerQuery)
-      )
-      .map(tool => tool.name);
+    // Find matching tools
+    const matchedTools = tools.filter(tool => 
+      tool.name.toLowerCase().includes(lowerQuery) || 
+      tool.description.toLowerCase().includes(lowerQuery)
+    );
     
-    // Get matches from category names
-    const categoryMatches = categories
-      .filter(cat => 
-        cat.name.toLowerCase().includes(lowerQuery) || 
-        cat.description.toLowerCase().includes(lowerQuery)
-      )
-      .map(cat => cat.name);
+    // Add top 2 tool matches
+    matchedTools.slice(0, 2).forEach(tool => {
+      newSuggestions.push({
+        text: tool.name,
+        type: "tool",
+        id: tool.id
+      });
+    });
     
-    // Create smart suggestions based on user input
-    let smartSuggestions: string[] = [];
+    // Find matching categories
+    const matchedCategories = categories.filter(cat => 
+      cat.name.toLowerCase().includes(lowerQuery) || 
+      cat.description.toLowerCase().includes(lowerQuery)
+    );
     
-    // Add direct matches first (deduplicated)
-    const allMatches = [...toolMatches, ...categoryMatches];
-    const uniqueMatches = allMatches.filter((item, pos) => allMatches.indexOf(item) === pos);
-    smartSuggestions = uniqueMatches.slice(0, 3);
+    // Add top 2 category matches
+    matchedCategories.slice(0, 2).forEach(category => {
+      newSuggestions.push({
+        text: category.name,
+        type: "category",
+        id: category.id
+      });
+    });
     
     // Add contextual suggestions
-    if (lowerQuery.includes("convert")) {
-      smartSuggestions.push("Unit Conversion Tools");
+    if (matchedTools.length === 0 && matchedCategories.length === 0) {
+      // Only add these if we don't have direct matches
+      if (lowerQuery.includes("convert")) {
+        const category = categories.find(c => c.name.toLowerCase().includes("conversion"));
+        newSuggestions.push({
+          text: "Unit Conversion Tools",
+          type: "general",
+          id: category?.id
+        });
+      }
+      
+      if (lowerQuery.includes("text") || lowerQuery.includes("string")) {
+        const category = categories.find(c => c.name.toLowerCase().includes("text"));
+        newSuggestions.push({
+          text: "Text & String Tools",
+          type: "general",
+          id: category?.id
+        });
+      }
+      
+      if (lowerQuery.includes("image") || lowerQuery.includes("picture")) {
+        const category = categories.find(c => c.name.toLowerCase().includes("image"));
+        newSuggestions.push({
+          text: "Image & Media Tools",
+          type: "general",
+          id: category?.id
+        });
+      }
     }
     
-    if (lowerQuery.includes("text") || lowerQuery.includes("string")) {
-      smartSuggestions.push("Text & String Tools");
-    }
+    // Always add a general search suggestion
+    newSuggestions.push({
+      text: `Search for "${query}"`,
+      type: "general"
+    });
     
-    if (lowerQuery.includes("image") || lowerQuery.includes("picture")) {
-      smartSuggestions.push("Image & Media Tools");
-    }
-    
-    if (lowerQuery.includes("calc") || lowerQuery.includes("math")) {
-      smartSuggestions.push("Calculation Tools");
-    }
-    
-    if (lowerQuery.includes("seo") || lowerQuery.includes("marketing")) {
-      smartSuggestions.push("SEO & Marketing Tools");
-    }
-    
-    // Take max 5 unique suggestions
-    const finalSuggestions = smartSuggestions.filter((item, pos) => 
-      smartSuggestions.indexOf(item) === pos
-    ).slice(0, 5);
-    
-    setSuggestions(finalSuggestions);
+    setSuggestions(newSuggestions);
   }, [query, tools, categories]);
 
   // Close search when clicking outside
@@ -110,9 +136,18 @@ export function SearchBar() {
     }
   }
 
-  function handleSuggestionClick(suggestion: string) {
-    setQuery(suggestion);
-    setLocation(`/search?q=${encodeURIComponent(suggestion)}`);
+  function handleSuggestionClick(suggestion: Suggestion) {
+    if (suggestion.type === "tool" && suggestion.id) {
+      // Navigate directly to the tool
+      setLocation(`/tool/${suggestion.id}`);
+    } else if (suggestion.type === "category" && suggestion.id) {
+      // Navigate directly to the category
+      setLocation(`/category/${suggestion.id}`);
+    } else {
+      // General search - show all results
+      const searchQuery = suggestion.text === `Search for "${query}"` ? query : suggestion.text;
+      setLocation(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
     setIsOpen(false);
   }
 
@@ -157,7 +192,13 @@ export function SearchBar() {
                       className="w-full text-left px-3 py-2 hover:bg-muted rounded-md text-sm transition-colors"
                       onClick={() => handleSuggestionClick(suggestion)}
                     >
-                      {suggestion}
+                      <span>{suggestion.text}</span>
+                      {suggestion.type === "tool" && (
+                        <span className="ml-2 text-xs text-muted-foreground">(Tool)</span>
+                      )}
+                      {suggestion.type === "category" && (
+                        <span className="ml-2 text-xs text-muted-foreground">(Category)</span>
+                      )}
                     </button>
                   </li>
                 ))}
@@ -165,7 +206,7 @@ export function SearchBar() {
             </div>
           )}
           
-          {query && !suggestions.length && (
+          {query && suggestions.length === 0 && (
             <div className="p-4 text-center text-muted-foreground text-sm">
               No results found for "{query}"
             </div>
