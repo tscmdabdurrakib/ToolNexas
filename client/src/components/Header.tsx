@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Menu, Search, X } from "lucide-react";
 import { useState } from "react";
 import { MainNavigationMenu } from "./NavigationMenu";
+import { SearchBar } from "./SearchBar";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,17 +36,8 @@ export function Header() {
         </div>
         
         <div className="flex items-center space-x-4">
-          <div className="relative hidden lg:block">
-            <form onSubmit={handleSearch}>
-              <Input
-                type="text"
-                placeholder="Search tools..."
-                className="pl-10 pr-4 py-2 w-64 bg-gray-100 dark:bg-secondary"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-            </form>
+          <div className="hidden lg:block">
+            <SearchBar />
           </div>
           
           <ThemeToggle />
@@ -76,16 +68,7 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border py-4 bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-5 duration-300">
           <div className="container mx-auto px-4 space-y-4">
-            <form onSubmit={handleSearch} className="relative">
-              <Input
-                type="text"
-                placeholder="Search tools..."
-                className="pl-10 pr-4 py-2 w-full bg-gray-100 dark:bg-secondary border border-border focus:border-primary shadow-sm"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-            </form>
+            <SearchBar />
 
             <div className="grid grid-cols-2 gap-3">
               <Button 

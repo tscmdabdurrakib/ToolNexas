@@ -1,11 +1,11 @@
-import React from 'react';
-import { categories } from './categories';
+import React from "react";
+import { categories } from "./categories";
 
 export interface Tool {
   id: string;
   name: string;
   description: string;
-  category: typeof categories[0];
+  category: (typeof categories)[0];
   icon: React.ReactNode;
   views: number;
   gradient: string;
@@ -14,7 +14,7 @@ export interface Tool {
 }
 
 function getCategoryById(id: string) {
-  return categories.find(cat => cat.id === id) || categories[0];
+  return categories.find((cat) => cat.id === id) || categories[0];
 }
 
 // Helper function to create SVG icons
@@ -26,13 +26,13 @@ function createIcon(pathD: string) {
       fill: "none",
       stroke: "currentColor",
       strokeWidth: "2",
-      className: "h-6 w-6"
+      className: "h-6 w-6",
     },
     React.createElement("path", {
       strokeLinecap: "round",
       strokeLinejoin: "round",
-      d: pathD
-    })
+      d: pathD,
+    }),
   );
 }
 
@@ -40,2925 +40,12627 @@ function createIcon(pathD: string) {
 export const tools: Tool[] = [
   // 1. Unit & Conversion Tools
   {
-    id: 'length-converter',
-    name: 'Length Converter',
-    description: 'Convert between various units of length and distance',
-    category: getCategoryById('unit-conversion'),
-    icon: createIcon("M6 6V5a3 3 0 013-3h2.25M6 6h12M6 6v1a3 3 0 01-3 3m12-3v1a3 3 0 01-3 3M3 10v5a2 2 0 002 2h3.75M3 10h1m8-3v5a2 2 0 01-2 2H5.75m8 0h3.75a2 2 0 002-2v-5"),
+    id: "length-converter",
+    name: "Length Converter",
+    description: "Convert between various units of length and distance",
+    category: getCategoryById("unit-conversion"),
+    icon: createIcon(
+      "M6 6V5a3 3 0 013-3h2.25M6 6h12M6 6v1a3 3 0 01-3 3m12-3v1a3 3 0 01-3 3M3 10v5a2 2 0 002 2h3.75M3 10h1m8-3v5a2 2 0 01-2 2H5.75m8 0h3.75a2 2 0 002-2v-5",
+    ),
     views: 8965,
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: "from-blue-500 to-cyan-500",
     features: [
-      'Convert between metric and imperial units',
-      'Support for over 20 different length units',
-      'Real-time conversion as you type',
-      'History of recent conversions',
-      'Precision control up to 10 decimal places',
-      'Offline functionality'
-    ]
+      "Convert between metric and imperial units",
+      "Support for over 20 different length units",
+      "Real-time conversion as you type",
+      "History of recent conversions",
+      "Precision control up to 10 decimal places",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'weight-mass-converter',
-    name: 'Weight and Mass Converter',
-    description: 'Convert between various units of weight and mass',
-    category: getCategoryById('unit-conversion'),
+    id: "weight-mass-converter",
+    name: "Weight and Mass Converter",
+    description: "Convert between various units of weight and mass",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 6h16M4 10h16M4 14h16M4 18h16"),
     views: 7523,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: "from-green-500 to-emerald-500",
     features: [
-      'Supports metric and imperial units',
-      'Includes grams, kilograms, pounds, and ounces',
-      'Instant conversion results',
-      'User-friendly interface',
-      'Mobile responsive design'
-    ]
+      "Supports metric and imperial units",
+      "Includes grams, kilograms, pounds, and ounces",
+      "Instant conversion results",
+      "User-friendly interface",
+      "Mobile responsive design",
+    ],
   },
   {
-    id: 'volume-converter',
-    name: 'Volume Converter',
-    description: 'Convert between various units of volume',
-    category: getCategoryById('unit-conversion'),
+    id: "volume-converter",
+    name: "Volume Converter",
+    description: "Convert between various units of volume",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M3 3h18v18H3V3z"),
     views: 6342,
-    gradient: 'from-purple-500 to-indigo-500',
+    gradient: "from-purple-500 to-indigo-500",
     features: [
-      'Covers liters, milliliters, gallons, and more',
-      'Easy-to-use input fields',
-      'Accurate and fast conversions',
-      'Supports both US and UK measurements'
-    ]
+      "Covers liters, milliliters, gallons, and more",
+      "Easy-to-use input fields",
+      "Accurate and fast conversions",
+      "Supports both US and UK measurements",
+    ],
   },
   {
-    id: 'temperature-converter',
-    name: 'Temperature Converter',
-    description: 'Convert between Celsius, Fahrenheit, and Kelvin',
-    category: getCategoryById('unit-conversion'),
+    id: "temperature-converter",
+    name: "Temperature Converter",
+    description: "Convert between Celsius, Fahrenheit, and Kelvin",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 2a10 10 0 100 20 10 10 0 000-20z"),
     views: 5891,
-    gradient: 'from-red-500 to-orange-500',
+    gradient: "from-red-500 to-orange-500",
     features: [
-      'Supports all major temperature units',
-      'Real-time conversion',
-      'Simple and intuitive design',
-      'No internet required after initial load'
-    ]
+      "Supports all major temperature units",
+      "Real-time conversion",
+      "Simple and intuitive design",
+      "No internet required after initial load",
+    ],
   },
   {
-    id: 'area-converter',
-    name: 'Area Converter',
-    description: 'Convert between various units of area',
-    category: getCategoryById('unit-conversion'),
+    id: "area-converter",
+    name: "Area Converter",
+    description: "Convert between various units of area",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 4h16v16H4V4z"),
     views: 4782,
-    gradient: 'from-yellow-500 to-amber-500',
+    gradient: "from-yellow-500 to-amber-500",
     features: [
-      'Includes square meters, acres, hectares, and more',
-      'Instant results',
-      'User-friendly interface',
-      'Supports both metric and imperial units'
-    ]
+      "Includes square meters, acres, hectares, and more",
+      "Instant results",
+      "User-friendly interface",
+      "Supports both metric and imperial units",
+    ],
   },
   {
-    id: 'pressure-converter',
-    name: 'Pressure Converter',
-    description: 'Convert between various units of pressure',
-    category: getCategoryById('unit-conversion'),
+    id: "pressure-converter",
+    name: "Pressure Converter",
+    description: "Convert between various units of pressure",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 2v20M2 12h20"),
     views: 3654,
-    gradient: 'from-teal-500 to-cyan-500',
+    gradient: "from-teal-500 to-cyan-500",
     features: [
-      'Supports pascal, bar, psi, and more',
-      'Accurate conversions',
-      'Easy-to-use interface',
-      'Responsive design for all devices'
-    ]
+      "Supports pascal, bar, psi, and more",
+      "Accurate conversions",
+      "Easy-to-use interface",
+      "Responsive design for all devices",
+    ],
   },
   {
-    id: 'energy-converter',
-    name: 'Energy Converter',
-    description: 'Convert between various units of energy',
-    category: getCategoryById('unit-conversion'),
+    id: "energy-converter",
+    name: "Energy Converter",
+    description: "Convert between various units of energy",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M13 10V3L4 14h7v7l9-11h-7z"),
     views: 2987,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Includes joules, calories, kilowatt-hours, and more',
-      'Real-time conversion',
-      'Supports scientific and everyday units',
-      'Clean and intuitive layout'
-    ]
+      "Includes joules, calories, kilowatt-hours, and more",
+      "Real-time conversion",
+      "Supports scientific and everyday units",
+      "Clean and intuitive layout",
+    ],
   },
   {
-    id: 'power-converter',
-    name: 'Power Converter',
-    description: 'Convert between various units of power',
-    category: getCategoryById('unit-conversion'),
+    id: "power-converter",
+    name: "Power Converter",
+    description: "Convert between various units of power",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 2a10 10 0 100 20 10 10 0 000-20z"),
     views: 2543,
-    gradient: 'from-indigo-500 to-violet-500',
+    gradient: "from-indigo-500 to-violet-500",
     features: [
-      'Supports watts, kilowatts, horsepower, and more',
-      'Instant results',
-      'User-friendly design',
-      'Mobile-friendly interface'
-    ]
+      "Supports watts, kilowatts, horsepower, and more",
+      "Instant results",
+      "User-friendly design",
+      "Mobile-friendly interface",
+    ],
   },
   {
-    id: 'force-converter',
-    name: 'Force Converter',
-    description: 'Convert between various units of force',
-    category: getCategoryById('unit-conversion'),
+    id: "force-converter",
+    name: "Force Converter",
+    description: "Convert between various units of force",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M2 12h20M12 2v20"),
     views: 2120,
-    gradient: 'from-lime-500 to-green-500',
+    gradient: "from-lime-500 to-green-500",
     features: [
-      'Includes newtons, pound-force, and more',
-      'Accurate and fast conversions',
-      'Simple input and output fields',
-      'Responsive design'
-    ]
+      "Includes newtons, pound-force, and more",
+      "Accurate and fast conversions",
+      "Simple input and output fields",
+      "Responsive design",
+    ],
   },
   {
-    id: 'time-converter',
-    name: 'Time Converter',
-    description: 'Convert between various units of time',
-    category: getCategoryById('unit-conversion'),
+    id: "time-converter",
+    name: "Time Converter",
+    description: "Convert between various units of time",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 6v6l4 2"),
     views: 1987,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Supports seconds, minutes, hours, days, and more',
-      'Real-time conversion',
-      'Clean and intuitive interface',
-      'Works offline after initial load'
-    ]
+      "Supports seconds, minutes, hours, days, and more",
+      "Real-time conversion",
+      "Clean and intuitive interface",
+      "Works offline after initial load",
+    ],
   },
   {
-    id: 'speed-converter',
-    name: 'Speed Converter',
-    description: 'Convert between various units of speed',
-    category: getCategoryById('unit-conversion'),
+    id: "speed-converter",
+    name: "Speed Converter",
+    description: "Convert between various units of speed",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 4h16v16H4V4z"),
     views: 1765,
-    gradient: 'from-orange-500 to-yellow-500',
+    gradient: "from-orange-500 to-yellow-500",
     features: [
-      'Includes km/h, m/s, mph, and more',
-      'Instant results',
-      'User-friendly design',
-      'Supports both metric and imperial units'
-    ]
+      "Includes km/h, m/s, mph, and more",
+      "Instant results",
+      "User-friendly design",
+      "Supports both metric and imperial units",
+    ],
   },
   {
-    id: 'angle-converter',
-    name: 'Angle Converter',
-    description: 'Convert between various units of angle',
-    category: getCategoryById('unit-conversion'),
+    id: "angle-converter",
+    name: "Angle Converter",
+    description: "Convert between various units of angle",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 2a10 10 0 100 20 10 10 0 000-20z"),
     views: 1543,
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: "from-purple-500 to-pink-500",
     features: [
-      'Supports degrees, radians, and gradians',
-      'Real-time conversion',
-      'Simple and intuitive interface',
-      'Responsive design for all devices'
-    ]
+      "Supports degrees, radians, and gradians",
+      "Real-time conversion",
+      "Simple and intuitive interface",
+      "Responsive design for all devices",
+    ],
   },
   {
-    id: 'fuel-consumption-converter',
-    name: 'Fuel Consumption Converter',
-    description: 'Convert between various units of fuel consumption',
-    category: getCategoryById('unit-conversion'),
+    id: "fuel-consumption-converter",
+    name: "Fuel Consumption Converter",
+    description: "Convert between various units of fuel consumption",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M3 3h18v18H3V3z"),
     views: 1321,
-    gradient: 'from-teal-500 to-green-500',
+    gradient: "from-teal-500 to-green-500",
     features: [
-      'Includes km/l, mpg, and more',
-      'Accurate conversions',
-      'User-friendly interface',
-      'Supports both US and UK measurements'
-    ]
+      "Includes km/l, mpg, and more",
+      "Accurate conversions",
+      "User-friendly interface",
+      "Supports both US and UK measurements",
+    ],
   },
   {
-    id: 'numbers-converter',
-    name: 'Numbers Converter',
-    description: 'Convert between various number systems',
-    category: getCategoryById('unit-conversion'),
+    id: "numbers-converter",
+    name: "Numbers Converter",
+    description: "Convert between various number systems",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 2v20M2 12h20"),
     views: 1109,
-    gradient: 'from-red-500 to-orange-500',
+    gradient: "from-red-500 to-orange-500",
     features: [
-      'Supports binary, decimal, hexadecimal, and more',
-      'Real-time conversion',
-      'Clean and intuitive layout',
-      'Mobile-friendly design'
-    ]
+      "Supports binary, decimal, hexadecimal, and more",
+      "Real-time conversion",
+      "Clean and intuitive layout",
+      "Mobile-friendly design",
+    ],
   },
   {
-    id: 'data-storage-converter',
-    name: 'Data Storage Converter',
-    description: 'Convert between various units of data storage',
-    category: getCategoryById('unit-conversion'),
+    id: "data-storage-converter",
+    name: "Data Storage Converter",
+    description: "Convert between various units of data storage",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 4h16v16H4V4z"),
     views: 987,
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: "from-blue-500 to-cyan-500",
     features: [
-      'Includes bits, bytes, kilobytes, megabytes, and more',
-      'Instant results',
-      'User-friendly interface',
-      'Responsive design for all devices'
-    ]
+      "Includes bits, bytes, kilobytes, megabytes, and more",
+      "Instant results",
+      "User-friendly interface",
+      "Responsive design for all devices",
+    ],
   },
   {
-    id: 'volume-dry-converter',
-    name: 'Volume - Dry Converter',
-    description: 'Convert between various units of dry volume',
-    category: getCategoryById('unit-conversion'),
+    id: "volume-dry-converter",
+    name: "Volume - Dry Converter",
+    description: "Convert between various units of dry volume",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M3 3h18v18H3V3z"),
     views: 876,
-    gradient: 'from-purple-500 to-indigo-500',
+    gradient: "from-purple-500 to-indigo-500",
     features: [
-      'Covers bushels, pecks, dry gallons, and more',
-      'Easy-to-use input fields',
-      'Accurate and fast conversions',
-      'Supports both US and UK measurements'
-       ]
-  },{
-    id: 'currency-converter',
-    name: 'Currency Converter',
-    description: 'Convert between world currencies using real-time exchange rates',
-    category: getCategoryById('unit-conversion'),
-    icon: createIcon("M12 8c-1.333 2-2.667 2-4 0m4 8c1.333-2 2.667-2 4 0M6 6h12M6 18h12M4 12h16"),
-    views: 15342,
-    gradient: 'from-green-500 to-emerald-500',
-    features: [
-      'Live exchange rate updates',
-      'Supports 160+ currencies worldwide',
-      'Automatic base currency detection',
-      'Historical exchange charts',
-      'Offline cached conversion',
-      'Precise up-to-date rates from global APIs'
-    ]
+      "Covers bushels, pecks, dry gallons, and more",
+      "Easy-to-use input fields",
+      "Accurate and fast conversions",
+      "Supports both US and UK measurements",
+    ],
   },
   {
-    id: 'case-converter',
-    name: 'Case Converter',
-    description: 'Convert text between upper case, lower case, title case, and more',
-    category: getCategoryById('text-tools'),
+    id: "currency-converter",
+    name: "Currency Converter",
+    description:
+      "Convert between world currencies using real-time exchange rates",
+    category: getCategoryById("unit-conversion"),
+    icon: createIcon(
+      "M12 8c-1.333 2-2.667 2-4 0m4 8c1.333-2 2.667-2 4 0M6 6h12M6 18h12M4 12h16",
+    ),
+    views: 15342,
+    gradient: "from-green-500 to-emerald-500",
+    features: [
+      "Live exchange rate updates",
+      "Supports 160+ currencies worldwide",
+      "Automatic base currency detection",
+      "Historical exchange charts",
+      "Offline cached conversion",
+      "Precise up-to-date rates from global APIs",
+    ],
+  },
+  {
+    id: "case-converter",
+    name: "Case Converter",
+    description:
+      "Convert text between upper case, lower case, title case, and more",
+    category: getCategoryById("text-tools"),
     icon: createIcon("M4 6h16M4 12h16M4 18h16"),
     views: 7243,
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: "from-purple-500 to-pink-500",
     features: [
-      'Convert to UPPERCASE, lowercase, Title Case, and more',
-      'Instant conversion on typing',
-      'Copy to clipboard with one click',
-      'No data is sent to the server',
-      'Mobile-friendly interface',
-      'Lightweight and fast'
-    ]
+      "Convert to UPPERCASE, lowercase, Title Case, and more",
+      "Instant conversion on typing",
+      "Copy to clipboard with one click",
+      "No data is sent to the server",
+      "Mobile-friendly interface",
+      "Lightweight and fast",
+    ],
   },
   {
-    id: 'velocity-angular-converter',
-    name: 'Velocity - Angular Converter',
-    description: 'Convert between linear velocity and angular velocity units',
-    category: getCategoryById('unit-conversion'),
+    id: "velocity-angular-converter",
+    name: "Velocity - Angular Converter",
+    description: "Convert between linear velocity and angular velocity units",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M13 16h-1v-4h-1m4-4h.01M12 8v.01M4.05 4.05l15.9 15.9"),
     views: 2740,
-    gradient: 'from-indigo-500 to-purple-500',
+    gradient: "from-indigo-500 to-purple-500",
     features: [
-      'Convert between rad/s, deg/s, rpm, and more',
-      'Instant value update',
-      'Support for engineering and physics units',
-      'Mobile-optimized UI',
-      'Offline support'
-    ]
+      "Convert between rad/s, deg/s, rpm, and more",
+      "Instant value update",
+      "Support for engineering and physics units",
+      "Mobile-optimized UI",
+      "Offline support",
+    ],
   },
   {
-    id: 'acceleration-converter',
-    name: 'Acceleration Converter',
-    description: 'Convert units of acceleration including gravity-based and metric units',
-    category: getCategoryById('unit-conversion'),
+    id: "acceleration-converter",
+    name: "Acceleration Converter",
+    description:
+      "Convert units of acceleration including gravity-based and metric units",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M13 10V3L4 14h7v7l9-11h-7z"),
     views: 3482,
-    gradient: 'from-yellow-500 to-orange-500',
+    gradient: "from-yellow-500 to-orange-500",
     features: [
-      'Supports m/s², ft/s², g-force, and more',
-      'Accurate scientific rounding',
-      'Instant conversion interface',
-      'Easy to copy and reuse results',
-      'History tracking'
-    ]
+      "Supports m/s², ft/s², g-force, and more",
+      "Accurate scientific rounding",
+      "Instant conversion interface",
+      "Easy to copy and reuse results",
+      "History tracking",
+    ],
   },
   {
-    id: 'acceleration-angular-converter',
-    name: 'Acceleration - Angular Converter',
-    description: 'Convert between angular and linear acceleration units',
-    category: getCategoryById('unit-conversion'),
+    id: "acceleration-angular-converter",
+    name: "Acceleration - Angular Converter",
+    description: "Convert between angular and linear acceleration units",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 6v6l4 2"),
     views: 1987,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Convert between rad/s², deg/s², rpm/s, etc.',
-      'Scientific precision',
-      'Lightweight design',
-      'Advanced user-friendly UI',
-      'Clipboard-ready output'
-    ]
+      "Convert between rad/s², deg/s², rpm/s, etc.",
+      "Scientific precision",
+      "Lightweight design",
+      "Advanced user-friendly UI",
+      "Clipboard-ready output",
+    ],
   },
   {
-    id: 'density-converter',
-    name: 'Density Converter',
-    description: 'Convert between units of mass per volume such as kg/m³ and g/cm³',
-    category: getCategoryById('unit-conversion'),
+    id: "density-converter",
+    name: "Density Converter",
+    description:
+      "Convert between units of mass per volume such as kg/m³ and g/cm³",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M8 10h.01M12 10h.01M16 10h.01M4 6h16M4 18h16M4 12h16"),
     views: 5593,
-    gradient: 'from-blue-600 to-indigo-600',
+    gradient: "from-blue-600 to-indigo-600",
     features: [
-      'Supports 15+ density units',
-      'Metric and imperial options',
-      'Live updates as you type',
-      'Supports reverse conversion',
-      'Light & dark themes'
-    ]
+      "Supports 15+ density units",
+      "Metric and imperial options",
+      "Live updates as you type",
+      "Supports reverse conversion",
+      "Light & dark themes",
+    ],
   },
   {
-    id: 'specific-volume-converter',
-    name: 'Specific Volume Converter',
-    description: 'Convert units of specific volume for fluid and gas systems',
-    category: getCategoryById('unit-conversion'),
+    id: "specific-volume-converter",
+    name: "Specific Volume Converter",
+    description: "Convert units of specific volume for fluid and gas systems",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M9 12l2 2 4-4M3 6h18M3 18h18M4 6v12"),
     views: 1620,
-    gradient: 'from-teal-500 to-cyan-500',
+    gradient: "from-teal-500 to-cyan-500",
     features: [
-      'Includes m³/kg, ft³/lb, and more',
-      'Precise thermodynamics conversions',
-      'Easy copy button',
-      'Responsive for mobile and desktop',
-      'Offline usability'
-    ]
+      "Includes m³/kg, ft³/lb, and more",
+      "Precise thermodynamics conversions",
+      "Easy copy button",
+      "Responsive for mobile and desktop",
+      "Offline usability",
+    ],
   },
   {
-    id: 'moment-of-inertia-converter',
-    name: 'Moment of Inertia Converter',
-    description: 'Convert between various moment of inertia units used in physics',
-    category: getCategoryById('unit-conversion'),
+    id: "moment-of-inertia-converter",
+    name: "Moment of Inertia Converter",
+    description:
+      "Convert between various moment of inertia units used in physics",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 6v12M6 12h12"),
     views: 2470,
-    gradient: 'from-slate-500 to-gray-700',
+    gradient: "from-slate-500 to-gray-700",
     features: [
-      'Supports kg·m², g·cm², slug·ft² etc.',
-      'Useful for engineering calculations',
-      'Clear and intuitive layout',
-      'History of recent entries',
-      'Keyboard input supported'
-    ]
+      "Supports kg·m², g·cm², slug·ft² etc.",
+      "Useful for engineering calculations",
+      "Clear and intuitive layout",
+      "History of recent entries",
+      "Keyboard input supported",
+    ],
   },
   {
-    id: 'moment-of-force-converter',
-    name: 'Moment of Force Converter',
-    description: 'Convert between torque or moment of force units',
-    category: getCategoryById('unit-conversion'),
+    id: "moment-of-force-converter",
+    name: "Moment of Force Converter",
+    description: "Convert between torque or moment of force units",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M13 16h-1v-4h-1m4-4h.01"),
     views: 2103,
-    gradient: 'from-amber-500 to-lime-500',
+    gradient: "from-amber-500 to-lime-500",
     features: [
-      'Units: N·m, lb·ft, kg·cm, and more',
-      'Interactive calculator',
-      'Precision conversion support',
-      'Reverse calculation toggle',
-      'Lightweight interface'
-    ]
+      "Units: N·m, lb·ft, kg·cm, and more",
+      "Interactive calculator",
+      "Precision conversion support",
+      "Reverse calculation toggle",
+      "Lightweight interface",
+    ],
   },
   {
-    id: 'torque-converter',
-    name: 'Torque Converter',
-    description: 'Convert torque values between various measurement units',
-    category: getCategoryById('unit-conversion'),
+    id: "torque-converter",
+    name: "Torque Converter",
+    description: "Convert torque values between various measurement units",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 6v6l4 2"),
     views: 3798,
-    gradient: 'from-emerald-500 to-teal-600',
+    gradient: "from-emerald-500 to-teal-600",
     features: [
-      'Units include Nm, lb-ft, kgf·m, etc.',
-      'Real-time calculation',
-      'Accurate for mechanics and engineers',
-      'Dark mode supported',
-      'Multi-device compatible'
-    ]
+      "Units include Nm, lb-ft, kgf·m, etc.",
+      "Real-time calculation",
+      "Accurate for mechanics and engineers",
+      "Dark mode supported",
+      "Multi-device compatible",
+    ],
   },
   {
-    id: 'fuel-efficiency-mass-converter',
-    name: 'Fuel Efficiency - Mass Converter',
-    description: 'Convert fuel efficiency in terms of mass-based units',
-    category: getCategoryById('unit-conversion'),
+    id: "fuel-efficiency-mass-converter",
+    name: "Fuel Efficiency - Mass Converter",
+    description: "Convert fuel efficiency in terms of mass-based units",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M5 13l4 4L19 7"),
     views: 1902,
-    gradient: 'from-cyan-600 to-sky-500',
+    gradient: "from-cyan-600 to-sky-500",
     features: [
-      'Units: km/kg, mi/lb, etc.',
-      'Great for logistics and transport',
-      'Customizable decimal accuracy',
-      'Reverse unit switching',
-      'Fast and minimal UI'
-    ]
+      "Units: km/kg, mi/lb, etc.",
+      "Great for logistics and transport",
+      "Customizable decimal accuracy",
+      "Reverse unit switching",
+      "Fast and minimal UI",
+    ],
   },
   {
-    id: 'fuel-efficiency-volume-converter',
-    name: 'Fuel Efficiency - Volume Converter',
-    description: 'Convert fuel efficiency between volume-based units',
-    category: getCategoryById('unit-conversion'),
+    id: "fuel-efficiency-volume-converter",
+    name: "Fuel Efficiency - Volume Converter",
+    description: "Convert fuel efficiency between volume-based units",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M3 10h11M9 21V3M16 13l-4-4 4-4"),
     views: 2246,
-    gradient: 'from-indigo-500 to-blue-500',
+    gradient: "from-indigo-500 to-blue-500",
     features: [
-      'Units: mpg, km/L, L/100km, etc.',
-      'Vehicle efficiency calculator',
-      'Data rounding options',
-      'Optimized for all browsers',
-      'Offline enabled'
-    ]
+      "Units: mpg, km/L, L/100km, etc.",
+      "Vehicle efficiency calculator",
+      "Data rounding options",
+      "Optimized for all browsers",
+      "Offline enabled",
+    ],
   },
   {
-    id: 'temperature-interval-converter',
-    name: 'Temperature Interval Converter',
-    description: 'Convert temperature differences like delta Celsius to delta Kelvin',
-    category: getCategoryById('unit-conversion'),
+    id: "temperature-interval-converter",
+    name: "Temperature Interval Converter",
+    description:
+      "Convert temperature differences like delta Celsius to delta Kelvin",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M8 18L16 6M4 6h16"),
     views: 1350,
-    gradient: 'from-orange-400 to-red-500',
+    gradient: "from-orange-400 to-red-500",
     features: [
-      'Convert between °C, °F, K intervals',
-      'Handles delta values accurately',
-      'Easy to use for physics and labs',
-      'Decimal precision control',
-      'Quick copy function'
-    ]
+      "Convert between °C, °F, K intervals",
+      "Handles delta values accurately",
+      "Easy to use for physics and labs",
+      "Decimal precision control",
+      "Quick copy function",
+    ],
   },
   {
-    id: 'thermal-expansion-converter',
-    name: 'Thermal Expansion Converter',
-    description: 'Convert coefficients of linear thermal expansion across materials',
-    category: getCategoryById('unit-conversion'),
+    id: "thermal-expansion-converter",
+    name: "Thermal Expansion Converter",
+    description:
+      "Convert coefficients of linear thermal expansion across materials",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 4v16h16"),
     views: 1288,
-    gradient: 'from-red-500 to-pink-600',
+    gradient: "from-red-500 to-pink-600",
     features: [
-      'Supports µm/m·K, in/in·°F, etc.',
-      'Great for material science',
-      'Live conversion results',
-      'Auto unit suggestion',
-      'Clear visual feedback'
-    ]
+      "Supports µm/m·K, in/in·°F, etc.",
+      "Great for material science",
+      "Live conversion results",
+      "Auto unit suggestion",
+      "Clear visual feedback",
+    ],
   },
   {
-    id: 'thermal-resistance-converter',
-    name: 'Thermal Resistance Converter',
-    description: 'Convert units of thermal resistance across materials and layers',
-    category: getCategoryById('unit-conversion'),
+    id: "thermal-resistance-converter",
+    name: "Thermal Resistance Converter",
+    description:
+      "Convert units of thermal resistance across materials and layers",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M6 9l6 6 6-6"),
     views: 990,
-    gradient: 'from-gray-600 to-zinc-700',
+    gradient: "from-gray-600 to-zinc-700",
     features: [
-      'Units: °C/W, K/W, etc.',
-      'Thermal interface calculations',
-      'Supports advanced material parameters',
-      'Instant result updates',
-      'Responsive layout'
-    ]
+      "Units: °C/W, K/W, etc.",
+      "Thermal interface calculations",
+      "Supports advanced material parameters",
+      "Instant result updates",
+      "Responsive layout",
+    ],
   },
   {
-    id: 'thermal-conductivity-converter',
-    name: 'Thermal Conductivity Converter',
-    description: 'Convert thermal conductivity units for materials and fluids',
-    category: getCategoryById('unit-conversion'),
+    id: "thermal-conductivity-converter",
+    name: "Thermal Conductivity Converter",
+    description: "Convert thermal conductivity units for materials and fluids",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 1175,
-    gradient: 'from-fuchsia-500 to-purple-700',
+    gradient: "from-fuchsia-500 to-purple-700",
     features: [
-      'Units include W/m·K, Btu/hr·ft·°F, etc.',
-      'Scientific calculation ready',
-      'Toggleable input & output',
-      'Rounded display values',
-      'Mobile responsive'
-    ]
+      "Units include W/m·K, Btu/hr·ft·°F, etc.",
+      "Scientific calculation ready",
+      "Toggleable input & output",
+      "Rounded display values",
+      "Mobile responsive",
+    ],
   },
   {
-    id: 'specific-heat-capacity-converter',
-    name: 'Specific Heat Capacity Converter',
-    description: 'Convert specific heat capacity units for various substances',
-    category: getCategoryById('unit-conversion'),
+    id: "specific-heat-capacity-converter",
+    name: "Specific Heat Capacity Converter",
+    description: "Convert specific heat capacity units for various substances",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M16 17l-4-4-4 4"),
     views: 1542,
-    gradient: 'from-red-400 to-yellow-400',
+    gradient: "from-red-400 to-yellow-400",
     features: [
-      'Units: J/kg·K, cal/g·°C, etc.',
-      'Useful for energy analysis',
-      'Fast conversion as you type',
-      'Clean and simple UI',
-      'Support for dark mode'
-    ]
+      "Units: J/kg·K, cal/g·°C, etc.",
+      "Useful for energy analysis",
+      "Fast conversion as you type",
+      "Clean and simple UI",
+      "Support for dark mode",
+    ],
   },
   {
-    id: 'heat-density-converter',
-    name: 'Heat Density Converter',
-    description: 'Convert between units of energy density such as J/m³ and Btu/ft³',
-    category: getCategoryById('unit-conversion'),
+    id: "heat-density-converter",
+    name: "Heat Density Converter",
+    description:
+      "Convert between units of energy density such as J/m³ and Btu/ft³",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 12h16M12 4v16"),
     views: 1670,
-    gradient: 'from-yellow-600 to-orange-600',
+    gradient: "from-yellow-600 to-orange-600",
     features: [
-      'Thermal and combustion unit support',
-      'Scientific constants included',
-      'Instant preview',
-      'Compact interface',
-      'Error-checking features'
-    ]
+      "Thermal and combustion unit support",
+      "Scientific constants included",
+      "Instant preview",
+      "Compact interface",
+      "Error-checking features",
+    ],
   },
   {
-    id: 'heat-flux-density-converter',
-    name: 'Heat Flux Density Converter',
-    description: 'Convert units of heat flux density for thermal system analysis',
-    category: getCategoryById('unit-conversion'),
+    id: "heat-flux-density-converter",
+    name: "Heat Flux Density Converter",
+    description:
+      "Convert units of heat flux density for thermal system analysis",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M9 5l7 7-7 7"),
     views: 1433,
-    gradient: 'from-orange-500 to-red-600',
+    gradient: "from-orange-500 to-red-600",
     features: [
-      'Units: W/m², Btu/hr·ft², etc.',
-      'Graphical support available',
-      'Scroll-free responsive form',
-      'Quick copy-paste output',
-      'Configurable rounding'
-    ]
-  },
-
-  
-  // 2. Calculation Tools
-  {
-    id: 'age-calculator',
-    name: 'Age Calculator',
-    description: 'Calculate exact age in years, months, weeks, and days',
-    category: getCategoryById('calculation'),
-    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
-    views: 8230,
-    gradient: 'from-pink-500 to-rose-500',
-    features: [
-      'Calculate age down to seconds',
-      'Find days until next birthday',
-      'Calculate age on other planets',
-      'Generate personalized age timeline',
-      'Discover celebrities sharing your birthdate',
-      'Save important dates with notifications'
-    ]
+      "Units: W/m², Btu/hr·ft², etc.",
+      "Graphical support available",
+      "Scroll-free responsive form",
+      "Quick copy-paste output",
+      "Configurable rounding",
+    ],
   },
   {
-    id: 'loan-calculator',
-    name: 'Loan Calculator',
-    description: 'Calculate loan payments, interest, and amortization schedules',
-    category: getCategoryById('calculation'),
-    icon: createIcon("M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 01-.75.75h-.75m-6-1.5H2.25m19.5 0h-6.75"),
-    views: 11320,
-    gradient: 'from-cyan-500 to-blue-500',
-    features: [
-      'Calculate monthly payments for any loan',
-      'Generate detailed amortization schedules',
-      'Compare multiple loan scenarios',
-      'Early payoff calculator',
-      'Export results to PDF or Excel',
-      'Mortgage, auto, and personal loan presets'
-    ]
-  },
-  {
-    id: 'emi-calculator',
-    name: 'EMI Calculator',
-    description: 'Calculate Equated Monthly Installments for loans with interest',
-    category: getCategoryById('calculation'),
-    icon: createIcon("M6 6h.008v.008H6V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 6h.008v.008H12V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 6h.008v.008H18V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM6 12h.008v.008H6V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 12h.008v.008H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 12h.008v.008H18V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM6 18h.008v.008H6V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 18h.008v.008H12V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 18h.008v.008H18V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
-    views: 9845,
-    gradient: 'from-indigo-500 to-purple-500',
-    features: [
-      'Calculate EMIs for home, car, and personal loans',
-      'Adjustable interest rates and loan terms',
-      'Principal vs. interest breakdowns',
-      'Payment schedule with calendar integration',
-      'Loan affordability analysis',
-      'Compare banks and their EMI offers'
-    ]
-  },
-  {
-    id: 'bmi-calculator',
-    name: 'BMI Calculator',
-    description: 'Calculate Body Mass Index and get health insights',
-    category: getCategoryById('calculation'),
-    icon: createIcon("M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"),
-    views: 10478,
-    gradient: 'from-green-500 to-teal-500',
-    features: [
-      'Calculate BMI with metric or imperial units',
-      'Visual weight range guide',
-      'Personalized health recommendations',
-      'Track BMI changes over time',
-      'Age and gender adjusted calculations',
-      'Body fat percentage estimator'
-    ]
-  },
-  {
-    id: 'discount-calculator',
-    name: 'Discount Calculator',
-    description: 'Calculate sale prices, discounts, and savings',
-    category: getCategoryById('calculation'),
-    icon: createIcon("M9 14.25l6-6m4.5-3.493V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z"),
-    views: 7320,
-    gradient: 'from-orange-500 to-amber-500',
-    features: [
-      'Calculate final price after discount',
-      'Find the discount percentage from original and sale prices',
-      'Compare multiple discounts',
-      'Bulk discount calculations',
-      'Tax calculations on discounted prices',
-      'Split bill calculator with discounts'
-    ]
-  },
-  {
-    id: 'percentage-calculator',
-    name: 'Percentage Calculator',
-    description: 'Calculate percentages, increases, decreases, and more',
-    category: getCategoryById('calculation'),
-    icon: createIcon("M15.75 15.75V18m-7.5-10.5H4.5m6.75 6.75v-3m3 3h.75m-3.75 3h-3M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
-    views: 8925,
-    gradient: 'from-red-500 to-orange-500',
-    features: [
-      'Calculate percentages of numbers',
-      'Find percentage increases and decreases',
-      'Calculate tips and commissions',
-      'Percent change calculator',
-      'Percentage point difference calculator',
-      'Proportional division of values'
-    ]
-  },
-  {
-    id: 'heat-transfer-coefficient-converter',
-    name: 'Heat Transfer Coefficient Converter',
-    description: 'Convert between units of heat transfer coefficient like W/m²·K and Btu/hr·ft²·°F',
-    category: getCategoryById('unit-conversion'),
+    id: "heat-transfer-coefficient-converter",
+    name: "Heat Transfer Coefficient Converter",
+    description:
+      "Convert between units of heat transfer coefficient like W/m²·K and Btu/hr·ft²·°F",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 1450,
-    gradient: 'from-orange-500 to-red-500',
+    gradient: "from-orange-500 to-red-500",
     features: [
-      'Supports W/m²·K, Btu/hr·ft²·°F, and more',
-      'Ideal for thermal engineering applications',
-      'Real-time conversion updates',
-      'User-friendly interface',
-      'Offline functionality'
-    ]
+      "Supports W/m²·K, Btu/hr·ft²·°F, and more",
+      "Ideal for thermal engineering applications",
+      "Real-time conversion updates",
+      "User-friendly interface",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'flow-converter',
-    name: 'Flow Converter',
-    description: 'Convert between various flow rate units such as m³/s and ft³/min',
-    category: getCategoryById('unit-conversion'),
+    id: "flow-converter",
+    name: "Flow Converter",
+    description:
+      "Convert between various flow rate units such as m³/s and ft³/min",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 6h16M4 12h16M4 18h16"),
     views: 2100,
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: "from-blue-500 to-cyan-500",
     features: [
-      'Supports m³/s, ft³/min, L/min, and more',
-      'Suitable for fluid dynamics calculations',
-      'Instant conversion results',
-      'Responsive design',
-      'History tracking'
-    ]
+      "Supports m³/s, ft³/min, L/min, and more",
+      "Suitable for fluid dynamics calculations",
+      "Instant conversion results",
+      "Responsive design",
+      "History tracking",
+    ],
   },
   {
-    id: 'flow-mass-converter',
-    name: 'Flow - Mass Converter',
-    description: 'Convert between mass flow rate units like kg/s and lb/hr',
-    category: getCategoryById('unit-conversion'),
+    id: "flow-mass-converter",
+    name: "Flow - Mass Converter",
+    description: "Convert between mass flow rate units like kg/s and lb/hr",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M13 16h-1v-4h-1m4-4h.01"),
     views: 1800,
-    gradient: 'from-teal-500 to-green-500',
+    gradient: "from-teal-500 to-green-500",
     features: [
-      'Supports kg/s, lb/hr, g/min, and more',
-      'Essential for process engineering',
-      'Real-time calculations',
-      'Mobile-friendly interface',
-      'Offline support'
-    ]
+      "Supports kg/s, lb/hr, g/min, and more",
+      "Essential for process engineering",
+      "Real-time calculations",
+      "Mobile-friendly interface",
+      "Offline support",
+    ],
   },
   {
-    id: 'flow-molar-converter',
-    name: 'Flow - Molar Converter',
-    description: 'Convert between molar flow rate units such as mol/s and kmol/hr',
-    category: getCategoryById('unit-conversion'),
+    id: "flow-molar-converter",
+    name: "Flow - Molar Converter",
+    description:
+      "Convert between molar flow rate units such as mol/s and kmol/hr",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 6v12M6 12h12"),
     views: 1600,
-    gradient: 'from-purple-500 to-indigo-500',
+    gradient: "from-purple-500 to-indigo-500",
     features: [
-      'Supports mol/s, kmol/hr, and more',
-      'Useful for chemical engineering',
-      'Instant conversion updates',
-      'User-friendly layout',
-      'Offline functionality'
-    ]
+      "Supports mol/s, kmol/hr, and more",
+      "Useful for chemical engineering",
+      "Instant conversion updates",
+      "User-friendly layout",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'mass-flux-density-converter',
-    name: 'Mass Flux Density Converter',
-    description: 'Convert between units of mass flux density like kg/m²·s and lb/ft²·hr',
-    category: getCategoryById('unit-conversion'),
+    id: "mass-flux-density-converter",
+    name: "Mass Flux Density Converter",
+    description:
+      "Convert between units of mass flux density like kg/m²·s and lb/ft²·hr",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M9 5l7 7-7 7"),
     views: 1300,
-    gradient: 'from-gray-500 to-slate-500',
+    gradient: "from-gray-500 to-slate-500",
     features: [
-      'Supports kg/m²·s, lb/ft²·hr, and more',
-      'Ideal for material flow analysis',
-      'Real-time conversion',
-      'Clean interface',
-      'Offline access'
-    ]
+      "Supports kg/m²·s, lb/ft²·hr, and more",
+      "Ideal for material flow analysis",
+      "Real-time conversion",
+      "Clean interface",
+      "Offline access",
+    ],
   },
   {
-    id: 'concentration-molar-converter',
-    name: 'Concentration - Molar Converter',
-    description: 'Convert between molar concentration units like mol/L and mmol/m³',
-    category: getCategoryById('unit-conversion'),
+    id: "concentration-molar-converter",
+    name: "Concentration - Molar Converter",
+    description:
+      "Convert between molar concentration units like mol/L and mmol/m³",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 6h16M4 12h16M4 18h16"),
     views: 1500,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Supports mol/L, mmol/m³, and more',
-      'Useful for laboratory calculations',
-      'Instant results',
-      'Responsive design',
-      'Offline capability'
-    ]
+      "Supports mol/L, mmol/m³, and more",
+      "Useful for laboratory calculations",
+      "Instant results",
+      "Responsive design",
+      "Offline capability",
+    ],
   },
   {
-    id: 'concentration-solution-converter',
-    name: 'Concentration - Solution Converter',
-    description: 'Convert between solution concentration units like % w/w and ppm',
-    category: getCategoryById('unit-conversion'),
+    id: "concentration-solution-converter",
+    name: "Concentration - Solution Converter",
+    description:
+      "Convert between solution concentration units like % w/w and ppm",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M6 9l6 6 6-6"),
     views: 1400,
-    gradient: 'from-yellow-500 to-amber-500',
+    gradient: "from-yellow-500 to-amber-500",
     features: [
-      'Supports % w/w, ppm, ppb, and more',
-      'Essential for chemical solutions',
-      'Real-time conversion',
-      'User-friendly interface',
-      'Offline functionality'
-    ]
+      "Supports % w/w, ppm, ppb, and more",
+      "Essential for chemical solutions",
+      "Real-time conversion",
+      "User-friendly interface",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'viscosity-dynamic-converter',
-    name: 'Viscosity - Dynamic Converter',
-    description: 'Convert between dynamic viscosity units like Pa·s and poise',
-    category: getCategoryById('unit-conversion'),
+    id: "viscosity-dynamic-converter",
+    name: "Viscosity - Dynamic Converter",
+    description: "Convert between dynamic viscosity units like Pa·s and poise",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 1700,
-    gradient: 'from-indigo-500 to-blue-500',
+    gradient: "from-indigo-500 to-blue-500",
     features: [
-      'Supports Pa·s, poise, and more',
-      'Ideal for fluid mechanics',
-      'Instant conversion updates',
-      'Responsive layout',
-      'Offline support'
-    ]
+      "Supports Pa·s, poise, and more",
+      "Ideal for fluid mechanics",
+      "Instant conversion updates",
+      "Responsive layout",
+      "Offline support",
+    ],
   },
   {
-    id: 'viscosity-kinematic-converter',
-    name: 'Viscosity - Kinematic Converter',
-    description: 'Convert between kinematic viscosity units like m²/s and stokes',
-    category: getCategoryById('unit-conversion'),
+    id: "viscosity-kinematic-converter",
+    name: "Viscosity - Kinematic Converter",
+    description:
+      "Convert between kinematic viscosity units like m²/s and stokes",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M16 17l-4-4-4 4"),
     views: 1600,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: "from-green-500 to-emerald-500",
     features: [
-      'Supports m²/s, stokes, and more',
-      'Useful for fluid flow analysis',
-      'Real-time calculations',
-      'Mobile-friendly design',
-      'Offline access'
-    ]
+      "Supports m²/s, stokes, and more",
+      "Useful for fluid flow analysis",
+      "Real-time calculations",
+      "Mobile-friendly design",
+      "Offline access",
+    ],
   },
   {
-    id: 'surface-tension-converter',
-    name: 'Surface Tension Converter',
-    description: 'Convert between surface tension units like N/m and dyne/cm',
-    category: getCategoryById('unit-conversion'),
+    id: "surface-tension-converter",
+    name: "Surface Tension Converter",
+    description: "Convert between surface tension units like N/m and dyne/cm",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
     views: 1200,
-    gradient: 'from-red-500 to-pink-500',
+    gradient: "from-red-500 to-pink-500",
     features: [
-      'Supports N/m, dyne/cm, and more',
-      'Essential for material science',
-      'Instant conversion results',
-      'User-friendly interface',
-      'Offline functionality'
-    ]
+      "Supports N/m, dyne/cm, and more",
+      "Essential for material science",
+      "Instant conversion results",
+      "User-friendly interface",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'permeability-converter',
-    name: 'Permeability Converter',
-    description: 'Convert between permeability units like darcy and m²',
-    category: getCategoryById('unit-conversion'),
+    id: "permeability-converter",
+    name: "Permeability Converter",
+    description: "Convert between permeability units like darcy and m²",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 6v6l4 2"),
     views: 1100,
-    gradient: 'from-teal-500 to-cyan-500',
+    gradient: "from-teal-500 to-cyan-500",
     features: [
-      'Supports darcy, m², and more',
-      'Useful for geotechnical studies',
-      'Real-time conversion',
-      'Clean layout',
-      'Offline support'
-    ]
+      "Supports darcy, m², and more",
+      "Useful for geotechnical studies",
+      "Real-time conversion",
+      "Clean layout",
+      "Offline support",
+    ],
   },
   {
-    id: 'luminance-converter',
-    name: 'Luminance Converter',
-    description: 'Convert between luminance units like cd/m² and nit',
-    category: getCategoryById('unit-conversion'),
+    id: "luminance-converter",
+    name: "Luminance Converter",
+    description: "Convert between luminance units like cd/m² and nit",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 4v16h16"),
     views: 1300,
-    gradient: 'from-yellow-400 to-orange-400',
+    gradient: "from-yellow-400 to-orange-400",
     features: [
-      'Supports cd/m², nit, and more',
-      'Ideal for display technology',
-      'Instant conversion updates',
-      'Responsive design',
-      'Offline capability'
-    ]
+      "Supports cd/m², nit, and more",
+      "Ideal for display technology",
+      "Instant conversion updates",
+      "Responsive design",
+      "Offline capability",
+    ],
   },
   {
-    id: 'luminous-intensity-converter',
-    name: 'Luminous Intensity Converter',
-    description: 'Convert between luminous intensity units like candela and lumen/steradian',
-    category: getCategoryById('unit-conversion'),
+    id: "luminous-intensity-converter",
+    name: "Luminous Intensity Converter",
+    description:
+      "Convert between luminous intensity units like candela and lumen/steradian",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 1250,
-    gradient: 'from-purple-500 to-indigo-500',
+    gradient: "from-purple-500 to-indigo-500",
     features: [
-      'Supports candela, lumen/steradian, and more',
-      'Useful for lighting design',
-      'Real-time calculations',
-      'User-friendly interface',
-      'Offline support'
-    ]
+      "Supports candela, lumen/steradian, and more",
+      "Useful for lighting design",
+      "Real-time calculations",
+      "User-friendly interface",
+      "Offline support",
+    ],
   },
   {
-    id: 'illumination-converter',
-    name: 'Illumination Converter',
-    description: 'Convert between illumination units like lux and foot-candle',
-    category: getCategoryById('unit-conversion'),
+    id: "illumination-converter",
+    name: "Illumination Converter",
+    description: "Convert between illumination units like lux and foot-candle",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M6 9l6 6 6-6"),
     views: 1400,
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: "from-blue-500 to-cyan-500",
     features: [
-      'Supports lux, foot-candle, and more',
-      'Ideal for architectural lighting',
-      'Instant conversion results',
-      'Responsive layout',
-      'Offline functionality'
-    ]
+      "Supports lux, foot-candle, and more",
+      "Ideal for architectural lighting",
+      "Instant conversion results",
+      "Responsive layout",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'digital-image-resolution-converter',
-    name: 'Digital Image Resolution Converter',
-    description: 'Convert between digital image resolution units like dpi and ppi',
-    category: getCategoryById('unit-conversion'),
+    id: "digital-image-resolution-converter",
+    name: "Digital Image Resolution Converter",
+    description:
+      "Convert between digital image resolution units like dpi and ppi",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 6h16M4 12h16M4 18h16"),
     views: 1500,
-    gradient: 'from-gray-500 to-slate-500',
+    gradient: "from-gray-500 to-slate-500",
     features: [
-      'Supports dpi, ppi, and more',
-      'Essential for graphic design',
-      'Real-time conversion',
-      'User-friendly interface',
-      'Offline access'
-    ]
+      "Supports dpi, ppi, and more",
+      "Essential for graphic design",
+      "Real-time conversion",
+      "User-friendly interface",
+      "Offline access",
+    ],
   },
   {
-    id: 'frequency-wavelength-converter',
-    name: 'Frequency Wavelength Converter',
-    description: 'Convert between frequency and wavelength units like Hz and nm',
-    category: getCategoryById('unit-conversion'),
+    id: "frequency-wavelength-converter",
+    name: "Frequency Wavelength Converter",
+    description:
+      "Convert between frequency and wavelength units like Hz and nm",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M13 16h-1v-4h-1m4-4h.01"),
     views: 1600,
-    gradient: 'from-indigo-500 to-blue-500',
+    gradient: "from-indigo-500 to-blue-500",
     features: [
-      'Supports Hz, nm, and more',
-      'Useful for physics and engineering',
-      'Instant conversion updates',
-      'Responsive design',
-      'Offline functionality'
-    ]
-  },{
-    id: 'charge-converter',
-    name: 'Charge Converter',
-    description: 'Convert between electric charge units like Coulomb, Ampere-hour, and more.',
-    category: getCategoryById('unit-conversion'),
+      "Supports Hz, nm, and more",
+      "Useful for physics and engineering",
+      "Instant conversion updates",
+      "Responsive design",
+      "Offline functionality",
+    ],
+  },
+  {
+    id: "charge-converter",
+    name: "Charge Converter",
+    description:
+      "Convert between electric charge units like Coulomb, Ampere-hour, and more.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 1700,
-    gradient: 'from-green-500 to-teal-500',
+    gradient: "from-green-500 to-teal-500",
     features: [
-      'Supports Coulomb, Ampere-hour, and more',
-      'Ideal for electrical engineering applications',
-      'Instant conversion updates',
-      'Responsive design',
-      'Offline capability'
-    ]
+      "Supports Coulomb, Ampere-hour, and more",
+      "Ideal for electrical engineering applications",
+      "Instant conversion updates",
+      "Responsive design",
+      "Offline capability",
+    ],
   },
   {
-    id: 'linear-charge-density-converter',
-    name: 'Linear Charge Density Converter',
-    description: 'Convert between linear charge density units like Coulomb/meter and nC/m.',
-    category: getCategoryById('unit-conversion'),
+    id: "linear-charge-density-converter",
+    name: "Linear Charge Density Converter",
+    description:
+      "Convert between linear charge density units like Coulomb/meter and nC/m.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M10 18l6-6-6-6"),
     views: 1600,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Supports Coulomb/meter, nC/m, and more',
-      'Useful for charge distribution calculations',
-      'Real-time conversion updates',
-      'User-friendly interface',
-      'Offline functionality'
-    ]
+      "Supports Coulomb/meter, nC/m, and more",
+      "Useful for charge distribution calculations",
+      "Real-time conversion updates",
+      "User-friendly interface",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'surface-charge-density-converter',
-    name: 'Surface Charge Density Converter',
-    description: 'Convert between surface charge density units like Coulomb/m² and micro-Coulomb/cm².',
-    category: getCategoryById('unit-conversion'),
+    id: "surface-charge-density-converter",
+    name: "Surface Charge Density Converter",
+    description:
+      "Convert between surface charge density units like Coulomb/m² and micro-Coulomb/cm².",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M6 10h12M6 14h12"),
     views: 1500,
-    gradient: 'from-purple-500 to-indigo-500',
+    gradient: "from-purple-500 to-indigo-500",
     features: [
-      'Supports Coulomb/m², micro-Coulomb/cm², and more',
-      'Essential for electrostatic calculations',
-      'Instant conversion results',
-      'Responsive design',
-      'Offline capability'
-    ]
+      "Supports Coulomb/m², micro-Coulomb/cm², and more",
+      "Essential for electrostatic calculations",
+      "Instant conversion results",
+      "Responsive design",
+      "Offline capability",
+    ],
   },
   {
-    id: 'volume-charge-density-converter',
-    name: 'Volume Charge Density Converter',
-    description: 'Convert between volume charge density units like Coulomb/m³ and nC/m³.',
-    category: getCategoryById('unit-conversion'),
+    id: "volume-charge-density-converter",
+    name: "Volume Charge Density Converter",
+    description:
+      "Convert between volume charge density units like Coulomb/m³ and nC/m³.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
     views: 1400,
-    gradient: 'from-red-500 to-pink-500',
+    gradient: "from-red-500 to-pink-500",
     features: [
-      'Supports Coulomb/m³, nC/m³, and more',
-      'Useful for volume charge calculations',
-      'Real-time conversion updates',
-      'Responsive layout',
-      'Offline access'
-    ]
+      "Supports Coulomb/m³, nC/m³, and more",
+      "Useful for volume charge calculations",
+      "Real-time conversion updates",
+      "Responsive layout",
+      "Offline access",
+    ],
   },
   {
-    id: 'current-converter',
-    name: 'Current Converter',
-    description: 'Convert between electrical current units like Ampere and Milliampere.',
-    category: getCategoryById('unit-conversion'),
+    id: "current-converter",
+    name: "Current Converter",
+    description:
+      "Convert between electrical current units like Ampere and Milliampere.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M4 4h16M4 12h16M4 18h16"),
     views: 1300,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Supports Ampere, Milliampere, and more',
-      'Essential for electrical engineering',
-      'Instant conversion results',
-      'Mobile-friendly design',
-      'Offline capability'
-    ]
+      "Supports Ampere, Milliampere, and more",
+      "Essential for electrical engineering",
+      "Instant conversion results",
+      "Mobile-friendly design",
+      "Offline capability",
+    ],
   },
   {
-    id: 'linear-current-density-converter',
-    name: 'Linear Current Density Converter',
-    description: 'Convert between linear current density units like A/m and kA/m.',
-    category: getCategoryById('unit-conversion'),
+    id: "linear-current-density-converter",
+    name: "Linear Current Density Converter",
+    description:
+      "Convert between linear current density units like A/m and kA/m.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 1200,
-    gradient: 'from-teal-500 to-green-500',
+    gradient: "from-teal-500 to-green-500",
     features: [
-      'Supports A/m, kA/m, and more',
-      'Ideal for current distribution analysis',
-      'Real-time conversion updates',
-      'Responsive layout',
-      'Offline support'
-    ]
+      "Supports A/m, kA/m, and more",
+      "Ideal for current distribution analysis",
+      "Real-time conversion updates",
+      "Responsive layout",
+      "Offline support",
+    ],
   },
   {
-    id: 'surface-current-density-converter',
-    name: 'Surface Current Density Converter',
-    description: 'Convert between surface current density units like A/m² and mA/cm².',
-    category: getCategoryById('unit-conversion'),
+    id: "surface-current-density-converter",
+    name: "Surface Current Density Converter",
+    description:
+      "Convert between surface current density units like A/m² and mA/cm².",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
     views: 1100,
-    gradient: 'from-orange-500 to-yellow-500',
+    gradient: "from-orange-500 to-yellow-500",
     features: [
-      'Supports A/m², mA/cm², and more',
-      'Ideal for electrical field calculations',
-      'Instant conversion results',
-      'User-friendly interface',
-      'Offline functionality'
-    ]
+      "Supports A/m², mA/cm², and more",
+      "Ideal for electrical field calculations",
+      "Instant conversion results",
+      "User-friendly interface",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'electric-field-strength-converter',
-    name: 'Electric Field Strength Converter',
-    description: 'Convert between electric field strength units like N/C and V/m.',
-    category: getCategoryById('unit-conversion'),
+    id: "electric-field-strength-converter",
+    name: "Electric Field Strength Converter",
+    description:
+      "Convert between electric field strength units like N/C and V/m.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 8h8v8H4V8h8z"),
     views: 1000,
-    gradient: 'from-indigo-500 to-cyan-500',
+    gradient: "from-indigo-500 to-cyan-500",
     features: [
-      'Supports N/C, V/m, and more',
-      'Useful for electric field analysis',
-      'Real-time conversion',
-      'Mobile-friendly design',
-      'Offline support'
-    ]
+      "Supports N/C, V/m, and more",
+      "Useful for electric field analysis",
+      "Real-time conversion",
+      "Mobile-friendly design",
+      "Offline support",
+    ],
   },
   {
-    id: 'electric-potential-converter',
-    name: 'Electric Potential Converter',
-    description: 'Convert between electric potential units like Volt and Millivolt.',
-    category: getCategoryById('unit-conversion'),
+    id: "electric-potential-converter",
+    name: "Electric Potential Converter",
+    description:
+      "Convert between electric potential units like Volt and Millivolt.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M6 9l6 6 6-6"),
     views: 1500,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Supports Volt, Millivolt, and more',
-      'Essential for electrical engineering applications',
-      'Instant conversion updates',
-      'User-friendly interface',
-      'Offline capability'
-    ]
+      "Supports Volt, Millivolt, and more",
+      "Essential for electrical engineering applications",
+      "Instant conversion updates",
+      "User-friendly interface",
+      "Offline capability",
+    ],
   },
   {
-    id: 'electric-resistance-converter',
-    name: 'Electric Resistance Converter',
-    description: 'Convert between resistance units like Ohm, Kiloohm, and Megaohm.',
-    category: getCategoryById('unit-conversion'),
+    id: "electric-resistance-converter",
+    name: "Electric Resistance Converter",
+    description:
+      "Convert between resistance units like Ohm, Kiloohm, and Megaohm.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M8 10h.01M12 10h.01M16 10h.01"),
     views: 1400,
-    gradient: 'from-red-500 to-pink-500',
+    gradient: "from-red-500 to-pink-500",
     features: [
-      'Supports Ohm, Kiloohm, Megaohm, and more',
-      'Useful for circuit analysis',
-      'Real-time conversion results',
-      'Responsive design',
-      'Offline support'
-    ]
+      "Supports Ohm, Kiloohm, Megaohm, and more",
+      "Useful for circuit analysis",
+      "Real-time conversion results",
+      "Responsive design",
+      "Offline support",
+    ],
   },
   {
-    id: 'electric-resistivity-converter',
-    name: 'Electric Resistivity Converter',
-    description: 'Convert between electric resistivity units like Ohm·meter and Ohm·centimeter.',
-    category: getCategoryById('unit-conversion'),
+    id: "electric-resistivity-converter",
+    name: "Electric Resistivity Converter",
+    description:
+      "Convert between electric resistivity units like Ohm·meter and Ohm·centimeter.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 1200,
-    gradient: 'from-pink-500 to-purple-500',
+    gradient: "from-pink-500 to-purple-500",
     features: [
-      'Supports Ohm·meter, Ohm·centimeter, and more',
-      'Essential for materials science',
-      'Instant conversion updates',
-      'User-friendly interface',
-      'Offline functionality'
-    ]
+      "Supports Ohm·meter, Ohm·centimeter, and more",
+      "Essential for materials science",
+      "Instant conversion updates",
+      "User-friendly interface",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'electric-conductance-converter',
-    name: 'Electric Conductance Converter',
-    description: 'Convert between conductance units like Siemens and Mho.',
-    category: getCategoryById('unit-conversion'),
+    id: "electric-conductance-converter",
+    name: "Electric Conductance Converter",
+    description: "Convert between conductance units like Siemens and Mho.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M9 6h2M9 12h2"),
     views: 1100,
-    gradient: 'from-teal-500 to-cyan-500',
+    gradient: "from-teal-500 to-cyan-500",
     features: [
-      'Supports Siemens, Mho, and more',
-      'Ideal for electrical circuit design',
-      'Real-time conversion results',
-      'Responsive layout',
-      'Offline support'
-    ]
+      "Supports Siemens, Mho, and more",
+      "Ideal for electrical circuit design",
+      "Real-time conversion results",
+      "Responsive layout",
+      "Offline support",
+    ],
   },
   {
-    id: 'electric-conductivity-converter',
-    name: 'Electric Conductivity Converter',
-    description: 'Convert between conductivity units like Siemens per meter and microsiemens per centimeter.',
-    category: getCategoryById('unit-conversion'),
+    id: "electric-conductivity-converter",
+    name: "Electric Conductivity Converter",
+    description:
+      "Convert between conductivity units like Siemens per meter and microsiemens per centimeter.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M10 18l6-6-6-6"),
     views: 1000,
-    gradient: 'from-orange-500 to-yellow-500',
+    gradient: "from-orange-500 to-yellow-500",
     features: [
-      'Supports Siemens/m, microsiemens/cm, and more',
-      'Useful for materials engineering',
-      'Instant conversion results',
-      'User-friendly interface',
-      'Offline functionality'
-    ]
-  },{
-    id: 'electrostatic-capacitance-converter',
-    name: 'Electrostatic Capacitance Converter',
-    description: 'Convert between electrostatic capacitance units like Farad, Microfarad, and Picofarad.',
-    category: getCategoryById('unit-conversion'),
+      "Supports Siemens/m, microsiemens/cm, and more",
+      "Useful for materials engineering",
+      "Instant conversion results",
+      "User-friendly interface",
+      "Offline functionality",
+    ],
+  },
+  {
+    id: "electrostatic-capacitance-converter",
+    name: "Electrostatic Capacitance Converter",
+    description:
+      "Convert between electrostatic capacitance units like Farad, Microfarad, and Picofarad.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 900,
-    gradient: 'from-purple-500 to-blue-500',
+    gradient: "from-purple-500 to-blue-500",
     features: [
-      'Supports Farad, Microfarad, Picofarad, and more',
-      'Ideal for electronics and electrical engineering',
-      'Instant conversion updates',
-      'Responsive design',
-      'Offline functionality'
-    ]
+      "Supports Farad, Microfarad, Picofarad, and more",
+      "Ideal for electronics and electrical engineering",
+      "Instant conversion updates",
+      "Responsive design",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'inductance-converter',
-    name: 'Inductance Converter',
-    description: 'Convert between inductance units like Henry, Millihenry, and Microhenry.',
-    category: getCategoryById('unit-conversion'),
+    id: "inductance-converter",
+    name: "Inductance Converter",
+    description:
+      "Convert between inductance units like Henry, Millihenry, and Microhenry.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 800,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Supports Henry, Millihenry, Microhenry, and more',
-      'Essential for circuit analysis',
-      'Real-time conversion results',
-      'User-friendly interface',
-      'Offline capability'
-    ]
+      "Supports Henry, Millihenry, Microhenry, and more",
+      "Essential for circuit analysis",
+      "Real-time conversion results",
+      "User-friendly interface",
+      "Offline capability",
+    ],
   },
   {
-    id: 'magnetomotive-force-converter',
-    name: 'Magnetomotive Force Converter',
-    description: 'Convert between magnetomotive force units like Ampere-turns and Gilbert.',
-    category: getCategoryById('unit-conversion'),
+    id: "magnetomotive-force-converter",
+    name: "Magnetomotive Force Converter",
+    description:
+      "Convert between magnetomotive force units like Ampere-turns and Gilbert.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 700,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Supports Ampere-turns, Gilbert, and more',
-      'Used in magnetic field calculations',
-      'Instant conversion results',
-      'Responsive design',
-      'Offline support'
-    ]
+      "Supports Ampere-turns, Gilbert, and more",
+      "Used in magnetic field calculations",
+      "Instant conversion results",
+      "Responsive design",
+      "Offline support",
+    ],
   },
   {
-    id: 'magnetic-field-strength-converter',
-    name: 'Magnetic Field Strength Converter',
-    description: 'Convert between magnetic field strength units like Ampere per meter and Oersted.',
-    category: getCategoryById('unit-conversion'),
+    id: "magnetic-field-strength-converter",
+    name: "Magnetic Field Strength Converter",
+    description:
+      "Convert between magnetic field strength units like Ampere per meter and Oersted.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 750,
-    gradient: 'from-teal-500 to-green-500',
+    gradient: "from-teal-500 to-green-500",
     features: [
-      'Supports Ampere/meter, Oersted, and more',
-      'Useful for magnetism and electromagnetism calculations',
-      'Real-time conversion updates',
-      'Responsive layout',
-      'Offline functionality'
-    ]
+      "Supports Ampere/meter, Oersted, and more",
+      "Useful for magnetism and electromagnetism calculations",
+      "Real-time conversion updates",
+      "Responsive layout",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'magnetic-flux-converter',
-    name: 'Magnetic Flux Converter',
-    description: 'Convert between magnetic flux units like Weber and Maxwell.',
-    category: getCategoryById('unit-conversion'),
+    id: "magnetic-flux-converter",
+    name: "Magnetic Flux Converter",
+    description: "Convert between magnetic flux units like Weber and Maxwell.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 850,
-    gradient: 'from-orange-500 to-red-500',
+    gradient: "from-orange-500 to-red-500",
     features: [
-      'Supports Weber, Maxwell, and more',
-      'Ideal for magnetic field analysis',
-      'Instant conversion updates',
-      'Mobile-friendly design',
-      'Offline support'
-    ]
+      "Supports Weber, Maxwell, and more",
+      "Ideal for magnetic field analysis",
+      "Instant conversion updates",
+      "Mobile-friendly design",
+      "Offline support",
+    ],
   },
   {
-    id: 'magnetic-flux-density-converter',
-    name: 'Magnetic Flux Density Converter',
-    description: 'Convert between magnetic flux density units like Tesla and Gauss.',
-    category: getCategoryById('unit-conversion'),
+    id: "magnetic-flux-density-converter",
+    name: "Magnetic Flux Density Converter",
+    description:
+      "Convert between magnetic flux density units like Tesla and Gauss.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 950,
-    gradient: 'from-pink-500 to-purple-500',
+    gradient: "from-pink-500 to-purple-500",
     features: [
-      'Supports Tesla, Gauss, and more',
-      'Essential for magnetic field studies',
-      'Real-time conversion results',
-      'Responsive layout',
-      'Offline capability'
-    ]
+      "Supports Tesla, Gauss, and more",
+      "Essential for magnetic field studies",
+      "Real-time conversion results",
+      "Responsive layout",
+      "Offline capability",
+    ],
   },
   {
-    id: 'radiation-converter',
-    name: 'Radiation Converter',
-    description: 'Convert between radiation units like Becquerel, Curie, and Gray.',
-    category: getCategoryById('unit-conversion'),
+    id: "radiation-converter",
+    name: "Radiation Converter",
+    description:
+      "Convert between radiation units like Becquerel, Curie, and Gray.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 800,
-    gradient: 'from-yellow-500 to-orange-500',
+    gradient: "from-yellow-500 to-orange-500",
     features: [
-      'Supports Becquerel, Curie, Gray, and more',
-      'Ideal for radiation protection and analysis',
-      'Instant conversion updates',
-      'Responsive interface',
-      'Offline functionality'
-    ]
+      "Supports Becquerel, Curie, Gray, and more",
+      "Ideal for radiation protection and analysis",
+      "Instant conversion updates",
+      "Responsive interface",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'radiation-activity-converter',
-    name: 'Radiation Activity Converter',
-    description: 'Convert between radiation activity units like Curie, Becquerel, and more.',
-    category: getCategoryById('unit-conversion'),
+    id: "radiation-activity-converter",
+    name: "Radiation Activity Converter",
+    description:
+      "Convert between radiation activity units like Curie, Becquerel, and more.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 600,
-    gradient: 'from-teal-500 to-cyan-500',
+    gradient: "from-teal-500 to-cyan-500",
     features: [
-      'Supports Curie, Becquerel, and more',
-      'Used in nuclear science and radiology',
-      'Real-time conversion results',
-      'User-friendly interface',
-      'Offline access'
-    ]
+      "Supports Curie, Becquerel, and more",
+      "Used in nuclear science and radiology",
+      "Real-time conversion results",
+      "User-friendly interface",
+      "Offline access",
+    ],
   },
   {
-    id: 'radiation-exposure-converter',
-    name: 'Radiation Exposure Converter',
-    description: 'Convert between radiation exposure units like Roentgen and Coulomb per kilogram.',
-    category: getCategoryById('unit-conversion'),
+    id: "radiation-exposure-converter",
+    name: "Radiation Exposure Converter",
+    description:
+      "Convert between radiation exposure units like Roentgen and Coulomb per kilogram.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 700,
-    gradient: 'from-red-500 to-pink-500',
+    gradient: "from-red-500 to-pink-500",
     features: [
-      'Supports Roentgen, Coulomb/kg, and more',
-      'Important for radiation safety',
-      'Instant conversion results',
-      'Responsive design',
-      'Offline support'
-    ]
+      "Supports Roentgen, Coulomb/kg, and more",
+      "Important for radiation safety",
+      "Instant conversion results",
+      "Responsive design",
+      "Offline support",
+    ],
   },
   {
-    id: 'radiation-absorbed-dose-converter',
-    name: 'Radiation Absorbed Dose Converter',
-    description: 'Convert between radiation absorbed dose units like Gray and Rad.',
-    category: getCategoryById('unit-conversion'),
+    id: "radiation-absorbed-dose-converter",
+    name: "Radiation Absorbed Dose Converter",
+    description:
+      "Convert between radiation absorbed dose units like Gray and Rad.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 650,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Supports Gray, Rad, and more',
-      'Essential for radiation therapy and protection',
-      'Real-time conversion results',
-      'Mobile-friendly design',
-      'Offline capability'
-    ]
+      "Supports Gray, Rad, and more",
+      "Essential for radiation therapy and protection",
+      "Real-time conversion results",
+      "Mobile-friendly design",
+      "Offline capability",
+    ],
   },
   {
-    id: 'prefixes-converter',
-    name: 'Prefixes Converter',
-    description: 'Convert between various prefixes like kilo, mega, milli, and more.',
-    category: getCategoryById('unit-conversion'),
+    id: "prefixes-converter",
+    name: "Prefixes Converter",
+    description:
+      "Convert between various prefixes like kilo, mega, milli, and more.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 600,
-    gradient: 'from-green-500 to-yellow-500',
+    gradient: "from-green-500 to-yellow-500",
     features: [
-      'Supports kilo, mega, milli, and more',
-      'Ideal for metric system conversions',
-      'Real-time conversion updates',
-      'Responsive layout',
-      'Offline functionality'
-    ]
+      "Supports kilo, mega, milli, and more",
+      "Ideal for metric system conversions",
+      "Real-time conversion updates",
+      "Responsive layout",
+      "Offline functionality",
+    ],
   },
   {
-    id: 'data-transfer-converter',
-    name: 'Data Transfer Converter',
-    description: 'Convert between data transfer units like bits per second, bytes per second, and more.',
-    category: getCategoryById('unit-conversion'),
+    id: "data-transfer-converter",
+    name: "Data Transfer Converter",
+    description:
+      "Convert between data transfer units like bits per second, bytes per second, and more.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 750,
-    gradient: 'from-blue-500 to-green-500',
+    gradient: "from-blue-500 to-green-500",
     features: [
-      'Supports bits per second, bytes per second, and more',
-      'Essential for networking and internet speed analysis',
-      'Instant conversion updates',
-      'User-friendly interface',
-      'Offline capability'
-    ]
+      "Supports bits per second, bytes per second, and more",
+      "Essential for networking and internet speed analysis",
+      "Instant conversion updates",
+      "User-friendly interface",
+      "Offline capability",
+    ],
   },
   {
-    id: 'sound-converter',
-    name: 'Sound Converter',
-    description: 'Convert between sound units like decibels and sound intensity.',
-    category: getCategoryById('unit-conversion'),
+    id: "sound-converter",
+    name: "Sound Converter",
+    description:
+      "Convert between sound units like decibels and sound intensity.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 800,
-    gradient: 'from-purple-500 to-indigo-500',
+    gradient: "from-purple-500 to-indigo-500",
     features: [
-      'Supports decibels, sound intensity, and more',
-      'Used in acoustics and audio engineering',
-      'Real-time conversion results',
-      'Responsive design',
-      'Offline support'
-    ]
+      "Supports decibels, sound intensity, and more",
+      "Used in acoustics and audio engineering",
+      "Real-time conversion results",
+      "Responsive design",
+      "Offline support",
+    ],
   },
   {
-    id: 'typography-converter',
-    name: 'Typography Converter',
-    description: 'Convert between typography units like points, picas, and pixels.',
-    category: getCategoryById('unit-conversion'),
+    id: "typography-converter",
+    name: "Typography Converter",
+    description:
+      "Convert between typography units like points, picas, and pixels.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M6 4h12M6 10h12"),
     views: 650,
-    gradient: 'from-teal-500 to-cyan-500',
+    gradient: "from-teal-500 to-cyan-500",
     features: [
-      'Supports points, picas, pixels, and more',
-      'Ideal for graphic design and web development',
-      'Real-time conversion updates',
-      'Mobile-friendly interface',
-      'Offline access'
-    ]
+      "Supports points, picas, pixels, and more",
+      "Ideal for graphic design and web development",
+      "Real-time conversion updates",
+      "Mobile-friendly interface",
+      "Offline access",
+    ],
   },
   {
-    id: 'volume-lumber-converter',
-    name: 'Volume - Lumber Converter',
-    description: 'Convert between lumber volume units like board feet, cubic feet, and more.',
-    category: getCategoryById('unit-conversion'),
+    id: "volume-lumber-converter",
+    name: "Volume - Lumber Converter",
+    description:
+      "Convert between lumber volume units like board feet, cubic feet, and more.",
+    category: getCategoryById("unit-conversion"),
     icon: createIcon("M12 4v16m8-8H4"),
     views: 500,
-    gradient: 'from-orange-500 to-yellow-500',
+    gradient: "from-orange-500 to-yellow-500",
     features: [
-      'Supports board feet, cubic feet, and more',
-      'Ideal for construction and carpentry',
-      'Instant conversion results',
-      'Responsive design',
-      'Offline functionality'
-      ]
+      "Supports board feet, cubic feet, and more",
+      "Ideal for construction and carpentry",
+      "Instant conversion results",
+      "Responsive design",
+      "Offline functionality",
+    ],
+  },
+  // 2. Calculation Tools
+  {
+    id: "mortgage-calculator",
+    name: "Mortgage Calculator",
+    description: "Calculate monthly mortgage payments and interest over time",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 6H20M4 10H20M4 14H16M4 18H12"),
+    views: 10123,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Monthly and total payment calculation",
+      "Amortization schedule",
+      "Support for fixed and variable rates",
+      "Loan comparison tool",
+      "Early payoff impact analysis",
+    ],
+  },
+  {
+    id: "loan-calculator",
+    name: "Loan Calculator",
+    description: "Estimate payments for personal and business loans",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M3 10h18M3 14h18M6 18h12"),
+    views: 9120,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Flexible term and interest rate options",
+      "Payment frequency customization",
+      "Visual repayment graph",
+      "Loan summary export",
+    ],
+  },
+  {
+    id: "auto-loan-calculator",
+    name: "Auto Loan Calculator",
+    description:
+      "Calculate car loan payments including down payment and interest",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 13l1.5 1.5m11 0L19 13M3 17h18M6 21h12"),
+    views: 7685,
+    gradient: "from-yellow-500 to-amber-500",
+    features: [
+      "Estimate monthly payments",
+      "Compare loan options",
+      "Include taxes and fees",
+      "Amortization table",
+    ],
+  },
+  {
+    id: "interest-calculator",
+    name: "Interest Calculator",
+    description: "Calculate simple and compound interest quickly",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 8V4m0 0H8m4 0h4m-4 4v12m0-12l3 3m-3-3l-3 3"),
+    views: 13400,
+    gradient: "from-blue-500 to-sky-500",
+    features: [
+      "Simple and compound interest",
+      "Flexible time periods",
+      "Yearly breakdowns",
+      "Export to PDF",
+    ],
+  },
+  {
+    id: "payment-calculator",
+    name: "Payment Calculator",
+    description: "Determine regular payment amounts for various loan terms",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 12h14M9 16h6M7 20h10"),
+    views: 7850,
+    gradient: "from-pink-500 to-fuchsia-500",
+    features: [
+      "Custom loan parameters",
+      "Installment breakdown",
+      "Dynamic charts",
+      "Mobile-friendly interface",
+    ],
+  },
+  {
+    id: "retirement-calculator",
+    name: "Retirement Calculator",
+    description: "Plan for retirement by estimating savings growth over time",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 12h14M7 16h10M9 20h6"),
+    views: 12000,
+    gradient: "from-green-500 to-lime-500",
+    features: [
+      "Future value projections",
+      "Account for inflation",
+      "Multiple income streams",
+      "Social security estimates",
+    ],
+  },
+  {
+    id: "amortization-calculator",
+    name: "Amortization Calculator",
+    description: "Generate amortization schedules for loans and mortgages",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 6h16M4 10h12M4 14h8M4 18h4"),
+    views: 9023,
+    gradient: "from-red-500 to-orange-500",
+    features: [
+      "Monthly breakdown of principal and interest",
+      "Visual graphs",
+      "Extra payment support",
+      "PDF schedule download",
+    ],
+  },
+  {
+    id: "investment-calculator",
+    name: "Investment Calculator",
+    description: "Estimate investment returns over time with compounding",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 15l7-7 7 7M5 20h14"),
+    views: 9980,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Compound interest growth",
+      "One-time or recurring investments",
+      "Tax and inflation adjustments",
+      "Portfolio forecast",
+    ],
+  },
+  {
+    id: "currency-calculator",
+    name: "Currency Calculator",
+    description:
+      "Convert between world currencies using real-time exchange rates",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 6V4m0 16v-2m-4-4h8M4 12a8 8 0 1116 0 8 8 0 01-16 0z"),
+    views: 17000,
+    gradient: "from-yellow-500 to-lime-500",
+    features: [
+      "Real-time exchange rates",
+      "Multiple currency support",
+      "Offline rate memory",
+      "Rate history comparison",
+    ],
+  },
+  {
+    id: "inflation-calculator",
+    name: "Inflation Calculator",
+    description: "Calculate past or future value of money with inflation rate",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 6h16M4 10h12M4 14h8M4 18h4"),
+    views: 6500,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Adjust money value by year",
+      "Historical inflation data",
+      "Real vs nominal returns",
+      "Country-specific calculations",
+    ],
+  },
+  {
+    id: "finance-calculator",
+    name: "Finance Calculator",
+    description: "A general-purpose tool for various financial calculations",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M3 4h18v18H3V4zm6 8h6"),
+    views: 8400,
+    gradient: "from-sky-500 to-blue-600",
+    features: [
+      "Multi-purpose financial tools",
+      "Time value of money",
+      "Flexible inputs and charts",
+      "Mobile and desktop support",
+    ],
+  },
+  {
+    id: "mortgage-payoff-calculator",
+    name: "Mortgage Payoff Calculator",
+    description: "See how extra payments reduce your mortgage payoff time",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M6 18L18 6M6 6l12 12"),
+    views: 7132,
+    gradient: "from-rose-500 to-red-500",
+    features: [
+      "Payoff time reduction estimates",
+      "Interest savings display",
+      "Amortization table with extras",
+      "Printable summary",
+    ],
+  },
+  {
+    id: "income-tax-calculator",
+    name: "Income Tax Calculator",
+    description: "Estimate your income taxes based on salary and deductions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M6 6h12M6 10h12M6 14h8"),
+    views: 12700,
+    gradient: "from-lime-500 to-emerald-500",
+    features: [
+      "Supports multiple countries",
+      "Automatic deduction handling",
+      "Tax bracket visualization",
+      "Yearly and monthly tax results",
+    ],
+  },
+  {
+    id: "compound-interest-calculator",
+    name: "Compound Interest Calculator",
+    description: "Calculate compound interest for savings or investments",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 12h14M9 16h6M7 20h10"),
+    views: 10300,
+    gradient: "from-fuchsia-500 to-pink-500",
+    features: [
+      "Daily, monthly, and yearly compounding",
+      "Investment forecast chart",
+      "Interest breakdown table",
+      "Custom compounding intervals",
+    ],
+  },
+  {
+    id: "salary-calculator",
+    name: "Salary Calculator",
+    description: "Calculate take-home salary after tax and deductions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 6h16M4 10h12M4 14h8M4 18h4"),
+    views: 11000,
+    gradient: "from-yellow-500 to-orange-400",
+    features: [
+      "Gross to net salary calculator",
+      "Monthly vs yearly view",
+      "Tax and benefits deduction",
+      "Country-specific salary models",
+    ],
+  },
+  {
+    id: "401k-calculator",
+    name: "401K Calculator",
+    description: "Estimate retirement savings and employer contributions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M3 10h18M6 14h12M9 18h6"),
+    views: 9400,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Employer match visualization",
+      "Tax-advantaged growth calculator",
+      "Age-based projection",
+      "Early withdrawal penalty simulation",
+    ],
+  },
+  {
+    id: "interest-rate-calculator",
+    name: "Interest Rate Calculator",
+    description: "Calculate the interest rate for loans and investments",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 4v8l4-4-4-4z"),
+    views: 4210,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Calculate simple and compound interest",
+      "Find interest rate for a given loan or investment",
+      "Estimate loan repayment amounts",
+      "Determine time to reach financial goals",
+      "Save calculation history for reference",
+    ],
   },
 
-  
+  {
+    id: "sales-tax-calculator",
+    name: "Sales Tax Calculator",
+    description: "Calculate sales tax for products and services",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M6 2L18 2L12 12z"),
+    views: 3125,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Calculate total price including tax",
+      "Find tax rate based on product category",
+      "Estimate tax amounts for different locations",
+      "Track tax history for different purchases",
+    ],
+  },
+
+  {
+    id: "house-affordability-calculator",
+    name: "House Affordability Calculator",
+    description:
+      "Estimate how much house you can afford based on income and expenses",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 10l8-8 8 8z"),
+    views: 5300,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Calculate maximum affordable house price",
+      "Estimate monthly mortgage payments",
+      "Factor in loan rates and down payments",
+      "Compare different house options based on affordability",
+    ],
+  },
+
+  {
+    id: "savings-calculator",
+    name: "Savings Calculator",
+    description:
+      "Estimate how much you can save over time based on contributions and interest",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 12l4 4L16 8l4 4z"),
+    views: 4090,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Estimate future savings with regular contributions",
+      "Calculate compound interest over time",
+      "Track savings growth and goals",
+      "Adjust calculations based on different interest rates",
+    ],
+  },
+
+  {
+    id: "rent-calculator",
+    name: "Rent Calculator",
+    description:
+      "Estimate monthly rent and utilities based on location and property type",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M6 4L10 8l4-4z"),
+    views: 3150,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Calculate rent affordability based on income",
+      "Compare rent prices across different areas",
+      "Estimate additional costs like utilities and insurance",
+      "Track rent history for future reference",
+    ],
+  },
+
+  {
+    id: "marriage-tax-calculator",
+    name: "Marriage Tax Calculator",
+    description: "Calculate tax benefits and liabilities for married couples",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M6 4l4 4L16 4z"),
+    views: 2410,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Estimate joint vs individual tax filing outcomes",
+      "Calculate tax savings for married couples",
+      "Determine deductions based on marital status",
+      "Track tax filing history",
+    ],
+  },
+
+  {
+    id: "estate-tax-calculator",
+    name: "Estate Tax Calculator",
+    description: "Estimate estate taxes for inheritance and estate planning",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 6v12L18 12l-6-6z"),
+    views: 2780,
+    gradient: "from-yellow-700 to-amber-500",
+    features: [
+      "Estimate estate taxes based on inheritance",
+      "Calculate estate tax rates by jurisdiction",
+      "Plan for estate tax deductions and exemptions",
+      "Track changes to tax laws and exemptions",
+    ],
+  },
+
+  {
+    id: "pension-calculator",
+    name: "Pension Calculator",
+    description:
+      "Estimate pension payouts based on retirement savings and annuity rates",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 8l8-8 8 8z"),
+    views: 2300,
+    gradient: "from-blue-600 to-green-600",
+    features: [
+      "Estimate retirement income from pension",
+      "Track pension growth over time",
+      "Calculate annuity payouts for retirement",
+      "Plan pension contributions based on goals",
+    ],
+  },
+
+  {
+    id: "social-security-calculator",
+    name: "Social Security Calculator",
+    description:
+      "Estimate future social security benefits based on earnings and contributions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 8v6l4-4z"),
+    views: 3150,
+    gradient: "from-gray-500 to-black",
+    features: [
+      "Estimate future social security benefits",
+      "Track earnings history for social security",
+      "Determine optimal time to start social security payments",
+      "Simulate changes in contributions or earnings",
+    ],
+  },
+
+  {
+    id: "annuity-calculator",
+    name: "Annuity Calculator",
+    description:
+      "Estimate annuity payments based on lump sum investments or regular contributions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 12L8 16l4-4z"),
+    views: 2870,
+    gradient: "from-green-700 to-teal-700",
+    features: [
+      "Calculate fixed vs variable annuity payouts",
+      "Estimate returns based on initial investment",
+      "Plan for future annuity needs",
+      "Track performance of annuities over time",
+    ],
+  },
+
+  {
+    id: "annuity-payout-calculator",
+    name: "Annuity Payout Calculator",
+    description: "Calculate the payouts for different types of annuity plans",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M16 12l-4 4l-4-4z"),
+    views: 3200,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Estimate monthly or annual payouts",
+      "Track payout history over time",
+      "Calculate for immediate or deferred annuities",
+      "Adjust payout terms based on needs",
+    ],
+  },
+
+  {
+    id: "credit-card-calculator",
+    name: "Credit Card Calculator",
+    description: "Calculate monthly payments for credit card debt",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 8l4 4l-4 4z"),
+    views: 4060,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Estimate monthly payments for credit card debt",
+      "Track interest accrual over time",
+      "Compare different repayment strategies",
+      "Calculate total interest paid over the life of the debt",
+    ],
+  },
+
+  {
+    id: "credit-cards-payoff-calculator",
+    name: "Credit Cards Payoff Calculator",
+    description:
+      "Calculate how long it will take to pay off credit cards based on payment amounts",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 10l8 8l8-8z"),
+    views: 2100,
+    gradient: "from-red-700 to-orange-700",
+    features: [
+      "Estimate how long it will take to pay off credit card debt",
+      "Track monthly progress in paying off debt",
+      "Adjust payment schedules for faster payoff",
+      "Simulate changes in interest rates or fees",
+    ],
+  },
+  {
+    id: "debt-payoff-calculator",
+    name: "Debt Payoff Calculator",
+    description:
+      "Calculate how long it will take to pay off your debt based on your monthly payments and interest rates",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M6 12l6 6l6-6z"),
+    views: 3125,
+    gradient: "from-pink-600 to-purple-600",
+    features: [
+      "Estimate time to pay off credit card or loan debt",
+      "Track total interest paid over time",
+      "Adjust payment schedules and interest rates",
+      "Provide an actionable repayment plan",
+    ],
+  },
+
+  {
+    id: "debt-consolidation-calculator",
+    name: "Debt Consolidation Calculator",
+    description:
+      "Determine how much you can save by consolidating your debts into a single loan",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M10 3L5 8l5 5l5-5l-5-5z"),
+    views: 2580,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Estimate savings from debt consolidation",
+      "Compare monthly payments before and after consolidation",
+      "Track total interest costs",
+      "Find best consolidation loan rates",
+    ],
+  },
+
+  {
+    id: "repayment-calculator",
+    name: "Repayment Calculator",
+    description:
+      "Calculate your monthly repayment amounts for different types of loans",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 8v12l4-4-4-4z"),
+    views: 4200,
+    gradient: "from-teal-600 to-green-500",
+    features: [
+      "Estimate loan repayment amounts",
+      "Adjust for loan terms and interest rates",
+      "Track progress on loan repayment",
+      "Simulate different repayment scenarios",
+    ],
+  },
+
+  {
+    id: "student-loan-calculator",
+    name: "Student Loan Calculator",
+    description:
+      "Estimate monthly payments for student loans based on loan amount, interest, and term length",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 4l-4 4 4 4z"),
+    views: 3670,
+    gradient: "from-blue-600 to-cyan-500",
+    features: [
+      "Estimate monthly student loan payments",
+      "Simulate payments based on loan terms and interest rates",
+      "Track loan repayment progress",
+      "Calculate total interest paid over the life of the loan",
+    ],
+  },
+
+  {
+    id: "college-cost-calculator",
+    name: "College Cost Calculator",
+    description:
+      "Calculate the total cost of college education including tuition, room, board, and other expenses",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l8 8 8-8z"),
+    views: 3120,
+    gradient: "from-purple-600 to-indigo-600",
+    features: [
+      "Estimate total cost of college education",
+      "Break down costs by category (tuition, room, etc.)",
+      "Calculate the impact of financial aid and scholarships",
+      "Track changes in college cost over time",
+    ],
+  },
+
+  {
+    id: "simple-interest-calculator",
+    name: "Simple Interest Calculator",
+    description:
+      "Calculate simple interest on investments or loans based on principal, rate, and time",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Calculate simple interest for loans or savings",
+      "Track total interest paid or earned",
+      "Adjust for different rates and time periods",
+      "Compare simple interest with compound interest",
+    ],
+  },
+
+  {
+    id: "cd-calculator",
+    name: "CD Calculator",
+    description:
+      "Estimate the future value of a Certificate of Deposit (CD) based on interest rate and term",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 4l4 4-4 4z"),
+    views: 2700,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Estimate the future value of a CD investment",
+      "Calculate interest earned over time",
+      "Compare different CD rates and terms",
+      "Plan for future CD investments",
+    ],
+  },
+
+  {
+    id: "bond-calculator",
+    name: "Bond Calculator",
+    description:
+      "Calculate the value of bonds based on interest rates, coupon payments, and time to maturity",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 10l8 8l8-8z"),
+    views: 3890,
+    gradient: "from-blue-700 to-green-700",
+    features: [
+      "Estimate bond value based on market conditions",
+      "Track coupon payments and interest rates",
+      "Simulate changes in bond value over time",
+      "Calculate total return on bonds",
+    ],
+  },
+
+  {
+    id: "roth-ira-calculator",
+    name: "Roth IRA Calculator",
+    description:
+      "Estimate the future value of a Roth IRA based on contributions, investment returns, and withdrawal strategies",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Estimate future value of Roth IRA with regular contributions",
+      "Calculate tax-free withdrawals based on contributions",
+      "Simulate investment returns over time",
+      "Track Roth IRA growth and performance",
+    ],
+  },
+  {
+    id: "ira-calculator",
+    name: "IRA Calculator",
+    description:
+      "Estimate the future value of your IRA based on contributions, investment returns, and tax considerations",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 4l4 4-4 4z"),
+    views: 3000,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Estimate future value of IRA with regular contributions",
+      "Simulate returns on investments within an IRA",
+      "Consider tax implications for different IRA types",
+      "Plan for retirement with IRA growth projections",
+    ],
+  },
+
+  {
+    id: "rmd-calculator",
+    name: "RMD Calculator",
+    description:
+      "Calculate your Required Minimum Distributions (RMDs) from retirement accounts based on your age and account balance",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 10l8 8l8-8z"),
+    views: 1500,
+    gradient: "from-blue-600 to-green-600",
+    features: [
+      "Estimate RMDs for different retirement accounts",
+      "Calculate the impact of different ages on RMDs",
+      "Track minimum withdrawals required based on IRS rules",
+      "Plan for tax liabilities from RMDs",
+    ],
+  },
+
+  {
+    id: "vat-calculator",
+    name: "VAT Calculator",
+    description:
+      "Calculate VAT (Value Added Tax) for goods or services based on tax rate and price",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 4200,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Calculate VAT on purchases or sales",
+      "Track VAT amounts for different tax rates",
+      "Calculate VAT-inclusive and VAT-exclusive prices",
+      "Plan for VAT payments in business transactions",
+    ],
+  },
+
+  {
+    id: "cash-back-low-interest-calculator",
+    name: "Cash Back or Low Interest Calculator",
+    description:
+      "Determine which credit card offers the best cash back or lowest interest rate based on your spending habits",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 8v12l4-4-4-4z"),
+    views: 2100,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Compare cash-back credit cards",
+      "Estimate savings based on spending categories",
+      "Track interest rates and payment terms",
+      "Plan for rewards and cashback from credit cards",
+    ],
+  },
+
+  {
+    id: "auto-lease-calculator",
+    name: "Auto Lease Calculator",
+    description:
+      "Calculate monthly payments for car leases based on car price, lease term, interest rate, and down payment",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M6 12l6 6l6-6z"),
+    views: 3800,
+    gradient: "from-indigo-600 to-purple-500",
+    features: [
+      "Estimate monthly auto lease payments",
+      "Adjust for down payment, interest rate, and term length",
+      "Simulate lease payment schedules",
+      "Track total cost of leasing a vehicle",
+    ],
+  },
+
+  {
+    id: "depreciation-calculator",
+    name: "Depreciation Calculator",
+    description:
+      "Calculate the depreciation of an asset over time using various methods (e.g., straight-line, declining balance)",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2100,
+    gradient: "from-teal-700 to-cyan-600",
+    features: [
+      "Estimate asset depreciation over time",
+      "Use different depreciation methods (e.g., straight-line, declining balance)",
+      "Track asset value reduction and tax implications",
+      "Plan for asset disposal or resale",
+    ],
+  },
+
+  {
+    id: "average-return-calculator",
+    name: "Average Return Calculator",
+    description:
+      "Calculate the average return on investments over a given time period",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-pink-600 to-red-500",
+    features: [
+      "Calculate average returns on investments",
+      "Track return over specific time frames",
+      "Simulate potential future returns",
+      "Estimate impact of returns on portfolio growth",
+    ],
+  },
+
+  {
+    id: "margin-calculator",
+    name: "Margin Calculator",
+    description:
+      "Calculate margin for buying securities or for trading on margin, based on the price of the asset and the required margin percentage",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M10 6v12l4-4-4-4z"),
+    views: 1900,
+    gradient: "from-indigo-700 to-blue-600",
+    features: [
+      "Estimate margin requirements for trades",
+      "Track margin balances and risks",
+      "Simulate margin calls and trading scenarios",
+      "Plan for margin-based investments and returns",
+    ],
+  },
+
+  {
+    id: "discount-calculator",
+    name: "Discount Calculator",
+    description:
+      "Calculate the final price of an item after applying a discount percentage to its original price",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 10l8 8l8-8z"),
+    views: 2500,
+    gradient: "from-yellow-600 to-orange-600",
+    features: [
+      "Estimate the final price after applying discounts",
+      "Track savings based on discount percentages",
+      "Simulate discounts for different products",
+      "Calculate discounts for bulk purchases",
+    ],
+  },
+
+  {
+    id: "business-loan-calculator",
+    name: "Business Loan Calculator",
+    description:
+      "Calculate monthly payments, interest rates, and loan terms for business loans",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 3400,
+    gradient: "from-red-600 to-pink-500",
+    features: [
+      "Estimate business loan repayment schedules",
+      "Adjust for loan term and interest rates",
+      "Track total loan costs and interest",
+      "Plan for business financing options",
+    ],
+  },
+
+  {
+    id: "debt-to-income-ratio-calculator",
+    name: "Debt-to-Income Ratio Calculator",
+    description:
+      "Calculate your debt-to-income (DTI) ratio to help assess your ability to take on more debt",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 10l8 8l8-8z"),
+    views: 2200,
+    gradient: "from-cyan-600 to-teal-500",
+    features: [
+      "Estimate your debt-to-income ratio",
+      "Assess financial health and loan eligibility",
+      "Track debt repayment progress",
+      "Determine your capacity for new debt",
+    ],
+  },
+
+  {
+    id: "real-estate-calculator",
+    name: "Real Estate Calculator",
+    description:
+      "Calculate monthly mortgage payments, property taxes, and other costs related to real estate investments",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-blue-800 to-green-700",
+    features: [
+      "Estimate monthly mortgage payments",
+      "Calculate property taxes and insurance",
+      "Track real estate investment costs",
+      "Simulate mortgage scenarios based on loan terms",
+    ],
+  },
+  {
+    id: "take-home-paycheck-calculator",
+    name: "Take-Home Paycheck Calculator",
+    description:
+      "Estimate the amount of your paycheck after taxes and deductions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 4000,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Estimate net income after taxes",
+      "Include deductions like insurance, retirement, and other benefits",
+      "Simulate paychecks for different filing statuses",
+      "Plan for salary and wage deductions",
+    ],
+  },
+
+  {
+    id: "personal-loan-calculator",
+    name: "Personal Loan Calculator",
+    description:
+      "Calculate monthly payments, interest rates, and loan terms for personal loans",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2700,
+    gradient: "from-purple-600 to-indigo-600",
+    features: [
+      "Estimate monthly loan payments",
+      "Adjust for loan amount, interest rate, and term",
+      "Track total loan cost and interest",
+      "Plan for loan repayment scenarios",
+    ],
+  },
+
+  {
+    id: "boat-loan-calculator",
+    name: "Boat Loan Calculator",
+    description: "Calculate boat loan payments, interest rates, and loan terms",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 1800,
+    gradient: "from-teal-600 to-green-600",
+    features: [
+      "Estimate monthly boat loan payments",
+      "Adjust for boat price, loan amount, and interest rate",
+      "Calculate loan repayment schedules",
+      "Plan for boat financing options",
+    ],
+  },
+
+  {
+    id: "lease-calculator",
+    name: "Lease Calculator",
+    description:
+      "Calculate monthly lease payments based on vehicle or property price, term, and interest rate",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2200,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Estimate lease payments for cars or properties",
+      "Adjust for term length, interest rate, and down payment",
+      "Track total cost of leasing",
+      "Simulate lease payment schedules",
+    ],
+  },
+
+  {
+    id: "refinance-calculator",
+    name: "Refinance Calculator",
+    description:
+      "Calculate potential savings from refinancing a loan or mortgage",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 3500,
+    gradient: "from-orange-600 to-yellow-500",
+    features: [
+      "Estimate savings from refinancing loans",
+      "Adjust for loan amount, interest rate, and term",
+      "Track refinancing benefits over time",
+      "Simulate future payments after refinancing",
+    ],
+  },
+
+  {
+    id: "budget-calculator",
+    name: "Budget Calculator",
+    description:
+      "Create a monthly budget by tracking income and expenses, and planning savings goals",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5000,
+    gradient: "from-cyan-600 to-teal-500",
+    features: [
+      "Track monthly income and expenses",
+      "Set savings goals and track progress",
+      "Plan for discretionary spending",
+      "Create a financial plan for long-term stability",
+    ],
+  },
+
+  {
+    id: "rental-property-calculator",
+    name: "Rental Property Calculator",
+    description:
+      "Calculate the profitability of rental properties by considering mortgage payments, rental income, and expenses",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Estimate rental property cash flow",
+      "Account for mortgage, property taxes, and maintenance",
+      "Calculate return on investment (ROI) for rental properties",
+      "Plan for property management and expenses",
+    ],
+  },
+
+  {
+    id: "irr-calculator",
+    name: "IRR Calculator",
+    description:
+      "Calculate the Internal Rate of Return (IRR) for investments to assess profitability",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 2600,
+    gradient: "from-red-600 to-orange-500",
+    features: [
+      "Estimate the IRR for different investment projects",
+      "Track profitability and future investment returns",
+      "Compare different investment scenarios",
+      "Plan for long-term investment gains",
+    ],
+  },
+
+  {
+    id: "roi-calculator",
+    name: "ROI Calculator",
+    description:
+      "Calculate the Return on Investment (ROI) for business or investment projects",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 4200,
+    gradient: "from-blue-600 to-green-600",
+    features: [
+      "Estimate ROI for investments or business ventures",
+      "Track profitability and future gains",
+      "Compare different investment opportunities",
+      "Plan for investment strategy and returns",
+    ],
+  },
+
+  {
+    id: "apr-calculator",
+    name: "APR Calculator",
+    description:
+      "Calculate the Annual Percentage Rate (APR) for loans or credit cards to assess the true cost of borrowing",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 3100,
+    gradient: "from-purple-500 to-indigo-600",
+    features: [
+      "Estimate the APR for different loans or credit cards",
+      "Track total interest paid over the loan term",
+      "Plan for borrowing costs and fees",
+      "Compare interest rates across different lenders",
+    ],
+  },
+
+  {
+    id: "fha-loan-calculator",
+    name: "FHA Loan Calculator",
+    description:
+      "Calculate monthly payments and mortgage insurance for FHA loans",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 2900,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Estimate monthly FHA loan payments",
+      "Account for mortgage insurance premiums",
+      "Adjust for loan amount, interest rate, and term",
+      "Simulate mortgage scenarios for FHA loans",
+    ],
+  },
+
+  {
+    id: "va-mortgage-calculator",
+    name: "VA Mortgage Calculator",
+    description: "Calculate monthly payments and benefits for VA mortgages",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-green-600 to-cyan-500",
+    features: [
+      "Estimate monthly VA mortgage payments",
+      "Account for VA loan benefits and eligibility",
+      "Adjust for loan amount, interest rate, and term",
+      "Simulate mortgage scenarios for veterans",
+    ],
+  },
+  {
+    id: "down-payment-calculator",
+    name: "Down Payment Calculator",
+    description:
+      "Calculate the amount needed for a down payment based on purchase price and percentage",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 2400,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Estimate down payment based on home price and loan type",
+      "Adjust for percentage and loan requirements",
+      "Plan for future home purchases",
+      "Account for various down payment options",
+    ],
+  },
+
+  {
+    id: "rent-vs-buy-calculator",
+    name: "Rent vs. Buy Calculator",
+    description:
+      "Compare the cost of renting vs. buying a home to make the best financial decision",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3500,
+    gradient: "from-blue-500 to-teal-500",
+    features: [
+      "Compare monthly costs of renting and buying",
+      "Account for mortgage, property taxes, and insurance",
+      "Track long-term savings and investment growth",
+      "Simulate different scenarios for buying or renting",
+    ],
+  },
+
+  {
+    id: "payback-period-calculator",
+    name: "Payback Period Calculator",
+    description:
+      "Calculate how long it will take to recoup an investment through profits",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 1800,
+    gradient: "from-yellow-600 to-orange-500",
+    features: [
+      "Estimate the payback period for investments",
+      "Account for initial investment and cash inflows",
+      "Track the time to recoup your investment",
+      "Plan for future investments and their returns",
+    ],
+  },
+
+  {
+    id: "present-value-calculator",
+    name: "Present Value Calculator",
+    description:
+      "Calculate the present value of a future sum of money based on a given interest rate",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-indigo-600 to-purple-500",
+    features: [
+      "Calculate the present value of future cash flows",
+      "Account for interest rates and time periods",
+      "Track the value of money in today's terms",
+      "Simulate different interest rate scenarios",
+    ],
+  },
+
+  {
+    id: "future-value-calculator",
+    name: "Future Value Calculator",
+    description:
+      "Estimate the future value of an investment based on interest rates and time",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 3200,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Calculate the future value of an investment",
+      "Account for compounding interest and time",
+      "Track growth of investments over time",
+      "Simulate different future value scenarios",
+    ],
+  },
+
+  {
+    id: "commission-calculator",
+    name: "Commission Calculator",
+    description:
+      "Calculate the commission for sales based on price and percentage",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2500,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Estimate commissions based on sale price and commission percentage",
+      "Account for varying commission rates",
+      "Track commission earnings over time",
+      "Simulate different sales and commissions",
+    ],
+  },
+
+  {
+    id: "mortgage-calculator-uk",
+    name: "Mortgage Calculator UK",
+    description:
+      "Calculate mortgage payments in the UK, including interest rates, loan term, and property value",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 3000,
+    gradient: "from-green-600 to-blue-600",
+    features: [
+      "Estimate UK mortgage payments",
+      "Account for interest rates, property value, and loan term",
+      "Track monthly mortgage payments",
+      "Simulate mortgage repayment scenarios",
+    ],
+  },
+
+  {
+    id: "canadian-mortgage-calculator",
+    name: "Canadian Mortgage Calculator",
+    description:
+      "Estimate mortgage payments for properties in Canada, considering interest rates and loan term",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-blue-500 to-green-600",
+    features: [
+      "Estimate mortgage payments for Canadian properties",
+      "Account for interest rates, property taxes, and insurance",
+      "Track loan repayment over time",
+      "Simulate different mortgage scenarios",
+    ],
+  },
+
+  {
+    id: "mortgage-amortization-calculator",
+    name: "Mortgage Amortization Calculator",
+    description:
+      "Calculate mortgage amortization schedules, showing principal and interest breakdowns",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 2700,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Generate mortgage amortization schedules",
+      "Track principal and interest breakdowns",
+      "Account for loan term and interest rates",
+      "Plan for long-term mortgage payments",
+    ],
+  },
+
+  {
+    id: "percent-off-calculator",
+    name: "Percent Off Calculator",
+    description:
+      "Calculate discounts based on a given price and discount percentage",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3500,
+    gradient: "from-indigo-600 to-blue-500",
+    features: [
+      "Calculate percent off for discounts",
+      "Estimate savings based on percentage discounts",
+      "Track prices before and after discounts",
+      "Simulate different discount scenarios",
+    ],
+  },
+  {
+    id: "bmi-calculator",
+    name: "BMI Calculator",
+    description:
+      "Calculate your Body Mass Index (BMI) based on height and weight",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2v4h4"),
+    views: 4000,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Calculate BMI using height and weight",
+      "Classify BMI based on health guidelines",
+      "Track changes in BMI over time",
+      "Provide recommendations for health improvement",
+    ],
+  },
+
+  {
+    id: "calorie-calculator",
+    name: "Calorie Calculator",
+    description:
+      "Calculate the daily calorie intake needed for weight maintenance or weight loss",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-red-500 to-orange-500",
+    features: [
+      "Estimate daily calorie needs based on activity level",
+      "Track calorie consumption for weight management",
+      "Customize goals for weight loss or gain",
+      "Provide healthy diet recommendations",
+    ],
+  },
+
+  {
+    id: "body-fat-calculator",
+    name: "Body Fat Calculator",
+    description:
+      "Estimate body fat percentage based on different body measurements",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Calculate body fat percentage using multiple methods",
+      "Track body fat changes over time",
+      "Provide fitness and nutrition tips",
+      "Assess health status based on body fat percentage",
+    ],
+  },
+
+  {
+    id: "bmr-calculator",
+    name: "BMR Calculator",
+    description:
+      "Estimate your Basal Metabolic Rate (BMR), the number of calories your body burns at rest",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3600,
+    gradient: "from-purple-500 to-blue-500",
+    features: [
+      "Calculate BMR using weight, height, age, and gender",
+      "Track daily calorie requirements for weight management",
+      "Assess calorie needs for different activity levels",
+      "Provide personalized fitness and nutrition guidance",
+    ],
+  },
+
+  {
+    id: "macro-calculator",
+    name: "Macro Calculator",
+    description:
+      "Calculate the ideal balance of macronutrients (carbs, fats, proteins) for your diet",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-green-600 to-blue-600",
+    features: [
+      "Estimate the ideal macro split for weight loss, maintenance, or gain",
+      "Track daily intake of macronutrients",
+      "Customize goals based on dietary preferences",
+      "Monitor macro balance for optimal health",
+    ],
+  },
+
+  {
+    id: "ideal-weight-calculator",
+    name: "Ideal Weight Calculator",
+    description:
+      "Estimate your ideal weight range based on height, age, and gender",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2500,
+    gradient: "from-teal-600 to-green-500",
+    features: [
+      "Estimate your ideal weight range using height and age",
+      "Track your progress toward your ideal weight",
+      "Adjust weight goals based on health conditions",
+      "Provide fitness and diet tips for achieving your ideal weight",
+    ],
+  },
+
+  {
+    id: "pregnancy-calculator",
+    name: "Pregnancy Calculator",
+    description:
+      "Estimate the due date and pregnancy timeline based on the last menstrual period",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-pink-500 to-rose-500",
+    features: [
+      "Estimate your pregnancy due date based on LMP",
+      "Track pregnancy milestones",
+      "Provide tips for a healthy pregnancy",
+      "Generate a personalized pregnancy timeline",
+    ],
+  },
+
+  {
+    id: "pregnancy-weight-gain-calculator",
+    name: "Pregnancy Weight Gain Calculator",
+    description:
+      "Estimate the recommended weight gain during pregnancy based on pre-pregnancy weight",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2200,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Estimate the recommended weight gain for pregnancy",
+      "Track weight gain throughout pregnancy",
+      "Provide personalized pregnancy weight gain advice",
+      "Help ensure a healthy pregnancy",
+    ],
+  },
+
+  {
+    id: "pregnancy-conception-calculator",
+    name: "Pregnancy Conception Calculator",
+    description:
+      "Calculate the most fertile days for conception based on your menstrual cycle",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2400,
+    gradient: "from-pink-600 to-purple-600",
+    features: [
+      "Track ovulation and fertility windows",
+      "Estimate the best days for conception",
+      "Help plan for pregnancy",
+      "Personalize the calculation based on menstrual cycle",
+    ],
+  },
+
+  {
+    id: "due-date-calculator",
+    name: "Due Date Calculator",
+    description:
+      "Calculate the expected due date based on conception or LMP date",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2300,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Calculate the due date based on conception or LMP",
+      "Track pregnancy progress",
+      "Generate personalized pregnancy timelines",
+      "Provide information for healthy pregnancy",
+    ],
+  },
+
+  {
+    id: "pace-calculator",
+    name: "Pace Calculator",
+    description:
+      "Estimate the pace per mile or kilometer needed to achieve a specific race time",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2100,
+    gradient: "from-indigo-500 to-blue-600",
+    features: [
+      "Calculate race pace for desired finish time",
+      "Track pace for different race distances",
+      "Adjust pace based on performance goals",
+      "Monitor race preparation progress",
+    ],
+  },
+
+  {
+    id: "army-body-fat-calculator",
+    name: "Army Body Fat Calculator",
+    description:
+      "Estimate body fat percentage based on military standards for the Army",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2600,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Calculate body fat percentage using Army standards",
+      "Track changes in body fat over time",
+      "Provide military fitness advice",
+      "Monitor body fat goals for optimal health",
+    ],
+  },
+  {
+    id: "carbohydrate-calculator",
+    name: "Carbohydrate Calculator",
+    description:
+      "Calculate your ideal daily carbohydrate intake based on your goals and activity level",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Calculate daily carbohydrate needs for weight management",
+      "Track carb intake for different goals (weight loss, maintenance, gain)",
+      "Personalize carb intake based on activity level",
+      "Provide healthy carbohydrate food options",
+    ],
+  },
+
+  {
+    id: "lean-body-mass-calculator",
+    name: "Lean Body Mass Calculator",
+    description:
+      "Estimate your lean body mass (LBM) based on weight and body fat percentage",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-blue-600 to-teal-600",
+    features: [
+      "Calculate lean body mass using body fat percentage",
+      "Track changes in lean body mass over time",
+      "Monitor muscle-building progress",
+      "Provide fitness and nutrition tips for lean muscle gain",
+    ],
+  },
+
+  {
+    id: "healthy-weight-calculator",
+    name: "Healthy Weight Calculator",
+    description:
+      "Determine your healthy weight range based on height, age, and body composition",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3500,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Estimate healthy weight range based on BMI",
+      "Track weight progress toward health goals",
+      "Provide tips for achieving a healthy weight",
+      "Customizable recommendations for various age groups",
+    ],
+  },
+
+  {
+    id: "calories-burned-calculator",
+    name: "Calories Burned Calculator",
+    description:
+      "Estimate the number of calories burned during various activities and exercises",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4000,
+    gradient: "from-red-500 to-orange-500",
+    features: [
+      "Estimate calories burned during workouts and daily activities",
+      "Track calorie expenditure based on intensity and duration",
+      "Calculate total daily calorie burn for weight management",
+      "Provide tips to optimize calorie-burning workouts",
+    ],
+  },
+
+  {
+    id: "one-rep-max-calculator",
+    name: "One Rep Max Calculator",
+    description:
+      "Estimate the maximum amount of weight you can lift for one repetition of a given exercise",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Estimate your one-rep max for different exercises",
+      "Track progress in strength training over time",
+      "Personalized recommendations for strength gains",
+      "Monitor your maximum lifting capacity for each exercise",
+    ],
+  },
+
+  {
+    id: "protein-calculator",
+    name: "Protein Calculator",
+    description:
+      "Estimate the daily amount of protein needed for muscle gain, weight loss, or maintenance",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Calculate ideal protein intake based on goals (muscle gain, weight loss, etc.)",
+      "Track daily protein consumption for muscle recovery",
+      "Personalized protein recommendations based on weight and activity level",
+      "Provide high-protein food options and meal ideas",
+    ],
+  },
+
+  {
+    id: "fat-intake-calculator",
+    name: "Fat Intake Calculator",
+    description:
+      "Estimate the optimal daily fat intake for your health and fitness goals",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2700,
+    gradient: "from-pink-500 to-rose-500",
+    features: [
+      "Calculate daily fat intake based on calorie goals and health requirements",
+      "Monitor fat consumption for optimal health",
+      "Track changes in fat intake over time",
+      "Provide healthy fat food recommendations",
+    ],
+  },
+
+  {
+    id: "tdee-calculator",
+    name: "TDEE Calculator",
+    description:
+      "Estimate your Total Daily Energy Expenditure (TDEE) based on your activity level and body type",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-green-600 to-teal-600",
+    features: [
+      "Estimate your TDEE based on weight, height, age, and activity level",
+      "Track daily calorie needs for weight management",
+      "Monitor energy expenditure for different activity types",
+      "Provide tips to adjust TDEE for weight loss or gain",
+    ],
+  },
+
+  {
+    id: "ovulation-calculator",
+    name: "Ovulation Calculator",
+    description:
+      "Estimate your fertile days to help plan for pregnancy based on menstrual cycle",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-pink-400 to-purple-500",
+    features: [
+      "Estimate ovulation window for conception planning",
+      "Track menstrual cycle for fertility awareness",
+      "Personalize ovulation prediction based on cycle length",
+      "Provide tips to increase chances of conception",
+    ],
+  },
+
+  {
+    id: "conception-calculator",
+    name: "Conception Calculator",
+    description:
+      "Estimate the best days for conception based on ovulation and cycle length",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2600,
+    gradient: "from-purple-500 to-pink-600",
+    features: [
+      "Track ovulation and fertile days",
+      "Estimate the best days for conception",
+      "Monitor menstrual cycle for accurate prediction",
+      "Provide helpful tips for conception",
+    ],
+  },
+
+  {
+    id: "period-calculator",
+    name: "Period Calculator",
+    description:
+      "Calculate the expected start date and duration of your next period based on cycle length",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2400,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Track menstrual cycle and predict next period",
+      "Estimate period duration and cycle length",
+      "Monitor changes in cycle patterns",
+      "Provide advice for menstrual health",
+    ],
+  },
+
+  {
+    id: "gfr-calculator",
+    name: "GFR Calculator",
+    description:
+      "Estimate your Glomerular Filtration Rate (GFR) to assess kidney function",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2300,
+    gradient: "from-indigo-500 to-blue-600",
+    features: [
+      "Calculate GFR to assess kidney health",
+      "Track kidney function over time",
+      "Provide personalized recommendations for kidney care",
+      "Monitor changes in kidney health based on GFR score",
+    ],
+  },
+  {
+    id: "body-type-calculator",
+    name: "Body Type Calculator",
+    description:
+      "Estimate your body type (ectomorph, mesomorph, endomorph) based on your physique characteristics",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-orange-600 to-yellow-500",
+    features: [
+      "Determine your body type for better fitness planning",
+      "Provide personalized fitness and nutrition recommendations",
+      "Track progress in body composition over time",
+      "Monitor changes in body type through physical transformation",
+    ],
+  },
+
+  {
+    id: "body-surface-area-calculator",
+    name: "Body Surface Area Calculator",
+    description:
+      "Calculate your body surface area (BSA) based on weight and height",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Calculate BSA for medical dosing and assessment",
+      "Track changes in body surface area for health monitoring",
+      "Personalized health recommendations based on BSA",
+      "Provide accurate surface area estimation for treatment plans",
+    ],
+  },
+
+  {
+    id: "bac-calculator",
+    name: "BAC Calculator",
+    description:
+      "Estimate your Blood Alcohol Concentration (BAC) based on the number of drinks consumed",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3500,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Calculate BAC levels to understand alcohol impact on body",
+      "Monitor BAC for safe drinking and driving decisions",
+      "Estimate time for BAC to return to zero",
+      "Provide alcohol consumption guidelines for health and safety",
+    ],
+  },
+
+  {
+    id: "anorexic-bmi-calculator",
+    name: "Anorexic BMI Calculator",
+    description:
+      "Calculate BMI to assess the risk of anorexia based on weight and height",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2500,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Calculate BMI and assess the risk of anorexia",
+      "Track changes in BMI for early detection",
+      "Provide recommendations for healthy weight management",
+      "Monitor physical health related to eating disorders",
+    ],
+  },
+
+  {
+    id: "weight-watcher-points-calculator",
+    name: "Weight Watcher Points Calculator",
+    description:
+      "Calculate your daily Weight Watcher points based on food intake and goals",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Calculate daily Weight Watcher points for managing diet",
+      "Track food intake and stay within recommended point limits",
+      "Personalize points system based on weight goals",
+      "Provide meal and food recommendations based on points",
+    ],
+  },
+
+  {
+    id: "overweight-calculator",
+    name: "Overweight Calculator",
+    description:
+      "Determine if you are overweight based on BMI and other health metrics",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-yellow-600 to-orange-600",
+    features: [
+      "Determine if you are overweight based on BMI and other factors",
+      "Track changes in weight and health over time",
+      "Provide recommendations for healthy weight loss",
+      "Monitor your progress with customized fitness tips",
+    ],
+  },
+  {
+    id: "scientific-calculator",
+    name: "Scientific Calculator",
+    description:
+      "Perform complex scientific calculations with advanced functions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4000,
+    gradient: "from-blue-600 to-indigo-500",
+    features: [
+      "Advanced mathematical operations like trigonometry, logarithms, and exponents",
+      "Ability to handle complex numbers and scientific functions",
+      "Support for calculations in radians, degrees, and other units",
+      "Graph plotting for functions and equations",
+    ],
+  },
+
+  {
+    id: "fraction-calculator",
+    name: "Fraction Calculator",
+    description: "Simplify and perform arithmetic operations on fractions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Add, subtract, multiply, and divide fractions",
+      "Simplify complex fractions",
+      "Convert between improper fractions and mixed numbers",
+      "Perform operations with fractions and decimals",
+    ],
+  },
+
+  {
+    id: "percentage-calculator",
+    name: "Percentage Calculator",
+    description: "Calculate percentages for any values easily",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3600,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Calculate percentage of any number",
+      "Find percentage increase or decrease",
+      "Convert a fraction to percentage",
+      "Solve percentage problems in everyday scenarios",
+    ],
+  },
+
+  {
+    id: "triangle-calculator",
+    name: "Triangle Calculator",
+    description:
+      "Calculate the area, perimeter, angles, and other properties of triangles",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-purple-600 to-indigo-600",
+    features: [
+      "Calculate area, perimeter, and angles of any triangle type",
+      "Support for right, isosceles, and equilateral triangles",
+      "Calculate unknown sides or angles given partial data",
+      "Works with both metric and imperial units",
+    ],
+  },
+
+  {
+    id: "volume-calculator",
+    name: "Volume Calculator",
+    description:
+      "Calculate the volume of various 3D objects like cubes, spheres, and cylinders",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3700,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Calculate volume for spheres, cubes, cylinders, and other 3D shapes",
+      "Support for different units of volume (e.g., cubic meters, liters)",
+      "Calculate surface area alongside volume",
+      "Provide detailed step-by-step solutions for each shape",
+    ],
+  },
+
+  {
+    id: "standard-deviation-calculator",
+    name: "Standard Deviation Calculator",
+    description:
+      "Calculate the standard deviation of a data set to measure variability",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Calculate standard deviation for any data set",
+      "Support for both population and sample standard deviation",
+      "Display detailed steps and explanation for each calculation",
+      "Provide variance and other statistical insights",
+    ],
+  },
+
+  {
+    id: "random-number-generator",
+    name: "Random Number Generator",
+    description: "Generate random numbers for use in various applications",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2500,
+    gradient: "from-pink-500 to-purple-500",
+    features: [
+      "Generate random numbers within a specified range",
+      "Support for generating random integers and decimals",
+      "Use for lotteries, gaming, and random selection",
+      "Provide repeatable random sequences with a seed",
+    ],
+  },
+
+  {
+    id: "number-sequence-calculator",
+    name: "Number Sequence Calculator",
+    description:
+      "Generate and analyze sequences of numbers based on different patterns",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3000,
+    gradient: "from-green-600 to-yellow-500",
+    features: [
+      "Generate arithmetic and geometric sequences",
+      "Identify patterns and relationships between numbers",
+      "Solve for missing terms in sequences",
+      "Calculate the nth term of any sequence",
+    ],
+  },
+
+  {
+    id: "percent-error-calculator",
+    name: "Percent Error Calculator",
+    description:
+      "Calculate percent error to measure the accuracy of an experiment or result",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2600,
+    gradient: "from-orange-600 to-red-600",
+    features: [
+      "Calculate percent error from observed and accepted values",
+      "Determine accuracy in scientific experiments",
+      "Provide steps for calculating and interpreting errors",
+      "Analyze error for quality control and precision",
+    ],
+  },
+
+  {
+    id: "exponent-calculator",
+    name: "Exponent Calculator",
+    description: "Calculate powers and roots of numbers with exponents",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Perform calculations with integer and fractional exponents",
+      "Calculate powers, square roots, cube roots, and other roots",
+      "Simplify expressions with exponents",
+      "Support for scientific notation",
+    ],
+  },
+
+  {
+    id: "binary-calculator",
+    name: "Binary Calculator",
+    description:
+      "Perform operations on binary numbers (add, subtract, multiply, divide)",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-blue-600 to-purple-600",
+    features: [
+      "Perform arithmetic operations on binary numbers",
+      "Convert binary numbers to decimal and vice versa",
+      "Calculate binary fractions and other binary operations",
+      "Support for both positive and negative binary numbers",
+    ],
+  },
+
+  {
+    id: "hex-calculator",
+    name: "Hex Calculator",
+    description:
+      "Perform calculations on hexadecimal numbers (add, subtract, multiply, divide)",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3000,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Perform arithmetic operations on hexadecimal numbers",
+      "Convert hexadecimal numbers to decimal and binary",
+      "Calculate hex fractions and other hex operations",
+      "Support for both positive and negative hexadecimal numbers",
+    ],
+  },
+  {
+    id: "half-life-calculator",
+    name: "Half-Life Calculator",
+    description:
+      "Calculate the remaining quantity of a substance after a given period based on its half-life",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-indigo-600 to-blue-500",
+    features: [
+      "Calculate the remaining amount of substance after a given time",
+      "Support for different units of measurement (grams, moles, etc.)",
+      "Ability to adjust for different decay rates",
+      "Provide clear and detailed step-by-step solutions",
+    ],
+  },
+
+  {
+    id: "quadratic-formula-calculator",
+    name: "Quadratic Formula Calculator",
+    description:
+      "Solve quadratic equations using the quadratic formula (ax² + bx + c = 0)",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Solve quadratic equations for real and complex roots",
+      "Provide both exact and decimal solutions",
+      "Detailed steps for solving using the quadratic formula",
+      "Support for both positive and negative values for a, b, and c",
+    ],
+  },
+
+  {
+    id: "slope-calculator",
+    name: "Slope Calculator",
+    description:
+      "Calculate the slope of a line given two points or an equation",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Calculate the slope from two points or slope-intercept form",
+      "Support for both positive and negative slopes",
+      "Graphing feature to visually represent the slope of the line",
+      "Ability to work with linear equations in standard form",
+    ],
+  },
+
+  {
+    id: "log-calculator",
+    name: "Log Calculator",
+    description: "Calculate logarithms of any base for any number",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3000,
+    gradient: "from-purple-600 to-indigo-600",
+    features: [
+      "Calculate logarithms for any base (e.g., base 10, natural log)",
+      "Perform logarithmic calculations for any positive number",
+      "Support for solving logarithmic equations",
+      "Detailed steps and explanations for logarithmic functions",
+    ],
+  },
+
+  {
+    id: "area-calculator",
+    name: "Area Calculator",
+    description:
+      "Calculate the area of different shapes, including circles, rectangles, and triangles",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3400,
+    gradient: "from-teal-600 to-green-500",
+    features: [
+      "Calculate the area of geometric shapes like circles, squares, and triangles",
+      "Support for both metric and imperial units",
+      "Convert between different units of area",
+      "Ability to work with irregular shapes by providing basic dimensions",
+    ],
+  },
+
+  {
+    id: "sample-size-calculator",
+    name: "Sample Size Calculator",
+    description:
+      "Calculate the appropriate sample size for surveys and experiments based on confidence level and margin of error",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-blue-600 to-green-600",
+    features: [
+      "Calculate sample size based on population size, margin of error, and confidence level",
+      "Support for both finite and infinite populations",
+      "Detailed explanation of the statistical formulas used",
+      "Works for both proportions and means",
+    ],
+  },
+
+  {
+    id: "probability-calculator",
+    name: "Probability Calculator",
+    description: "Calculate the probability of different events occurring",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Calculate the probability of single and multiple events",
+      "Support for conditional probability calculations",
+      "Analyze different types of probability distributions",
+      "Provide solutions for real-world probability problems",
+    ],
+  },
+
+  {
+    id: "statistics-calculator",
+    name: "Statistics Calculator",
+    description:
+      "Perform various statistical calculations like mean, median, mode, and standard deviation",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3500,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Calculate mean, median, mode, and standard deviation for data sets",
+      "Analyze data with histograms, box plots, and other statistical tools",
+      "Perform hypothesis testing and regression analysis",
+      "Interpret statistical results with detailed explanations",
+    ],
+  },
+
+  {
+    id: "mean-median-mode-range-calculator",
+    name: "Mean, Median, Mode, Range Calculator",
+    description: "Calculate the mean, median, mode, and range of a data set",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3600,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Quickly calculate mean, median, mode, and range",
+      "Support for data sets of any size",
+      "Provide step-by-step explanations for each calculation",
+      "Analyze data distributions and trends",
+    ],
+  },
+
+  {
+    id: "permutation-combination-calculator",
+    name: "Permutation and Combination Calculator",
+    description:
+      "Calculate permutations and combinations for different sets of items",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-purple-600 to-pink-500",
+    features: [
+      "Calculate permutations and combinations for sets of items",
+      "Support for calculating arrangements and selections",
+      "Detailed step-by-step solutions for each permutation or combination",
+      "Works with both large and small data sets",
+    ],
+  },
+
+  {
+    id: "z-score-calculator",
+    name: "Z-score Calculator",
+    description:
+      "Calculate the Z-score to determine how far a data point is from the mean in standard deviations",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Calculate the Z-score for a data point in any distribution",
+      "Provide a clear explanation of Z-scores and their significance",
+      "Works with both population and sample Z-scores",
+      "Interpret results with additional statistical insights",
+    ],
+  },
+
+  {
+    id: "confidence-interval-calculator",
+    name: "Confidence Interval Calculator",
+    description:
+      "Calculate the confidence interval for a population mean or proportion",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Calculate the confidence interval for means and proportions",
+      "Support for different confidence levels (90%, 95%, 99%)",
+      "Provide clear step-by-step solutions for the interval calculation",
+      "Interpret the results and assess the precision of estimates",
+    ],
+  },
+  {
+    id: "ratio-calculator",
+    name: "Ratio Calculator",
+    description: "Calculate the ratio of two or more quantities",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Calculate simple and complex ratios",
+      "Support for both fractional and decimal ratios",
+      "Visual representation of ratios with graphs",
+      "Detailed step-by-step breakdown of calculations",
+    ],
+  },
+
+  {
+    id: "distance-calculator",
+    name: "Distance Calculator",
+    description: "Calculate the distance between two points in various units",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Calculate the distance between two coordinates (latitude, longitude)",
+      "Support for different distance units (kilometers, miles, etc.)",
+      "Visualize distance on a map",
+      "Handle both 2D and 3D distance calculations",
+    ],
+  },
+
+  {
+    id: "circle-calculator",
+    name: "Circle Calculator",
+    description:
+      "Calculate the circumference, area, and other properties of a circle",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2700,
+    gradient: "from-purple-600 to-indigo-600",
+    features: [
+      "Calculate the radius, diameter, circumference, and area of a circle",
+      "Support for different units of measurement",
+      "Visual representation of the circle and its properties",
+      "Ability to solve real-world circle-related problems",
+    ],
+  },
+
+  {
+    id: "surface-area-calculator",
+    name: "Surface Area Calculator",
+    description: "Calculate the surface area of various 3D objects",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3000,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Calculate surface area for spheres, cubes, pyramids, and other shapes",
+      "Support for both regular and irregular 3D shapes",
+      "Convert between different units of surface area",
+      "Provide clear explanations of each calculation step",
+    ],
+  },
+
+  {
+    id: "pythagorean-theorem-calculator",
+    name: "Pythagorean Theorem Calculator",
+    description:
+      "Calculate the hypotenuse or missing side of a right triangle using the Pythagorean Theorem",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-teal-600 to-green-600",
+    features: [
+      "Calculate the hypotenuse or legs of a right triangle",
+      "Support for both integer and decimal values",
+      "Visual representation of the triangle with labeled sides",
+      "Detailed explanation of the Pythagorean theorem",
+    ],
+  },
+
+  {
+    id: "right-triangle-calculator",
+    name: "Right Triangle Calculator",
+    description:
+      "Calculate various properties of a right triangle, including angles, sides, and area",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Calculate missing sides, angles, and area of a right triangle",
+      "Support for trigonometric calculations (sine, cosine, etc.)",
+      "Visualize the triangle with side lengths and angles",
+      "Step-by-step breakdown of each calculation",
+    ],
+  },
+
+  {
+    id: "root-calculator",
+    name: "Root Calculator",
+    description:
+      "Calculate square roots, cube roots, and other types of roots of numbers",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Calculate square roots, cube roots, and nth roots",
+      "Support for both positive and negative numbers",
+      "Detailed explanation for each root calculation",
+      "Ability to find roots of complex numbers",
+    ],
+  },
+
+  {
+    id: "least-common-multiple-calculator",
+    name: "Least Common Multiple Calculator",
+    description:
+      "Calculate the Least Common Multiple (LCM) of two or more numbers",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2700,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Calculate the least common multiple (LCM) of two or more numbers",
+      "Support for both integer and decimal values",
+      "Step-by-step breakdown of the LCM calculation",
+      "Ability to find the LCM for large numbers",
+    ],
+  },
+
+  {
+    id: "greatest-common-factor-calculator",
+    name: "Greatest Common Factor Calculator",
+    description:
+      "Calculate the Greatest Common Factor (GCF) of two or more numbers",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Calculate the greatest common factor (GCF) or greatest common divisor (GCD)",
+      "Support for both integer and decimal values",
+      "Detailed breakdown of the GCF calculation",
+      "Ability to work with both small and large numbers",
+    ],
+  },
+
+  {
+    id: "factor-calculator",
+    name: "Factor Calculator",
+    description: "Find all factors of a number and check if a number is prime",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3500,
+    gradient: "from-teal-600 to-cyan-600",
+    features: [
+      "Find all the factors of a number",
+      "Check if a number is prime",
+      "Step-by-step explanation of factorization",
+      "Support for both positive and negative numbers",
+    ],
+  },
+  {
+    id: "rounding-calculator",
+    name: "Rounding Calculator",
+    description:
+      "Round numbers to the nearest specified value or number of decimal places",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2500,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Round numbers to a specified decimal place",
+      "Round numbers to the nearest whole number, hundred, thousand, etc.",
+      "Support for positive and negative numbers",
+      "Visual representation of rounded values",
+    ],
+  },
+
+  {
+    id: "matrix-calculator",
+    name: "Matrix Calculator",
+    description:
+      "Perform matrix operations such as addition, subtraction, multiplication, and determinant calculation",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Perform matrix addition, subtraction, and multiplication",
+      "Calculate the determinant and inverse of a matrix",
+      "Support for different matrix sizes (2x2, 3x3, etc.)",
+      "Step-by-step breakdown of each matrix operation",
+    ],
+  },
+
+  {
+    id: "scientific-notation-calculator",
+    name: "Scientific Notation Calculator",
+    description:
+      "Convert between scientific notation and standard form for large and small numbers",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-purple-600 to-indigo-600",
+    features: [
+      "Convert numbers to and from scientific notation",
+      "Support for large and small numbers",
+      "Step-by-step explanation of the conversion process",
+      "Visualize numbers in both scientific and standard forms",
+    ],
+  },
+
+  {
+    id: "big-number-calculator",
+    name: "Big Number Calculator",
+    description: "Handle calculations with extremely large numbers",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3300,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Perform arithmetic operations on very large numbers",
+      "Handle numbers with high precision",
+      "Support for both integers and decimals",
+      "Provide accurate results for big number calculations",
+    ],
+  },
+
+  {
+    id: "prime-factorization-calculator",
+    name: "Prime Factorization Calculator",
+    description: "Find the prime factors of a number",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2700,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Find the prime factors of any number",
+      "Support for both small and large numbers",
+      "Step-by-step breakdown of the prime factorization",
+      "Visual representation of the factor tree",
+    ],
+  },
+
+  {
+    id: "common-factor-calculator",
+    name: "Common Factor Calculator",
+    description:
+      "Find the greatest common factor (GCF) or common factors of two or more numbers",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2800,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Calculate the greatest common factor (GCF) of two or more numbers",
+      "Support for both integers and decimals",
+      "Step-by-step explanation of the calculation process",
+      "Find all common factors of the given numbers",
+    ],
+  },
+
+  {
+    id: "basic-calculator",
+    name: "Basic Calculator",
+    description: "A simple calculator for basic arithmetic operations",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3500,
+    gradient: "from-teal-600 to-cyan-600",
+    features: [
+      "Perform addition, subtraction, multiplication, and division",
+      "Support for both integers and decimals",
+      "Clear and easy-to-use interface",
+      "Show history of previous calculations",
+    ],
+  },
+
+  {
+    id: "long-division-calculator",
+    name: "Long Division Calculator",
+    description:
+      "Perform long division calculations and get step-by-step solutions",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 2900,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Perform long division with large numbers",
+      "Step-by-step breakdown of the division process",
+      "Support for both integer and decimal division",
+      "Visualize the division process in a clear manner",
+    ],
+  },
+
+  {
+    id: "average-calculator",
+    name: "Average Calculator",
+    description: "Calculate the average (mean) of a set of numbers",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3100,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Calculate the average of a list of numbers",
+      "Support for both small and large datasets",
+      "Visual representation of the data and its average",
+      "Step-by-step breakdown of the average calculation",
+    ],
+  },
+
+  {
+    id: "p-value-calculator",
+    name: "P-value Calculator",
+    description: "Calculate the p-value for statistical hypothesis testing",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 3200,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Calculate the p-value for hypothesis testing",
+      "Support for t-tests, chi-square tests, and other statistical tests",
+      "Provide detailed explanations for statistical analysis",
+      "Visualize the significance of the p-value",
+    ],
+  },
+  {
+    id: "age-calculator",
+    name: "Age Calculator",
+    description: "Calculate exact age in years, months, weeks, and days",
+    category: getCategoryById("calculation"),
+    icon: createIcon(
+      "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
+    ),
+    views: 8230,
+    gradient: "from-pink-500 to-rose-500",
+    features: [
+      "Calculate age down to seconds",
+      "Find days until next birthday",
+      "Calculate age on other planets",
+      "Generate personalized age timeline",
+      "Discover celebrities sharing your birthdate",
+      "Save important dates with notifications",
+    ],
+  },
+
+  {
+    id: "date-calculator",
+    name: "Date Calculator",
+    description: "Calculate date differences and find specific dates",
+    category: getCategoryById("calculation"),
+    icon: createIcon(
+      "M12 4v4M12 12h-0.75a3.75 3.75 0 00-3.75 3.75V16H3v-0.25a4.5 4.5 0 014.5-4.5h2.25V7a3.75 3.75 0 015.25-3.25A7.125 7.125 0 0118.75 7a3.75 3.75 0 011.25-3.25A4.5 4.5 0 0121 6.5h-0.25v2.5a3.75 3.75 0 00-3.75 3.75H16v2.25h.75a3.75 3.75 0 003.75 3.75h.25v2.25h-4.5a3.75 3.75 0 01-3.75-3.75V12H12",
+    ),
+    views: 6300,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Calculate the difference between two dates",
+      "Find the day of the week for any date",
+      "Add or subtract days, months, and years from a given date",
+      "Track important dates with reminders",
+    ],
+  },
+
+  {
+    id: "time-calculator",
+    name: "Time Calculator",
+    description:
+      "Convert time from one unit to another (hours, minutes, seconds)",
+    category: getCategoryById("calculation"),
+    icon: createIcon(
+      "M12 5.25v-1.5m0 7.5l5-3m-5 3l-5-3m5 3v-6m-1 5.25H3.75A2.25 2.25 0 0021 14.25V9a1.5 1.5 0 00-1.5-1.5h-1a1.5 1.5 0 00-1.5 1.5v7.5a2.25 2.25 0 002.25 2.25h.75",
+    ),
+    views: 5600,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Convert between hours, minutes, and seconds",
+      "Calculate time differences",
+      "Convert time zones easily",
+      "Track elapsed time and durations",
+    ],
+  },
+
+  {
+    id: "hours-calculator",
+    name: "Hours Calculator",
+    description:
+      "Calculate total hours worked or study hours for specific dates and times",
+    category: getCategoryById("calculation"),
+    icon: createIcon(
+      "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
+    ),
+    views: 4900,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Track work or study hours over time",
+      "Add or subtract hours and minutes from a specific start time",
+      "Calculate total hours worked based on daily input",
+      "Generate reports for your tracked hours",
+    ],
+  },
+
+  {
+    id: "gpa-calculator",
+    name: "GPA Calculator",
+    description: "Calculate your GPA based on your grades and credits",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4400,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Calculate GPA based on letter grades or numerical scores",
+      "Enter your courses, grades, and credit hours",
+      "Track GPA progress and goals",
+      "Generate semester-wise GPA reports",
+    ],
+  },
+
+  {
+    id: "grade-calculator",
+    name: "Grade Calculator",
+    description:
+      "Calculate your grade based on the percentage and desired weight of assignments",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5100,
+    gradient: "from-red-500 to-orange-500",
+    features: [
+      "Calculate grades based on assignment weight",
+      "Determine final grades from partial scores",
+      "Track grade progress throughout the semester",
+      "Set up custom grading scales for different courses",
+    ],
+  },
+
+  {
+    id: "height-calculator",
+    name: "Height Calculator",
+    description: "Calculate your ideal height based on age and gender",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4700,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Calculate the ideal height range for your age and gender",
+      "Track height growth over time",
+      "Find average heights for people in different countries",
+      "Analyze height predictions based on genetics and environment",
+    ],
+  },
+
+  {
+    id: "concrete-calculator",
+    name: "Concrete Calculator",
+    description:
+      "Calculate the amount of concrete needed for a specific construction project",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 6000,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Calculate concrete for slabs, footings, walls, and foundations",
+      "Enter length, width, and depth for the most accurate estimate",
+      "Support for different concrete mix ratios",
+      "Track material costs for large projects",
+    ],
+  },
+
+  {
+    id: "ip-subnet-calculator",
+    name: "IP Subnet Calculator",
+    description: "Calculate subnets and network addresses for IPv4 addresses",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4300,
+    gradient: "from-blue-600 to-indigo-600",
+    features: [
+      "Calculate subnet masks and network addresses for IPv4",
+      "Determine network ranges and broadcast addresses",
+      "Convert between CIDR and subnet mask notations",
+      "Analyze IP address allocation in large networks",
+    ],
+  },
+
+  {
+    id: "bra-size-calculator",
+    name: "Bra Size Calculator",
+    description: "Calculate your bra size based on your measurements",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5400,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Enter your bust and underbust measurements to find your size",
+      "Compare sizes across different brands and regions",
+      "Track changes in your bra size over time",
+      "Understand the differences in cup size and band size",
+    ],
+  },
+
+  {
+    id: "password-generator",
+    name: "Password Generator",
+    description: "Generate strong, secure passwords for your online accounts",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 6700,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Generate random, strong passwords",
+      "Set password length and complexity",
+      "Save and manage passwords securely",
+      "Use for generating unique passwords for each account",
+    ],
+  },
+
+  {
+    id: "dice-roller",
+    name: "Dice Roller",
+    description: "Roll virtual dice for games or probability simulations",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5300,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Roll dice of different sizes (6-sided, 20-sided, etc.)",
+      "Set custom number of dice to roll",
+      "Track dice rolls and probabilities",
+      "Generate random dice rolls for board games",
+    ],
+  },
+
+  {
+    id: "conversion-calculator",
+    name: "Conversion Calculator",
+    description:
+      "Convert units between different systems (e.g., metric to imperial)",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 6000,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Convert units of length, weight, volume, and more calculation utilities",
+    ],
+  },
+
+  {
+    id: "fuel-cost-calculator",
+    name: "Fuel Cost Calculator",
+    description: "Calculate fuel costs based on your vehicle and trip details",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4800,
+    gradient: "from-blue-600 to-indigo-600",
+    features: [
+      "Calculate fuel consumption and cost based on distance and fuel efficiency",
+      "Track fuel expenses for trips or vehicles",
+      "Compare fuel efficiency across different vehicles",
+    ],
+  },
+  {
+    id: "voltage-drop-calculator",
+    name: "Voltage Drop Calculator",
+    description: "Calculate voltage drop across electrical circuits",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 7h14l-7 7z"),
+    views: 4200,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Calculate voltage drop in power distribution systems",
+      "Adjust for wire gauge, length, and load",
+      "Check compliance with electrical code requirements",
+      "Optimize electrical systems for energy efficiency",
+    ],
+  },
+
+  {
+    id: "btu-calculator",
+    name: "BTU Calculator",
+    description: "Calculate the BTU required to cool or heat a space",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5100,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Determine the BTU needed for room heating or cooling",
+      "Adjust for room size, insulation, and climate",
+      "Estimate energy costs based on BTU usage",
+      "Optimize HVAC systems for energy efficiency",
+    ],
+  },
+
+  {
+    id: "square-footage-calculator",
+    name: "Square Footage Calculator",
+    description: "Calculate the square footage of a room or area",
+    category: getCategoryById("calculation"),
+    icon: createIcon(
+      "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
+    ),
+    views: 6000,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Calculate area for floors, walls, and ceilings",
+      "Find the total square footage for your construction project",
+      "Adjust for odd-shaped rooms",
+      "Estimate costs based on square footage",
+    ],
+  },
+
+  {
+    id: "time-card-calculator",
+    name: "Time Card Calculator",
+    description: "Track working hours and calculate wages for employees",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4700,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Track clock-in and clock-out times",
+      "Calculate total hours worked and wages",
+      "Generate time card reports for payroll",
+      "Integrate with existing payroll systems",
+    ],
+  },
+
+  {
+    id: "time-zone-calculator",
+    name: "Time Zone Calculator",
+    description: "Calculate the time difference between two locations",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5500,
+    gradient: "from-blue-600 to-cyan-600",
+    features: [
+      "Convert between time zones across the world",
+      "Adjust for daylight savings time changes",
+      "Calculate time differences for scheduling meetings",
+      "Track time zone changes in real-time",
+    ],
+  },
+
+  {
+    id: "love-calculator",
+    name: "Love Calculator",
+    description:
+      "Calculate the compatibility between two people based on their names",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M10 14l5 5m0 0l5-5m-5 5V3"),
+    views: 8000,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Calculate love compatibility based on names",
+      "Find out if you and your partner are a perfect match",
+      "Add a fun and romantic twist to your day",
+      "Share compatibility results with friends",
+    ],
+  },
+
+  {
+    id: "gdp-calculator",
+    name: "GDP Calculator",
+    description: "Calculate the Gross Domestic Product (GDP) of a country",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 12v-6M12 6h6M12 6h-6m0 12v-6M3 3h6v6M3 3h6V12z"),
+    views: 6500,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Calculate GDP using expenditure or income methods",
+      "Track economic growth over time",
+      "Compare GDP between different countries",
+      "Forecast future GDP based on trends",
+    ],
+  },
+
+  {
+    id: "gas-mileage-calculator",
+    name: "Gas Mileage Calculator",
+    description: "Calculate the gas mileage for your vehicle",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4600,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Calculate miles per gallon (MPG) for your car",
+      "Track fuel efficiency over time",
+      "Estimate fuel costs for upcoming trips",
+      "Compare fuel efficiency between vehicles",
+    ],
+  },
+
+  {
+    id: "horsepower-calculator",
+    name: "Horsepower Calculator",
+    description: "Calculate the horsepower of your vehicle or engine",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5400,
+    gradient: "from-red-500 to-orange-500",
+    features: [
+      "Estimate horsepower based on engine specifications",
+      "Track horsepower for cars, trucks, and machinery",
+      "Calculate engine performance improvements",
+      "Compare horsepower for different engine types",
+    ],
+  },
+
+  {
+    id: "engine-horsepower-calculator",
+    name: "Engine Horsepower Calculator",
+    description: "Calculate engine horsepower based on torque and RPM",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4800,
+    gradient: "from-blue-700 to-indigo-700",
+    features: [
+      "Calculate horsepower based on engine torque and RPM",
+      "Optimize engine performance for speed or efficiency",
+      "Track engine modifications and improvements",
+    ],
+  },
+
+  {
+    id: "stair-calculator",
+    name: "Stair Calculator",
+    description:
+      "Calculate the number of stairs and their dimensions for a staircase",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5000,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Calculate the number of stairs based on rise and run",
+      "Determine the correct step dimensions",
+      "Estimate costs for materials based on stair dimensions",
+      "Track stair design for safety and comfort",
+    ],
+  },
+
+  {
+    id: "resistor-calculator",
+    name: "Resistor Calculator",
+    description: "Calculate the resistance of resistors in electrical circuits",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4200,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Calculate the resistance based on color codes",
+      "Find equivalent resistances for series and parallel circuits",
+      "Determine resistor values for desired voltage or current",
+      "Optimize resistors for circuit design and power consumption",
+    ],
+  },
+  {
+    id: "ohms-law-calculator",
+    name: "Ohm's Law Calculator",
+    description: "Calculate voltage, current, or resistance using Ohm's Law",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5300,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Calculate voltage, current, and resistance",
+      "Understand the relationship between voltage, current, and resistance",
+      "Optimize electrical systems for power efficiency",
+      "Apply Ohm's law to real-world electrical scenarios",
+    ],
+  },
+
+  {
+    id: "electricity-calculator",
+    name: "Electricity Calculator",
+    description: "Calculate electrical power consumption and cost",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 6000,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Estimate power usage for electrical appliances",
+      "Calculate monthly electricity costs based on usage",
+      "Determine the energy efficiency of devices",
+      "Track and reduce electricity consumption",
+    ],
+  },
+
+  {
+    id: "tip-calculator",
+    name: "Tip Calculator",
+    description: "Calculate the appropriate tip for your restaurant bill",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 7h14l-7 7z"),
+    views: 4900,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Calculate tips based on percentage or custom amounts",
+      "Split the bill with multiple people",
+      "Estimate total bill including tip and taxes",
+      "Adjust tips based on service quality",
+    ],
+  },
+
+  {
+    id: "mileage-calculator",
+    name: "Mileage Calculator",
+    description: "Calculate your vehicle’s mileage or fuel efficiency",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5300,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Estimate miles per gallon (MPG) for your vehicle",
+      "Track fuel efficiency over time",
+      "Compare fuel consumption for different trips",
+      "Estimate fuel costs for upcoming travels",
+    ],
+  },
+
+  {
+    id: "density-calculator",
+    name: "Density Calculator",
+    description: "Calculate the density of an object or material",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4800,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Calculate the density based on mass and volume",
+      "Estimate material properties for engineering purposes",
+      "Apply density values to fluid dynamics, construction, and other fields",
+      "Convert between different units of density",
+    ],
+  },
+
+  {
+    id: "mass-calculator",
+    name: "Mass Calculator",
+    description: "Calculate the mass of an object or material",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5500,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Calculate mass using weight and gravitational force",
+      "Convert mass between different units (grams, kilograms, etc.)",
+      "Apply mass values to physics problems and real-world applications",
+    ],
+  },
+
+  {
+    id: "weight-calculator",
+    name: "Weight Calculator",
+    description: "Calculate the weight of an object based on its mass",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4600,
+    gradient: "from-blue-600 to-indigo-600",
+    features: [
+      "Calculate weight based on mass and gravitational force",
+      "Estimate weight changes at different altitudes or on other planets",
+      "Track changes in weight for scientific studies or personal use",
+    ],
+  },
+
+  {
+    id: "speed-calculator",
+    name: "Speed Calculator",
+    description: "Calculate speed from distance and time",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4700,
+    gradient: "from-green-600 to-yellow-600",
+    features: [
+      "Calculate speed based on distance and time",
+      "Estimate travel time for different distances",
+      "Track your progress in sports or racing events",
+    ],
+  },
+
+  {
+    id: "molarity-calculator",
+    name: "Molarity Calculator",
+    description: "Calculate molarity of a solution based on mols and volume",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4200,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Calculate molarity (M) for solutions",
+      "Determine concentration in moles per liter",
+      "Apply molarity in chemistry experiments and research",
+    ],
+  },
+
+  {
+    id: "molecular-weight-calculator",
+    name: "Molecular Weight Calculator",
+    description: "Calculate the molecular weight of a compound or molecule",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5300,
+    gradient: "from-blue-700 to-indigo-700",
+    features: [
+      "Calculate molecular weight based on atomic weights",
+      "Determine the molecular mass of a compound for chemistry calculations",
+      "Convert between different units of molecular weight",
+    ],
+  },
+
+  {
+    id: "roman-numeral-converter",
+    name: "Roman Numeral Converter",
+    description: "Convert Roman numerals to decimal numbers and vice versa",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5400,
+    gradient: "from-gray-500 to-black",
+    features: [
+      "Convert Roman numerals to modern numbers",
+      "Reverse the process and convert decimal numbers into Roman numerals",
+      "Learn the history and usage of Roman numerals",
+    ],
+  },
+
+  {
+    id: "golf-handicap-calculator",
+    name: "Golf Handicap Calculator",
+    description:
+      "Calculate your golf handicap based on scores and course difficulty",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 6000,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Track your golf scores and handicap",
+      "Calculate your handicap index based on your performance",
+      "Estimate your skill level relative to other players",
+    ],
+  },
+  {
+    id: "sleep-calculator",
+    name: "Sleep Calculator",
+    description: "Calculate optimal sleep duration and set sleep schedule",
+    category: getCategoryById("health"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4500,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Determine optimal bedtime and wake-up time",
+      "Adjust sleep schedule based on your lifestyle",
+      "Track your sleep patterns for better health",
+    ],
+  },
+
+  {
+    id: "tire-size-calculator",
+    name: "Tire Size Calculator",
+    description:
+      "Calculate tire size and understand its impact on vehicle performance",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4800,
+    gradient: "from-gray-500 to-black",
+    features: [
+      "Calculate tire circumference, diameter, and radius",
+      "Compare tire sizes for better fuel efficiency and performance",
+      "Understand the effect of tire size on vehicle handling",
+    ],
+  },
+
+  {
+    id: "roofing-calculator",
+    name: "Roofing Calculator",
+    description: "Estimate the materials needed for your roofing project",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5200,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Calculate the area of the roof",
+      "Estimate the quantity of materials required for roofing",
+      "Track costs for roofing projects",
+    ],
+  },
+
+  {
+    id: "tile-calculator",
+    name: "Tile Calculator",
+    description:
+      "Calculate the number of tiles required for a floor or wall project",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5300,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Estimate the number of tiles needed for a surface area",
+      "Account for tile size and layout patterns",
+      "Calculate the cost of tiles based on quantity",
+    ],
+  },
+
+  {
+    id: "mulch-calculator",
+    name: "Mulch Calculator",
+    description: "Estimate the amount of mulch required for landscaping",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4600,
+    gradient: "from-brown-500 to-green-500",
+    features: [
+      "Estimate how much mulch is needed for your garden",
+      "Determine the amount of mulch per square foot or meter",
+      "Track costs for landscaping and mulch purchase",
+    ],
+  },
+
+  {
+    id: "gravel-calculator",
+    name: "Gravel Calculator",
+    description:
+      "Estimate the amount of gravel required for your construction or landscaping project",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4700,
+    gradient: "from-gray-700 to-gray-500",
+    features: [
+      "Calculate the volume of gravel needed for a given area",
+      "Track costs of gravel for different construction projects",
+      "Estimate the weight of gravel required",
+    ],
+  },
+
+  {
+    id: "wind-chill-calculator",
+    name: "Wind Chill Calculator",
+    description:
+      "Calculate the wind chill factor based on temperature and wind speed",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5400,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Estimate the perceived temperature based on wind speed",
+      "Understand the impact of wind chill on your health",
+      "Track real-time wind chill values",
+    ],
+  },
+
+  {
+    id: "heat-index-calculator",
+    name: "Heat Index Calculator",
+    description:
+      "Calculate the heat index based on temperature and humidity levels",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5600,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Determine how hot the weather feels based on humidity and temperature",
+      "Estimate the risk of heat-related illnesses",
+      "Monitor the heat index for outdoor activities",
+    ],
+  },
+
+  {
+    id: "dew-point-calculator",
+    name: "Dew Point Calculator",
+    description:
+      "Calculate the dew point based on temperature and relative humidity",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4800,
+    gradient: "from-blue-600 to-indigo-600",
+    features: [
+      "Calculate dew point to estimate moisture in the air",
+      "Understand weather conditions for outdoor events",
+      "Track changes in dew point over time",
+    ],
+  },
+
+  {
+    id: "bandwidth-calculator",
+    name: "Bandwidth Calculator",
+    description:
+      "Calculate bandwidth requirements for a given number of users or devices",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4900,
+    gradient: "from-green-600 to-blue-600",
+    features: [
+      "Estimate bandwidth needs based on user activity",
+      "Track bandwidth usage for home or office networks",
+      "Optimize internet speed for better performance",
+    ],
+  },
+
+  {
+    id: "time-duration-calculator",
+    name: "Time Duration Calculator",
+    description: "Calculate the duration between two dates or times",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4700,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Determine the time difference between two dates or times",
+      "Convert between different units of time",
+      "Track deadlines and time-sensitive projects",
+    ],
+  },
+
+  {
+    id: "day-counter",
+    name: "Day Counter",
+    description: "Count the number of days between two dates",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 4800,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Calculate the number of days between any two given dates",
+      "Track important dates and milestones",
+      "Plan future events and deadlines",
+    ],
+  },
+
+  {
+    id: "day-of-the-week-calculator",
+    name: "Day of the Week Calculator",
+    description: "Find out the day of the week for any given date",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M4 4l4 4-4 4z"),
+    views: 5000,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Determine the day of the week for any past, present, or future date",
+      "Check historical events by day of the week",
+      "Plan activities and events based on specific weekdays",
+    ],
+  },
+
   // 3. Text & String Tools
   {
-    id: 'case-converter',
-    name: 'Case Converter',
-    description: 'Convert text between uppercase, lowercase, title case, and more',
-    category: getCategoryById('text-string'),
-    icon: createIcon("M19 15V10.82a3 3 0 00-1.5-2.6l-9-5.4a3 3 0 00-3 0l-9 5.4A3 3 0 003 10.82V21a3 3 0 003 3h8M11 21l3-1.5m0 0L17 16m-3 3.5L17 22"),
-    views: 9520,
-    gradient: 'from-blue-500 to-indigo-500',
+    id: "url-encode",
+    name: "URL Encode",
+    description: "Encode a string to make it safe for use in a URL",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 6l6 6-6 6M6 12l6 6 6-6"),
+    views: 7200,
+    gradient: "from-blue-500 to-green-500",
     features: [
-      'Convert to UPPERCASE, lowercase, Title Case, Sentence case',
-      'Alternate case and inVeRsE case options',
-      'camelCase, PascalCase, snake_case, and kebab-case',
-      'Preserve special characters option',
-      'Batch processing for multiple texts',
-      'Copy to clipboard with one click'
-    ]
-  },
-  {
-    id: 'text-repeater',
-    name: 'Text Repeater',
-    description: 'Repeat text with custom separators and patterns',
-    category: getCategoryById('text-string'),
-    icon: createIcon("M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
-    views: 4820,
-    gradient: 'from-violet-500 to-purple-500',
-    features: [
-      'Repeat text a specified number of times',
-      'Add custom separators (spaces, newlines, commas)',
-      'Create patterns and sequences',
-      'Generate dummy text for testing',
-      'Preview output as you type',
-      'Character and word count tracking'
-    ]
-  },
-  {
-    id: 'line-break-remover',
-    name: 'Line Break Remover',
-    description: 'Remove unwanted line breaks from text while preserving paragraphs',
-    category: getCategoryById('text-string'),
-    icon: createIcon("M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"),
-    views: 5420,
-    gradient: 'from-green-500 to-emerald-500',
-    features: [
-      'Remove single line breaks while preserving paragraphs',
-      'Consolidate multiple blank lines',
-      'Convert between different line ending types',
-      'Optional paragraph indentation',
-      'Preserve list formatting option',
-      'Handle copied text from PDFs and ebooks'
-    ]
-  },
-  {
-    id: 'character-counter',
-    name: 'Character Counter',
-    description: 'Count characters, words, sentences, and paragraphs in your text',
-    category: getCategoryById('text-string'),
-    icon: createIcon("M15.75 15.75V18m-7.5-10.5H4.5m6.75 6.75v-3m3 3h.75m-3.75 3h-3M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
-    views: 7840,
-    gradient: 'from-cyan-500 to-blue-500',
-    features: [
-      'Count characters (with and without spaces)',
-      'Word, sentence, and paragraph counting',
-      'Reading time estimation',
-      'Keyword density analysis',
-      'Social media character limit checker',
-      'Text statistics and readability scores'
-    ]
-  },
-  {
-    id: 'string-reverser',
-    name: 'String Reverser',
-    description: 'Reverse text characters, words, or lines',
-    category: getCategoryById('text-string'),
-    icon: createIcon("M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"),
-    views: 3760,
-    gradient: 'from-pink-500 to-rose-500',
-    features: [
-      'Reverse text character by character',
-      'Reverse words while keeping word order',
-      'Reverse lines while maintaining line order',
-      'Generate palindrome text',
-      'Analyze reversed text statistics',
-      'Mirrored text generator'
-    ]
-  },
-  {
-    id: 'json-formatter',
-    name: 'JSON Formatter',
-    description: 'Format, validate and beautify your JSON code with this easy-to-use tool.',
-    category: getCategoryById('developer'),
-    icon: createIcon("M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"),
-    views: 21.5,
-    gradient: 'bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20',
-    features: ['Format JSON', 'Validate JSON', 'Copy to Clipboard'],
-    codePreview: React.createElement(
-      "div", 
-      { className: "whitespace-pre" },
-      React.createElement("span", { className: "text-purple-400" }, "{"),
-      React.createElement("br"),
-      "  ", React.createElement("span", { className: "text-green-400" }, "\"name\""), 
-      React.createElement("span", { className: "text-gray-400" }, ":"), " ", 
-      React.createElement("span", { className: "text-yellow-300" }, "\"JSON Formatter\""), 
-      React.createElement("span", { className: "text-gray-400" }, ","), 
-      React.createElement("br"),
-      "  ", React.createElement("span", { className: "text-green-400" }, "\"version\""), 
-      React.createElement("span", { className: "text-gray-400" }, ":"), " ", 
-      React.createElement("span", { className: "text-blue-400" }, "1.0"), 
-      React.createElement("span", { className: "text-gray-400" }, ","), 
-      React.createElement("br"),
-      "  ", React.createElement("span", { className: "text-green-400" }, "\"features\""), 
-      React.createElement("span", { className: "text-gray-400" }, ":"), " ", 
-      React.createElement("span", { className: "text-purple-400" }, "["), 
-      React.createElement("br"),
-      "    ", React.createElement("span", { className: "text-yellow-300" }, "\"Format JSON\""), 
-      React.createElement("span", { className: "text-gray-400" }, ","), 
-      React.createElement("br"),
-      "    ", React.createElement("span", { className: "text-yellow-300" }, "\"Validate JSON\""), 
-      React.createElement("span", { className: "text-gray-400" }, ","), 
-      React.createElement("br"),
-      "    ", React.createElement("span", { className: "text-yellow-300" }, "\"Copy to Clipboard\""), 
-      React.createElement("br"),
-      "  ", React.createElement("span", { className: "text-purple-400" }, "]"), 
-      React.createElement("span", { className: "text-gray-400" }, ","), 
-      React.createElement("br"),
-      "  ", React.createElement("span", { className: "text-green-400" }, "\"settings\""), 
-      React.createElement("span", { className: "text-gray-400" }, ":"), " ", 
-      React.createElement("span", { className: "text-purple-400" }, "{"), 
-      React.createElement("br"),
-      "    ", React.createElement("span", { className: "text-green-400" }, "\"indentation\""), 
-      React.createElement("span", { className: "text-gray-400" }, ":"), " ", 
-      React.createElement("span", { className: "text-blue-400" }, "2"), 
-      React.createElement("span", { className: "text-gray-400" }, ","), 
-      React.createElement("br"),
-      "    ", React.createElement("span", { className: "text-green-400" }, "\"theme\""), 
-      React.createElement("span", { className: "text-gray-400" }, ":"), " ", 
-      React.createElement("span", { className: "text-yellow-300" }, "\"dark\""), 
-      React.createElement("br"),
-      "  ", React.createElement("span", { className: "text-purple-400" }, "}"), 
-      React.createElement("br"),
-      React.createElement("span", { className: "text-purple-400" }, "}")
-    )
-  },
-  {
-    id: 'color-picker',
-    name: 'Color Picker',
-    description: 'Advanced color picker with color schemes, palettes, and accessibility check.',
-    category: getCategoryById('design'),
-    icon: createIcon("M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"),
-    views: 18.9,
-    gradient: 'bg-gradient-to-br from-pink-50 to-purple-50 dark:from-pink-900/20 dark:to-purple-900/20',
-    features: ['Color palettes', 'Contrast checker', 'Export to CSS/SCSS']
-  },
-  {
-    id: 'pomodoro-timer',
-    name: 'Pomodoro Timer',
-    description: 'Boost productivity with this customizable Pomodoro technique timer app.',
-    category: getCategoryById('productivity'),
-    icon: createIcon("M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"),
-    views: 15.3,
-    gradient: 'bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/20 dark:to-blue-900/20',
-    features: ['Customizable time intervals', 'Task tracking', 'Break reminders']
-  },
-  {
-    id: 'image-compressor',
-    name: 'Image Compressor',
-    description: 'Compress and optimize your images while maintaining quality.',
-    category: getCategoryById('file'),
-    icon: createIcon("M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
-    views: 24.7,
-    gradient: 'bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20',
-    features: ['Bulk compression', 'Multiple formats', 'Adjustable quality']
-  },
-  {
-    id: 'grammar-checker',
-    name: 'Grammar Checker',
-    description: 'Check and correct grammar, spelling and punctuation errors.',
-    category: getCategoryById('writing'),
-    icon: createIcon("M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"),
-    views: 17.2,
-    gradient: 'bg-gradient-to-b from-purple-50 to-indigo-50 dark:from-purple-900/20 dark:to-indigo-900/20'
-  },
-  {
-    id: 'currency-converter',
-    name: 'Currency Converter',
-    description: 'Convert currencies with real-time exchange rates.',
-    category: getCategoryById('finance'),
-    icon: createIcon("M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"),
-    views: 14.8,
-    gradient: 'bg-gradient-to-b from-green-50 to-teal-50 dark:from-green-900/20 dark:to-teal-900/20'
-  },
-  {
-    id: 'meta-tag-generator',
-    name: 'Meta Tag Generator',
-    description: 'Create SEO-friendly meta tags for your website.',
-    category: getCategoryById('seo'),
-    icon: createIcon("M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
-    views: 12.9,
-    gradient: 'bg-gradient-to-b from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20'
-  },
-  {
-    id: 'bmi-calculator',
-    name: 'BMI Calculator',
-    description: 'Calculate and track your Body Mass Index for health monitoring.',
-    category: getCategoryById('health'),
-    icon: createIcon("M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
-    views: 9721,
-    gradient: 'from-red-500 to-orange-500'
+      "Encode special characters to make the string URL-safe",
+      "Supports encoding for spaces, slashes, and other symbols",
+      "Copy encoded URL to clipboard",
+      "Simple and fast encoding process",
+    ],
   },
 
-  // 4. File Management Tools
   {
-    id: 'file-converter',
-    name: 'File Converter',
-    description: 'Convert files between different formats with ease',
-    category: getCategoryById('file-management'),
-    icon: createIcon("M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"),
-    views: 12350,
-    gradient: 'from-violet-500 to-purple-500',
+    id: "url-decode",
+    name: "URL Decode",
+    description: "Decode a URL-encoded string to its original form",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 18l-6-6 6-6M18 12l-6-6-6 6"),
+    views: 6800,
+    gradient: "from-orange-500 to-yellow-500",
     features: [
-      'Convert between PDF, DOC, DOCX, JPG, PNG, and more',
-      'Batch conversion for multiple files',
-      'High-quality output preservation',
-      'OCR for scanned documents',
-      'Password protection options for output files',
-      'Cloud storage integration'
-    ]
+      "Decode URL-encoded strings into readable text",
+      "Supports decoding spaces, slashes, and other symbols",
+      "Preview decoded text before copying",
+      "Copy decoded string to clipboard",
+    ],
+  },
+
+  {
+    id: "html-encode",
+    name: "HTML Encode",
+    description: "Encode a string into a valid HTML format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 7600,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Convert special characters to HTML-safe equivalents",
+      "Handle characters like <, >, &, and others",
+      "Copy encoded HTML to clipboard",
+      "Supports HTML attributes and text encoding",
+    ],
+  },
+
+  {
+    id: "html-decode",
+    name: "HTML Decode",
+    description: "Decode an HTML-encoded string to its readable form",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M5 4h14M5 12h14M5 20h14"),
+    views: 8000,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Decode HTML-encoded strings back to normal text",
+      "Handles all HTML special characters",
+      "Preview decoded text before copying",
+      "Copy decoded string to clipboard",
+    ],
+  },
+
+  {
+    id: "base64-encode",
+    name: "Base64 Encode",
+    description: "Encode a string into Base64 format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l4 4-4 4M12 16l-4-4 4-4"),
+    views: 7400,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Convert text to Base64 encoding",
+      "Supports binary data and text encoding",
+      "Copy encoded Base64 to clipboard",
+      "Quick and simple conversion process",
+    ],
+  },
+
+  {
+    id: "base64-decode",
+    name: "Base64 Decode",
+    description: "Decode a Base64-encoded string to its original text",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12l6 6 6-6"),
+    views: 6700,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Decode Base64-encoded text back to its original form",
+      "Supports both encoded text and binary data",
+      "Preview decoded text before copying",
+      "Copy decoded string to clipboard",
+    ],
+  },
+
+  {
+    id: "string-to-netstring",
+    name: "String to Netstring",
+    description: "Convert a string into a Netstring format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 6v12M6 12h12"),
+    views: 7100,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Convert string into the netstring format",
+      "Handles any string length",
+      "Copy Netstring result to clipboard",
+      "Quick and efficient conversion process",
+    ],
+  },
+
+  {
+    id: "netstring-to-string",
+    name: "Netstring to String",
+    description: "Convert a Netstring back into a regular string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 18l6-6-6-6M6 12l6 6 6-6"),
+    views: 6600,
+    gradient: "from-yellow-500 to-red-500",
+    features: [
+      "Convert a Netstring back to readable text",
+      "Supports variable-length Netstrings",
+      "Preview decoded string before copying",
+      "Copy decoded string to clipboard",
+    ],
+  },
+
+  {
+    id: "slash-escape",
+    name: "Slash Escape",
+    description: "Escape slashes in a string (backslash and forward slash)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 5l7 7-7 7"),
+    views: 6900,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Escape backslashes and forward slashes in text",
+      "Option to escape or unescape slashes selectively",
+      "Copy escaped string to clipboard",
+      "Quick and simple text transformation",
+    ],
+  },
+
+  {
+    id: "slash-unescape",
+    name: "Slash Unescape",
+    description: "Unescape slashes from a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 5l-7 7 7 7"),
+    views: 6700,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Unescape backslashes and forward slashes in text",
+      "Quickly revert escaped text back to normal",
+      "Copy unescaped string to clipboard",
+      "Fast unescape process for easy text transformation",
+    ],
   },
   {
-    id: 'file-splitter',
-    name: 'File Splitter',
-    description: 'Split large files into smaller, manageable chunks',
-    category: getCategoryById('file-management'),
-    icon: createIcon("M5.25 7.5A2.25 2.25 0 017.5 5.25h9a2.25 2.25 0 012.25 2.25v9a2.25 2.25 0 01-2.25 2.25h-9a2.25 2.25 0 01-2.25-2.25v-9z"),
-    views: 5240,
-    gradient: 'from-pink-500 to-rose-500',
+    id: "generate-random-string",
+    name: "Generate Random String",
+    description: "Generate a random string of specified length and characters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8000,
+    gradient: "from-pink-500 to-yellow-500",
     features: [
-      'Split files by size, page count, or custom ranges',
-      'Split PDF documents by pages',
-      'Split archives (ZIP, RAR)',
-      'Split video and audio files',
-      'Join files back together',
-      'Data integrity verification'
-    ]
+      "Generate random strings with alphanumeric characters",
+      "Choose string length and character set (letters, digits, special characters)",
+      "Copy generated string to clipboard",
+      "Quick and easy random string generation",
+    ],
+  },
+
+  {
+    id: "generate-string-from-regex",
+    name: "Generate String from Regex",
+    description: "Generate a string based on a regular expression pattern",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 4h16M4 12h16M4 20h16"),
+    views: 7600,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Generate strings that match a specific regular expression pattern",
+      "Supports any regex pattern for custom string generation",
+      "Option to generate random strings within the pattern",
+      "Copy generated string to clipboard",
+    ],
+  },
+
+  {
+    id: "extract-regex-matches",
+    name: "Extract Regex Matches",
+    description:
+      "Extract all matches of a regular expression from a given string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M5 12h14M12 5l7 7-7 7"),
+    views: 7500,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Extract all regex matches from a string",
+      "Supports global matching with custom regex",
+      "Option to preview matches before copying",
+      "Copy matched substrings to clipboard",
+    ],
+  },
+
+  {
+    id: "test-string-with-regex",
+    name: "Test String with Regex",
+    description: "Test if a string matches a given regular expression pattern",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12h16M12 4l4 4-4 4"),
+    views: 7000,
+    gradient: "from-red-500 to-orange-500",
+    features: [
+      "Test if a string matches a specific regular expression pattern",
+      "Supports case-sensitive and case-insensitive matching",
+      "Provides a quick result on whether the string matches the regex",
+      "Simple interface for testing various regex patterns",
+    ],
+  },
+
+  {
+    id: "extract-substring",
+    name: "Extract Substring",
+    description:
+      "Extract a specific substring from a string based on start and end positions",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l6 6-6 6M12 16l-6-6 6-6"),
+    views: 7100,
+    gradient: "from-green-500 to-cyan-500",
+    features: [
+      "Extract a substring using start and end indices",
+      "Supports both inclusive and exclusive index options",
+      "Preview extracted substring before copying",
+      "Quickly copy the substring to clipboard",
+    ],
+  },
+
+  {
+    id: "convert-string-to-image",
+    name: "Convert String to Image",
+    description:
+      "Convert a text string into an image with customizable font, color, and background",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M16 4h8M4 12l8-8 8 8"),
+    views: 7400,
+    gradient: "from-indigo-500 to-pink-500",
+    features: [
+      "Convert text into an image with custom settings",
+      "Option to adjust font style, size, and color",
+      "Choose background color or make it transparent",
+      "Download the generated image or copy to clipboard",
+    ],
+  },
+
+  {
+    id: "printf-string",
+    name: "Printf String",
+    description: "Format a string using printf-style placeholders",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 7300,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Format a string using placeholders like %s, %d, %f, etc.",
+      "Supports various data types for formatting",
+      "Preview formatted string before copying",
+      "Copy formatted string to clipboard",
+    ],
+  },
+
+  {
+    id: "split-string",
+    name: "Split String",
+    description:
+      "Split a string into an array of substrings based on a separator",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 7200,
+    gradient: "from-teal-500 to-purple-500",
+    features: [
+      "Split a string into substrings based on a separator",
+      "Supports splitting by characters, spaces, or regular expressions",
+      "Preview the resulting array before copying",
+      "Copy the resulting array to clipboard",
+    ],
+  },
+
+  {
+    id: "join-strings",
+    name: "Join Strings",
+    description: "Join multiple strings into one string with a separator",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12h16M12 4l4 4-4 4"),
+    views: 6800,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Join multiple strings with a separator",
+      "Supports custom separators, including spaces and punctuation",
+      "Preview the joined string before copying",
+      "Copy the joined string to clipboard",
+    ],
+  },
+
+  {
+    id: "filter-string-lines",
+    name: "Filter String Lines",
+    description:
+      "Filter out specific lines from a multiline string based on conditions",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12h16M12 4l4 4-4 4"),
+    views: 6900,
+    gradient: "from-cyan-500 to-green-500",
+    features: [
+      "Filter out lines from a multiline string based on custom conditions",
+      "Supports regex, keywords, or specific line length filtering",
+      "Preview filtered lines before copying",
+      "Copy the filtered result to clipboard",
+    ],
   },
   {
-    id: 'file-merger',
-    name: 'File Merger',
-    description: 'Combine multiple files into a single file',
-    category: getCategoryById('file-management'),
-    icon: createIcon("M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"),
-    views: 6780,
-    gradient: 'from-blue-500 to-cyan-500',
+    id: "repeat-string",
+    name: "Repeat a String",
+    description: "Repeat a string a specified number of times",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 6800,
+    gradient: "from-yellow-500 to-red-500",
     features: [
-      'Merge PDF files with customizable page order',
-      'Combine image files (JPG, PNG, etc.)',
-      'Join text and CSV files',
-      'Merge audio files into a single track',
-      'Add custom page numbers and bookmarks',
-      'Preview merged output before saving'
-    ]
+      "Repeat a string multiple times",
+      "Supports custom number of repetitions",
+      "Quickly preview the result before copying",
+      "Copy the repeated string to clipboard",
+    ],
+  },
+
+  {
+    id: "reverse-string",
+    name: "Reverse a String",
+    description: "Reverse the characters in a given string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7100,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Reverse the entire string's characters",
+      "Quick and easy to reverse text in one click",
+      "Copy the reversed string to clipboard",
+      "Preview the reversed string before copying",
+    ],
+  },
+
+  {
+    id: "find-replace-string",
+    name: "Find and Replace a String",
+    description:
+      "Find a substring in a string and replace it with another substring",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7300,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Find and replace specific substrings in a string",
+      "Supports case-sensitive and case-insensitive replacements",
+      "Option to replace all or just the first occurrence",
+      "Preview the result before replacing",
+    ],
+  },
+
+  {
+    id: "truncate-string",
+    name: "Truncate a String",
+    description:
+      "Truncate a string to a specified length, adding ellipsis if necessary",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7500,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Truncate a string to a maximum length",
+      "Option to add ellipsis ('...') to the truncated string",
+      "Supports custom truncation length",
+      "Quickly preview the result before truncating",
+    ],
+  },
+
+  {
+    id: "trim-string",
+    name: "Trim a String",
+    description: "Trim leading and trailing whitespace from a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7400,
+    gradient: "from-teal-500 to-purple-500",
+    features: [
+      "Trim excess whitespace from the start and end of a string",
+      "Useful for cleaning user input or text data",
+      "One-click trim for quick editing",
+      "Preview the trimmed string before copying",
+    ],
+  },
+
+  {
+    id: "left-pad-string",
+    name: "Left-pad a String",
+    description:
+      "Add padding to the left of a string to meet a specified length",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7200,
+    gradient: "from-pink-500 to-indigo-500",
+    features: [
+      "Left-pad a string with specified characters",
+      "Choose the padding character (default is space)",
+      "Supports custom padding length",
+      "Quickly preview the padded string before copying",
+    ],
+  },
+
+  {
+    id: "right-pad-string",
+    name: "Right-pad a String",
+    description:
+      "Add padding to the right of a string to meet a specified length",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7100,
+    gradient: "from-red-500 to-yellow-500",
+    features: [
+      "Right-pad a string with specified characters",
+      "Choose the padding character (default is space)",
+      "Supports custom padding length",
+      "Quickly preview the padded string before copying",
+    ],
+  },
+
+  {
+    id: "right-align-string",
+    name: "Right-align a String",
+    description: "Align a string to the right within a specified length",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7800,
+    gradient: "from-orange-500 to-pink-500",
+    features: [
+      "Right-align a string within a specified length",
+      "Option to use custom alignment characters",
+      "Supports formatting for display purposes",
+      "Quickly preview the aligned string before copying",
+    ],
+  },
+
+  {
+    id: "center-string",
+    name: "Center a String",
+    description:
+      "Center a string within a specified length, adding padding on both sides",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7600,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Center-align a string within a specified length",
+      "Option to use custom alignment characters",
+      "Supports custom padding on both sides",
+      "Preview the centered string before copying",
+    ],
+  },
+
+  {
+    id: "sort-strings",
+    name: "Sort Strings",
+    description: "Sort multiple strings alphabetically or by length",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7900,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Sort strings alphabetically or by length",
+      "Option to sort in ascending or descending order",
+      "Handles multiple lines of strings for batch sorting",
+      "Preview the sorted strings before copying",
+    ],
   },
   {
-    id: 'file-compressor',
-    name: 'File Compressor',
-    description: 'Compress files to reduce size while maintaining quality',
-    category: getCategoryById('file-management'),
-    icon: createIcon("M6 6h.008v.008H6V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 6h.008v.008H12V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 6h.008v.008H18V6zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM6 12h.008v.008H6V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 12h.008v.008H12V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 12h.008v.008H18V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM6 18h.008v.008H6V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM12 18h.008v.008H12V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM18 18h.008v.008H18V18zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
-    views: 8420,
-    gradient: 'from-green-500 to-teal-500',
+    id: "rotate-string",
+    name: "Rotate a String",
+    description:
+      "Rotate a string by shifting its characters a specified number of places",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8000,
+    gradient: "from-pink-500 to-orange-500",
     features: [
-      'Compress files using various algorithms (ZIP, 7z, TAR, RAR)',
-      'Image, audio, and video compression',
-      'PDF file size reduction',
-      'Batch compression of multiple files',
-      'Customizable compression levels',
-      'Password protection and encryption'
-    ]
+      "Rotate the characters of a string by a custom number of positions",
+      "Supports both left and right rotations",
+      "Preview the rotated string before finalizing",
+      "Copy the rotated string to clipboard",
+    ],
+  },
+
+  {
+    id: "rot13-string",
+    name: "ROT13 a String",
+    description:
+      "Apply the ROT13 cipher to a string, replacing each letter with the letter 13 places ahead of it",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8100,
+    gradient: "from-yellow-500 to-green-500",
+    features: [
+      "Encrypt or obfuscate text using the ROT13 cipher",
+      "Quickly encode or decode using ROT13",
+      "Suitable for quick text obfuscation",
+      "Preview the result before copying to clipboard",
+    ],
+  },
+
+  {
+    id: "rot47-string",
+    name: "ROT47 a String",
+    description:
+      "Apply the ROT47 cipher to a string, shifting characters in the ASCII printable range by 47 positions",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8200,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Encrypt or obfuscate text using the ROT47 cipher",
+      "Quickly encode or decode using ROT47",
+      "Supports all printable ASCII characters",
+      "Preview the result before copying to clipboard",
+    ],
+  },
+
+  {
+    id: "transpose-string",
+    name: "Transpose a String",
+    description:
+      "Transpose the characters of a string, swapping the positions of each pair of characters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8300,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Transpose the characters of a string, swapping pairs of characters",
+      "Supports custom lengths and strings of varying sizes",
+      "Quickly preview the transposed string before finalizing",
+      "Copy the transposed string to clipboard",
+    ],
+  },
+
+  {
+    id: "slice-string",
+    name: "Slice a String",
+    description:
+      "Extract a substring from a string by specifying start and end positions",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8400,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Extract part of a string based on start and end positions",
+      "Supports negative indices for reverse slicing",
+      "Preview the sliced string before copying",
+      "Copy the sliced substring to clipboard",
+    ],
+  },
+
+  {
+    id: "add-prefix-string",
+    name: "Add a Prefix to a String",
+    description: "Add a specified prefix to the start of a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8500,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Quickly add a custom prefix to a string",
+      "Preview the result before finalizing",
+      "Option to replace existing prefixes",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "add-suffix-string",
+    name: "Add a Suffix to a String",
+    description: "Add a specified suffix to the end of a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8600,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Quickly add a custom suffix to a string",
+      "Preview the result before finalizing",
+      "Option to replace existing suffixes",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "quote-string",
+    name: "Quote a String",
+    description:
+      "Add quotes around a string, making it ready for use in code or other contexts",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8700,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Add double or single quotes around a string",
+      "Supports escaping quotes for use in code",
+      "Quickly preview the result before finalizing",
+      "Copy the quoted string to clipboard",
+    ],
+  },
+
+  {
+    id: "unquote-string",
+    name: "Unquote a String",
+    description: "Remove quotes from a string, restoring the original text",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8800,
+    gradient: "from-orange-500 to-teal-500",
+    features: [
+      "Remove quotes from a string",
+      "Supports both single and double quotes",
+      "Restore the original text without quotes",
+      "Quickly preview the result before finalizing",
+    ],
+  },
+
+  {
+    id: "convert-spaces-newlines",
+    name: "Convert Spaces to Newlines",
+    description:
+      "Convert all spaces in a string to newline characters, making it more readable",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8900,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Convert spaces in a string to newlines",
+      "Makes multi-line strings easier to read",
+      "Quickly preview the result before finalizing",
+      "Copy the result with one click",
+    ],
   },
   {
-    id: 'file-encryptor',
-    name: 'File Encryptor',
-    description: 'Encrypt files with strong passwords for secure sharing',
-    category: getCategoryById('file-management'),
-    icon: createIcon("M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"),
-    views: 5870,
-    gradient: 'from-amber-500 to-orange-500',
+    id: "convert-newlines-spaces",
+    name: "Convert Newlines to Spaces",
+    description: "Convert all newline characters in a string to spaces",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9000,
+    gradient: "from-pink-500 to-purple-500",
     features: [
-      'AES-256 encryption for files and folders',
-      'Password-protected archives',
-      'Secure file sharing with expiring links',
-      'File integrity verification',
-      'Multiple encryption algorithms',
-      'Self-decrypting archives for recipients without the tool'
-    ]
+      "Convert all newline characters to spaces",
+      "Makes the string easier to process for single-line inputs",
+      "Quickly preview the result before finalizing",
+      "Copy the result with one click",
+    ],
   },
-  
+
+  {
+    id: "convert-spaces-tabs",
+    name: "Convert Spaces to Tabs",
+    description:
+      "Convert all spaces in a string to tab characters for better formatting",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9100,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Convert spaces in a string to tabs",
+      "Suitable for adjusting indentation in code or text",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "convert-tabs-spaces",
+    name: "Convert Tabs to Spaces",
+    description:
+      "Convert all tab characters in a string to spaces, for consistent spacing",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9200,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Convert tabs in a string to spaces",
+      "Useful for converting code to a consistent indentation format",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "remove-empty-lines",
+    name: "Remove All Empty Lines",
+    description:
+      "Remove all empty lines from a string, leaving only lines with content",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9300,
+    gradient: "from-red-500 to-yellow-500",
+    features: [
+      "Remove empty lines from a string",
+      "Clears up unnecessary space between text",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "remove-whitespace",
+    name: "Remove All Whitespace",
+    description:
+      "Remove all whitespace characters from a string, including spaces, tabs, and newlines",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9400,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Remove all whitespace characters (spaces, tabs, newlines)",
+      "Useful for minimizing strings for processing or storage",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "remove-punctuation",
+    name: "Remove All Punctuation",
+    description:
+      "Remove all punctuation marks from a string, leaving only alphanumeric characters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9500,
+    gradient: "from-indigo-500 to-green-500",
+    features: [
+      "Remove all punctuation marks from a string",
+      "Makes text simpler for certain applications like parsing",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "find-string-length",
+    name: "Find the Length of a String",
+    description:
+      "Calculate and return the length of a string (number of characters)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9600,
+    gradient: "from-orange-500 to-teal-500",
+    features: [
+      "Quickly find the length of a string",
+      "Useful for text processing tasks and validations",
+      "Preview the length of the string before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "count-newlines-string",
+    name: "Count Newlines in a String",
+    description: "Count the number of newline characters in a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9700,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Count the number of newlines in a string",
+      "Helpful for analyzing and processing multiline strings",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-bytes",
+    name: "Convert a String to Bytes",
+    description:
+      "Convert a string into a byte array (encoding string as bytes)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9800,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Convert a string to a byte array",
+      "Useful for encoding text into a format suitable for storage or transmission",
+      "Preview the byte array before finalizing",
+      "Copy the byte array with one click",
+    ],
+  },
+
+  {
+    id: "convert-bytes-string",
+    name: "Convert Bytes to a String",
+    description:
+      "Convert a byte array back to a string (decoding bytes to a string)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 9900,
+    gradient: "from-teal-500 to-indigo-500",
+    features: [
+      "Convert bytes back into a string",
+      "Useful for decoding data after transmission or storage",
+      "Preview the result before finalizing",
+      "Copy the decoded string with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-binary",
+    name: "Convert a String to Binary",
+    description:
+      "Convert a string into its binary representation (ASCII codes in binary)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10000,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Convert a string to its binary representation",
+      "Useful for encoding text in a machine-readable format",
+      "Preview the binary code before finalizing",
+      "Copy the binary code with one click",
+    ],
+  },
+
+  {
+    id: "convert-binary-string",
+    name: "Convert Binary to a String",
+    description:
+      "Convert a binary string back to its original text representation",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10100,
+    gradient: "from-purple-500 to-blue-500",
+    features: [
+      "Convert binary data back into text",
+      "Useful for decoding binary representations of text",
+      "Preview the result before finalizing",
+      "Copy the decoded string with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-octal",
+    name: "Convert a String to Octal",
+    description:
+      "Convert a string into its octal representation (ASCII codes in octal)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10200,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Convert a string to its octal representation",
+      "Useful for encoding text in a numerical format",
+      "Preview the octal code before finalizing",
+      "Copy the octal code with one click",
+    ],
+  },
+
+  {
+    id: "convert-octal-string",
+    name: "Convert Octal to a String",
+    description: "Convert an octal representation back to a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10300,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Convert octal data back into text",
+      "Useful for decoding octal representations of text",
+      "Preview the result before finalizing",
+      "Copy the decoded string with one click",
+    ],
+  },
+  {
+    id: "convert-to-decimal",
+    name: "Convert a String to Decimal",
+    description:
+      "Convert a string into its decimal representation (ASCII codes in decimal)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10400,
+    gradient: "from-indigo-500 to-teal-500",
+    features: [
+      "Convert a string to its decimal representation",
+      "Useful for encoding text into a numerical format",
+      "Preview the decimal code before finalizing",
+      "Copy the decimal code with one click",
+    ],
+  },
+
+  {
+    id: "convert-decimal-string",
+    name: "Convert Decimal to a String",
+    description: "Convert a decimal representation back to its original text",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10500,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Convert decimal data back into text",
+      "Useful for decoding decimal representations of text",
+      "Preview the result before finalizing",
+      "Copy the decoded string with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-hex",
+    name: "Convert a String to Hex",
+    description:
+      "Convert a string into its hexadecimal representation (ASCII codes in hex)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10600,
+    gradient: "from-blue-500 to-pink-500",
+    features: [
+      "Convert a string to its hexadecimal representation",
+      "Useful for encoding text into a more compact format",
+      "Preview the hex code before finalizing",
+      "Copy the hex code with one click",
+    ],
+  },
+
+  {
+    id: "convert-hex-string",
+    name: "Convert Hex to a String",
+    description: "Convert a hexadecimal representation back to a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10700,
+    gradient: "from-purple-500 to-green-500",
+    features: [
+      "Convert hex data back into text",
+      "Useful for decoding hexadecimal representations of text",
+      "Preview the result before finalizing",
+      "Copy the decoded string with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-ascii",
+    name: "Convert a String to ASCII",
+    description:
+      "Convert a string into its ASCII representation (character codes in ASCII)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10800,
+    gradient: "from-yellow-500 to-teal-500",
+    features: [
+      "Convert a string to its ASCII representation",
+      "Useful for encoding text into a format for processing or storage",
+      "Preview the ASCII code before finalizing",
+      "Copy the ASCII code with one click",
+    ],
+  },
+
+  {
+    id: "convert-ascii-string",
+    name: "Convert ASCII to a String",
+    description: "Convert an ASCII representation back into a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 10900,
+    gradient: "from-cyan-500 to-indigo-500",
+    features: [
+      "Convert ASCII data back into text",
+      "Useful for decoding ASCII representations of text",
+      "Preview the result before finalizing",
+      "Copy the decoded string with one click",
+    ],
+  },
+
+  {
+    id: "change-string-case",
+    name: "Change String Case",
+    description:
+      "Change the case of a string to either uppercase, lowercase, or title case",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11000,
+    gradient: "from-pink-500 to-yellow-500",
+    features: [
+      "Change the case of a string to uppercase, lowercase, or title case",
+      "Allows for case-sensitive text transformations",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-uppercase",
+    name: "Convert a String to Uppercase",
+    description: "Convert all characters in a string to uppercase",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11100,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Convert all characters to uppercase",
+      "Useful for making text uniform or emphasizing it",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-lowercase",
+    name: "Convert a String to Lowercase",
+    description: "Convert all characters in a string to lowercase",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11200,
+    gradient: "from-teal-500 to-indigo-500",
+    features: [
+      "Convert all characters to lowercase",
+      "Useful for standardizing input or formatting text",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "randomize-letter-case",
+    name: "Randomize Letter Case in a String",
+    description:
+      "Randomly change the case of letters in a string (uppercase and lowercase)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11300,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Randomly change letter cases in a string",
+      "Adds randomness and style to text",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "invert-letter-case",
+    name: "Invert Letter Case in a String",
+    description:
+      "Invert the case of each letter in a string (uppercase to lowercase and vice versa)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11400,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Invert the case of each letter in the string",
+      "Useful for text manipulation and style",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "convert-to-json",
+    name: "Convert JSON to a String",
+    description:
+      "Convert JSON data into a string for easier viewing or storing",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11500,
+    gradient: "from-pink-500 to-cyan-500",
+    features: [
+      "Convert JSON data into a string representation",
+      "Helps with storing or viewing JSON in text form",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "json-stringify-string",
+    name: "JSON Stringify a String",
+    description:
+      "Stringify a string using JSON format, making it suitable for transmission or storage",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11600,
+    gradient: "from-blue-500 to-yellow-500",
+    features: [
+      "Convert a string into JSON format",
+      "Useful for storing data in JSON format",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "json-parse-string",
+    name: "JSON Parse a String",
+    description:
+      "Parse a JSON string back into its original structure (convert JSON to an object)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11700,
+    gradient: "from-orange-500 to-pink-500",
+    features: [
+      "Parse a JSON string back into an object",
+      "Useful for converting serialized data into a usable format",
+      "Preview the result before finalizing",
+      "Copy the parsed result with one click",
+    ],
+  },
+
+  {
+    id: "convert-html-string",
+    name: "Convert HTML to a String",
+    description: "Convert HTML content into a plain string representation",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11800,
+    gradient: "from-purple-500 to-red-500",
+    features: [
+      "Convert HTML code into a string format",
+      "Helpful for extracting text from HTML tags",
+      "Preview the result before finalizing",
+      "Copy the HTML string with one click",
+    ],
+  },
+
+  {
+    id: "convert-xml-string",
+    name: "Convert XML to a String",
+    description:
+      "Convert XML data into a string format for easier handling or display",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11900,
+    gradient: "from-teal-500 to-indigo-500",
+    features: [
+      "Convert XML data into string format",
+      "Useful for processing XML data as text",
+      "Preview the result before finalizing",
+      "Copy the XML string with one click",
+    ],
+  },
+  {
+    id: "convert-csv-to-string",
+    name: "Convert CSV to a String",
+    description:
+      "Convert CSV data into a string representation for easier viewing or processing",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12000,
+    gradient: "from-indigo-500 to-teal-500",
+    features: [
+      "Convert CSV data into a string format",
+      "Useful for processing or viewing CSV data as text",
+      "Preview the result before finalizing",
+      "Copy the CSV string with one click",
+    ],
+  },
+
+  {
+    id: "convert-string-to-csv",
+    name: "Convert a String to CSV",
+    description:
+      "Convert a string representation into CSV format for easier handling",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12100,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Convert a string into CSV format",
+      "Useful for exporting data or preparing for CSV processing",
+      "Preview the result before finalizing",
+      "Copy the CSV data with one click",
+    ],
+  },
+
+  {
+    id: "convert-bbcode-to-string",
+    name: "Convert BBCode to a String",
+    description: "Convert BBCode formatted text into a plain string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12200,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Convert BBCode to a plain string representation",
+      "Helps extract text from BBCode format",
+      "Preview the result before finalizing",
+      "Copy the BBCode string with one click",
+    ],
+  },
+
+  {
+    id: "convert-string-to-morse",
+    name: "Convert a String to Morse Code",
+    description:
+      "Convert a string into Morse code for encoding or transmitting",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12300,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Convert a string to its Morse code representation",
+      "Useful for encoding messages in Morse code",
+      "Preview the result before finalizing",
+      "Copy the Morse code with one click",
+    ],
+  },
+
+  {
+    id: "convert-morse-to-string",
+    name: "Convert Morse Code to a String",
+    description:
+      "Convert a Morse code representation back into a readable string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12400,
+    gradient: "from-pink-500 to-blue-500",
+    features: [
+      "Convert Morse code back into readable text",
+      "Useful for decoding Morse messages",
+      "Preview the result before finalizing",
+      "Copy the decoded string with one click",
+    ],
+  },
+
+  {
+    id: "create-palindrome",
+    name: "Create a Palindrome",
+    description:
+      "Create a palindrome by rearranging or adding characters to a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12500,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Create a palindrome from any given string",
+      "Ensures the string reads the same forwards and backwards",
+      "Preview the result before finalizing",
+      "Copy the palindrome string with one click",
+    ],
+  },
+
+  {
+    id: "check-palindrome",
+    name: "Check a Palindrome",
+    description:
+      "Check if a string is a palindrome (reads the same forwards and backwards)",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12600,
+    gradient: "from-cyan-500 to-indigo-500",
+    features: [
+      "Check if the given string is a palindrome",
+      "Useful for text validation or manipulation",
+      "Preview the result before finalizing",
+      "Copy the palindrome check result with one click",
+    ],
+  },
+
+  {
+    id: "generate-string-unigrams",
+    name: "Generate String Unigrams",
+    description: "Generate unigrams (single character tokens) from a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12700,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Generate unigrams (one character tokens) from a string",
+      "Useful for text analysis and tokenization",
+      "Preview the result before finalizing",
+      "Copy the unigram tokens with one click",
+    ],
+  },
+
+  {
+    id: "generate-string-bigrams",
+    name: "Generate String Bigrams",
+    description: "Generate bigrams (two-character tokens) from a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12800,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Generate bigrams (two character tokens) from a string",
+      "Useful for text analysis and tokenization",
+      "Preview the result before finalizing",
+      "Copy the bigram tokens with one click",
+    ],
+  },
+
+  {
+    id: "split-text",
+    name: "Split Text",
+    description:
+      "Split a string into an array of substrings based on a delimiter or character count",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 12900,
+    gradient: "from-red-500 to-yellow-500",
+    features: [
+      "Split a string into smaller parts using a delimiter or character length",
+      "Useful for breaking text into manageable chunks",
+      "Preview the result before finalizing",
+      "Copy the split text with one click",
+    ],
+  },
+
+  {
+    id: "join-text",
+    name: "Join Text",
+    description:
+      "Join an array of strings into a single string with a specified separator",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13000,
+    gradient: "from-teal-500 to-indigo-500",
+    features: [
+      "Join multiple strings into a single string with a custom separator",
+      "Useful for concatenating data or sentences",
+      "Preview the result before finalizing",
+      "Copy the joined string with one click",
+    ],
+  },
+
+  {
+    id: "repeat-text",
+    name: "Repeat Text",
+    description: "Repeat a string a specified number of times",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13100,
+    gradient: "from-blue-500 to-pink-500",
+    features: [
+      "Repeat a string for a set number of times",
+      "Useful for repeating content or generating patterns",
+      "Preview the result before finalizing",
+      "Copy the repeated string with one click",
+    ],
+  },
+
+  {
+    id: "reverse-text",
+    name: "Reverse Text",
+    description: "Reverse the characters in a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13200,
+    gradient: "from-purple-500 to-orange-500",
+    features: [
+      "Reverse the characters in a string",
+      "Useful for text manipulation or encryption",
+      "Preview the result before finalizing",
+      "Copy the reversed string with one click",
+    ],
+  },
+  {
+    id: "truncate-text",
+    name: "Truncate Text",
+    description:
+      "Truncate a string to a specified length and add an ellipsis (...) if necessary",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13300,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Truncate a string to a specified length",
+      "Add ellipsis (...) if the text exceeds the limit",
+      "Preview the result before finalizing",
+      "Copy the truncated string with one click",
+    ],
+  },
+
+  {
+    id: "slice-text",
+    name: "Slice Text",
+    description:
+      "Slice a string into a specific range based on start and end indexes",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13400,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Slice a string based on specified start and end positions",
+      "Useful for extracting substrings",
+      "Preview the result before finalizing",
+      "Copy the sliced string with one click",
+    ],
+  },
+
+  {
+    id: "trim-text",
+    name: "Trim Text",
+    description: "Trim leading and trailing whitespace from a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13500,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Trim extra spaces at the beginning and end of a string",
+      "Useful for cleaning up text input or formatting",
+      "Preview the result before finalizing",
+      "Copy the trimmed string with one click",
+    ],
+  },
+
+  {
+    id: "left-pad-text",
+    name: "Left-pad Text",
+    description:
+      "Add padding to the left of a string until it reaches a specified length",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13600,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Pad a string with characters on the left side until a target length is reached",
+      "Useful for formatting or aligning text",
+      "Preview the result before finalizing",
+      "Copy the padded string with one click",
+    ],
+  },
+
+  {
+    id: "right-pad-text",
+    name: "Right-pad Text",
+    description:
+      "Add padding to the right of a string until it reaches a specified length",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13700,
+    gradient: "from-indigo-500 to-teal-500",
+    features: [
+      "Pad a string with characters on the right side until a target length is reached",
+      "Useful for formatting or aligning text",
+      "Preview the result before finalizing",
+      "Copy the padded string with one click",
+    ],
+  },
+
+  {
+    id: "left-align-text",
+    name: "Left-align Text",
+    description: "Align a string to the left side of a specified width",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13800,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Align a string to the left side within a specified width",
+      "Useful for text alignment in formatting or UI display",
+      "Preview the result before finalizing",
+      "Copy the aligned string with one click",
+    ],
+  },
+
+  {
+    id: "right-align-text",
+    name: "Right-align Text",
+    description: "Align a string to the right side of a specified width",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 13900,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Align a string to the right side within a specified width",
+      "Useful for text alignment in formatting or UI display",
+      "Preview the result before finalizing",
+      "Copy the aligned string with one click",
+    ],
+  },
+
+  {
+    id: "center-text",
+    name: "Center Text",
+    description: "Align a string to the center within a specified width",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14000,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Align a string to the center within a specified width",
+      "Useful for centering text in formatting or UI display",
+      "Preview the result before finalizing",
+      "Copy the centered string with one click",
+    ],
+  },
+
+  {
+    id: "indent-text",
+    name: "Indent Text",
+    description:
+      "Indent a string by a specified number of spaces or characters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14100,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Indent a string by a custom number of spaces or characters",
+      "Useful for creating indented lists or paragraphs",
+      "Preview the result before finalizing",
+      "Copy the indented string with one click",
+    ],
+  },
+
+  {
+    id: "unindent-text",
+    name: "Unindent Text",
+    description:
+      "Remove the indentation from a string by a specified number of spaces or characters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14200,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Remove indentation from a string by a specified number of spaces or characters",
+      "Useful for cleaning up formatted text",
+      "Preview the result before finalizing",
+      "Copy the unindented string with one click",
+    ],
+  },
+
+  {
+    id: "justify-text",
+    name: "Justify Text",
+    description:
+      "Justify a string so that it stretches across a specified width, aligning both left and right sides",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14300,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Justify a string across a specified width",
+      "Useful for text formatting in documents or UI display",
+      "Preview the result before finalizing",
+      "Copy the justified string with one click",
+    ],
+  },
+
+  {
+    id: "wrap-words-in-text",
+    name: "Wrap Words in Text",
+    description:
+      "Wrap words in a string to ensure they fit within a specific width, useful for text formatting",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14400,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Wrap words in a string to fit within a specific width",
+      "Useful for text display in constrained spaces",
+      "Preview the result before finalizing",
+      "Copy the wrapped text with one click",
+    ],
+  },
+
+  {
+    id: "reverse-words-in-text",
+    name: "Reverse Words in Text",
+    description:
+      "Reverse the order of words in a string while preserving the individual word characters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14500,
+    gradient: "from-teal-500 to-purple-500",
+    features: [
+      "Reverse the order of words in a string",
+      "Useful for text manipulation or encryption",
+      "Preview the result before finalizing",
+      "Copy the reversed string with one click",
+    ],
+  },
+  {
+    id: "reverse-sentences-in-text",
+    name: "Reverse Sentences in Text",
+    description:
+      "Reverse the order of sentences in a string while preserving the sentence structure",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14600,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Reverse the order of sentences in a string",
+      "Preserve individual sentence characters",
+      "Preview the result before finalizing",
+      "Copy the reversed sentences with one click",
+    ],
+  },
+
+  {
+    id: "reverse-paragraphs-in-text",
+    name: "Reverse Paragraphs in Text",
+    description:
+      "Reverse the order of paragraphs in a string while keeping the paragraph structure intact",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14700,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Reverse the order of paragraphs in a string",
+      "Preserve the individual paragraph formatting",
+      "Preview the result before finalizing",
+      "Copy the reversed paragraphs with one click",
+    ],
+  },
+
+  {
+    id: "swap-letters-in-words",
+    name: "Swap Letters in Words",
+    description:
+      "Swap the letters within words in a string to create a mixed-up effect",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14800,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Swap letters within individual words",
+      "Create a scrambled effect for words",
+      "Preview the result before finalizing",
+      "Copy the swapped words with one click",
+    ],
+  },
+
+  {
+    id: "swap-words-in-text",
+    name: "Swap Words in Text",
+    description:
+      "Swap the positions of two words in a string, rearranging the order",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 14900,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Swap the positions of two words in a string",
+      "Allows rearrangement of word order",
+      "Preview the result before finalizing",
+      "Copy the swapped string with one click",
+    ],
+  },
+
+  {
+    id: "duplicate-words-in-text",
+    name: "Duplicate Words in Text",
+    description:
+      "Duplicate each word in the string, adding an extra copy of each word",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15000,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Duplicate each word in the string",
+      "Useful for creating emphasis or repeating content",
+      "Preview the result before finalizing",
+      "Copy the duplicated string with one click",
+    ],
+  },
+
+  {
+    id: "remove-words-from-text",
+    name: "Remove Words from Text",
+    description:
+      "Remove specified words from a string, leaving the rest of the content intact",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15100,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Remove specific words from a string",
+      "Filter out unwanted words for cleaner text",
+      "Preview the result before finalizing",
+      "Copy the modified string with one click",
+    ],
+  },
+
+  {
+    id: "duplicate-sentences-in-text",
+    name: "Duplicate Sentences in Text",
+    description: "Duplicate each sentence in the string, repeating each one",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15200,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Duplicate each sentence in the string",
+      "Create repetition for emphasis or stylistic effect",
+      "Preview the result before finalizing",
+      "Copy the duplicated sentences with one click",
+    ],
+  },
+
+  {
+    id: "remove-sentences-from-text",
+    name: "Remove Sentences from Text",
+    description:
+      "Remove specific sentences from a string, leaving the rest of the content intact",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15300,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Remove specific sentences from a string",
+      "Useful for cleaning up unwanted content",
+      "Preview the result before finalizing",
+      "Copy the modified string with one click",
+    ],
+  },
+
+  {
+    id: "replace-words-in-text",
+    name: "Replace Words in Text",
+    description:
+      "Replace specified words in a string with new ones of your choice",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15400,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Replace specific words in a string",
+      "Allows targeted word substitution",
+      "Preview the result before finalizing",
+      "Copy the modified string with one click",
+    ],
+  },
+
+  {
+    id: "add-random-words-to-text",
+    name: "Add Random Words to Text",
+    description:
+      "Add random words at specified intervals or locations in a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15500,
+    gradient: "from-pink-500 to-yellow-500",
+    features: [
+      "Add random words to the string",
+      "Create unpredictability in the text",
+      "Preview the result before finalizing",
+      "Copy the modified string with one click",
+    ],
+  },
+
+  {
+    id: "add-random-letters-to-words",
+    name: "Add Random Letters to Words",
+    description: "Insert random letters within the words in the string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15600,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Add random letters inside words in the string",
+      "Create randomness and variation in text",
+      "Preview the result before finalizing",
+      "Copy the modified string with one click",
+    ],
+  },
+
+  {
+    id: "introduce-errors-in-text",
+    name: "Introduce Errors in Text",
+    description:
+      "Deliberately introduce spelling or grammatical errors into a string",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15700,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Introduce random errors into the string",
+      "Useful for simulating text mistakes or creating challenges",
+      "Preview the result before finalizing",
+      "Copy the erroneous string with one click",
+    ],
+  },
+
+  {
+    id: "generate-fake-text",
+    name: "Generate Fake Text",
+    description:
+      "Generate a string of fake text for use in placeholders or testing purposes",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15800,
+    gradient: "from-purple-500 to-orange-500",
+    features: [
+      "Generate random fake text for testing or design purposes",
+      "Customizable length of generated text",
+      "Preview the result before finalizing",
+      "Copy the fake text with one click",
+    ],
+  },
+
+  {
+    id: "unfake-text",
+    name: "Unfake Text",
+    description:
+      "Remove fake elements from a string, restoring it to a more natural state",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 15900,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Remove fake elements or randomness from a string",
+      "Restore the string to a more coherent and realistic form",
+      "Preview the result before finalizing",
+      "Copy the unfaked string with one click",
+    ],
+  },
+  {
+    id: "check-if-text-is-fake",
+    name: "Check If Text Is Fake",
+    description:
+      "Analyze a string of text to determine if it is fake or generated randomly, based on patterns and inconsistencies.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16000,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Check if a string appears fake or randomly generated",
+      "Identify common inconsistencies in fake text",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "remove-random-letters-from-words",
+    name: "Remove Random Letters from Words",
+    description:
+      "Remove random letters inserted within words, returning the words to their original form.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16100,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Remove random letters from words",
+      "Restore words to their original form",
+      "Preview the result before finalizing",
+      "Copy the cleaned string with one click",
+    ],
+  },
+
+  {
+    id: "remove-random-symbols-from-text",
+    name: "Remove Random Symbols from Text",
+    description:
+      "Eliminate random symbols scattered throughout the text, leaving only the letters and spaces intact.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16200,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Remove random symbols from the text",
+      "Clean up text by removing unwanted symbols",
+      "Preview the result before finalizing",
+      "Copy the cleaned text with one click",
+    ],
+  },
+
+  {
+    id: "add-symbols-around-words",
+    name: "Add Symbols Around Words",
+    description:
+      "Add specified symbols (e.g., @, #, *, etc.) around words in the text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16300,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Add symbols around specified words",
+      "Customizable symbols to be added",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "remove-symbols-from-around-words",
+    name: "Remove Symbols from Around Words",
+    description:
+      "Remove any surrounding symbols around words in a text, leaving just the words themselves.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16400,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Remove symbols surrounding words",
+      "Clean up the text by eliminating unnecessary symbols",
+      "Preview the result before finalizing",
+      "Copy the cleaned text with one click",
+    ],
+  },
+
+  {
+    id: "add-prefix-to-text-lines",
+    name: "Add a Prefix to Text Lines",
+    description: "Add a specified prefix to each line of text in a string.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16500,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Add a prefix to each line of text",
+      "Customizable prefix to be added",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "add-suffix-to-text-lines",
+    name: "Add a Suffix to Text Lines",
+    description: "Add a specified suffix to each line of text in a string.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16600,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Add a suffix to each line of text",
+      "Customizable suffix to be added",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "remove-prefix-from-text",
+    name: "Remove a Prefix from Text",
+    description:
+      "Remove a specified prefix from the start of each line or text in a string.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16700,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Remove a prefix from each line or text",
+      "Restore text to its original form without the prefix",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "remove-suffix-from-text-lines",
+    name: "Remove a Suffix from Text Lines",
+    description:
+      "Remove a specified suffix from each line of text in a string.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16800,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Remove a suffix from each line of text",
+      "Restore text to its original form without the suffix",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "add-prefix-to-words",
+    name: "Add a Prefix to Words",
+    description: "Add a specified prefix to each word in a string of text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 16900,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Add a prefix to each word in a string",
+      "Customizable prefix to be added",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "add-suffix-to-words",
+    name: "Add a Suffix to Words",
+    description: "Add a specified suffix to each word in a string of text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17000,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Add a suffix to each word in a string",
+      "Customizable suffix to be added",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "remove-prefix-from-words",
+    name: "Remove a Prefix from Words",
+    description: "Remove a specified prefix from each word in a string.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17100,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Remove a prefix from each word in a string",
+      "Restore words to their original form without the prefix",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+  {
+    id: "remove-suffix-from-words",
+    name: "Remove a Suffix from Words",
+    description:
+      "Remove a specified suffix from each word in a string, leaving the word without its suffix.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17200,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Remove a specified suffix from each word in the text",
+      "Restore words to their original form without the suffix",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "insert-symbols-between-letters",
+    name: "Insert Symbols Between Letters",
+    description:
+      "Insert specified symbols between each letter of the words in a string of text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17300,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Insert symbols between each letter of words",
+      "Customizable symbols to insert",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "add-symbols-around-letters",
+    name: "Add Symbols Around Letters",
+    description:
+      "Add specified symbols (e.g., @, #, *, etc.) around each letter in the text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17400,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Add symbols around each letter in the text",
+      "Customizable symbols to add around letters",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "remove-all-empty-lines",
+    name: "Remove All Empty Lines",
+    description:
+      "Remove all empty lines from the text, leaving only the non-empty ones.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17500,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Remove all empty lines from the text",
+      "Clean up the text for better readability",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "remove-all-duplicate-lines",
+    name: "Remove All Duplicate Lines",
+    description:
+      "Remove all duplicate lines from the text, leaving only unique lines.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17600,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Remove all duplicate lines from the text",
+      "Ensure the text contains only unique lines",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "filter-text-lines",
+    name: "Filter Text Lines",
+    description:
+      "Filter out lines from the text based on specified criteria (e.g., contain certain words, length, etc.).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17700,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Filter lines from the text based on your criteria",
+      "Customizable filters to meet your needs",
+      "Preview the result before finalizing",
+      "Copy the filtered text with one click",
+    ],
+  },
+
+  {
+    id: "filter-words-in-text",
+    name: "Filter Words in Text",
+    description:
+      "Filter out specific words from the text based on your criteria, such as word length or starting letter.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17800,
+    gradient: "from-pink-500 to-purple-500",
+    features: [
+      "Filter out specific words based on criteria",
+      "Customizable word filters",
+      "Preview the result before finalizing",
+      "Copy the filtered text with one click",
+    ],
+  },
+
+  {
+    id: "filter-text-sentences",
+    name: "Filter Text Sentences",
+    description:
+      "Filter out sentences from the text based on certain conditions, such as length or keyword.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 17900,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Filter sentences based on criteria",
+      "Customize filters for sentence length or keywords",
+      "Preview the result before finalizing",
+      "Copy the filtered text with one click",
+    ],
+  },
+
+  {
+    id: "filter-text-paragraphs",
+    name: "Filter Text Paragraphs",
+    description:
+      "Filter out paragraphs based on conditions, such as length or specific words in the paragraph.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18000,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Filter paragraphs based on your criteria",
+      "Customizable paragraph filters",
+      "Preview the result before finalizing",
+      "Copy the filtered text with one click",
+    ],
+  },
+
+  {
+    id: "sort-text-lines",
+    name: "Sort Text Lines",
+    description:
+      "Sort the lines of text in either ascending or descending order, based on their content.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18100,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Sort lines in ascending or descending order",
+      "Choose sorting criteria based on content",
+      "Preview the result before finalizing",
+      "Copy the sorted text with one click",
+    ],
+  },
+
+  {
+    id: "sort-sentences-in-text",
+    name: "Sort Sentences in Text",
+    description:
+      "Sort the sentences in the text either in ascending or descending order, based on their content.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18200,
+    gradient: "from-pink-500 to-purple-500",
+    features: [
+      "Sort sentences in ascending or descending order",
+      "Choose sorting criteria based on sentence content",
+      "Preview the result before finalizing",
+      "Copy the sorted text with one click",
+    ],
+  },
+
+  {
+    id: "sort-paragraphs-in-text",
+    name: "Sort Paragraphs in Text",
+    description:
+      "Sort the paragraphs of text in either ascending or descending order, based on their content.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18300,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Sort paragraphs in ascending or descending order",
+      "Choose sorting criteria based on paragraph content",
+      "Preview the result before finalizing",
+      "Copy the sorted text with one click",
+    ],
+  },
+  {
+    id: "sort-words-in-text",
+    name: "Sort Words in Text",
+    description:
+      "Sort the words in a text string either in ascending or descending order based on their alphabetical content.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18400,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Sort words in ascending or descending order",
+      "Customizable sorting criteria based on word content",
+      "Preview the result before finalizing",
+      "Copy the sorted text with one click",
+    ],
+  },
+
+  {
+    id: "sort-letters-in-words",
+    name: "Sort Letters in Words",
+    description:
+      "Sort the letters of each word in the text string either alphabetically or in reverse order.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18500,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Sort letters in words alphabetically or reverse",
+      "Customizable sorting options for letter order",
+      "Preview the result before finalizing",
+      "Copy the sorted text with one click",
+    ],
+  },
+
+  {
+    id: "sort-symbols-in-text",
+    name: "Sort Symbols in Text",
+    description:
+      "Sort symbols or special characters in a text string based on a specific sorting criteria, such as alphabetical or numerical order.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18600,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Sort symbols in ascending or descending order",
+      "Customize sorting based on symbols",
+      "Preview the result before finalizing",
+      "Copy the sorted text with one click",
+    ],
+  },
+
+  {
+    id: "randomize-letters-in-text",
+    name: "Randomize Letters in Text",
+    description:
+      "Randomize the order of letters in a text string, creating a scrambled effect while maintaining word structure.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18700,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Randomly shuffle letters in the text",
+      "Preserve word structure for readability",
+      "Preview the result before finalizing",
+      "Copy the randomized text with one click",
+    ],
+  },
+
+  {
+    id: "scramble-words",
+    name: "Scramble Words",
+    description:
+      "Scramble the order of words in a text string, creating a jumbled sentence while maintaining individual word integrity.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18800,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Scramble the order of words in a sentence",
+      "Create a jumbled effect while keeping words intact",
+      "Preview the result before finalizing",
+      "Copy the scrambled text with one click",
+    ],
+  },
+
+  {
+    id: "randomize-words-in-text",
+    name: "Randomize Words in Text",
+    description:
+      "Randomize the order of words in the text, ensuring a more randomized flow of words and phrases.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 18900,
+    gradient: "from-pink-500 to-purple-500",
+    features: [
+      "Randomly shuffle words in the text",
+      "Create a mixed word sequence for randomness",
+      "Preview the result before finalizing",
+      "Copy the randomized text with one click",
+    ],
+  },
+
+  {
+    id: "randomize-text-lines",
+    name: "Randomize Text Lines",
+    description:
+      "Randomly reorder the lines of text, resulting in a more randomized order of paragraphs or lines.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19000,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Randomize the order of text lines",
+      "Create a jumbled paragraph effect",
+      "Preview the result before finalizing",
+      "Copy the randomized text with one click",
+    ],
+  },
+
+  {
+    id: "randomize-text-sentences",
+    name: "Randomize Text Sentences",
+    description:
+      "Randomly shuffle the order of sentences in the text, providing a scrambled flow of content.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19100,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Randomly shuffle sentences in the text",
+      "Create a jumbled text block effect",
+      "Preview the result before finalizing",
+      "Copy the randomized text with one click",
+    ],
+  },
+
+  {
+    id: "randomize-text-paragraphs",
+    name: "Randomize Text Paragraphs",
+    description:
+      "Randomly reorder the paragraphs in the text, creating a more unpredictable arrangement.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19200,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Randomly reorder paragraphs in the text",
+      "Create a more unpredictable text structure",
+      "Preview the result before finalizing",
+      "Copy the randomized text with one click",
+    ],
+  },
+
+  {
+    id: "calculate-letter-sum",
+    name: "Calculate Letter Sum",
+    description:
+      "Calculate the sum of the numerical values of each letter in the text string (A=1, B=2, etc.).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19300,
+    gradient: "from-pink-500 to-teal-500",
+    features: [
+      "Calculate the sum of letters based on their alphabetical position",
+      "View the numerical result of the text",
+      "Preview the calculation result before finalizing",
+      "Copy the letter sum with one click",
+    ],
+  },
+
+  {
+    id: "unwrap-text-lines",
+    name: "Unwrap Text Lines",
+    description:
+      "Unwrap the text lines, removing any hard breaks and converting the text into a continuous block.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19400,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Unwrap text lines to make it a continuous block",
+      "Remove hard breaks between lines",
+      "Preview the result before finalizing",
+      "Copy the unwrapped text with one click",
+    ],
+  },
+
+  {
+    id: "extract-text-fragment",
+    name: "Extract a Text Fragment",
+    description:
+      "Extract a specific fragment or substring from the text based on defined criteria (e.g., character count or position).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19500,
+    gradient: "from-purple-500 to-blue-500",
+    features: [
+      "Extract a specific fragment from the text",
+      "Customizable extraction criteria based on position or length",
+      "Preview the result before finalizing",
+      "Copy the extracted fragment with one click",
+    ],
+  },
+  {
+    id: "find-and-replace-text",
+    name: "Find and Replace Text",
+    description:
+      "Search for a specific word or phrase in the text and replace it with another word or phrase.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19600,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Find a specific word or phrase in the text",
+      "Replace the found word or phrase with another",
+      "Preview the replacement before finalizing",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "find-length-of-text",
+    name: "Find the Length of Text",
+    description:
+      "Calculate and display the total number of characters in the text, including spaces and punctuation.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19700,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Count the total number of characters in the text",
+      "Include spaces and punctuation in the count",
+      "Preview the result before finalizing",
+      "Copy the length result with one click",
+    ],
+  },
+
+  {
+    id: "find-top-letters-in-text",
+    name: "Find Top Letters in Text",
+    description:
+      "Identify and list the most frequently occurring letters in the text, ranked by their frequency.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19800,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "List the most frequent letters in the text",
+      "Rank the letters by frequency",
+      "View the results in a user-friendly format",
+      "Copy the results with one click",
+    ],
+  },
+
+  {
+    id: "find-top-words-in-text",
+    name: "Find Top Words in Text",
+    description:
+      "Identify and list the most frequently occurring words in the text, sorted by their frequency.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 19900,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "List the most frequent words in the text",
+      "Sort words by frequency of occurrence",
+      "Preview the result before finalizing",
+      "Copy the list with one click",
+    ],
+  },
+
+  {
+    id: "calculate-text-entropy",
+    name: "Calculate Text Entropy",
+    description:
+      "Measure the entropy (randomness) of the text, which indicates how unpredictable the text is.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20000,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Calculate the entropy of the text to assess its randomness",
+      "Display the entropy value in a clear format",
+      "Compare entropy values between different texts",
+      "Copy the entropy result with one click",
+    ],
+  },
+
+  {
+    id: "count-words-in-text",
+    name: "Count Words in Text",
+    description:
+      "Count the total number of words in a text string, excluding spaces and punctuation.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20100,
+    gradient: "from-blue-500 to-teal-500",
+    features: [
+      "Count the total number of words in the text",
+      "Exclude spaces and punctuation from the count",
+      "Preview the result before finalizing",
+      "Copy the word count with one click",
+    ],
+  },
+
+  {
+    id: "print-text-statistics",
+    name: "Print Text Statistics",
+    description:
+      "Generate detailed statistics about the text, such as word count, character count, and sentence structure.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20200,
+    gradient: "from-pink-500 to-purple-500",
+    features: [
+      "Generate word count, character count, and sentence count",
+      "Analyze text structure for better readability",
+      "Preview the result before finalizing",
+      "Copy the statistics with one click",
+    ],
+  },
+
+  {
+    id: "find-unique-words-in-text",
+    name: "Find Unique Words in Text",
+    description:
+      "Identify and list all the unique words in the text, ignoring duplicates.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20300,
+    gradient: "from-indigo-500 to-cyan-500",
+    features: [
+      "List all unique words in the text",
+      "Ignore duplicate words",
+      "Preview the result before finalizing",
+      "Copy the list of unique words with one click",
+    ],
+  },
+
+  {
+    id: "find-duplicate-words-in-text",
+    name: "Find Duplicate Words in Text",
+    description:
+      "Identify and list all the duplicate words in the text, showing how many times each word appears.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20400,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "List all duplicate words in the text",
+      "Show how many times each word is repeated",
+      "Preview the result before finalizing",
+      "Copy the list of duplicate words with one click",
+    ],
+  },
+
+  {
+    id: "find-unique-letters-in-text",
+    name: "Find Unique Letters in Text",
+    description:
+      "Identify and list all the unique letters in the text, excluding duplicates.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20500,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "List all unique letters in the text",
+      "Exclude duplicate letters",
+      "Preview the result before finalizing",
+      "Copy the list of unique letters with one click",
+    ],
+  },
+
+  {
+    id: "find-duplicate-letters-in-text",
+    name: "Find Duplicate Letters in Text",
+    description:
+      "Identify and list all the duplicate letters in the text, showing how many times each letter appears.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20600,
+    gradient: "from-blue-500 to-teal-500",
+    features: [
+      "List all duplicate letters in the text",
+      "Show how many times each letter is repeated",
+      "Preview the result before finalizing",
+      "Copy the list of duplicate letters with one click",
+    ],
+  },
+
+  {
+    id: "remove-duplicate-words-from-text",
+    name: "Remove Duplicate Words from Text",
+    description:
+      "Remove any duplicate words from the text, leaving only the unique words.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20700,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Remove duplicate words from the text",
+      "Leave only unique words in the text",
+      "Preview the result before finalizing",
+      "Copy the cleaned text with one click",
+    ],
+  },
+  {
+    id: "count-text-lines",
+    name: "Count Text Lines",
+    description:
+      "Count the total number of lines in the text, providing an overview of its structure.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20800,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Count the total number of lines in the text",
+      "Exclude empty lines from the count",
+      "Preview the result before finalizing",
+      "Copy the line count with one click",
+    ],
+  },
+
+  {
+    id: "add-line-numbers",
+    name: "Add Line Numbers",
+    description:
+      "Add numbered labels to each line of the text, making it easy to reference specific lines.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 20900,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Add numbers to each line in the text",
+      "Preview the result before finalizing",
+      "Customize the numbering format",
+      "Copy the text with numbers added with one click",
+    ],
+  },
+
+  {
+    id: "remove-line-numbers",
+    name: "Remove Line Numbers",
+    description:
+      "Remove any added line numbers from the text, restoring it to its original form.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21000,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Remove the numbers added to the lines",
+      "Restore the text to its original form",
+      "Preview the result before finalizing",
+      "Copy the cleaned text with one click",
+    ],
+  },
+
+  {
+    id: "create-image-from-text",
+    name: "Create an Image from Text",
+    description:
+      "Convert the text into a visual representation by generating an image from it.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21100,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Generate an image with text in it",
+      "Customize the image background, font, and size",
+      "Preview the image before finalizing",
+      "Download the image with one click",
+    ],
+  },
+
+  {
+    id: "change-text-font",
+    name: "Change Text Font",
+    description:
+      "Apply a different font to the text to give it a fresh look and style.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21200,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Choose from various font styles",
+      "Preview the font change before finalizing",
+      "Customize font size, style, and color",
+      "Copy the styled text with one click",
+    ],
+  },
+
+  {
+    id: "remove-fancy-text-font",
+    name: "Remove Fancy Text Font",
+    description:
+      "Remove any fancy or custom fonts from the text, restoring it to a default font.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21300,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Remove custom or fancy fonts",
+      "Restore the text to a simple default font",
+      "Preview the result before finalizing",
+      "Copy the text with one click",
+    ],
+  },
+
+  {
+    id: "write-text-in-superscript",
+    name: "Write Text in Superscript",
+    description:
+      "Convert the text to superscript format, making it appear smaller and above the normal line of text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21400,
+    gradient: "from-blue-500 to-teal-500",
+    features: [
+      "Convert the selected text to superscript format",
+      "Preview the result before finalizing",
+      "Customize font size and style",
+      "Copy the superscript text with one click",
+    ],
+  },
+
+  {
+    id: "write-text-in-subscript",
+    name: "Write Text in Subscript",
+    description:
+      "Convert the text to subscript format, making it appear smaller and below the normal line of text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21500,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Convert the selected text to subscript format",
+      "Preview the result before finalizing",
+      "Customize font size and style",
+      "Copy the subscript text with one click",
+    ],
+  },
+
+  {
+    id: "generate-tiny-text",
+    name: "Generate Tiny Text",
+    description:
+      "Generate a smaller, tinier version of the text, making it harder to read but fun to use.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21600,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Generate tiny text that's hard to read",
+      "Customize the font size to make it even smaller",
+      "Preview the tiny text before finalizing",
+      "Copy the tiny text with one click",
+    ],
+  },
+
+  {
+    id: "write-text-in-bold",
+    name: "Write Text in Bold",
+    description:
+      "Make the selected text bold, giving it extra emphasis and making it stand out.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21700,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Apply bold formatting to the text",
+      "Preview the bold text before finalizing",
+      "Customize the font size and color",
+      "Copy the bold text with one click",
+    ],
+  },
+
+  {
+    id: "write-text-in-italic",
+    name: "Write Text in Italic",
+    description:
+      "Make the selected text italicized, giving it a slanted and stylish look.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21800,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Apply italic formatting to the text",
+      "Preview the italicized text before finalizing",
+      "Customize the font size and style",
+      "Copy the italicized text with one click",
+    ],
+  },
+
+  {
+    id: "write-text-in-cursive",
+    name: "Write Text in Cursive",
+    description:
+      "Convert the text to cursive, making it flow and appear more artistic.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 21900,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Convert the text to cursive style",
+      "Preview the cursive text before finalizing",
+      "Customize font size and style",
+      "Copy the cursive text with one click",
+    ],
+  },
+
+  {
+    id: "add-underline-to-text",
+    name: "Add an Underline to Text",
+    description:
+      "Add a simple underline below the text to emphasize or highlight it.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22000,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Add an underline to the selected text",
+      "Preview the underlined text before finalizing",
+      "Customize the underline style (e.g., dashed, solid)",
+      "Copy the underlined text with one click",
+    ],
+  },
+  {
+    id: "add-strikethrough-to-text",
+    name: "Add a Strikethrough to Text",
+    description:
+      "Apply a strikethrough effect to the selected text, crossing it out for emphasis or editing.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22100,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Add a strikethrough effect to the selected text",
+      "Preview the result before finalizing",
+      "Customize the font size and color",
+      "Copy the strikethrough text with one click",
+    ],
+  },
+
+  {
+    id: "generate-zalgo-text",
+    name: "Generate Zalgo Text",
+    description:
+      "Transform the text into Zalgo text, which features chaotic, distorted letters that appear glitchy and disturbing.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22200,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Generate Zalgo text with distorted characters",
+      "Preview the Zalgo text before finalizing",
+      "Customize the intensity of distortion",
+      "Copy the Zalgo text with one click",
+    ],
+  },
+
+  {
+    id: "undo-zalgo-text-effect",
+    name: "Undo Zalgo Text Effect",
+    description:
+      "Remove the Zalgo text effect and restore the original form of the text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22300,
+    gradient: "from-blue-500 to-teal-500",
+    features: [
+      "Remove the Zalgo effect from the text",
+      "Restore the original version of the text",
+      "Preview the cleaned text before finalizing",
+      "Copy the restored text with one click",
+    ],
+  },
+
+  {
+    id: "create-palindrome",
+    name: "Create a Palindrome",
+    description:
+      "Generate a palindrome by rearranging or modifying the text to form a word, phrase, or sequence that reads the same backward as forward.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22400,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Create a word or phrase that is the same forwards and backwards",
+      "Preview the palindrome before finalizing",
+      "Modify existing text to form a palindrome",
+      "Copy the palindrome with one click",
+    ],
+  },
+
+  {
+    id: "check-if-text-is-palindrome",
+    name: "Check If Text Is a Palindrome",
+    description:
+      "Verify if the text you have entered is a palindrome (a word or phrase that reads the same forwards and backwards).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22500,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Check if the text is a valid palindrome",
+      "Detect palindromes in both words and phrases",
+      "Preview the result before finalizing",
+      "Copy the result with one click",
+    ],
+  },
+
+  {
+    id: "change-text-case",
+    name: "Change Text Case",
+    description:
+      "Change the case of the text to any desired format, including uppercase, lowercase, and more.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22600,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Change the case of the entire text",
+      "Preview the case change before finalizing",
+      "Choose from multiple case formats",
+      "Copy the modified text with one click",
+    ],
+  },
+
+  {
+    id: "convert-text-to-uppercase",
+    name: "Convert Text to Uppercase",
+    description:
+      "Convert all the letters in the text to uppercase, making the text bold and all caps.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22700,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Convert all letters in the text to uppercase",
+      "Preview the uppercase text before finalizing",
+      "Copy the uppercase text with one click",
+      "Ensure that no characters are left in lowercase",
+    ],
+  },
+
+  {
+    id: "convert-text-to-lowercase",
+    name: "Convert Text to Lowercase",
+    description:
+      "Convert all the letters in the text to lowercase, removing any capital letters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22800,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Convert all letters in the text to lowercase",
+      "Preview the lowercase text before finalizing",
+      "Copy the lowercase text with one click",
+      "Ensure that no characters are left in uppercase",
+    ],
+  },
+
+  {
+    id: "convert-text-to-title-case",
+    name: "Convert Text to Title Case",
+    description:
+      "Convert the text to title case, capitalizing the first letter of each word and leaving the rest in lowercase.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 22900,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Convert text to title case (capitalize each word)",
+      "Preview the title-cased text before finalizing",
+      "Copy the title-cased text with one click",
+      "Customize how words are capitalized in title case",
+    ],
+  },
+
+  {
+    id: "convert-text-to-proper-case",
+    name: "Convert Text to Proper Case",
+    description:
+      "Convert the text to proper case, capitalizing the first letter of each word in a sentence or title.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23000,
+    gradient: "from-yellow-500 to-green-500",
+    features: [
+      "Convert text to proper case (capitalize first letter of each word)",
+      "Preview the proper-cased text before finalizing",
+      "Copy the proper-cased text with one click",
+      "Ensure proper case format for titles and headings",
+    ],
+  },
+
+  {
+    id: "randomize-text-case",
+    name: "Randomize Text Case",
+    description:
+      "Randomly change the case of letters in the text, creating a mix of uppercase and lowercase characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23100,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Randomly change the case of text",
+      "Preview the randomized case text before finalizing",
+      "Copy the randomized text with one click",
+      "Add some fun chaos to the text format",
+    ],
+  },
+
+  {
+    id: "invert-text-case",
+    name: "Invert Text Case",
+    description:
+      "Invert the case of each letter in the text, changing uppercase letters to lowercase and vice versa.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23200,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Invert the case of every letter in the text",
+      "Preview the inverted case text before finalizing",
+      "Copy the inverted text with one click",
+      "Create a striking contrast between uppercase and lowercase",
+    ],
+  },
+
+  {
+    id: "add-line-breaks-to-text",
+    name: "Add Line Breaks to Text",
+    description:
+      "Insert line breaks at desired points in the text to create a more readable or visually appealing format.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23300,
+    gradient: "from-purple-500 to-blue-500",
+    features: [
+      "Insert line breaks at custom points in the text",
+      "Preview the text with line breaks before finalizing",
+      "Copy the formatted text with line breaks with one click",
+      "Improve text readability with customized breaks",
+    ],
+  },
+  {
+    id: "remove-line-breaks-from-text",
+    name: "Remove Line Breaks from Text",
+    description:
+      "Remove all line breaks from the text to make it a continuous block of text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23400,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Remove all line breaks and make the text continuous",
+      "Preview the text before removing breaks",
+      "Copy the modified text with no line breaks",
+      "Ideal for text that needs to be condensed into a single paragraph",
+    ],
+  },
+
+  {
+    id: "replace-line-breaks-in-text",
+    name: "Replace Line Breaks in Text",
+    description:
+      "Replace existing line breaks in the text with a custom character or string of your choice.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23500,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Replace line breaks with a custom character or string",
+      "Preview the result before finalizing",
+      "Copy the replaced text with one click",
+      "Customizable for various formatting needs",
+    ],
+  },
+
+  {
+    id: "randomize-line-breaks-in-text",
+    name: "Randomize Line Breaks in Text",
+    description:
+      "Randomly insert or remove line breaks at different points in the text to create a chaotic or irregular format.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23600,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Randomly add or remove line breaks in the text",
+      "Preview the randomized line breaks before finalizing",
+      "Copy the text with randomized breaks with one click",
+      "Ideal for creative text formats or fun effects",
+    ],
+  },
+
+  {
+    id: "normalize-line-breaks-in-text",
+    name: "Normalize Line Breaks in Text",
+    description:
+      "Ensure consistent line breaks in the text by converting all line breaks into a uniform format (e.g., converting all to '\n' or '\r\n').",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23700,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Convert all line breaks to a consistent format",
+      "Preview the text with normalized breaks before finalizing",
+      "Copy the normalized text with one click",
+      "Ensure uniform line breaks for compatibility with different systems",
+    ],
+  },
+
+  {
+    id: "fix-distance-between-paragraphs-and-lines",
+    name: "Fix Distance Between Paragraphs and Lines",
+    description:
+      "Adjust the distance between paragraphs and lines to create a more visually appealing and readable format.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23800,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Adjust line and paragraph spacing for better readability",
+      "Preview the changes before finalizing",
+      "Customize spacing values for your specific needs",
+      "Ensure consistent and clean layout in the text",
+    ],
+  },
+
+  {
+    id: "fancify-line-breaks-in-text",
+    name: "Fancify Line Breaks in Text",
+    description:
+      "Apply decorative or fancy effects to line breaks, such as using symbols or patterns to create visually appealing breaks.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 23900,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Apply decorative effects to line breaks",
+      "Preview the fancified line breaks before finalizing",
+      "Use symbols, patterns, or custom text for breaks",
+      "Copy the fancified text with one click",
+    ],
+  },
+
+  {
+    id: "convert-spaces-to-newlines",
+    name: "Convert Spaces to Newlines",
+    description:
+      "Convert all spaces in the text into newline characters, creating a vertical list of words or phrases.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24000,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Convert spaces into newlines for vertical text formatting",
+      "Preview the text with spaces converted to newlines",
+      "Copy the converted text with one click",
+      "Ideal for creating lists or breaking up long blocks of text",
+    ],
+  },
+
+  {
+    id: "convert-newlines-to-spaces",
+    name: "Convert Newlines to Spaces",
+    description:
+      "Convert all newline characters in the text into spaces, making the text flow in a single line.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24100,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Convert newlines into spaces for continuous text flow",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+      "Ideal for text that should be in a single line without breaks",
+    ],
+  },
+
+  {
+    id: "convert-spaces-to-tabs",
+    name: "Convert Spaces to Tabs",
+    description:
+      "Convert all spaces in the text to tab characters, aligning the text for a more structured format.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24200,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Convert spaces into tabs for alignment",
+      "Preview the text with spaces converted to tabs",
+      "Copy the tab-aligned text with one click",
+      "Ideal for creating code or structured documents",
+    ],
+  },
+
+  {
+    id: "convert-tabs-to-spaces",
+    name: "Convert Tabs to Spaces",
+    description:
+      "Convert all tab characters in the text into spaces, making the text more universally compatible and consistent.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24300,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Convert tabs into spaces for uniform formatting",
+      "Preview the result before finalizing",
+      "Copy the space-modified text with one click",
+      "Ideal for ensuring consistency across platforms and devices",
+    ],
+  },
+
+  {
+    id: "convert-comma-to-newline",
+    name: "Convert Comma to Newline",
+    description:
+      "Convert all commas in the text to newline characters, splitting the text into separate lines at each comma.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24400,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Convert commas into newlines for a list format",
+      "Preview the result before finalizing",
+      "Copy the modified text with newlines instead of commas",
+      "Ideal for breaking up lists or CSV-style data",
+    ],
+  },
+
+  {
+    id: "convert-newline-to-comma",
+    name: "Convert Newline to Comma",
+    description:
+      "Convert all newline characters in the text into commas, creating a single-line list separated by commas.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24500,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Convert newlines into commas for continuous text format",
+      "Preview the result before finalizing",
+      "Copy the comma-separated text with one click",
+      "Ideal for reformatting lists or CSV-style data",
+    ],
+  },
+  {
+    id: "convert-column-to-comma",
+    name: "Convert Column to Comma",
+    description:
+      "Convert column-separated data into comma-separated format, making it easier to use in CSV or spreadsheet applications.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24600,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Convert column-separated data into a comma-separated format",
+      "Preview the result before finalizing",
+      "Copy the comma-separated text with one click",
+      "Ideal for converting data from columnar format to CSV",
+    ],
+  },
+
+  {
+    id: "convert-comma-to-column",
+    name: "Convert Comma to Column",
+    description:
+      "Convert comma-separated text into a column format, making the data easier to read or work with in certain applications.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24700,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Convert comma-separated text into a column format",
+      "Preview the result before finalizing",
+      "Copy the column-formatted text with one click",
+      "Ideal for formatting lists from CSV-style data",
+    ],
+  },
+
+  {
+    id: "convert-commas-to-spaces",
+    name: "Convert Commas to Spaces",
+    description:
+      "Replace all commas in the text with spaces, changing the formatting of the text to make it more readable or consistent.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24800,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Convert commas into spaces for a cleaner format",
+      "Preview the result before finalizing",
+      "Copy the modified text with spaces instead of commas",
+      "Ideal for formatting text to be more readable or consistent",
+    ],
+  },
+
+  {
+    id: "convert-spaces-to-commas",
+    name: "Convert Spaces to Commas",
+    description:
+      "Convert spaces in the text into commas, creating a list-like format where each word or phrase is separated by commas.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 24900,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Convert spaces into commas for list formatting",
+      "Preview the result before finalizing",
+      "Copy the comma-separated text with one click",
+      "Ideal for formatting text into a list-style format",
+    ],
+  },
+
+  {
+    id: "replace-commas-in-text",
+    name: "Replace Commas in Text",
+    description:
+      "Replace all commas in the text with a custom character or string of your choice.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25000,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Replace commas with a custom character or string",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+      "Customizable for various formatting needs",
+    ],
+  },
+
+  {
+    id: "remove-extra-spaces",
+    name: "Remove Extra Spaces",
+    description:
+      "Remove extra spaces from the text, including leading, trailing, and redundant spaces between words.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25100,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Remove leading, trailing, and multiple spaces between words",
+      "Preview the result before finalizing",
+      "Copy the text with no extra spaces with one click",
+      "Ideal for cleaning up text or formatting it properly",
+    ],
+  },
+
+  {
+    id: "increase-text-spacing",
+    name: "Increase Text Spacing",
+    description:
+      "Increase the spacing between the letters or words in the text to improve readability or give it a more styled appearance.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25200,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Increase letter or word spacing for a more open design",
+      "Preview the changes before finalizing",
+      "Customize the amount of spacing for your specific needs",
+      "Ideal for creating text with more visual space and clarity",
+    ],
+  },
+
+  {
+    id: "normalize-text-spacing",
+    name: "Normalize Text Spacing",
+    description:
+      "Ensure consistent letter and word spacing throughout the text for a uniform and professional appearance.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25300,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Normalize letter and word spacing to be consistent",
+      "Preview the changes before finalizing",
+      "Copy the text with normalized spacing with one click",
+      "Ideal for ensuring a professional appearance",
+    ],
+  },
+
+  {
+    id: "randomize-text-spacing",
+    name: "Randomize Text Spacing",
+    description:
+      "Randomly vary the letter or word spacing in the text, creating a quirky or unpredictable appearance.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25400,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Randomize the letter or word spacing in the text",
+      "Preview the randomized spacing before finalizing",
+      "Copy the text with random spacing with one click",
+      "Ideal for creating unusual text effects or artistic formats",
+    ],
+  },
+
+  {
+    id: "replace-spaces-in-text",
+    name: "Replace Spaces in Text",
+    description:
+      "Replace all spaces in the text with a custom character or string of your choice.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25500,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Replace spaces with a custom character or string",
+      "Preview the result before finalizing",
+      "Copy the modified text with one click",
+      "Customizable for various formatting needs",
+    ],
+  },
+
+  {
+    id: "remove-all-whitespace",
+    name: "Remove All Whitespace",
+    description:
+      "Remove all forms of whitespace, including spaces, tabs, and line breaks, from the text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25600,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Remove all whitespace characters from the text",
+      "Preview the result before finalizing",
+      "Copy the text with no whitespace with one click",
+      "Ideal for formatting or processing data with no spaces or tabs",
+    ],
+  },
+
+  {
+    id: "remove-all-punctuation",
+    name: "Remove All Punctuation",
+    description:
+      "Remove all punctuation marks, such as periods, commas, exclamation points, and question marks, from the text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25700,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Remove all punctuation from the text",
+      "Preview the result before finalizing",
+      "Copy the text with no punctuation with one click",
+      "Ideal for cleaning text or preparing it for specific formatting needs",
+    ],
+  },
+  {
+    id: "remove-diacritics-from-text",
+    name: "Remove Diacritics from Text",
+    description:
+      "Remove diacritical marks (accents, tilde, etc.) from the text to normalize it, making it easier to process or compare.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25800,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Remove all diacritics (accents) from the text",
+      "Preview the result before finalizing",
+      "Copy the diacritic-free text with one click",
+      "Ideal for processing or comparing text without accents or marks",
+    ],
+  },
+
+  {
+    id: "increment-letters-in-text",
+    name: "Increment Letters in Text",
+    description:
+      "Increment each letter in the text by one position in the alphabet, turning 'a' into 'b', 'b' into 'c', and so on.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 25900,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Increment each letter by one position in the alphabet",
+      "Preview the result before finalizing",
+      "Copy the modified text with incremented letters",
+      "Fun for creating encoded messages or puzzles",
+    ],
+  },
+
+  {
+    id: "decrement-letters-in-text",
+    name: "Decrement Letters in Text",
+    description:
+      "Decrement each letter in the text by one position in the alphabet, turning 'b' into 'a', 'c' into 'b', and so on.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26000,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Decrement each letter by one position in the alphabet",
+      "Preview the result before finalizing",
+      "Copy the modified text with decremented letters",
+      "Ideal for creating encoded messages or puzzles",
+    ],
+  },
+
+  {
+    id: "add-quotes-to-text",
+    name: "Add Quotes to Text",
+    description:
+      "Add quotation marks around the entire text, making it suitable for quoting in documents or presentations.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26100,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Add quotation marks around the text",
+      "Preview the result before finalizing",
+      "Copy the quoted text with one click",
+      "Ideal for formatting text for quotes in documents",
+    ],
+  },
+
+  {
+    id: "remove-quotes-from-text",
+    name: "Remove Quotes from Text",
+    description:
+      "Remove quotation marks from around the text, returning it to its original state without the added quotes.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26200,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Remove quotation marks from around the text",
+      "Preview the result before finalizing",
+      "Copy the text without quotes with one click",
+      "Ideal for cleaning up text after quotes are no longer needed",
+    ],
+  },
+
+  {
+    id: "add-quotes-to-words",
+    name: "Add Quotes to Words",
+    description:
+      "Add quotation marks around each word in the text, making it easy to highlight or emphasize specific words.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26300,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Add quotes around each word in the text",
+      "Preview the result before finalizing",
+      "Copy the quoted text with one click",
+      "Ideal for highlighting words or formatting text for emphasis",
+    ],
+  },
+
+  {
+    id: "remove-quotes-from-words",
+    name: "Remove Quotes from Words",
+    description:
+      "Remove quotation marks from around each word in the text, returning it to its original form without the quotes.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26400,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Remove quotes around each word in the text",
+      "Preview the result before finalizing",
+      "Copy the text without quotes with one click",
+      "Ideal for cleaning up text after emphasizing words with quotes",
+    ],
+  },
+
+  {
+    id: "add-quotes-to-lines",
+    name: "Add Quotes to Lines",
+    description:
+      "Add quotation marks around each line of text, perfect for when you need to format multi-line text for emphasis.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26500,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Add quotes around each line of text",
+      "Preview the result before finalizing",
+      "Copy the multi-line quoted text with one click",
+      "Ideal for highlighting multiple lines of text for emphasis",
+    ],
+  },
+
+  {
+    id: "remove-quotes-from-lines",
+    name: "Remove Quotes from Lines",
+    description:
+      "Remove quotation marks from around each line of text, returning the multi-line text to its original form without quotes.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26600,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Remove quotes from around each line of text",
+      "Preview the result before finalizing",
+      "Copy the text without quotes with one click",
+      "Ideal for cleaning up multi-line quoted text",
+    ],
+  },
+
+  {
+    id: "add-curse-words-to-text",
+    name: "Add Curse Words To Text",
+    description:
+      "Add randomly generated curse words to the text, making it appropriate for certain creative or comedic contexts.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26700,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Add random curse words to the text",
+      "Preview the result before finalizing",
+      "Copy the modified text with added curse words",
+      "Ideal for creating comedic or exaggerated text",
+    ],
+  },
+
+  {
+    id: "censor-words-in-text",
+    name: "Censor Words in Text",
+    description:
+      "Censor specific words or phrases in the text, replacing them with asterisks or other characters for privacy or sensitivity.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26800,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Censor sensitive or inappropriate words in the text",
+      "Preview the result before finalizing",
+      "Copy the censored text with one click",
+      "Ideal for cleaning up text for professional or sensitive contexts",
+    ],
+  },
+
+  {
+    id: "anonymize-text",
+    name: "Anonymize Text",
+    description:
+      "Replace personal information (names, addresses, phone numbers, etc.) in the text with generic placeholders to ensure privacy.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 26900,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Anonymize personal information in the text",
+      "Replace sensitive data with placeholders like [NAME], [ADDRESS], etc.",
+      "Preview the result before finalizing",
+      "Ideal for protecting privacy and ensuring anonymity in text",
+    ],
+  },
+  {
+    id: "extract-text-from-html",
+    name: "Extract Text from HTML",
+    description:
+      "Remove all HTML tags and extract plain text content from an HTML document, leaving only the textual information.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27000,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Extract plain text from HTML content",
+      "Remove all HTML tags while preserving text",
+      "Preview the result before finalizing",
+      "Ideal for cleaning up web page content",
+    ],
+  },
+
+  {
+    id: "extract-text-from-xml",
+    name: "Extract Text from XML",
+    description:
+      "Extract text from XML content, removing the tags and leaving only the plain textual data.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27100,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Extract text from XML data",
+      "Remove XML tags while preserving the content",
+      "Preview the result before finalizing",
+      "Ideal for extracting information from XML documents",
+    ],
+  },
+
+  {
+    id: "extract-text-from-bbcode",
+    name: "Extract Text from BBCode",
+    description:
+      "Remove all BBCode tags and extract plain text content from a BBCode-formatted text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27200,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Extract plain text from BBCode content",
+      "Remove BBCode tags while preserving text",
+      "Preview the result before finalizing",
+      "Ideal for cleaning up BBCode-formatted text",
+    ],
+  },
+
+  {
+    id: "extract-text-from-json",
+    name: "Extract Text from JSON",
+    description:
+      "Extract text content from a JSON structure, removing all formatting and returning only the textual data.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27300,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Extract plain text from JSON data",
+      "Remove unnecessary JSON formatting while preserving text",
+      "Preview the result before finalizing",
+      "Ideal for processing and simplifying JSON files",
+    ],
+  },
+
+  {
+    id: "json-stringify-text",
+    name: "JSON Stringify Text",
+    description:
+      "Convert text into a JSON-compatible string format, ensuring that it can be stored or transmitted in a valid JSON structure.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27400,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Convert text into a valid JSON string format",
+      "Preview the result before finalizing",
+      "Copy the JSON string with one click",
+      "Ideal for preparing text for use in APIs or data storage",
+    ],
+  },
+
+  {
+    id: "json-unstringify-text",
+    name: "JSON Unstringify Text",
+    description:
+      "Convert a JSON string back into its original text format, reversing the stringification process.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27500,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Convert a JSON string back into original text",
+      "Preview the result before finalizing",
+      "Copy the unstringified text with one click",
+      "Ideal for processing and displaying JSON data",
+    ],
+  },
+
+  {
+    id: "slash-escape-text",
+    name: "Slash-Escape Text",
+    description:
+      "Escape special characters in the text with slashes, making it suitable for use in programming or regular expressions.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27600,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Escape special characters with slashes",
+      "Preview the result before finalizing",
+      "Copy the escaped text with one click",
+      "Ideal for preparing text for programming or regex use",
+    ],
+  },
+
+  {
+    id: "slash-unescape-text",
+    name: "Slash-Unescape Text",
+    description:
+      "Unescape text that has been previously slash-escaped, removing slashes and restoring the original characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27700,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Remove slashes from escaped text",
+      "Preview the result before finalizing",
+      "Copy the unescaped text with one click",
+      "Ideal for decoding slash-escaped data",
+    ],
+  },
+
+  {
+    id: "rot13-text",
+    name: "ROT13 Text",
+    description:
+      "Apply the ROT13 cipher to the text, shifting each letter by 13 positions in the alphabet for basic encryption or obfuscation.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27800,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Apply the ROT13 cipher to the text",
+      "Preview the result before finalizing",
+      "Copy the encrypted text with one click",
+      "Ideal for basic encryption or obfuscating text",
+    ],
+  },
+
+  {
+    id: "rot47-text",
+    name: "ROT47 Text",
+    description:
+      "Apply the ROT47 cipher to the text, shifting each printable ASCII character by 47 positions in the character set for encryption or obfuscation.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 27900,
+    gradient: "from-blue-500 to-purple-500",
+    features: [
+      "Apply the ROT47 cipher to the text",
+      "Preview the result before finalizing",
+      "Copy the encrypted text with one click",
+      "Ideal for more complex encryption or obfuscation tasks",
+    ],
+  },
+
+  {
+    id: "generate-text-of-certain-length",
+    name: "Generate Text of Certain Length",
+    description:
+      "Generate a block of text of a specified length, either randomly or based on a predefined template or structure.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28000,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Generate text of a specified length",
+      "Choose between random text or predefined structure",
+      "Preview the result before finalizing",
+      "Ideal for creating placeholders or test data",
+    ],
+  },
+
+  {
+    id: "generate-text-from-regexp",
+    name: "Generate Text from RegExp",
+    description:
+      "Generate text based on a regular expression pattern, creating content that matches a specific format or structure.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28100,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Generate text from a regular expression pattern",
+      "Preview the result before finalizing",
+      "Copy the generated text with one click",
+      "Ideal for creating content that follows specific formats or patterns",
+    ],
+  },
+  {
+    id: "extract-regexp-matches-from-text",
+    name: "Extract RegExp Matches from Text",
+    description:
+      "Use a regular expression (RegExp) to find and extract matching text from the input, returning all occurrences of the pattern.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28200,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Extract all RegExp matches from the text",
+      "Specify a custom regular expression pattern",
+      "Preview the matches before finalizing",
+      "Ideal for filtering specific content from text using patterns",
+    ],
+  },
+
+  {
+    id: "highlight-regexp-matches-in-text",
+    name: "Highlight RegExp Matches in Text",
+    description:
+      "Highlight all matches of a regular expression (RegExp) within the provided text, making it easier to visually identify the pattern.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28300,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Highlight RegExp matches in the provided text",
+      "Preview the highlighted matches before finalizing",
+      "Ideal for analyzing text patterns visually",
+      "Customize the color or style of the highlighted text",
+    ],
+  },
+
+  {
+    id: "test-text-with-regexp",
+    name: "Test Text with RegExp",
+    description:
+      "Test if the given text matches a specific regular expression (RegExp) pattern, returning true or false.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28400,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Test if text matches a specific RegExp pattern",
+      "Specify the regular expression pattern",
+      "Instant feedback: true or false",
+      "Ideal for validating input or patterns in text",
+    ],
+  },
+
+  {
+    id: "printf-text",
+    name: "Printf Text",
+    description:
+      "Format text using printf-style formatting, allowing you to control how text is displayed with placeholders for variables.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28500,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Format text using printf-style placeholders",
+      "Specify variables to replace placeholders",
+      "Preview the result before finalizing",
+      "Ideal for generating formatted text output",
+    ],
+  },
+
+  {
+    id: "rotate-text",
+    name: "Rotate Text",
+    description:
+      "Rotate the characters of the text by a specified angle, transforming the text into a rotated format.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28600,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Rotate the text by a specified angle",
+      "Preview the rotated text before finalizing",
+      "Ideal for creating visually interesting text effects",
+      "Can be applied to both single words or entire paragraphs",
+    ],
+  },
+
+  {
+    id: "flip-text-vertically",
+    name: "Flip Text Vertically",
+    description:
+      "Flip the text upside down, reversing its vertical direction while maintaining the original character order.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28700,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Flip the text vertically",
+      "Preview the flipped text before finalizing",
+      "Ideal for creating mirrored text effects",
+      "Can be applied to any text input",
+    ],
+  },
+
+  {
+    id: "rewrite-text",
+    name: "Rewrite Text",
+    description:
+      "Rewrite text to improve clarity, style, or structure, preserving the original meaning while modifying the wording.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28800,
+    gradient: "from-green-500 to-lime-500",
+    features: [
+      "Rewrite text to improve clarity and flow",
+      "Maintain the original meaning of the text",
+      "Preview the rewritten version before finalizing",
+      "Ideal for rephrasing or restructuring text content",
+    ],
+  },
+
+  {
+    id: "change-text-alphabet",
+    name: "Change Text Alphabet",
+    description:
+      "Convert text from one alphabet system to another, such as changing Latin characters to Cyrillic, Greek, or other scripts.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 28900,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Convert text to a different alphabet system",
+      "Choose the alphabet system (e.g., Latin to Cyrillic)",
+      "Preview the converted text before finalizing",
+      "Ideal for text transformation across languages and scripts",
+    ],
+  },
+
+  {
+    id: "replace-letters-in-text",
+    name: "Replace Letters in Text",
+    description:
+      "Replace specific letters in the text with other letters, allowing for customized letter substitution.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29000,
+    gradient: "from-purple-500 to-blue-500",
+    features: [
+      "Replace specific letters with other characters",
+      "Specify the replacement letters for each match",
+      "Preview the result before finalizing",
+      "Ideal for letter-based text manipulation",
+    ],
+  },
+
+  {
+    id: "convert-letters-to-digits",
+    name: "Convert Letters to Digits",
+    description:
+      "Convert each letter in the text into its corresponding numerical value (e.g., A=1, B=2).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29100,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Convert letters to corresponding digits (A=1, B=2, etc.)",
+      "Preview the result before finalizing",
+      "Ideal for encoding or converting text into numeric form",
+      "Can be applied to any alphabet-based text",
+    ],
+  },
+
+  {
+    id: "convert-digits-to-letters",
+    name: "Convert Digits to Letters",
+    description:
+      "Convert digits in the text into their corresponding letter values (e.g., 1=A, 2=B).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29200,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Convert digits into corresponding letters (1=A, 2=B, etc.)",
+      "Preview the result before finalizing",
+      "Ideal for encoding or converting numeric text into alphabetic form",
+      "Can be applied to any digit-based text",
+    ],
+  },
+
+  {
+    id: "replace-words-with-digits",
+    name: "Replace Words with Digits",
+    description:
+      "Replace specific words in the text with their corresponding numeric values (e.g., one = 1, two = 2).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29300,
+    gradient: "from-green-500 to-lime-500",
+    features: [
+      "Replace words with their corresponding digit values",
+      "Specify which words to replace and their corresponding digits",
+      "Preview the result before finalizing",
+      "Ideal for text-based encoding or manipulation",
+    ],
+  },
+
+  {
+    id: "replace-digits-with-words",
+    name: "Replace Digits with Words",
+    description:
+      "Replace digits in the text with their corresponding word equivalents (e.g., 1 = one, 2 = two).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29400,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Replace digits with their corresponding word equivalents",
+      "Preview the result before finalizing",
+      "Ideal for formatting or converting numeric text into words",
+      "Can be applied to any digit-based text",
+    ],
+  },
+  {
+    id: "duplicate-letters-in-text",
+    name: "Duplicate Letters in Text",
+    description:
+      "Duplicate each letter in the text, effectively repeating each character to create a doubled version of the original input.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29500,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Duplicate each letter in the text",
+      "Instant preview of the result",
+      "Can be applied to any text input",
+      "Ideal for creating stylized effects or encryption purposes",
+    ],
+  },
+
+  {
+    id: "remove-letters-from-text",
+    name: "Remove Letters from Text",
+    description:
+      "Remove specific letters from the input text, effectively cleaning the text by eliminating unwanted characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29600,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Remove specific letters from the text",
+      "Select which letters to eliminate",
+      "Instant preview of the modified text",
+      "Ideal for text cleanup or custom filtering",
+    ],
+  },
+
+  {
+    id: "erase-letters-from-words",
+    name: "Erase Letters from Words",
+    description:
+      "Erase specific letters from individual words in the text, allowing for selective letter removal within the context of each word.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29700,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Erase selected letters from specific words",
+      "Select which letters to remove from words",
+      "Preview the result before finalizing",
+      "Ideal for selective text transformation",
+    ],
+  },
+
+  {
+    id: "erase-words-from-text",
+    name: "Erase Words from Text",
+    description:
+      "Erase entire words from the text, removing any specific word occurrences based on the user's choice.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29800,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Erase entire words from the text",
+      "Specify which words to remove",
+      "Instant preview of the modified text",
+      "Ideal for text cleanup or custom word filtering",
+    ],
+  },
+
+  {
+    id: "visualize-text-structure",
+    name: "Visualize Text Structure",
+    description:
+      "Analyze and visualize the structure of a given text, breaking it down into its components such as paragraphs, sentences, and word counts.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 29900,
+    gradient: "from-indigo-500 to-blue-500",
+    features: [
+      "Analyze and break down text into sentences and paragraphs",
+      "View a structural overview of the text",
+      "Display word and sentence count statistics",
+      "Ideal for text analysis and content review",
+    ],
+  },
+
+  {
+    id: "highlight-letters-in-text",
+    name: "Highlight Letters in Text",
+    description:
+      "Highlight specific letters within the text, allowing for easy visual identification of particular characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30000,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Highlight specific letters in the text",
+      "Choose the letters to highlight and customize the color or style",
+      "Instant preview of the highlighted letters",
+      "Ideal for emphasizing or focusing on specific characters in text",
+    ],
+  },
+
+  {
+    id: "highlight-words-in-text",
+    name: "Highlight Words in Text",
+    description:
+      "Highlight specific words in the text, making it easier to visually identify particular words or phrases.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30100,
+    gradient: "from-purple-500 to-red-500",
+    features: [
+      "Highlight specific words in the text",
+      "Select words to highlight and customize the style",
+      "Instant preview of the highlighted words",
+      "Ideal for emphasizing key phrases or words in text",
+    ],
+  },
+
+  {
+    id: "highlight-patterns-in-text",
+    name: "Highlight Patterns in Text",
+    description:
+      "Highlight matching patterns in the text using regular expressions, making it easier to identify specific types of text within the content.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30200,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Highlight matching patterns in the text using regular expressions",
+      "Customize the pattern matching based on your needs",
+      "Instant preview of the highlighted patterns",
+      "Ideal for finding and emphasizing specific content in large text",
+    ],
+  },
+
+  {
+    id: "highlight-sentences-in-text",
+    name: "Highlight Sentences in Text",
+    description:
+      "Highlight entire sentences in the text, allowing you to emphasize particular sections or clauses for easier readability.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30300,
+    gradient: "from-pink-500 to-purple-500",
+    features: [
+      "Highlight entire sentences in the text",
+      "Choose which sentences to highlight and customize the style",
+      "Instant preview of the highlighted sentences",
+      "Ideal for emphasizing specific sentences or clauses",
+    ],
+  },
+
+  {
+    id: "replace-vowels-in-text",
+    name: "Replace Vowels in Text",
+    description:
+      "Replace all vowels in the text with specified characters, allowing for vowel substitution throughout the content.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30400,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Replace vowels in the text with a specified character",
+      "Customize which vowels to replace and with what characters",
+      "Instant preview of the modified text",
+      "Ideal for text transformation or creating unique text effects",
+    ],
+  },
+  {
+    id: "duplicate-vowels-in-text",
+    name: "Duplicate Vowels in Text",
+    description:
+      "Duplicate each vowel in the text, effectively repeating every vowel to create a doubled version of the vowels in the input.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30500,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Duplicate each vowel in the text",
+      "Instant preview of the result",
+      "Can be applied to any text input",
+      "Ideal for creating stylized effects or emphasis on vowels",
+    ],
+  },
+
+  {
+    id: "remove-vowels-from-text",
+    name: "Remove Vowels from Text",
+    description:
+      "Remove all vowels from the text, effectively cleaning the text by eliminating the vowels (a, e, i, o, u).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30600,
+    gradient: "from-blue-500 to-green-500",
+    features: [
+      "Remove vowels from the text",
+      "Instant preview of the modified text",
+      "Ideal for text transformations or secret codes",
+      "Customizable to remove all vowels or specific ones",
+    ],
+  },
+
+  {
+    id: "replace-consonants-in-text",
+    name: "Replace Consonants in Text",
+    description:
+      "Replace all consonants in the text with specified characters, allowing for consonant substitution throughout the text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30700,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Replace consonants in the text with a specified character",
+      "Customizable consonant replacement",
+      "Instant preview of the modified text",
+      "Ideal for text transformation or encryption purposes",
+    ],
+  },
+
+  {
+    id: "duplicate-consonants-in-text",
+    name: "Duplicate Consonants in Text",
+    description:
+      "Duplicate each consonant in the text, repeating every consonant to create a doubled version of the consonants in the text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30800,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Duplicate each consonant in the text",
+      "Instant preview of the result",
+      "Can be applied to any text input",
+      "Ideal for creating text effects or enhancing consonants",
+    ],
+  },
+
+  {
+    id: "remove-consonants-from-text",
+    name: "Remove Consonants from Text",
+    description:
+      "Remove all consonants from the text, effectively eliminating all consonant letters (b, c, d, etc.) from the input text.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 30900,
+    gradient: "from-pink-500 to-purple-500",
+    features: [
+      "Remove consonants from the text",
+      "Instant preview of the modified text",
+      "Ideal for creating vowel-based transformations",
+      "Customizable to remove all consonants or specific ones",
+    ],
+  },
+
+  {
+    id: "convert-text-to-nice-columns",
+    name: "Convert Text to Nice Columns",
+    description:
+      "Convert the text into a clean, nicely formatted column layout, making the text more readable and visually appealing.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31000,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "Convert text into a column layout",
+      "Customize column width and formatting",
+      "Instant preview of the converted columns",
+      "Ideal for creating readable lists or formatted text",
+    ],
+  },
+
+  {
+    id: "convert-nice-columns-to-text",
+    name: "Convert Nice Columns to Text",
+    description:
+      "Convert nicely formatted columns back into a standard text format, preserving the readability while returning it to a single-line format.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31100,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Convert nicely formatted columns back to text",
+      "Instant preview of the returned text",
+      "Ideal for reverting to plain text after creating columns",
+      "Customizable formatting options for smooth transitions",
+    ],
+  },
+
+  {
+    id: "generate-text-unigrams",
+    name: "Generate Text Unigrams",
+    description:
+      "Generate unigrams from the text, breaking it down into single word units for analysis or processing.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31200,
+    gradient: "from-green-500 to-blue-500",
+    features: [
+      "Generate unigrams from the text",
+      "Break the text down into individual words",
+      "Ideal for word frequency analysis and text processing",
+      "Instant preview of the generated unigrams",
+    ],
+  },
+
+  {
+    id: "generate-text-bigrams",
+    name: "Generate Text Bigrams",
+    description:
+      "Generate bigrams from the text, breaking it down into pairs of consecutive words for deeper text analysis.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31300,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Generate bigrams from the text",
+      "Break the text into pairs of consecutive words",
+      "Ideal for word pair analysis or creating n-gram models",
+      "Instant preview of the generated bigrams",
+    ],
+  },
+
+  {
+    id: "generate-text-n-grams",
+    name: "Generate Text N-grams",
+    description:
+      "Generate n-grams from the text, breaking it down into sequences of n consecutive words for advanced text analysis.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31400,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Generate n-grams from the text",
+      "Break the text into sequences of n consecutive words",
+      "Ideal for advanced text analysis and language modeling",
+      "Instant preview of the generated n-grams",
+    ],
+  },
+
+  {
+    id: "generate-text-skip-grams",
+    name: "Generate Text Skip-grams",
+    description:
+      "Generate skip-grams from the text, creating pairs of words that are separated by a defined number of words in between, useful for text analysis.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31500,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Generate skip-grams from the text",
+      "Create pairs of words with gaps in between",
+      "Ideal for skip-gram models in natural language processing",
+      "Instant preview of the generated skip-grams",
+    ],
+  },
+
+  {
+    id: "create-zigzag-text",
+    name: "Create ZigZag Text",
+    description:
+      "Create a visually appealing zigzag text effect, where the text flows back and forth in a zigzag pattern.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31600,
+    gradient: "from-cyan-500 to-teal-500",
+    features: [
+      "Create a zigzag text effect",
+      "Customize the angle and frequency of the zigzag pattern",
+      "Instant preview of the zigzagged text",
+      "Ideal for creating stylized and eye-catching text designs",
+    ],
+  },
+
+  {
+    id: "draw-box-around-text",
+    name: "Draw a Box Around Text",
+    description:
+      "Draw a visual box around the selected text, making it stand out with a bordered frame.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31700,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Draw a box around the text",
+      "Can customize the border style, color, and thickness",
+      "Ideal for highlighting specific text",
+      "Instant preview of the boxed text",
+    ],
+  },
+
+  {
+    id: "convert-text-to-morse-code",
+    name: "Convert Text to Morse Code",
+    description:
+      "Convert the input text into Morse code, where each letter is represented by a combination of dots and dashes.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31800,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Convert text to Morse code",
+      "Supports all characters that can be represented in Morse code",
+      "Instant preview of the encoded Morse code",
+      "Ideal for encoding messages or creating secret codes",
+    ],
+  },
+
+  {
+    id: "convert-morse-code-to-text",
+    name: "Convert Morse Code to Text",
+    description:
+      "Convert the Morse code input back into readable text, decoding the dots and dashes into their corresponding characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 31900,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Convert Morse code to text",
+      "Supports decoding of standard Morse code",
+      "Instant preview of the decoded text",
+      "Ideal for deciphering Morse code messages",
+    ],
+  },
+
+  {
+    id: "calculate-text-complexity",
+    name: "Calculate Text Complexity",
+    description:
+      "Analyze the text and calculate its complexity, taking into account factors like readability, sentence length, and vocabulary.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32000,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Calculate text complexity based on readability factors",
+      "Analyze sentence length and word usage",
+      "Provides a readability score",
+      "Instant preview of the complexity analysis",
+    ],
+  },
+
+  {
+    id: "url-encode-text",
+    name: "URL-encode Text",
+    description:
+      "URL-encode the input text, converting special characters into a format that can be used in a URL (percent-encoded format).",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32100,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "URL-encode the text",
+      "Convert special characters to URL-safe encoding",
+      "Ideal for encoding parameters for web URLs",
+      "Instant preview of the URL-encoded text",
+    ],
+  },
+
+  {
+    id: "url-decode-text",
+    name: "URL-decode Text",
+    description:
+      "URL-decode the input text, converting percent-encoded characters back to their original form.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32200,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "URL-decode the text",
+      "Reverts percent-encoded characters to their original state",
+      "Ideal for decoding URL parameters or query strings",
+      "Instant preview of the decoded text",
+    ],
+  },
+
+  {
+    id: "html-encode-text",
+    name: "HTML-encode Text",
+    description:
+      "HTML-encode the text, converting special characters like <, >, and & into HTML entities.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32300,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "HTML-encode the text",
+      "Convert special characters to HTML entities",
+      "Ideal for safely embedding text in HTML documents",
+      "Instant preview of the HTML-encoded text",
+    ],
+  },
+
+  {
+    id: "html-decode-text",
+    name: "HTML-decode Text",
+    description:
+      "HTML-decode the text, converting HTML entities like &lt;, &gt;, and &amp; back to their respective characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32400,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "HTML-decode the text",
+      "Reverts HTML entities to their original characters",
+      "Ideal for decoding HTML-encoded text",
+      "Instant preview of the decoded text",
+    ],
+  },
+
+  {
+    id: "convert-text-to-url-slug",
+    name: "Convert Text to URL Slug",
+    description:
+      "Convert the input text into a URL-friendly slug, replacing spaces with hyphens and removing special characters for SEO optimization.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32500,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Convert text into a URL-friendly slug",
+      "Replace spaces with hyphens and remove special characters",
+      "Ideal for creating SEO-optimized URLs",
+      "Instant preview of the generated slug",
+    ],
+  },
+
+  {
+    id: "base64-encode-text",
+    name: "Base64-encode Text",
+    description:
+      "Base64-encode the text, converting it into a format that can be easily stored or transmitted in environments that only support textual data.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32600,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Base64-encode the text",
+      "Convert text into a Base64 format",
+      "Ideal for encoding text for safe transmission or storage",
+      "Instant preview of the Base64-encoded text",
+    ],
+  },
+  {
+    id: "base64-decode-text",
+    name: "Base64-decode Text",
+    description:
+      "Base64-decode the input text, converting Base64-encoded text back to its original form.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32700,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Base64-decode the text",
+      "Reverts Base64-encoded text to its original form",
+      "Ideal for decoding Base64-encoded data",
+      "Instant preview of the decoded text",
+    ],
+  },
+
+  {
+    id: "convert-text-to-binary",
+    name: "Convert Text to Binary",
+    description:
+      "Convert the input text into binary format, representing each character as a sequence of 1s and 0s.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32800,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Convert text to binary format",
+      "Represents each character as a binary sequence",
+      "Ideal for encoding text in machine-readable format",
+      "Instant preview of the binary-encoded text",
+    ],
+  },
+
+  {
+    id: "convert-binary-to-text",
+    name: "Convert Binary to Text",
+    description:
+      "Convert binary code back into readable text, decoding binary sequences into their corresponding characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 32900,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Convert binary code to text",
+      "Decodes binary sequences into readable text",
+      "Ideal for converting machine-readable binary back to text",
+      "Instant preview of the decoded text",
+    ],
+  },
+
+  {
+    id: "convert-text-to-octal",
+    name: "Convert Text to Octal",
+    description:
+      "Convert the input text into octal format, where each character is represented as an octal value.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 33000,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Convert text to octal format",
+      "Represents each character as an octal value",
+      "Ideal for encoding text in octal format",
+      "Instant preview of the octal-encoded text",
+    ],
+  },
+
+  {
+    id: "convert-octal-to-text",
+    name: "Convert Octal to Text",
+    description:
+      "Convert octal values back into readable text, decoding the octal representations of characters into their original form.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 33100,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Convert octal values to text",
+      "Decodes octal representations back to readable text",
+      "Ideal for converting octal-encoded text back to normal",
+      "Instant preview of the decoded text",
+    ],
+  },
+
+  {
+    id: "convert-text-to-decimal",
+    name: "Convert Text to Decimal",
+    description:
+      "Convert the input text into decimal format, where each character is represented by its corresponding decimal value.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 33200,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Convert text to decimal format",
+      "Represents each character as a decimal value",
+      "Ideal for encoding text in decimal format",
+      "Instant preview of the decimal-encoded text",
+    ],
+  },
+
+  {
+    id: "convert-decimal-to-text",
+    name: "Convert Decimal to Text",
+    description:
+      "Convert decimal values back into readable text, decoding the decimal representations of characters into their original form.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 33300,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Convert decimal values to text",
+      "Decodes decimal representations back to readable text",
+      "Ideal for converting decimal-encoded text back to normal",
+      "Instant preview of the decoded text",
+    ],
+  },
+
+  {
+    id: "convert-text-to-hex",
+    name: "Convert Text to Hex",
+    description:
+      "Convert the input text into hexadecimal format, where each character is represented as a hex value.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 33400,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Convert text to hexadecimal format",
+      "Represents each character as a hex value",
+      "Ideal for encoding text in hex format",
+      "Instant preview of the hex-encoded text",
+    ],
+  },
+
+  {
+    id: "convert-hex-to-text",
+    name: "Convert Hex to Text",
+    description:
+      "Convert hexadecimal values back into readable text, decoding the hex values into their original characters.",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 33500,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Convert hex values to text",
+      "Decodes hex representations back to readable text",
+      "Ideal for converting hex-encoded text back to normal",
+      "Instant preview of the decoded text",
+    ],
+  },
+
+  // 4. Downloader tools
+  {
+    id: "facebook-reels-downloader",
+    name: "Facebook Reels Downloader",
+    description: "Download Facebook Reels instantly in MP4 format with no watermarks.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16c1.1 0 2 .9 2 2v2h-2V6H4v12h16v-2h2v2c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM14 10.5v3l-2.5-1.5L14 10.5zM22 10V8l-6 4 6 4v-2l-3.5-2L22 10z"),
+    views: 8900,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Save Facebook Reels in high quality",
+      "Fast download with one click",
+      "Mobile and desktop friendly",
+      "Supports private reels (if accessible)",
+    ],
+  },
+
+  {
+    id: "facebook-photo-downloader",
+    name: "Facebook Photo Downloader",
+    description: "Download high-quality Facebook photos from posts, albums, or profiles.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm0 2v12h16V6H4zm4 3a2 2 0 110-4 2 2 0 010 4zm0 2l2.5 3.2 3.5-4.5 5 6.3H4l4-5z"),
+    views: 7650,
+    gradient: "from-blue-400 to-cyan-500",
+    features: [
+      "Download single or multiple Facebook photos",
+      "Support for public and profile pictures",
+      "Save photos in original resolution",
+    ],
+  },
+
+  {
+    id: "youtube-video-downloader",
+    name: "YouTube Video Downloader",
+    description: "Download videos from YouTube in various resolutions, including 1080p and 4K.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M10 15l5.19-3L10 9v6zm10-3c0-2.21-.18-4.42-.54-6.63a2.5 2.5 0 00-1.76-1.94C15.99 3.77 12 3.75 12 3.75s-3.99.02-5.7.68a2.5 2.5 0 00-1.76 1.94C4.18 7.58 4 9.79 4 12s.18 4.42.54 6.63a2.5 2.5 0 001.76 1.94c1.71.66 5.7.68 5.7.68s3.99-.02 5.7-.68a2.5 2.5 0 001.76-1.94c.36-2.21.54-4.42.54-6.63z"),
+    views: 34700,
+    gradient: "from-red-600 to-yellow-500",
+    features: [
+      "Supports MP4 and WebM formats",
+      "Choose from multiple resolutions",
+      "Download playlists and subtitles",
+      "No ads or watermarks",
+    ],
+  },
+
+  {
+    id: "youtube-thumbnail-downloader",
+    name: "YouTube Thumbnail Downloader",
+    description: "Extract and download high-resolution thumbnails from any YouTube video.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M10 15l5.19-3L10 9v6zm10-3c0-2.21-.18-4.42-.54-6.63a2.5 2.5 0 00-1.76-1.94C15.99 3.77 12 3.75 12 3.75s-3.99.02-5.7.68a2.5 2.5 0 00-1.76 1.94C4.18 7.58 4 9.79 4 12s.18 4.42.54 6.63a2.5 2.5 0 001.76 1.94c1.71.66 5.7.68 5.7.68s3.99-.02 5.7-.68a2.5 2.5 0 001.76-1.94c.36-2.21.54-4.42.54-6.63z"),
+    views: 19400,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "HD, SD, and MQ thumbnail options",
+      "Preview before download",
+      "Copy URL or download instantly",
+    ],
+  },
+
+  {
+    id: "youtube-audio-downloader",
+    name: "YouTube Audio Downloader (MP3)",
+    description: "Download high-quality MP3 audio from any YouTube video.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M10 15l5.19-3L10 9v6zm10-3c0-2.21-.18-4.42-.54-6.63a2.5 2.5 0 00-1.76-1.94C15.99 3.77 12 3.75 12 3.75s-3.99.02-5.7.68a2.5 2.5 0 00-1.76 1.94C4.18 7.58 4 9.79 4 12s.18 4.42.54 6.63a2.5 2.5 0 001.76 1.94c1.71.66 5.7.68 5.7.68s3.99-.02 5.7-.68a2.5 2.5 0 001.76-1.94c.36-2.21.54-4.42.54-6.63z"),
+    views: 40200,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Extract audio from YouTube",
+      "Download as MP3, M4A, or WAV",
+      "ID3 tag support (title, artist, album)",
+      "No registration needed",
+    ],
+  },
+
+  {
+    id: "snapchat-story-downloader",
+    name: "Snapchat Story Downloader",
+    description: "Download Snapchat stories or snaps before they expire.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M12 4a8 8 0 110 16 8 8 0 010-16z"),
+    views: 11700,
+    gradient: "from-yellow-400 to-orange-400",
+    features: [
+      "Save public Snapchat stories",
+      "Supports snaps and spotlight videos",
+      "No watermarks on downloads",
+    ],
+  },
+
+  {
+    id: "instagram-video-downloader",
+    name: "Instagram Video Downloader",
+    description: "Download Instagram videos from posts, IGTV, and reels.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 22000,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Save video posts from Instagram",
+      "No login required",
+      "Supports multiple formats",
+    ],
+  },
+
+  {
+    id: "instagram-reels-downloader",
+    name: "Instagram Reels Downloader",
+    description: "Download Instagram Reels in HD with no watermark.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M8 4v16m8-16v16"),
+    views: 25000,
+    gradient: "from-purple-600 to-pink-600",
+    features: [
+      "Download public Instagram Reels",
+      "MP4 format support",
+      "High-speed servers",
+    ],
+  },
+
+  {
+    id: "instagram-photo-downloader",
+    name: "Instagram Photo Downloader",
+    description: "Download Instagram photos from posts, profiles, and carousels.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 19300,
+    gradient: "from-yellow-500 to-red-500",
+    features: [
+      "Save single or multiple images",
+      "Supports carousels and stories",
+      "Original quality download",
+    ],
+  },
+
+  {
+    id: "instagram-story-downloader",
+    name: "Instagram Story Downloader",
+    description: "Download Instagram stories before they disappear.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 17000,
+    gradient: "from-pink-400 to-orange-400",
+    features: [
+      "Download public stories in one click",
+      "Save videos and photos",
+      "Works on mobile and desktop",
+    ],
+  },
+
+  {
+    id: "instagram-highlights-downloader",
+    name: "Instagram Highlights Downloader",
+    description: "Download Instagram Highlights including cover and content.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 14500,
+    gradient: "from-red-600 to-purple-600",
+    features: [
+      "Save entire Instagram Highlights",
+      "Supports videos and photos",
+      "Includes highlight cover download",
+    ],
+  },{
+    id: "pinterest-video-downloader",
+    name: "Pinterest Video Downloader",
+    description: "Download videos from Pinterest boards or pins in high resolution.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 12100,
+    gradient: "from-red-500 to-pink-500",
+    features: [
+      "Save Pinterest videos easily",
+      "Supports mobile and desktop",
+      "MP4 format supported",
+    ],
+  },
+
+  {
+    id: "pinterest-image-downloader",
+    name: "Pinterest Image Downloader",
+    description: "Download Pinterest images from any pin or board in original quality.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M12 4l-8 8 8 8 8-8-8-8z"),
+    views: 9900,
+    gradient: "from-pink-500 to-red-400",
+    features: [
+      "Download single or multiple images",
+      "Preserve image resolution",
+      "Bulk download support",
+    ],
+  },
+
+  {
+    id: "reddit-video-downloader",
+    name: "Reddit Video Downloader",
+    description: "Download videos from Reddit including audio (with merged option).",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 13200,
+    gradient: "from-orange-500 to-yellow-400",
+    features: [
+      "MP4 video and audio support",
+      "Supports NSFW (with filter)",
+      "Subreddit-specific downloads",
+    ],
+  },
+
+  {
+    id: "tiktok-video-downloader",
+    name: "TikTok Video Downloader",
+    description: "Download TikTok videos with or without watermark in HD.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M12 4l-8 8 8 8 8-8-8-8z"),
+    views: 28400,
+    gradient: "from-pink-500 to-blue-500",
+    features: [
+      "Watermark-free download option",
+      "Supports music and sound extraction",
+      "Batch TikTok link support",
+    ],
+  },
+
+  {
+    id: "twitter-video-downloader",
+    name: "Twitter/X Video Downloader",
+    description: "Download videos from Twitter/X posts in various resolutions.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M5 3l14 9-14 9V3z"),
+    views: 17800,
+    gradient: "from-blue-500 to-sky-500",
+    features: [
+      "MP4 video download from any tweet",
+      "Select from 360p to 1080p",
+      "Save private video (if accessible)",
+    ],
+  },
+
+  {
+    id: "twitter-photo-downloader",
+    name: "Twitter/X Photo Downloader",
+    description: "Download images from Twitter/X posts in full resolution.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 11400,
+    gradient: "from-sky-400 to-blue-600",
+    features: [
+      "Download image sets from tweets",
+      "Supports GIFs and PNGs",
+      "Batch media download support",
+    ],
+  },
+
+  {
+    id: "vimeo-video-downloader",
+    name: "Vimeo Video Downloader",
+    description: "Download high-quality videos from Vimeo in MP4 format.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M8 4v16m8-16v16"),
+    views: 15600,
+    gradient: "from-gray-500 to-blue-400",
+    features: [
+      "Supports private and public videos",
+      "720p, 1080p, and 4K options",
+      "No watermark",
+    ],
+  },
+
+  {
+    id: "linkedin-video-downloader",
+    name: "LinkedIn Video Downloader",
+    description: "Download videos from LinkedIn posts or company pages.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 9200,
+    gradient: "from-blue-700 to-blue-500",
+    features: [
+      "Save LinkedIn post videos",
+      "Supports company and profile content",
+      "Professional-grade quality download",
+    ],
+  },
+
+  {
+    id: "linkedin-photo-downloader",
+    name: "LinkedIn Photo Downloader",
+    description: "Download profile or post images from LinkedIn in high resolution.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 6800,
+    gradient: "from-slate-600 to-blue-500",
+    features: [
+      "Download profile pictures, covers, and post images",
+      "One-click download",
+      "Supports PNG and JPG",
+    ],
+  },
+
+  {
+    id: "soundcloud-audio-downloader",
+    name: "SoundCloud Audio Downloader",
+    description: "Download music or tracks from SoundCloud in MP3 format.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M12 4v16m8-16v16"),
+    views: 18900,
+    gradient: "from-orange-500 to-yellow-500",
+    features: [
+      "MP3, AAC, and FLAC format support",
+      "Download playlists or albums",
+      "High-bitrate support",
+    ],
+  },
+
+  {
+    id: "dailymotion-video-downloader",
+    name: "DailyMotion Video Downloader",
+    description: "Download videos from DailyMotion in full HD.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M4 4h16v16H4z"),
+    views: 10500,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Supports 480p to 1080p resolution",
+      "Batch URL support",
+      "Quick and reliable server",
+    ],
+  },
+
+  {
+    id: "twitch-clip-downloader",
+    name: "Twitch Clip Downloader",
+    description: "Download Twitch clips or highlights from streamers.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M5 3l14 9-14 9V3z"),
+    views: 13600,
+    gradient: "from-purple-700 to-indigo-600",
+    features: [
+      "Download clips in MP4",
+      "Download VOD highlights",
+      "Supports usernames and clip links",
+    ],
+  },
+
+  {
+    id: "imdb-trailer-downloader",
+    name: "IMDb Trailer Downloader",
+    description: "Download movie trailers and teasers directly from IMDb.",
+    category: getCategoryById("downloader"),
+    icon: createIcon("M12 4v16m8-16v16"),
+    views: 7700,
+    gradient: "from-yellow-400 to-amber-500",
+    features: [
+      "Save trailers in MP4 or MOV",
+      "High-definition support",
+      "Movie, series, and episode trailers",
+    ],
+  },
+
   // 5. Image & Media Tools
   {
-    id: 'image-resizer',
-    name: 'Image Resizer',
-    description: 'Resize and optimize images for web, social media, or print',
-    category: getCategoryById('image-media'),
-    icon: createIcon("M6.75 3.5v1m0 7.25v1m0 7.25v1m0-14.5h7.5m-7.5 7.25h7.5m-7.5 7.25h7.5M4 6.75h-.25a2 2 0 01-2-2V4.5a2 2 0 012-2H4v10.5a2 2 0 01-2 2H.5a2 2 0 01-2-2v-.25"),
-    views: 15780,
-    gradient: 'from-indigo-500 to-blue-500',
-    features: [
-      'Resize images with preserved aspect ratio',
-      'Batch resize multiple images',
-      'Crop and canvas adjustments',
-      'Optimize for web with compression settings',
-      'Social media platform presets',
-      'Custom DPI for print output'
-    ]
-  },
-  {
-    id: 'image-compressor',
-    name: 'Image Compressor',
-    description: 'Compress images to reduce file size while maintaining quality',
-    category: getCategoryById('image-media'),
-    icon: createIcon("M5.25 7.5A2.25 2.25 0 017.5 5.25h9a2.25 2.25 0 012.25 2.25v9a2.25 2.25 0 01-2.25 2.25h-9a2.25 2.25 0 01-2.25-2.25v-9z"),
-    views: 13650,
-    gradient: 'from-red-500 to-pink-500',
-    features: [
-      'Smart JPEG and PNG compression',
-      'WebP conversion for modern browsers',
-      'Bulk image compression',
-      'Adjustable quality settings',
-      'Before/after comparison',
-      'Optimize images for specific platforms'
-    ]
-  },
-  {
-    id: 'image-cropper',
-    name: 'Image Cropper',
-    description: 'Crop and adjust images with precision tools',
-    category: getCategoryById('image-media'),
-    icon: createIcon("M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659M18 10.5h.008v.008H18V10.5zm-3 0h.008v.008H15V10.5z"),
-    views: 9120,
-    gradient: 'from-cyan-500 to-blue-500',
-    features: [
-      'Crop with free-form or aspect ratio constraints',
-      'Rotate and flip images',
-      'Advanced selection tools',
-      'Crop multiple images at once',
-      'Smart object detection for automatic cropping',
-      'Instagram, Twitter, and Facebook presets'
-    ]
-  },
-  {
-    id: 'image-watermarker',
-    name: 'Image Watermarker',
-    description: 'Add custom text or image watermarks to protect your work',
-    category: getCategoryById('image-media'),
-    icon: createIcon("M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"),
-    views: 6350,
-    gradient: 'from-emerald-500 to-green-500',
-    features: [
-      'Add text watermarks with custom fonts and opacity',
-      'Use image or logo watermarks',
-      'Batch watermark multiple images',
-      'Adjustable position, rotation, and size',
-      'Mosaic and blur watermarking',
-      'Save watermark templates for future use'
-    ]
-  },
-  {
-    id: 'image-ocr',
-    name: 'Image OCR',
-    description: 'Extract text from images with Optical Character Recognition',
-    category: getCategoryById('image-media'),
-    icon: createIcon("M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
-    views: 8750,
-    gradient: 'from-violet-500 to-purple-500',
-    features: [
-      'Extract text from images and scanned documents',
-      'Support for over 100 languages',
-      'Table and form detection',
-      'Convert scanned PDFs to editable text',
-      'Handwriting recognition',
-      'Export to Word, PDF, or plain text'
-    ]
-  },
-  
+  id: "image-resizer",
+  name: "Image Resizer",
+  description: "Resize and optimize images for web, social media, or print",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M6.75 3.5v1m0 7.25v1m0 7.25v1m0-14.5h7.5m-7.5 7.25h7.5m-7.5 7.25h7.5M4 6.75h-.25a2 2 0 01-2-2V4.5a2 2 0 012-2H4v10.5a2 2 0 01-2 2H.5a2 2 0 01-2-2v-.25"
+  ),
+  views: 15780,
+  gradient: "from-indigo-500 to-blue-500",
+  features: [
+    "Resize images with preserved aspect ratio",
+    "Batch resize multiple images",
+    "Crop and canvas adjustments",
+    "Optimize for web with compression settings",
+    "Social media platform presets",
+    "Custom DPI for print output",
+  ],
+},
+{
+  id: "image-cropper",
+  name: "Image Cropper",
+  description: "Crop and trim your images easily",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 12450,
+  gradient: "from-green-500 to-teal-500",
+  features: [
+    "Custom crop ratios",
+    "Resize and reposition images",
+    "Multiple image format support",
+    "Free and easy-to-use interface",
+    "Batch crop images",
+  ],
+},
+{
+  id: "jpg-compressor",
+  name: "JPG Compressor",
+  description: "Compress JPG images to reduce file size",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9450,
+  gradient: "from-yellow-500 to-orange-500",
+  features: [
+    "Lossless and lossy compression",
+    "High-quality output",
+    "Batch image compression",
+    "Support for different JPG qualities",
+    "Fast processing and download",
+  ],
+},
+{
+  id: "png-compressor",
+  name: "PNG Compressor",
+  description: "Compress PNG images for web optimization",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7800,
+  gradient: "from-cyan-500 to-teal-500",
+  features: [
+    "Lossy and lossless compression",
+    "Custom compression levels",
+    "PNG transparency support",
+    "Optimize for web performance",
+    "Batch processing",
+  ],
+},
+{
+  id: "jpg-to-png",
+  name: "JPG to PNG",
+  description: "Convert JPG images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10320,
+  gradient: "from-pink-500 to-rose-500",
+  features: [
+    "Easy and fast conversion",
+    "Preserve image quality",
+    "Supports large JPG files",
+    "Download high-quality PNG",
+  ],
+},
+{
+  id: "jpg-to-webp",
+  name: "JPG to WebP",
+  description: "Convert JPG to WebP format for better compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9600,
+  gradient: "from-indigo-600 to-blue-600",
+  features: [
+    "Convert JPG to WebP with great quality",
+    "Reduce file sizes for fast loading",
+    "Improve SEO performance",
+    "Simple and quick conversion",
+  ],
+},
+{
+  id: "jpg-to-gif",
+  name: "JPG to GIF",
+  description: "Convert JPG images to animated GIF format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8700,
+  gradient: "from-red-500 to-yellow-500",
+  features: [
+    "Convert JPG to GIF animation",
+    "Supports multiple JPG to GIF",
+    "Customize GIF frame rate and size",
+    "Download high-quality GIF",
+  ],
+},
+{
+  id: "jpg-to-bmp",
+  name: "JPG to BMP",
+  description: "Convert JPG images to BMP format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7800,
+  gradient: "from-green-600 to-blue-600",
+  features: [
+    "JPG to BMP image conversion",
+    "Preserve image resolution",
+    "Simple, fast, and easy process",
+    "Download high-quality BMP",
+  ],
+},
+{
+  id: "jpg-to-tiff",
+  name: "JPG to TIFF",
+  description: "Convert JPG to TIFF format for better quality",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8100,
+  gradient: "from-teal-500 to-indigo-500",
+  features: [
+    "Convert JPG to TIFF",
+    "Supports high-quality image formats",
+    "No loss of image quality",
+    "Fast and easy conversion",
+  ],
+},
+{
+  id: "jpg-to-ico",
+  name: "JPG to ICO",
+  description: "Convert JPG images to ICO (icon) format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 6700,
+  gradient: "from-indigo-700 to-purple-700",
+  features: [
+    "Convert JPG to ICO format",
+    "Generate icons for websites",
+    "Multiple sizes of icons available",
+    "Customize ICO format as per need",
+  ],
+},
+{
+  id: "jpg-to-svg",
+  name: "JPG to SVG",
+  description: "Convert JPG images to SVG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7200,
+  gradient: "from-pink-600 to-purple-600",
+  features: [
+    "JPG to SVG vector conversion",
+    "No quality loss",
+    "Supports high-definition SVG output",
+    "Download SVG for web or print use",
+  ],
+},
+{
+  id: "jpg-to-heic",
+  name: "JPG to HEIC",
+  description: "Convert JPG to HEIC format for high-quality image compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8500,
+  gradient: "from-orange-500 to-red-500",
+  features: [
+    "Convert JPG to HEIC",
+    "Supports high-efficiency compression",
+    "Maintain image quality",
+    "Fast processing speed",
+  ],
+},{
+  id: "png-to-jpg",
+  name: "PNG to JPG",
+  description: "Convert PNG images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9800,
+  gradient: "from-blue-500 to-green-500",
+  features: [
+    "Convert PNG to JPG",
+    "High-quality image conversion",
+    "Quick and easy process",
+    "Supports large PNG files",
+  ],
+},
+{
+  id: "png-to-webp",
+  name: "PNG to WebP",
+  description: "Convert PNG images to WebP format for better compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10200,
+  gradient: "from-teal-500 to-cyan-500",
+  features: [
+    "Convert PNG to WebP",
+    "Lossless and lossy conversion",
+    "Reduce image file sizes",
+    "Supports transparency",
+  ],
+},
+{
+  id: "png-to-gif",
+  name: "PNG to GIF",
+  description: "Convert PNG images to GIF format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8800,
+  gradient: "from-pink-500 to-rose-500",
+  features: [
+    "Convert PNG to animated GIF",
+    "Supports custom frame rates",
+    "High-quality GIF generation",
+    "Quick conversion",
+  ],
+},
+{
+  id: "png-to-bmp",
+  name: "PNG to BMP",
+  description: "Convert PNG images to BMP format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7600,
+  gradient: "from-indigo-500 to-blue-500",
+  features: [
+    "Convert PNG to BMP",
+    "Preserve image resolution",
+    "Fast and easy conversion",
+    "Supports large PNG files",
+  ],
+},
+{
+  id: "png-to-svg",
+  name: "PNG to SVG",
+  description: "Convert PNG images to SVG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7200,
+  gradient: "from-green-500 to-teal-500",
+  features: [
+    "Convert PNG to SVG",
+    "No loss of image quality",
+    "Perfect for scalable web design",
+    "Supports high-definition SVG output",
+  ],
+},
+{
+  id: "png-to-ico",
+  name: "PNG to ICO",
+  description: "Convert PNG images to ICO format for website icons",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7100,
+  gradient: "from-yellow-500 to-orange-500",
+  features: [
+    "Convert PNG to ICO format",
+    "Generate custom icons for websites",
+    "Multiple icon sizes supported",
+    "Quick and easy conversion",
+  ],
+},
+{
+  id: "png-to-tiff",
+  name: "PNG to TIFF",
+  description: "Convert PNG images to TIFF format for high-quality output",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8800,
+  gradient: "from-blue-600 to-indigo-600",
+  features: [
+    "Convert PNG to TIFF",
+    "No quality loss during conversion",
+    "Supports high-resolution images",
+    "Quick and easy processing",
+  ],
+},
+{
+  id: "png-to-heic",
+  name: "PNG to HEIC",
+  description: "Convert PNG to HEIC format for high-quality image compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9500,
+  gradient: "from-red-500 to-pink-500",
+  features: [
+    "Convert PNG to HEIC",
+    "Supports high-efficiency compression",
+    "Maintain high image quality",
+    "Fast conversion process",
+  ],
+},
+{
+  id: "webp-to-jpg",
+  name: "WebP to JPG",
+  description: "Convert WebP images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8400,
+  gradient: "from-teal-600 to-cyan-600",
+  features: [
+    "Convert WebP to JPG",
+    "High-quality output",
+    "Quick and simple conversion",
+    "Preserve original image details",
+  ],
+},
+{
+  id: "webp-to-png",
+  name: "WebP to PNG",
+  description: "Convert WebP images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9200,
+  gradient: "from-green-500 to-teal-600",
+  features: [
+    "Convert WebP to PNG",
+    "Supports transparency",
+    "High-quality conversion",
+    "Fast processing",
+  ],
+},
+{
+  id: "webp-to-gif",
+  name: "WebP to GIF",
+  description: "Convert WebP images to GIF format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7000,
+  gradient: "from-orange-500 to-red-500",
+  features: [
+    "Convert WebP to animated GIF",
+    "Supports different frame rates",
+    "Quick and simple conversion",
+    "High-quality GIF output",
+  ],
+},
+{
+  id: "webp-to-bmp",
+  name: "WebP to BMP",
+  description: "Convert WebP images to BMP format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 6700,
+  gradient: "from-yellow-500 to-amber-500",
+  features: [
+    "Convert WebP to BMP format",
+    "Preserve image quality",
+    "Fast conversion",
+    "Supports large WebP files",
+  ],
+},
+{
+  id: "webp-to-tiff",
+  name: "WebP to TIFF",
+  description: "Convert WebP images to TIFF format for high-resolution output",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 6400,
+  gradient: "from-cyan-500 to-blue-600",
+  features: [
+    "Convert WebP to TIFF",
+    "Supports high-quality images",
+    "Perfect for printing",
+    "No quality loss during conversion",
+  ],
+},
+{
+  id: "webp-to-ico",
+  name: "WebP to ICO",
+  description: "Convert WebP images to ICO format for website icons",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 6200,
+  gradient: "from-purple-600 to-pink-600",
+  features: [
+    "Convert WebP to ICO format",
+    "Supports multiple icon sizes",
+    "Customizable icons for websites",
+    "Quick conversion",
+  ],
+},{
+  id: "gif-to-jpg",
+  name: "GIF to JPG",
+  description: "Convert GIF images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7800,
+  gradient: "from-orange-500 to-red-500",
+  features: [
+    "Convert GIF to JPG",
+    "Supports both animated and static GIFs",
+    "High-quality output",
+    "Quick and easy conversion",
+  ],
+},
+{
+  id: "gif-to-png",
+  name: "GIF to PNG",
+  description: "Convert GIF images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 6700,
+  gradient: "from-teal-500 to-cyan-500",
+  features: [
+    "Convert GIF to PNG",
+    "Preserves image quality",
+    "Supports transparency",
+    "Easy conversion process",
+  ],
+},
+{
+  id: "gif-to-webp",
+  name: "GIF to WebP",
+  description: "Convert GIF images to WebP format for better compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8500,
+  gradient: "from-purple-500 to-pink-500",
+  features: [
+    "Convert GIF to WebP",
+    "High compression with quality retention",
+    "Supports transparency",
+    "Faster load times for web",
+  ],
+},
+{
+  id: "gif-to-bmp",
+  name: "GIF to BMP",
+  description: "Convert GIF images to BMP format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7400,
+  gradient: "from-blue-600 to-indigo-600",
+  features: [
+    "Convert GIF to BMP",
+    "Supports high-quality images",
+    "Ideal for print and image editing",
+    "Simple conversion process",
+  ],
+},
+{
+  id: "gif-to-mp4",
+  name: "GIF to MP4 (Video)",
+  description: "Convert GIF images to MP4 video format",
+  category: getCategoryById("video-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9300,
+  gradient: "from-red-500 to-yellow-500",
+  features: [
+    "Convert GIF to MP4",
+    "Supports both animated and static GIFs",
+    "High-quality video output",
+    "Ideal for sharing on social media",
+  ],
+},
+{
+  id: "bmp-to-jpg",
+  name: "BMP to JPG",
+  description: "Convert BMP images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7800,
+  gradient: "from-green-500 to-teal-500",
+  features: [
+    "Convert BMP to JPG",
+    "Preserve image quality",
+    "Reduce file size with compression",
+    "Supports large BMP files",
+  ],
+},
+{
+  id: "bmp-to-png",
+  name: "BMP to PNG",
+  description: "Convert BMP images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7100,
+  gradient: "from-blue-500 to-indigo-500",
+  features: [
+    "Convert BMP to PNG",
+    "Supports transparency",
+    "High-quality image conversion",
+    "Quick and easy process",
+  ],
+},
+{
+  id: "bmp-to-webp",
+  name: "BMP to WebP",
+  description: "Convert BMP images to WebP format for better compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8900,
+  gradient: "from-cyan-500 to-teal-500",
+  features: [
+    "Convert BMP to WebP",
+    "Lossy and lossless compression",
+    "Faster loading for websites",
+    "Preserves image quality",
+  ],
+},
+{
+  id: "bmp-to-gif",
+  name: "BMP to GIF",
+  description: "Convert BMP images to GIF format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7600,
+  gradient: "from-yellow-500 to-orange-500",
+  features: [
+    "Convert BMP to GIF",
+    "Supports animated GIFs",
+    "Good for sharing and social media",
+    "Quick conversion process",
+  ],
+},
+{
+  id: "heic-to-jpg",
+  name: "HEIC to JPG",
+  description: "Convert HEIC images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9600,
+  gradient: "from-indigo-500 to-blue-500",
+  features: [
+    "Convert HEIC to JPG",
+    "High-quality image output",
+    "Supports large HEIC files",
+    "Fast and efficient conversion",
+  ],
+},
+{
+  id: "heic-to-png",
+  name: "HEIC to PNG",
+  description: "Convert HEIC images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9200,
+  gradient: "from-green-500 to-teal-500",
+  features: [
+    "Convert HEIC to PNG",
+    "Supports transparency",
+    "Quick and easy process",
+    "Preserves image details",
+  ],
+},
+{
+  id: "heic-to-webp",
+  name: "HEIC to WebP",
+  description: "Convert HEIC images to WebP format for better compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8800,
+  gradient: "from-teal-500 to-blue-600",
+  features: [
+    "Convert HEIC to WebP",
+    "Efficient compression with minimal quality loss",
+    "Ideal for web use",
+    "Supports large HEIC files",
+  ],
+},
+{
+  id: "ico-to-png",
+  name: "ICO to PNG",
+  description: "Convert ICO images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7800,
+  gradient: "from-purple-500 to-pink-500",
+  features: [
+    "Convert ICO to PNG",
+    "Supports transparency",
+    "High-quality output",
+    "Quick conversion process",
+  ],
+},
+{
+  id: "ico-to-jpg",
+  name: "ICO to JPG",
+  description: "Convert ICO images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7400,
+  gradient: "from-orange-500 to-yellow-500",
+  features: [
+    "Convert ICO to JPG",
+    "Preserve image quality",
+    "Ideal for web and digital use",
+    "Fast and efficient conversion",
+  ],
+},
+{
+  id: "png-to-ico",
+  name: "PNG to ICO",
+  description: "Convert PNG images to ICO format for website icons",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9600,
+  gradient: "from-blue-500 to-indigo-500",
+  features: [
+    "Convert PNG to ICO",
+    "Supports custom icon sizes",
+    "Perfect for website icons",
+    "Easy and fast conversion",
+  ],
+},
+{
+  id: "svg-to-png",
+  name: "SVG to PNG",
+  description: "Convert SVG images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8100,
+  gradient: "from-green-500 to-blue-500",
+  features: [
+    "Convert SVG to PNG",
+    "High-quality image output",
+    "Supports transparency",
+    "Quick and easy conversion",
+  ],
+},
+{
+  id: "svg-to-jpg",
+  name: "SVG to JPG",
+  description: "Convert SVG images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7600,
+  gradient: "from-purple-500 to-pink-500",
+  features: [
+    "Convert SVG to JPG",
+    "High-resolution output",
+    "Ideal for web and print use",
+    "Supports vector image conversion",
+  ],
+},
+{
+  id: "svg-to-webp",
+  name: "SVG to WebP",
+  description: "Convert SVG images to WebP format for better compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8300,
+  gradient: "from-blue-500 to-indigo-500",
+  features: [
+    "Convert SVG to WebP",
+    "Lossy and lossless compression",
+    "Efficient for web use",
+    "Preserves image quality",
+  ],
+},
+{
+  id: "png-to-svg",
+  name: "PNG to SVG",
+  description: "Convert PNG images to SVG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9200,
+  gradient: "from-teal-500 to-cyan-500",
+  features: [
+    "Convert PNG to SVG",
+    "Vectorize PNG images",
+    "Perfect for web design",
+    "Scalable resolution",
+  ],
+},
+{
+  id: "jpg-to-svg",
+  name: "JPG to SVG",
+  description: "Convert JPG images to SVG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7700,
+  gradient: "from-orange-500 to-yellow-500",
+  features: [
+    "Convert JPG to SVG",
+    "Vectorize raster images",
+    "Supports high-quality conversion",
+    "Ideal for scalable graphics",
+  ],
+},
+{
+  id: "tiff-to-jpg",
+  name: "TIFF to JPG",
+  description: "Convert TIFF images to JPG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7500,
+  gradient: "from-green-600 to-teal-600",
+  features: [
+    "Convert TIFF to JPG",
+    "High-quality image output",
+    "Optimized for web and printing",
+    "Fast and efficient conversion",
+  ],
+},
+{
+  id: "tiff-to-png",
+  name: "TIFF to PNG",
+  description: "Convert TIFF images to PNG format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8000,
+  gradient: "from-purple-600 to-indigo-600",
+  features: [
+    "Convert TIFF to PNG",
+    "Supports transparency",
+    "Preserves image quality",
+    "Ideal for digital artwork",
+  ],
+},
+{
+  id: "tiff-to-webp",
+  name: "TIFF to WebP",
+  description: "Convert TIFF images to WebP format for better compression",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 6700,
+  gradient: "from-cyan-500 to-blue-500",
+  features: [
+    "Convert TIFF to WebP",
+    "Efficient for web use",
+    "Better compression with quality retention",
+    "Preserves image details",
+  ],
+},
+{
+  id: "image-rotator-flipper",
+  name: "Image Rotator & Flipper",
+  description: "Rotate and flip images easily",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8800,
+  gradient: "from-indigo-600 to-blue-600",
+  features: [
+    "Rotate and flip images",
+    "Custom rotation angles",
+    "Fast and simple process",
+    "Ideal for photo editing",
+  ],
+},
+{
+  id: "image-background-remover",
+  name: "Image Background Remover",
+  description: "Remove background from images automatically",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9300,
+  gradient: "from-orange-500 to-yellow-500",
+  features: [
+    "Remove image background",
+    "AI-powered automatic background removal",
+    "Supports transparent background",
+    "Perfect for e-commerce and product photos",
+  ],
+},
+{
+  id: "image-watermark-tool",
+  name: "Image Watermark Tool",
+  description: "Add watermark text or logo to images",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 7800,
+  gradient: "from-teal-500 to-cyan-500",
+  features: [
+    "Add watermark to images",
+    "Custom text or logo watermark",
+    "Adjust opacity and size",
+    "Prevent image theft",
+  ],
+},
+{
+  id: "image-enhancer-ai",
+  name: "Image Enhancer (AI-based)",
+  description: "Enhance image quality using AI-powered tools",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9600,
+  gradient: "from-blue-500 to-indigo-500",
+  features: [
+    "AI-based image enhancement",
+    "Improves sharpness and clarity",
+    "Restores details and colors",
+    "Instant processing",
+  ],
+},
+{
+  id: "image-color-picker",
+  name: "Image Color Picker",
+  description: "Pick colors from an image",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8200,
+  gradient: "from-purple-600 to-pink-600",
+  features: [
+    "Extract colors from images",
+    "Get RGB, HEX, and HSL values",
+    "Supports multiple image formats",
+    "Simple and user-friendly",
+  ],
+},
+{
+  id: "image-to-base64-converter",
+  name: "Image to Base64 Converter",
+  description: "Convert images to Base64 encoded format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10500,
+  gradient: "from-pink-500 to-purple-500",
+  features: [
+    "Convert images to Base64 format",
+    "Supports multiple image formats",
+    "Quick and easy conversion",
+    "Ideal for embedding images in HTML and CSS",
+  ],
+},
+{
+  id: "base64-to-image-converter",
+  name: "Base64 to Image Converter",
+  description: "Convert Base64 encoded strings to images",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10200,
+  gradient: "from-blue-500 to-teal-500",
+  features: [
+    "Convert Base64 to image format",
+    "Support for various image formats",
+    "Ideal for decoding image data",
+    "Simple and fast process",
+  ],
+},
+{
+  id: "image-metadata-viewer",
+  name: "Image Metadata Viewer (EXIF data)",
+  description: "View EXIF metadata of an image",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9800,
+  gradient: "from-yellow-500 to-orange-500",
+  features: [
+    "View EXIF metadata",
+    "Detailed information about image properties",
+    "Supports JPG, PNG, and other formats",
+    "Helps with image analysis and editing",
+  ],
+},
+{
+  id: "image-format-converter",
+  name: "Image Format Converter (HEIC, WebP, BMP, etc.)",
+  description: "Convert images between various formats (HEIC, WebP, BMP, etc.)",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 11000,
+  gradient: "from-indigo-500 to-blue-500",
+  features: [
+    "Convert between different image formats",
+    "Supports HEIC, WebP, BMP, and more",
+    "Lossless or lossy conversion options",
+    "Simple drag-and-drop interface",
+  ],
+},
+{
+  id: "image-grayscale-bw-converter",
+  name: "Image Grayscale / Black & White Converter",
+  description: "Convert images to grayscale or black & white",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8700,
+  gradient: "from-gray-500 to-black-500",
+  features: [
+    "Convert image to grayscale",
+    "Adjust brightness and contrast",
+    "Perfect for creating artistic images",
+    "Supports JPG, PNG, and other formats",
+  ],
+},
+{
+  id: "image-blur-tool",
+  name: "Image Blur Tool",
+  description: "Apply blur effects to images for creative effects",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9400,
+  gradient: "from-blue-500 to-indigo-500",
+  features: [
+    "Apply blur effects to images",
+    "Control blur intensity",
+    "Perfect for portraits and backgrounds",
+    "Supports various image formats",
+  ],
+},
+{
+  id: "face-pixelator-blur-tool",
+  name: "Face Pixelator / Blur Tool",
+  description: "Pixelate or blur faces in images for privacy protection",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 8900,
+  gradient: "from-purple-500 to-pink-500",
+  features: [
+    "Pixelate or blur faces in images",
+    "Protect privacy by blurring sensitive information",
+    "Supports automatic face detection",
+    "Ideal for social media and news use",
+  ],
+},
+{
+  id: "online-drawing-or-doodle-tool",
+  name: "Online Drawing or Doodle Tool",
+  description: "Create drawings or doodles online with easy-to-use tools",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10500,
+  gradient: "from-teal-500 to-green-500",
+  features: [
+    "Draw or doodle on a blank canvas",
+    "Supports various brush sizes and colors",
+    "Save or share your artwork",
+    "Fun and creative tool for all ages",
+  ],
+},
+{
+  id: "meme-generator",
+  name: "Meme Generator",
+  description: "Create memes from images and text",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 11500,
+  gradient: "from-red-500 to-yellow-500",
+  features: [
+    "Create memes from images",
+    "Add custom text to images",
+    "Access popular meme templates",
+    "Easy-to-use meme editing tools",
+  ],
+},
+{
+  id: "image-collage-maker",
+  name: "Image Collage Maker",
+  description: "Create photo collages from multiple images",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9300,
+  gradient: "from-green-500 to-blue-500",
+  features: [
+    "Create collages from multiple images",
+    "Arrange images in grids or custom layouts",
+    "Support for various image formats",
+    "Perfect for creating family albums or event collages",
+  ],
+},
+{
+  id: "screenshot-editor",
+  name: "Screenshot Editor",
+  description: "Edit and annotate screenshots for presentations or sharing",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 11200,
+  gradient: "from-orange-500 to-red-500",
+  features: [
+    "Annotate and add text to screenshots",
+    "Crop and resize images",
+    "Highlight important areas of the screenshot",
+    "Perfect for tutorial and guide creation",
+  ],
+},
+{
+  id: "image-frame-border-adder",
+  name: "Image Frame & Border Adder",
+  description: "Add frames and borders to your images",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10100,
+  gradient: "from-teal-500 to-green-500",
+  features: [
+    "Add custom frames and borders to images",
+    "Adjust border thickness and color",
+    "Supports JPG, PNG, and other formats",
+    "Ideal for social media and personal projects",
+  ],
+},
+{
+  id: "gif-maker",
+  name: "GIF Maker (from Images or Videos)",
+  description: "Create GIFs from images or video clips",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10800,
+  gradient: "from-purple-500 to-pink-500",
+  features: [
+    "Create GIFs from a series of images",
+    "Convert video clips to GIFs",
+    "Adjust frame rate and speed",
+    "Supports JPG, PNG, MP4, and other formats",
+  ],
+},
+{
+  id: "gif-to-video-converter",
+  name: "GIF to Video Converter",
+  description: "Convert GIFs to video format (MP4, WebM, etc.)",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9200,
+  gradient: "from-blue-500 to-indigo-500",
+  features: [
+    "Convert GIFs to video formats",
+    "Supports MP4, WebM, and other formats",
+    "Adjust video resolution and quality",
+    "Perfect for sharing GIFs as videos on platforms",
+  ],
+},
+{
+  id: "video-to-gif-converter",
+  name: "Video to GIF Converter",
+  description: "Convert video clips to GIF format",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9500,
+  gradient: "from-yellow-500 to-orange-500",
+  features: [
+    "Convert video to GIF format",
+    "Trim videos to specific sections",
+    "Adjust GIF frame rate and quality",
+    "Supports MP4, WebM, and other video formats",
+  ],
+},
+{
+  id: "slideshow-maker",
+  name: "Slideshow Maker (Images to Video)",
+  description: "Create video slideshows from images",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10400,
+  gradient: "from-indigo-500 to-purple-500",
+  features: [
+    "Create slideshows from images",
+    "Customize transitions and effects",
+    "Add background music to the slideshow",
+    "Supports various video formats",
+  ],
+},
+{
+  id: "media-metadata-viewer",
+  name: "Media Metadata Viewer",
+  description: "View metadata of media files (image, video, audio)",
+  category: getCategoryById("media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 9700,
+  gradient: "from-gray-500 to-black-500",
+  features: [
+    "View metadata of images, videos, and audio files",
+    "Supports EXIF, MP3 tags, and video data",
+    "Detailed information about file properties",
+    "Helpful for media organization and editing",
+  ],
+},
+{
+  id: "thumbnail-generator",
+  name: "Thumbnail Generator (for YouTube, etc.)",
+  description: "Generate thumbnails for YouTube, blogs, and other platforms",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 11300,
+  gradient: "from-green-500 to-teal-500",
+  features: [
+    "Create custom thumbnails for YouTube videos",
+    "Supports various image formats",
+    "Easy drag-and-drop interface",
+    "Ideal for social media and blog posts",
+  ],
+},
+{
+  id: "cover-photo-profile-picture-resizer",
+  name: "Cover Photo & Profile Picture Resizer (Social Media Sizes)",
+  description: "Resize images to fit social media cover photo and profile picture sizes",
+  category: getCategoryById("image-media"),
+  icon: createIcon(
+    "M12 2v20m10-10H2"
+  ),
+  views: 10250,
+  gradient: "from-pink-500 to-red-500",
+  features: [
+    "Resize images to fit social media platforms",
+    "Supports Facebook, Instagram, Twitter, and more",
+    "Automatic resizing to required dimensions",
+    "Easy interface with real-time preview",
+  ],
+},
+
   // 6. Color & Design Tools
   {
-    id: 'color-picker',
-    name: 'Color Picker',
-    description: 'Select and manage colors with precision tools',
-    category: getCategoryById('color-design'),
+    id: "color-picker",
+    name: "Color Picker",
+    description: "Select and manage colors with precision tools",
+    category: getCategoryById("color-design"),
     icon: createIcon("M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z"),
     views: 12400,
-    gradient: 'from-fuchsia-500 to-purple-500',
+    gradient: "from-fuchsia-500 to-purple-500",
     features: [
-      'Eyedropper tool for sampling colors',
-      'RGB, HEX, HSL, and CMYK formats',
-      'Color palette creation and management',
-      'Color harmony and scheme generator',
-      'Accessibility contrast checker',
-      'Import colors from images'
-    ]
+      "Eyedropper tool for sampling colors",
+      "RGB, HEX, HSL, and CMYK formats",
+      "Color palette creation and management",
+      "Color harmony and scheme generator",
+      "Accessibility contrast checker",
+      "Import colors from images",
+    ],
   },
   {
-    id: 'gradient-generator',
-    name: 'Gradient Generator',
-    description: 'Create beautiful color gradients for design projects',
-    category: getCategoryById('color-design'),
-    icon: createIcon("M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z"),
-    views: 8650,
-    gradient: 'from-blue-500 to-indigo-500',
+    id: "color-palette-generator",
+    name: "Color Palette Generator",
+    description: "Generate custom color palettes for design projects",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8900,
+    gradient: "from-green-500 to-yellow-500",
     features: [
-      'Linear, radial, and conic gradient generation',
-      'Multiple color stop management',
-      'CSS code generation for web developers',
-      'Angle and position control',
-      'Save and share gradient presets',
-      'Export as CSS, SVG, or PNG'
-    ]
+      "Create custom color palettes",
+      "Export palettes as PNG or CSS",
+      "Palette preview and editing",
+      "Harmonious color combinations",
+      "Generate palettes based on a starting color",
+    ],
   },
   {
-    id: 'hex-to-rgb',
-    name: 'HEX to RGB Converter',
-    description: 'Convert between color formats easily',
-    category: getCategoryById('color-design'),
-    icon: createIcon("M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"),
-    views: 6820,
-    gradient: 'from-amber-500 to-yellow-500',
+    id: "color-scheme-generator",
+    name: "Color Scheme Generator",
+    description: "Generate color schemes such as complementary, analogous, and more",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M8 12l4 4 4-4-4-4-4 4z"),
+    views: 10500,
+    gradient: "from-indigo-500 to-pink-500",
     features: [
-      'Convert between HEX, RGB, HSL, CMYK, and more',
-      'Batch conversion for multiple colors',
-      'Color adjustment and manipulation',
-      'Instant copy to clipboard',
-      'Color comparison tool',
-      'Export results in various formats'
-    ]
+      "Generate complementary, analogous, triadic schemes",
+      "Preview scheme in real-time",
+      "Save and share schemes",
+      "Color harmonization for design projects",
+    ],
   },
   {
-    id: 'contrast-checker',
-    name: 'Contrast Checker',
-    description: 'Ensure your designs meet accessibility standards',
-    category: getCategoryById('color-design'),
-    icon: createIcon("M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z"),
-    views: 5480,
-    gradient: 'from-green-500 to-emerald-500',
+    id: "color-contrast-checker",
+    name: "Color Contrast Checker",
+    description: "Check color contrast for accessibility",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M4 4l16 16M4 20L20 4"),
+    views: 7500,
+    gradient: "from-teal-500 to-blue-500",
     features: [
-      'Check text readability according to WCAG standards',
-      'Analyze foreground and background color combinations',
-      'Get pass/fail ratings for AA and AAA standards',
-      'Color suggestion for better contrast',
-      'Simulate color blindness modes',
-      'Preview text samples with selected colors'
-    ]
+      "Check color contrast ratios",
+      "Compliance with WCAG accessibility standards",
+      "Real-time feedback on contrast levels",
+      "Adjust colors to meet contrast requirements",
+    ],
   },
   {
-    id: 'palette-generator',
-    name: 'Palette Generator',
-    description: 'Create harmonious color palettes for your projects',
-    category: getCategoryById('color-design'),
-    icon: createIcon("M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"),
-    views: 9240,
-    gradient: 'from-red-500 to-orange-500',
+    id: "color-blindness-simulator",
+    name: "Color Blindness Simulator",
+    description: "Simulate how colors appear to those with color blindness",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M6 2l6 6-6 6-6-6 6-6z"),
+    views: 6200,
+    gradient: "from-blue-500 to-green-500",
     features: [
-      'Generate color palettes from images',
-      'Create complementary, analogous, and triadic color schemes',
-      'Save and organize multiple palettes',
-      'Export to design software or CSS',
-      'Color blindness simulation',
-      'Community palette sharing and inspiration'
-    ]
+      "Simulate various types of color blindness",
+      "Preview designs for accessibility",
+      "Provide suggestions for color adjustments",
+    ],
   },
-  
+  {
+    id: "gradient-generator",
+    name: "Gradient Generator",
+    description: "Generate beautiful linear and radial gradients",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M2 2l16 16-16 16-16-16 16-16z"),
+    views: 10100,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Generate linear and radial gradients",
+      "Adjust color stops and directions",
+      "Preview gradient in real-time",
+      "Export gradients as CSS or PNG",
+    ],
+  },
+  {
+    id: "color-to-css-converter",
+    name: "Color to CSS Code Converter",
+    description: "Convert color values to valid CSS code",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M4 4h16M4 4v16h16V4h-16z"),
+    views: 8700,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Convert RGB, HEX, HSL to CSS code",
+      "Support for CSS gradients and backgrounds",
+      "Generate CSS for color animations",
+    ],
+  },
+  {
+    id: "palette-to-image-generator",
+    name: "Palette to Image Generator",
+    description: "Generate images based on your custom color palette",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M6 18L18 6M18 18L6 6"),
+    views: 9400,
+    gradient: "from-red-500 to-yellow-500",
+    features: [
+      "Convert color palettes into PNG images",
+      "Adjust image size and background",
+      "Save images for use in projects",
+    ],
+  },
+  {
+    id: "color-name-generator",
+    name: "Color Name Generator",
+    description: "Generate color names based on RGB, HEX, or HSL",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M12 4v16M4 12h16"),
+    views: 6500,
+    gradient: "from-green-400 to-blue-400",
+    features: [
+      "Generate color names from color codes",
+      "Unique names for your custom colors",
+      "Support for HEX, RGB, and HSL",
+    ],
+  },
+  {
+    id: "color-to-pantone-converter",
+    name: "Color to Pantone Converter",
+    description: "Convert any color to Pantone color matching system",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M4 10l12 12m-12 0l12-12"),
+    views: 8000,
+    gradient: "from-teal-400 to-cyan-400",
+    features: [
+      "Convert HEX, RGB, or HSL to Pantone colors",
+      "Find the closest Pantone match for custom colors",
+      "Pantone color names and codes",
+    ],
+  },
+  {
+    id: "color-matching-tool",
+    name: "Color Matching Tool",
+    description: "Match colors from an image and find similar colors",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M4 4h16M4 4v16h16V4h-16z"),
+    views: 7100,
+    gradient: "from-pink-400 to-red-400",
+    features: [
+      "Match colors from uploaded images",
+      "Find similar color palettes",
+      "Export matched colors to palette",
+    ],
+  },
+  {
+    id: "random-color-generator",
+    name: "Random Color Generator",
+    description: "Generate random colors for inspiration or design purposes",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M8 12l4 4 4-4-4-4-4 4z"),
+    views: 8700,
+    gradient: "from-indigo-500 to-pink-500",
+    features: [
+      "Generate random HEX, RGB, or HSL colors",
+      "Option to save favorite random colors",
+      "Palette generation from random colors",
+    ],
+  },
+  {
+    id: "color-code-converter",
+    name: "Color Code Converter",
+    description: "Convert colors between HEX, RGB, HSL, and other formats",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M6 2l6 6-6 6-6-6 6-6z"),
+    views: 7100,
+    gradient: "from-teal-500 to-blue-500",
+    features: [
+      "Convert between HEX, RGB, and HSL color codes",
+      "Support for additional formats like CMYK",
+      "Real-time conversion and preview",
+    ],
+  },
+  {
+    id: "color-temperature-converter",
+    name: "Color Temperature Converter",
+    description: "Convert between warm and cool color temperatures",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M4 10l12 12m-12 0l12-12"),
+    views: 5200,
+    gradient: "from-green-400 to-blue-400",
+    features: [
+      "Convert warm to cool colors and vice versa",
+      "Visual representation of color temperature",
+      "Real-time conversion with adjustable settings",
+    ],
+  },
+  {
+    id: "logo-maker",
+    name: "Logo Maker",
+    description: "Create professional logos with customizable templates",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M8 6l6 6-6 6-6-6 6-6z"),
+    views: 12500,
+    gradient: "from-yellow-500 to-orange-500",
+    features: [
+      "Customizable logo templates",
+      "Add text, icons, and shapes",
+      "Export logos in high-resolution formats",
+      "Pre-designed themes for faster creation",
+    ],
+  },
+  {
+    id: "business-card-generator",
+    name: "Business Card Generator",
+    description: "Design custom business cards easily with templates",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M10 2l8 8-8 8-8-8 8-8z"),
+    views: 9100,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Pre-made templates for business cards",
+      "Add your details and customize fonts",
+      "Instant preview and high-quality export",
+    ],
+  },
+  {
+    id: "banner-poster-maker",
+    name: "Banner & Poster Maker",
+    description: "Create banners and posters for promotions or events",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M4 4h16M4 4v16h16V4h-16z"),
+    views: 10400,
+    gradient: "from-red-500 to-yellow-500",
+    features: [
+      "Create banners for events or promotions",
+      "Customizable templates and design tools",
+      "Export posters in various formats",
+    ],
+  },
+  {
+    id: "flyer-brochure-maker",
+    name: "Flyer & Brochure Maker",
+    description: "Design flyers and brochures for events, sales, or marketing",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M12 4v16M4 12h16"),
+    views: 8200,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Easy-to-use flyer and brochure templates",
+      "Customizable layouts, colors, and fonts",
+      "Export designs in high-resolution files",
+    ],
+  },
+  {
+    id: "infographic-maker",
+    name: "Infographic Maker",
+    description: "Create visually engaging infographics for data presentation",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M12 4h16M4 12h16"),
+    views: 9600,
+    gradient: "from-pink-500 to-red-500",
+    features: [
+      "Create infographics with templates",
+      "Add icons, charts, and text",
+      "Data visualization and styling tools",
+    ],
+  },
+  {
+    id: "mockup-generator",
+    name: "Mockup Generator",
+    description: "Generate realistic mockups for websites, apps, and more",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M4 4h16M4 4v16h16V4h-16z"),
+    views: 11000,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Generate mockups for websites, apps, and products",
+      "Realistic preview of designs in various settings",
+      "Download mockups in high resolution",
+    ],
+  },
+  {
+    id: "business-logo-branding-tools",
+    name: "Business Logo & Branding Tools",
+    description: "Complete tools to create logos and branding for businesses",
+    category: getCategoryById("color-design"),
+    icon: createIcon("M10 2l8 8-8 8-8-8 8-8z"),
+    views: 13400,
+    gradient: "from-green-500 to-yellow-500",
+    features: [
+      "Create logos and branding assets",
+      "Customizable templates for business branding",
+      "Branding guidelines for consistent designs",
+    ],
+  },{
+  id: "icon-generator",
+  name: "Icon Generator",
+  description: "Generate custom icons or select from thousands of pre-made ones",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M4 4h16v16H4V4z"),
+  views: 9700,
+  gradient: "from-orange-500 to-pink-500",
+  features: [
+    "Create icons from shapes and paths",
+    "Customize size, stroke, and color",
+    "Export in SVG, PNG, or ICO format",
+  ],
+  },
+  {
+  id: "font-pairing-tool",
+  name: "Font Pairing Tool",
+  description: "Discover ideal font pairings for headings and body text",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M5 3h14v2H5zm0 4h9v2H5zm0 4h14v2H5z"),
+  views: 8800,
+  gradient: "from-teal-500 to-cyan-500",
+  features: [
+    "Predefined font pairing collections",
+    "Live preview and font download links",
+    "Integration with Google Fonts",
+  ],
+  },
+  {
+  id: "typography-generator",
+  name: "Typography Generator",
+  description: "Design and preview typography styles with live editing",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M6 4v16h2V4zm4 0v2h6v14h2V6h6V4z"),
+  views: 7900,
+  gradient: "from-purple-500 to-blue-500",
+  features: [
+    "Customize letter spacing, line height, and font size",
+    "Live text editing with preview",
+    "Export CSS or design specs",
+  ],
+  },
+  {
+  id: "pattern-generator",
+  name: "Pattern Generator",
+  description: "Create seamless patterns for web and graphic design",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M3 3h6v6H3zm6 0h6v6H9zM3 9h6v6H3zM9 9h6v6H9z"),
+  views: 9100,
+  gradient: "from-yellow-400 to-orange-400",
+  features: [
+    "Geometric, organic, and abstract pattern styles",
+    "Real-time pattern preview",
+    "Download in PNG or SVG",
+  ],
+  },
+  {
+  id: "svg-editor",
+  name: "SVG Editor",
+  description: "Edit and create scalable vector graphics with ease",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M4 4h16v16H4V4z"),
+  views: 9400,
+  gradient: "from-pink-500 to-fuchsia-500",
+  features: [
+    "Draw shapes, paths, and text in SVG format",
+    "Real-time preview and editing",
+    "Export clean SVG code",
+  ],
+  },
+  {
+  id: "design-3d-basic",
+  name: "3D Design Tools (Basic)",
+  description: "Create basic 3D shapes and models in a web interface",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M12 2l10 6v8l-10 6-10-6V8l10-6z"),
+  views: 7600,
+  gradient: "from-gray-700 to-gray-900",
+  features: [
+    "Build simple 3D objects and scenes",
+    "Rotate and position elements in 3D space",
+    "Export as image or 3D file format",
+  ],
+  },
+  {
+  id: "drawing-doodle-tool",
+  name: "Online Drawing or Doodle Tool",
+  description: "Draw freely on a blank canvas using digital tools",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M12 20c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2z"),
+  views: 8900,
+  gradient: "from-blue-400 to-sky-400",
+  features: [
+    "Freehand drawing with pen and brush tools",
+    "Choose custom canvas size and background",
+    "Download your artwork instantly",
+  ],
+  },
+  {
+  id: "text-to-image",
+  name: "Text to Image",
+  description: "Convert words or quotes into visually styled image formats",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M5 3h14v2H5zm0 4h9v2H5zm0 4h14v2H5z"),
+  views: 11300,
+  gradient: "from-violet-500 to-indigo-500",
+  features: [
+    "Type your text and apply styles",
+    "Choose background and font themes",
+    "Export as JPG or PNG",
+  ],
+  },
+  {
+  id: "font-generator",
+  name: "Font Generator",
+  description: "Generate stylish and unique fonts for web or social media",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M6 4v16h2V4zm4 0v2h6v14h2V6h6V4z"),
+  views: 10500,
+  gradient: "from-rose-500 to-pink-600",
+  features: [
+    "Fancy and decorative fonts for online use",
+    "Unicode font variants",
+    "Copy and paste directly to use in bios, captions, etc.",
+  ],
+  },
+  {
+  id: "text-effects-generator",
+  name: "Text Effects Generator",
+  description: "Create eye-catching text effects with ease",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M3 3h18v18H3V3z"),
+  views: 9800,
+  gradient: "from-lime-400 to-emerald-500",
+  features: [
+    "Apply gradients, shadows, and animations to text",
+    "Choose from dozens of templates",
+    "Download or embed styled text",
+  ],
+  },
+  {
+  id: "text-color-style-tool",
+  name: "Text Color & Style Tool",
+  description: "Customize the color and style of any text block",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M4 4h16v16H4V4z"),
+  views: 8600,
+  gradient: "from-red-400 to-purple-400",
+  features: [
+    "Live preview with color and font selection",
+    "Control letter spacing, weight, and more",
+    "Export CSS or styled image",
+  ],
+  },
+  {
+  id: "calligraphy-generator",
+  name: "Calligraphy & Handwriting Generator",
+  description: "Generate elegant handwritten and calligraphy text styles",
+  category: getCategoryById("color-design"),
+  icon: createIcon("M12 20c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2z"),
+  views: 10200,
+  gradient: "from-yellow-400 to-amber-500",
+  features: [
+    "Calligraphy fonts for artistic design",
+    "Use in invitations, social posts, or logos",
+    "Preview and copy to use anywhere",
+  ],
+  },
+
   // 7. PDF & Document Tools
   {
-    id: 'pdf-to-word',
-    name: 'PDF to Word Converter',
-    description: 'Convert PDF documents to editable Word files',
-    category: getCategoryById('pdf-document'),
-    icon: createIcon("M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"),
+    id: "pdf-to-word",
+    name: "PDF to Word Converter",
+    description: "Convert PDF documents to editable Word files",
+    category: getCategoryById("pdf-document"),
+    icon: createIcon(
+      "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z",
+    ),
     views: 17540,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Convert PDF to DOC/DOCX with formatting preserved',
-      'Batch conversion for multiple documents',
-      'Extract text, tables, and images',
-      'Convert password-protected PDFs',
-      'OCR for scanned documents',
-      'Cloud storage integration'
-    ]
+      "Convert PDF to DOC/DOCX with formatting preserved",
+      "Batch conversion for multiple documents",
+      "Extract text, tables, and images",
+      "Convert password-protected PDFs",
+      "OCR for scanned documents",
+      "Cloud storage integration",
+    ],
   },
   {
-    id: 'pdf-merger',
-    name: 'PDF Merger',
-    description: 'Combine multiple PDF files into a single document',
-    category: getCategoryById('pdf-document'),
-    icon: createIcon("M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"),
+    id: "pdf-merger",
+    name: "PDF Merger",
+    description: "Combine multiple PDF files into a single document",
+    category: getCategoryById("pdf-document"),
+    icon: createIcon(
+      "M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15",
+    ),
     views: 14320,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Merge PDFs with customizable page order',
-      'Add page numbers and bookmarks',
-      'Set document properties',
-      'Add watermarks and backgrounds',
-      'Password protection for merged document',
-      'Preview before merging'
-    ]
+      "Merge PDFs with customizable page order",
+      "Add page numbers and bookmarks",
+      "Set document properties",
+      "Add watermarks and backgrounds",
+      "Password protection for merged document",
+      "Preview before merging",
+    ],
   },
   {
-    id: 'pdf-splitter',
-    name: 'PDF Splitter',
-    description: 'Extract specific pages or split PDF documents',
-    category: getCategoryById('pdf-document'),
+    id: "pdf-splitter",
+    name: "PDF Splitter",
+    description: "Extract specific pages or split PDF documents",
+    category: getCategoryById("pdf-document"),
     icon: createIcon("M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"),
     views: 10840,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Split by page ranges or intervals',
-      'Extract specific pages',
-      'Split large PDFs into multiple documents',
-      'Split by bookmarks',
-      'Organize output files',
-      'Batch processing for multiple PDFs'
-    ]
+      "Split by page ranges or intervals",
+      "Extract specific pages",
+      "Split large PDFs into multiple documents",
+      "Split by bookmarks",
+      "Organize output files",
+      "Batch processing for multiple PDFs",
+    ],
   },
   {
-    id: 'pdf-compressor',
-    name: 'PDF Compressor',
-    description: 'Reduce PDF file size while maintaining quality',
-    category: getCategoryById('pdf-document'),
-    icon: createIcon("M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z"),
+    id: "pdf-compressor",
+    name: "PDF Compressor",
+    description: "Reduce PDF file size while maintaining quality",
+    category: getCategoryById("pdf-document"),
+    icon: createIcon(
+      "M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z",
+    ),
     views: 11760,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Smart PDF compression with adjustable quality',
-      'Image downsampling options',
-      'Remove duplicate objects',
-      'Flatten form fields and annotations',
-      'Optimize file structure',
-      'Batch processing capability'
-    ]
+      "Smart PDF compression with adjustable quality",
+      "Image downsampling options",
+      "Remove duplicate objects",
+      "Flatten form fields and annotations",
+      "Optimize file structure",
+      "Batch processing capability",
+    ],
   },
   {
-    id: 'pdf-encryptor',
-    name: 'PDF Encryptor',
-    description: 'Secure PDF files with passwords and encryption',
-    category: getCategoryById('pdf-document'),
-    icon: createIcon("M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"),
+    id: "pdf-encryptor",
+    name: "PDF Encryptor",
+    description: "Secure PDF files with passwords and encryption",
+    category: getCategoryById("pdf-document"),
+    icon: createIcon(
+      "M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z",
+    ),
     views: 8460,
-    gradient: 'from-green-500 to-teal-500',
+    gradient: "from-green-500 to-teal-500",
     features: [
-      'Add password protection to PDF files',
-      'Set permissions (printing, copying, editing)',
-      '128/256-bit AES encryption',
-      'Batch encrypt multiple documents',
-      'Set document expiration dates',
-      'Digital signature support'
-    ]
+      "Add password protection to PDF files",
+      "Set permissions (printing, copying, editing)",
+      "128/256-bit AES encryption",
+      "Batch encrypt multiple documents",
+      "Set document expiration dates",
+      "Digital signature support",
+    ],
   },
-  
+
   // 8. Code & Developer Tools
   {
-    id: 'json-formatter',
-    name: 'JSON Formatter',
-    description: 'Format, validate, and beautify JSON data with ease',
-    category: getCategoryById('developer'),
-    icon: createIcon("M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"),
+    id: "json-formatter",
+    name: "JSON Formatter",
+    description: "Format, validate, and beautify JSON data with ease",
+    category: getCategoryById("developer"),
+    icon: createIcon(
+      "M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5",
+    ),
     views: 14680,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Format and beautify JSON with customizable indentation',
-      'Validate JSON for syntax errors',
-      'Compare JSON files side by side',
-      'Minify JSON to reduce file size',
-      'Convert JSON to/from YAML, XML, and CSV',
-      'Tree view for easier navigation of complex structures'
-    ]
+      "Format and beautify JSON with customizable indentation",
+      "Validate JSON for syntax errors",
+      "Compare JSON files side by side",
+      "Minify JSON to reduce file size",
+      "Convert JSON to/from YAML, XML, and CSV",
+      "Tree view for easier navigation of complex structures",
+    ],
   },
   {
-    id: 'html-beautifier',
-    name: 'HTML Beautifier',
-    description: 'Format and beautify HTML code for better readability',
-    category: getCategoryById('developer'),
-    icon: createIcon("M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    id: "html-beautifier",
+    name: "HTML Beautifier",
+    description: "Format and beautify HTML code for better readability",
+    category: getCategoryById("developer"),
+    icon: createIcon(
+      "M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z",
+    ),
     views: 9870,
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: "from-blue-500 to-cyan-500",
     features: [
-      'Format HTML with customizable indentation',
-      'Fix common HTML syntax errors',
-      'Remove unnecessary attributes and comments',
-      'Sort HTML attributes alphabetically',
-      'Convert HTML to/from Markdown or JSX',
-      'Syntax highlighting for easier editing'
-    ]
+      "Format HTML with customizable indentation",
+      "Fix common HTML syntax errors",
+      "Remove unnecessary attributes and comments",
+      "Sort HTML attributes alphabetically",
+      "Convert HTML to/from Markdown or JSX",
+      "Syntax highlighting for easier editing",
+    ],
   },
-  
+
   // 9. SEO & Marketing Tools
   {
-    id: 'keyword-generator',
-    name: 'Keyword Generator',
-    description: 'Generate relevant keywords for your content and SEO strategy',
-    category: getCategoryById('seo'),
-    icon: createIcon("M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"),
+    id: "keyword-generator",
+    name: "Keyword Generator",
+    description: "Generate relevant keywords for your content and SEO strategy",
+    category: getCategoryById("seo"),
+    icon: createIcon(
+      "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z",
+    ),
     views: 11250,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: "from-green-500 to-emerald-500",
     features: [
-      'Generate keywords based on your topic or niche',
-      'Analyze keyword difficulty and search volume',
-      'Find long-tail keyword opportunities',
-      'Group keywords by semantic relevance',
-      'Export results to CSV or Excel',
-      'Track keyword ranking over time'
-    ]
+      "Generate keywords based on your topic or niche",
+      "Analyze keyword difficulty and search volume",
+      "Find long-tail keyword opportunities",
+      "Group keywords by semantic relevance",
+      "Export results to CSV or Excel",
+      "Track keyword ranking over time",
+    ],
   },
   {
-    id: 'meta-tag-generator',
-    name: 'Meta Tag Generator',
-    description: 'Create optimized meta tags for better SEO performance',
-    category: getCategoryById('seo'),
-    icon: createIcon("M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802"),
+    id: "meta-tag-generator",
+    name: "Meta Tag Generator",
+    description: "Create optimized meta tags for better SEO performance",
+    category: getCategoryById("seo"),
+    icon: createIcon(
+      "M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802",
+    ),
     views: 8340,
-    gradient: 'from-red-500 to-orange-500',
+    gradient: "from-red-500 to-orange-500",
     features: [
-      'Generate title, description, and keyword meta tags',
-      'Preview how your page will appear in search results',
-      'Create Open Graph and Twitter Card tags for social sharing',
-      'Analyze meta tag length and optimize for search engines',
-      'Generate structured data markup (JSON-LD)',
-      'Check for missing or duplicate meta tags'
-    ]
+      "Generate title, description, and keyword meta tags",
+      "Preview how your page will appear in search results",
+      "Create Open Graph and Twitter Card tags for social sharing",
+      "Analyze meta tag length and optimize for search engines",
+      "Generate structured data markup (JSON-LD)",
+      "Check for missing or duplicate meta tags",
+    ],
   },
 
   // 10. Writing & Content Tools
   {
-    id: 'blog-idea-generator',
-    name: 'Blog Idea Generator',
-    description: 'Generate creative blog post ideas for your content strategy',
-    category: getCategoryById('writing'),
-    icon: createIcon("M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"),
+    id: "blog-idea-generator",
+    name: "Blog Idea Generator",
+    description: "Generate creative blog post ideas for your content strategy",
+    category: getCategoryById("writing"),
+    icon: createIcon(
+      "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10",
+    ),
     views: 10120,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Generate blog post ideas based on your niche or target audience',
-      'Find trending topics in your industry',
-      'Create clickable headlines that drive traffic',
-      'Suggest content structures and outlines',
-      'Analyze competition for similar content',
-      'Schedule content ideas for your editorial calendar'
-    ]
+      "Generate blog post ideas based on your niche or target audience",
+      "Find trending topics in your industry",
+      "Create clickable headlines that drive traffic",
+      "Suggest content structures and outlines",
+      "Analyze competition for similar content",
+      "Schedule content ideas for your editorial calendar",
+    ],
   },
   {
-    id: 'headline-analyzer',
-    name: 'Headline Analyzer',
-    description: 'Analyze and optimize headlines for better engagement',
-    category: getCategoryById('writing'),
-    icon: createIcon("M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z"),
+    id: "headline-analyzer",
+    name: "Headline Analyzer",
+    description: "Analyze and optimize headlines for better engagement",
+    category: getCategoryById("writing"),
+    icon: createIcon(
+      "M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 01-2.25 2.25M16.5 7.5V18a2.25 2.25 0 002.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 002.25 2.25h13.5M6 7.5h3v3H6v-3z",
+    ),
     views: 7840,
-    gradient: 'from-indigo-500 to-blue-500',
+    gradient: "from-indigo-500 to-blue-500",
     features: [
-      'Score headlines for emotional appeal and impact',
-      'Analyze word balance and readability',
-      'Get suggestions for power words to improve click-through rates',
-      'Compare multiple headline variations',
-      'Check length for SEO and social media optimization',
-      'Historical data on successful headline patterns'
-    ]
+      "Score headlines for emotional appeal and impact",
+      "Analyze word balance and readability",
+      "Get suggestions for power words to improve click-through rates",
+      "Compare multiple headline variations",
+      "Check length for SEO and social media optimization",
+      "Historical data on successful headline patterns",
+    ],
   },
-  
+
   // 11. Grammar & Plagiarism Tools
   {
-    id: 'grammar-checker',
-    name: 'Grammar Checker',
-    description: 'Check and correct grammar, spelling, and punctuation errors',
-    category: getCategoryById('grammar-plagiarism'),
-    icon: createIcon("M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"),
+    id: "grammar-checker",
+    name: "Grammar Checker",
+    description: "Check and correct grammar, spelling, and punctuation errors",
+    category: getCategoryById("grammar-plagiarism"),
+    icon: createIcon(
+      "M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25",
+    ),
     views: 15320,
-    gradient: 'from-amber-500 to-yellow-500',
+    gradient: "from-amber-500 to-yellow-500",
     features: [
-      'Check grammar, spelling, and punctuation in real-time',
-      'Advanced AI-powered language suggestions',
-      'Style and tone recommendations',
-      'Vocabulary enhancement suggestions',
-      'Support for multiple languages and dialects',
-      'Browser extension for checking anywhere on the web'
-    ]
+      "Check grammar, spelling, and punctuation in real-time",
+      "Advanced AI-powered language suggestions",
+      "Style and tone recommendations",
+      "Vocabulary enhancement suggestions",
+      "Support for multiple languages and dialects",
+      "Browser extension for checking anywhere on the web",
+    ],
   },
   {
-    id: 'plagiarism-checker',
-    name: 'Plagiarism Checker',
-    description: 'Scan your content for potential plagiarism and duplication',
-    category: getCategoryById('grammar-plagiarism'),
-    icon: createIcon("M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"),
+    id: "plagiarism-checker",
+    name: "Plagiarism Checker",
+    description: "Scan your content for potential plagiarism and duplication",
+    category: getCategoryById("grammar-plagiarism"),
+    icon: createIcon(
+      "M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z",
+    ),
     views: 13250,
-    gradient: 'from-green-500 to-teal-500',
+    gradient: "from-green-500 to-teal-500",
     features: [
-      'Check content against billions of web pages and publications',
-      'Highlight exact matches and similar content',
-      'Calculate originality score and similarity percentage',
-      'Suggest ways to rewrite problematic sections',
-      'Citation assistant for academic writing',
-      'Batch checking for multiple documents'
-    ]
+      "Check content against billions of web pages and publications",
+      "Highlight exact matches and similar content",
+      "Calculate originality score and similarity percentage",
+      "Suggest ways to rewrite problematic sections",
+      "Citation assistant for academic writing",
+      "Batch checking for multiple documents",
+    ],
   },
-  
+
   // 12. AI & Automation Tools
   {
-    id: 'ai-writer',
-    name: 'AI Writer',
-    description: 'Generate high-quality content with advanced AI technology',
-    category: getCategoryById('ai-automation'),
-    icon: createIcon("M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"),
+    id: "ai-writer",
+    name: "AI Writer",
+    description: "Generate high-quality content with advanced AI technology",
+    category: getCategoryById("ai-automation"),
+    icon: createIcon(
+      "M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z",
+    ),
     views: 18470,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Generate articles, blog posts, and marketing copy',
-      'Customize tone, style, and length of content',
-      'Research-based content generation with citations',
-      'Multi-language content creation',
-      'Rewrite and paraphrase existing content',
-      'Content templates for various industries and purposes'
-    ]
+      "Generate articles, blog posts, and marketing copy",
+      "Customize tone, style, and length of content",
+      "Research-based content generation with citations",
+      "Multi-language content creation",
+      "Rewrite and paraphrase existing content",
+      "Content templates for various industries and purposes",
+    ],
   },
   {
-    id: 'image-generator',
-    name: 'AI Image Generator',
-    description: 'Create unique images with AI from text descriptions',
-    category: getCategoryById('ai-automation'),
-    icon: createIcon("M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
+    id: "image-generator",
+    name: "AI Image Generator",
+    description: "Create unique images with AI from text descriptions",
+    category: getCategoryById("ai-automation"),
+    icon: createIcon(
+      "M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z",
+    ),
     views: 16840,
-    gradient: 'from-fuchsia-500 to-pink-500',
+    gradient: "from-fuchsia-500 to-pink-500",
     features: [
-      'Generate unique images from text descriptions',
-      'Customize art style, mood, and composition',
-      'Create variations of existing images',
-      'Upscale and enhance image quality',
-      'Remove backgrounds and edit generated images',
-      'Commercial usage rights for created content'
-    ]
+      "Generate unique images from text descriptions",
+      "Customize art style, mood, and composition",
+      "Create variations of existing images",
+      "Upscale and enhance image quality",
+      "Remove backgrounds and edit generated images",
+      "Commercial usage rights for created content",
+    ],
   },
 
   // 13. Social Media Tools
   {
-    id: 'hashtag-generator',
-    name: 'Hashtag Generator',
-    description: 'Find relevant hashtags to boost your social media reach',
-    category: getCategoryById('social-media'),
-    icon: createIcon("M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5"),
+    id: "hashtag-generator",
+    name: "Hashtag Generator",
+    description: "Find relevant hashtags to boost your social media reach",
+    category: getCategoryById("social-media"),
+    icon: createIcon(
+      "M5.25 8.25h15m-16.5 7.5h15m-1.8-13.5l-3.9 19.5m-2.1-19.5l-3.9 19.5",
+    ),
     views: 9540,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Generate trending hashtags for your content',
-      'Platform-specific hashtag recommendations',
-      'Analyze hashtag popularity and competition',
-      'Group hashtags by relevance and reach',
-      'Track hashtag performance over time',
-      'Save hashtag sets for different content types'
-    ]
+      "Generate trending hashtags for your content",
+      "Platform-specific hashtag recommendations",
+      "Analyze hashtag popularity and competition",
+      "Group hashtags by relevance and reach",
+      "Track hashtag performance over time",
+      "Save hashtag sets for different content types",
+    ],
   },
   {
-    id: 'post-scheduler',
-    name: 'Social Media Scheduler',
-    description: 'Plan and schedule your social media posts in advance',
-    category: getCategoryById('social-media'),
-    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
+    id: "post-scheduler",
+    name: "Social Media Scheduler",
+    description: "Plan and schedule your social media posts in advance",
+    category: getCategoryById("social-media"),
+    icon: createIcon(
+      "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
+    ),
     views: 8750,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Schedule posts across multiple social platforms',
-      'Visual content calendar with drag-and-drop',
-      'Best time to post recommendations',
-      'Content recycling for evergreen posts',
-      'Performance analytics for scheduled content',
-      'Team collaboration tools for content approval'
-    ]
+      "Schedule posts across multiple social platforms",
+      "Visual content calendar with drag-and-drop",
+      "Best time to post recommendations",
+      "Content recycling for evergreen posts",
+      "Performance analytics for scheduled content",
+      "Team collaboration tools for content approval",
+    ],
   },
 
   // 14. Privacy & Security Tools
   {
-    id: 'password-generator-sec',
-    name: 'Password Generator',
-    description: 'Create strong, unique passwords to secure your accounts',
-    category: getCategoryById('privacy-security'),
-    icon: createIcon("M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"),
+    id: "password-generator-sec",
+    name: "Password Generator",
+    description: "Create strong, unique passwords to secure your accounts",
+    category: getCategoryById("privacy-security"),
+    icon: createIcon(
+      "M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z",
+    ),
     views: 14210,
-    gradient: 'from-red-500 to-pink-500',
+    gradient: "from-red-500 to-pink-500",
     features: [
-      'Generate secure passwords with customizable parameters',
-      'Password strength assessment',
-      'Create memorable passphrases',
-      'Password history and storage',
-      'Check passwords against breach databases',
-      'Generate password reset instructions for popular sites'
-    ]
+      "Generate secure passwords with customizable parameters",
+      "Password strength assessment",
+      "Create memorable passphrases",
+      "Password history and storage",
+      "Check passwords against breach databases",
+      "Generate password reset instructions for popular sites",
+    ],
   },
   {
-    id: 'two-factor-auth',
-    name: '2FA Tool',
-    description: 'Generate and manage two-factor authentication codes',
-    category: getCategoryById('privacy-security'),
-    icon: createIcon("M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z"),
+    id: "two-factor-auth",
+    name: "2FA Tool",
+    description: "Generate and manage two-factor authentication codes",
+    category: getCategoryById("privacy-security"),
+    icon: createIcon(
+      "M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5zm6-10.125a1.875 1.875 0 11-3.75 0 1.875 1.875 0 013.75 0zm1.294 6.336a6.721 6.721 0 01-3.17.789 6.721 6.721 0 01-3.168-.789 3.376 3.376 0 016.338 0z",
+    ),
     views: 7840,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Generate time-based one-time passwords (TOTP)',
-      'QR code scanner for adding accounts',
-      'Secure backup and sync across devices',
-      'Offline code generation',
-      'Organize accounts by categories',
-      'Recovery code management'
-    ]
+      "Generate time-based one-time passwords (TOTP)",
+      "QR code scanner for adding accounts",
+      "Secure backup and sync across devices",
+      "Offline code generation",
+      "Organize accounts by categories",
+      "Recovery code management",
+    ],
   },
 
   // 15. Email & Communication Tools
   {
-    id: 'email-verifier',
-    name: 'Email Verifier',
-    description: 'Verify email addresses for deliverability and validity',
-    category: getCategoryById('email-communication'),
-    icon: createIcon("M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"),
+    id: "email-verifier",
+    name: "Email Verifier",
+    description: "Verify email addresses for deliverability and validity",
+    category: getCategoryById("email-communication"),
+    icon: createIcon(
+      "M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75",
+    ),
     views: 9870,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: "from-green-500 to-emerald-500",
     features: [
-      'Verify email address format and syntax',
-      'Check domain DNS records and mail server',
-      'Detect disposable email addresses',
-      'Bulk verification for email lists',
-      'Remove duplicate and invalid emails',
-      'Generate verification reports with deliverability scores'
-    ]
+      "Verify email address format and syntax",
+      "Check domain DNS records and mail server",
+      "Detect disposable email addresses",
+      "Bulk verification for email lists",
+      "Remove duplicate and invalid emails",
+      "Generate verification reports with deliverability scores",
+    ],
   },
   {
-    id: 'temp-mail',
-    name: 'Temporary Email',
-    description: 'Create disposable email addresses for privacy and security',
-    category: getCategoryById('email-communication'),
-    icon: createIcon("M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859M12 3v8.25m0 0l-3-3m3 3l3-3"),
+    id: "temp-mail",
+    name: "Temporary Email",
+    description: "Create disposable email addresses for privacy and security",
+    category: getCategoryById("email-communication"),
+    icon: createIcon(
+      "M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859M12 3v8.25m0 0l-3-3m3 3l3-3",
+    ),
     views: 12480,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Create temporary email addresses instantly',
-      'Auto-refreshing inbox with real-time updates',
-      'Custom domain options for disposable emails',
-      'Download and forward received messages',
-      'Set auto-expiry for temporary addresses',
-      'No registration required for basic usage'
-    ]
+      "Create temporary email addresses instantly",
+      "Auto-refreshing inbox with real-time updates",
+      "Custom domain options for disposable emails",
+      "Download and forward received messages",
+      "Set auto-expiry for temporary addresses",
+      "No registration required for basic usage",
+    ],
   },
 
   // 16. Data Analysis & Visualization Tools
   {
-    id: 'chart-maker',
-    name: 'Chart Maker',
-    description: 'Create professional charts and graphs for data visualization',
-    category: getCategoryById('data-visualization'),
-    icon: createIcon("M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z"),
+    id: "chart-maker",
+    name: "Chart Maker",
+    description: "Create professional charts and graphs for data visualization",
+    category: getCategoryById("data-visualization"),
+    icon: createIcon(
+      "M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z",
+    ),
     views: 11250,
-    gradient: 'from-blue-500 to-cyan-500',
+    gradient: "from-blue-500 to-cyan-500",
     features: [
-      'Create various chart types (bar, line, pie, scatter, etc.)',
-      'Interactive charts with hover and zoom features',
-      'Customizable colors, fonts, and layouts',
-      'Import data from Excel, CSV, or Google Sheets',
-      'Responsive charts for websites and presentations',
-      'Export in multiple formats (PNG, SVG, PDF)'
-    ]
+      "Create various chart types (bar, line, pie, scatter, etc.)",
+      "Interactive charts with hover and zoom features",
+      "Customizable colors, fonts, and layouts",
+      "Import data from Excel, CSV, or Google Sheets",
+      "Responsive charts for websites and presentations",
+      "Export in multiple formats (PNG, SVG, PDF)",
+    ],
   },
   {
-    id: 'graph-tool',
-    name: 'Graph Tool',
-    description: 'Create and analyze graphs and networks with powerful visualization',
-    category: getCategoryById('data-visualization'),
-    icon: createIcon("M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605"),
+    id: "graph-tool",
+    name: "Graph Tool",
+    description:
+      "Create and analyze graphs and networks with powerful visualization",
+    category: getCategoryById("data-visualization"),
+    icon: createIcon(
+      "M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.148 2.148A12.061 12.061 0 0116.5 7.605",
+    ),
     views: 8320,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Create node-link diagrams and network visualizations',
-      'Analyze network properties and metrics',
-      'Interactive graph exploration tools',
-      'Support for directed and undirected graphs',
-      'Import data from various formats',
-      'Apply layout algorithms for optimal visualization'
-    ]
+      "Create node-link diagrams and network visualizations",
+      "Analyze network properties and metrics",
+      "Interactive graph exploration tools",
+      "Support for directed and undirected graphs",
+      "Import data from various formats",
+      "Apply layout algorithms for optimal visualization",
+    ],
   },
-  
+
   // 17. Website & Domain Tools
   {
-    id: 'domain-checker',
-    name: 'Domain Checker',
-    description: 'Check domain availability and registration information',
-    category: getCategoryById('website-domain'),
-    icon: createIcon("M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"),
+    id: "domain-checker",
+    name: "Domain Checker",
+    description: "Check domain availability and registration information",
+    category: getCategoryById("website-domain"),
+    icon: createIcon(
+      "M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418",
+    ),
     views: 10480,
-    gradient: 'from-amber-500 to-yellow-500',
+    gradient: "from-amber-500 to-yellow-500",
     features: [
-      'Check domain name availability across TLDs',
-      'View WHOIS information for registered domains',
-      'Domain price comparison across registrars',
-      'Bulk domain search for multiple names',
-      'Domain name suggestions and alternatives',
-      'Expiry monitoring for owned domains'
-    ]
+      "Check domain name availability across TLDs",
+      "View WHOIS information for registered domains",
+      "Domain price comparison across registrars",
+      "Bulk domain search for multiple names",
+      "Domain name suggestions and alternatives",
+      "Expiry monitoring for owned domains",
+    ],
   },
   {
-    id: 'whois-lookup',
-    name: 'WHOIS Lookup',
-    description: 'Lookup domain registration and ownership information',
-    category: getCategoryById('website-domain'),
-    icon: createIcon("M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"),
+    id: "whois-lookup",
+    name: "WHOIS Lookup",
+    description: "Lookup domain registration and ownership information",
+    category: getCategoryById("website-domain"),
+    icon: createIcon(
+      "M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z",
+    ),
     views: 8750,
-    gradient: 'from-green-500 to-teal-500',
+    gradient: "from-green-500 to-teal-500",
     features: [
-      'Access detailed domain registration information',
-      'Find domain owner and contact details',
-      'Check registration and expiry dates',
-      'View name server and DNS information',
-      'Historical WHOIS data for ownership changes',
-      'Privacy-protected domain detection'
-    ]
+      "Access detailed domain registration information",
+      "Find domain owner and contact details",
+      "Check registration and expiry dates",
+      "View name server and DNS information",
+      "Historical WHOIS data for ownership changes",
+      "Privacy-protected domain detection",
+    ],
   },
-  
+
   // 18. Network & IP Tools
   {
-    id: 'ip-lookup',
-    name: 'IP Lookup',
-    description: 'Look up detailed information about any IP address',
-    category: getCategoryById('network-ip'),
-    icon: createIcon("M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7"),
+    id: "ip-lookup",
+    name: "IP Lookup",
+    description: "Look up detailed information about any IP address",
+    category: getCategoryById("network-ip"),
+    icon: createIcon(
+      "M5.25 14.25h13.5m-13.5 0a3 3 0 01-3-3m3 3a3 3 0 100 6h13.5a3 3 0 100-6m-16.5-3a3 3 0 013-3h13.5a3 3 0 013 3m-19.5 0a4.5 4.5 0 01.9-2.7L5.737 5.1a3.375 3.375 0 012.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 01.9 2.7",
+    ),
     views: 11250,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Detailed IP information including location and ISP',
-      'Geolocation mapping of IP addresses',
-      'Abuse and spam database checking',
-      'IP reputation scoring',
-      'Reverse DNS lookup',
-      'IPv4 and IPv6 support'
-    ]
+      "Detailed IP information including location and ISP",
+      "Geolocation mapping of IP addresses",
+      "Abuse and spam database checking",
+      "IP reputation scoring",
+      "Reverse DNS lookup",
+      "IPv4 and IPv6 support",
+    ],
   },
   {
-    id: 'port-scanner',
-    name: 'Port Scanner',
-    description: 'Scan and check for open ports on a server or IP address',
-    category: getCategoryById('network-ip'),
-    icon: createIcon("M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3"),
+    id: "port-scanner",
+    name: "Port Scanner",
+    description: "Scan and check for open ports on a server or IP address",
+    category: getCategoryById("network-ip"),
+    icon: createIcon(
+      "M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3",
+    ),
     views: 8430,
-    gradient: 'from-purple-500 to-violet-500',
+    gradient: "from-purple-500 to-violet-500",
     features: [
-      'Scan common ports or custom port ranges',
-      'TCP and UDP port scanning',
-      'Service detection for open ports',
-      'Scan multiple IPs simultaneously',
-      'Port vulnerability checking',
-      'Detailed report generation'
-    ]
+      "Scan common ports or custom port ranges",
+      "TCP and UDP port scanning",
+      "Service detection for open ports",
+      "Scan multiple IPs simultaneously",
+      "Port vulnerability checking",
+      "Detailed report generation",
+    ],
   },
-  
+
   // 19. Timer & Scheduling Tools
   {
-    id: 'countdown-timer',
-    name: 'Countdown Timer',
-    description: 'Create customizable countdown timers for events and deadlines',
-    category: getCategoryById('timer-scheduling'),
+    id: "countdown-timer",
+    name: "Countdown Timer",
+    description:
+      "Create customizable countdown timers for events and deadlines",
+    category: getCategoryById("timer-scheduling"),
     icon: createIcon("M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"),
     views: 9125,
-    gradient: 'from-orange-500 to-amber-500',
+    gradient: "from-orange-500 to-amber-500",
     features: [
-      'Create multiple customizable countdown timers',
-      'Set recurring or one-time countdowns',
-      'Visual and audio alerts when timer ends',
-      'Share countdown links with others',
-      'Calendar integration for event countdowns',
-      'Countdown to specific dates and times'
-    ]
+      "Create multiple customizable countdown timers",
+      "Set recurring or one-time countdowns",
+      "Visual and audio alerts when timer ends",
+      "Share countdown links with others",
+      "Calendar integration for event countdowns",
+      "Countdown to specific dates and times",
+    ],
   },
   {
-    id: 'meeting-scheduler',
-    name: 'Meeting Scheduler',
-    description: 'Schedule meetings and appointments with availability checking',
-    category: getCategoryById('timer-scheduling'),
-    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
+    id: "meeting-scheduler",
+    name: "Meeting Scheduler",
+    description:
+      "Schedule meetings and appointments with availability checking",
+    category: getCategoryById("timer-scheduling"),
+    icon: createIcon(
+      "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
+    ),
     views: 12450,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Schedule meetings across different time zones',
-      'Availability checking with calendar integration',
-      'Automated reminder emails and notifications',
-      'Customizable meeting duration and buffer times',
-      'Group scheduling for multiple participants',
-      'Meeting link generation for video conferences'
-    ]
+      "Schedule meetings across different time zones",
+      "Availability checking with calendar integration",
+      "Automated reminder emails and notifications",
+      "Customizable meeting duration and buffer times",
+      "Group scheduling for multiple participants",
+      "Meeting link generation for video conferences",
+    ],
   },
-  
+
   // 20. Randomization Tools
   {
-    id: 'random-generator',
-    name: 'Random Generator',
-    description: 'Generate random numbers, letters, and other data',
-    category: getCategoryById('randomization'),
-    icon: createIcon("M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3"),
+    id: "random-generator",
+    name: "Random Generator",
+    description: "Generate random numbers, letters, and other data",
+    category: getCategoryById("randomization"),
+    icon: createIcon(
+      "M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3",
+    ),
     views: 10760,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: "from-green-500 to-emerald-500",
     features: [
-      'Generate random numbers in custom ranges',
-      'Create random passwords and strings',
-      'Random list item selection and shuffling',
-      'Dice roller with customizable dice types',
-      'Random data generation (names, addresses, etc.)',
-      'Lottery number generator with historical patterns'
-    ]
+      "Generate random numbers in custom ranges",
+      "Create random passwords and strings",
+      "Random list item selection and shuffling",
+      "Dice roller with customizable dice types",
+      "Random data generation (names, addresses, etc.)",
+      "Lottery number generator with historical patterns",
+    ],
   },
   {
-    id: 'card-shuffler',
-    name: 'Card Shuffler',
-    description: 'Shuffle and draw cards for games and simulations',
-    category: getCategoryById('randomization'),
-    icon: createIcon("M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z"),
+    id: "card-shuffler",
+    name: "Card Shuffler",
+    description: "Shuffle and draw cards for games and simulations",
+    category: getCategoryById("randomization"),
+    icon: createIcon(
+      "M16.5 6v.75m0 3v.75m0 3v.75m0 3V18m-9-5.25h5.25M7.5 15h3M3.375 5.25c-.621 0-1.125.504-1.125 1.125v3.026a2.999 2.999 0 010 5.198v3.026c0 .621.504 1.125 1.125 1.125h17.25c.621 0 1.125-.504 1.125-1.125v-3.026a2.999 2.999 0 010-5.198V6.375c0-.621-.504-1.125-1.125-1.125H3.375z",
+    ),
     views: 7830,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Shuffle standard playing card decks',
-      'Create and shuffle custom card decks',
-      'Draw random cards with or without replacement',
-      'Deal cards to multiple players',
-      'Save and load custom deck configurations',
-      'Statistical analysis of card distribution'
-    ]
+      "Shuffle standard playing card decks",
+      "Create and shuffle custom card decks",
+      "Draw random cards with or without replacement",
+      "Deal cards to multiple players",
+      "Save and load custom deck configurations",
+      "Statistical analysis of card distribution",
+    ],
   },
-  
+
   // 21. Fake Data & Identity Tools
   {
-    id: 'fake-data-generator',
-    name: 'Fake Data Generator',
-    description: 'Generate realistic fake data for testing and development',
-    category: getCategoryById('fake-data'),
-    icon: createIcon("M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122"),
+    id: "fake-data-generator",
+    name: "Fake Data Generator",
+    description: "Generate realistic fake data for testing and development",
+    category: getCategoryById("fake-data"),
+    icon: createIcon(
+      "M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122",
+    ),
     views: 14320,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Generate realistic personal data (names, addresses, etc.)',
-      'Create mock data in various formats (JSON, CSV, SQL)',
-      'Custom data templates with specific fields',
-      'Bulk data generation with thousands of records',
-      'Region-specific data generation',
-      'Data export and API integration options'
-    ]
+      "Generate realistic personal data (names, addresses, etc.)",
+      "Create mock data in various formats (JSON, CSV, SQL)",
+      "Custom data templates with specific fields",
+      "Bulk data generation with thousands of records",
+      "Region-specific data generation",
+      "Data export and API integration options",
+    ],
   },
   {
-    id: 'test-credit-card',
-    name: 'Test Credit Card Generator',
-    description: 'Generate valid test credit card numbers for development',
-    category: getCategoryById('fake-data'),
-    icon: createIcon("M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"),
+    id: "test-credit-card",
+    name: "Test Credit Card Generator",
+    description: "Generate valid test credit card numbers for development",
+    category: getCategoryById("fake-data"),
+    icon: createIcon(
+      "M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z",
+    ),
     views: 10240,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Generate valid test credit card numbers for all major networks',
-      'Create numbers that pass Luhn algorithm validation',
-      'Generate matching CVV and expiration dates',
-      'Support for specific BIN ranges',
-      'Test data for payment gateway development',
-      'No real credit card numbers are ever generated'
-    ]
+      "Generate valid test credit card numbers for all major networks",
+      "Create numbers that pass Luhn algorithm validation",
+      "Generate matching CVV and expiration dates",
+      "Support for specific BIN ranges",
+      "Test data for payment gateway development",
+      "No real credit card numbers are ever generated",
+    ],
   },
-  
+
   // 22. QR Code & Barcode Tools
   {
-    id: 'qr-generator',
-    name: 'QR Code Generator',
-    description: 'Create customizable QR codes for links, text, and more',
-    category: getCategoryById('qrcode-barcode'),
-    icon: createIcon("M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z"),
+    id: "qr-generator",
+    name: "QR Code Generator",
+    description: "Create customizable QR codes for links, text, and more",
+    category: getCategoryById("qrcode-barcode"),
+    icon: createIcon(
+      "M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z",
+    ),
     views: 15870,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Generate QR codes for URLs, text, vCards, and more',
-      'Customize QR code color and style',
-      'Add logos to the center of QR codes',
-      'Error correction level adjustment',
-      'Download QR codes in various formats (PNG, SVG, PDF)',
-      'Batch QR code generation'
-    ]
+      "Generate QR codes for URLs, text, vCards, and more",
+      "Customize QR code color and style",
+      "Add logos to the center of QR codes",
+      "Error correction level adjustment",
+      "Download QR codes in various formats (PNG, SVG, PDF)",
+      "Batch QR code generation",
+    ],
   },
   {
-    id: 'barcode-generator',
-    name: 'Barcode Generator',
-    description: 'Create barcodes in multiple formats for products and inventory',
-    category: getCategoryById('qrcode-barcode'),
-    icon: createIcon("M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5z"),
+    id: "barcode-generator",
+    name: "Barcode Generator",
+    description:
+      "Create barcodes in multiple formats for products and inventory",
+    category: getCategoryById("qrcode-barcode"),
+    icon: createIcon(
+      "M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5z",
+    ),
     views: 9430,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Generate barcodes in multiple formats (EAN, UPC, CODE128, etc.)',
-      'Add text labels and customize barcode appearance',
-      'Verify barcode validity and readability',
-      'Batch barcode generation with sequential numbering',
-      'Download barcodes in various formats (PNG, SVG, PDF)',
-      'Generate barcodes for product and inventory management'
-    ]
+      "Generate barcodes in multiple formats (EAN, UPC, CODE128, etc.)",
+      "Add text labels and customize barcode appearance",
+      "Verify barcode validity and readability",
+      "Batch barcode generation with sequential numbering",
+      "Download barcodes in various formats (PNG, SVG, PDF)",
+      "Generate barcodes for product and inventory management",
+    ],
   },
-  
+
   // 23. Education & Learning Tools
   {
-    id: 'flashcard-maker',
-    name: 'Flashcard Maker',
-    description: 'Create and study digital flashcards for effective learning',
-    category: getCategoryById('education-learning'),
-    icon: createIcon("M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"),
+    id: "flashcard-maker",
+    name: "Flashcard Maker",
+    description: "Create and study digital flashcards for effective learning",
+    category: getCategoryById("education-learning"),
+    icon: createIcon(
+      "M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25",
+    ),
     views: 12760,
-    gradient: 'from-green-500 to-teal-500',
+    gradient: "from-green-500 to-teal-500",
     features: [
-      'Create digital flashcards with text, images, and audio',
-      'Organize flashcards into decks and categories',
-      'Study with spaced repetition learning algorithms',
-      'Track learning progress and statistics',
-      'Import and export flashcards in various formats',
-      'Collaborative study with shared decks'
-    ]
+      "Create digital flashcards with text, images, and audio",
+      "Organize flashcards into decks and categories",
+      "Study with spaced repetition learning algorithms",
+      "Track learning progress and statistics",
+      "Import and export flashcards in various formats",
+      "Collaborative study with shared decks",
+    ],
   },
   {
-    id: 'study-timer',
-    name: 'Study Timer',
-    description: 'Focus timer with Pomodoro technique for efficient studying',
-    category: getCategoryById('education-learning'),
+    id: "study-timer",
+    name: "Study Timer",
+    description: "Focus timer with Pomodoro technique for efficient studying",
+    category: getCategoryById("education-learning"),
     icon: createIcon("M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"),
     views: 8950,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Pomodoro technique timer with customizable intervals',
-      'Track study sessions and breaks',
-      'Task planning and organization',
-      'Statistics and insights on study habits',
-      'Focus mode with website blocking',
-      'Sound notifications and alarms'
-    ]
+      "Pomodoro technique timer with customizable intervals",
+      "Track study sessions and breaks",
+      "Task planning and organization",
+      "Statistics and insights on study habits",
+      "Focus mode with website blocking",
+      "Sound notifications and alarms",
+    ],
   },
-  
+
   // 24. Audio & Music Tools
   {
-    id: 'audio-converter',
-    name: 'Audio Converter',
-    description: 'Convert audio files between different formats',
-    category: getCategoryById('audio-music'),
-    icon: createIcon("M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"),
+    id: "audio-converter",
+    name: "Audio Converter",
+    description: "Convert audio files between different formats",
+    category: getCategoryById("audio-music"),
+    icon: createIcon(
+      "M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z",
+    ),
     views: 11450,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Convert between MP3, WAV, FLAC, AAC, and other formats',
-      'Adjust bitrate and audio quality settings',
-      'Batch conversion for multiple files',
-      'Extract audio from video files',
-      'Apply basic audio effects and normalization',
-      'ID3 tag editor for music files'
-    ]
+      "Convert between MP3, WAV, FLAC, AAC, and other formats",
+      "Adjust bitrate and audio quality settings",
+      "Batch conversion for multiple files",
+      "Extract audio from video files",
+      "Apply basic audio effects and normalization",
+      "ID3 tag editor for music files",
+    ],
   },
   {
-    id: 'audio-editor',
-    name: 'Audio Editor',
-    description: 'Edit and enhance audio files with various tools',
-    category: getCategoryById('audio-music'),
-    icon: createIcon("M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"),
+    id: "audio-editor",
+    name: "Audio Editor",
+    description: "Edit and enhance audio files with various tools",
+    category: getCategoryById("audio-music"),
+    icon: createIcon(
+      "M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z",
+    ),
     views: 9780,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Cut, trim, and merge audio files',
-      'Apply effects like fade, echo, and reverb',
-      'Noise reduction and audio enhancement',
-      'Multi-track editing and mixing',
-      'Waveform visualization and analysis',
-      'Audio recording with microphone input'
-    ]
+      "Cut, trim, and merge audio files",
+      "Apply effects like fade, echo, and reverb",
+      "Noise reduction and audio enhancement",
+      "Multi-track editing and mixing",
+      "Waveform visualization and analysis",
+      "Audio recording with microphone input",
+    ],
   },
-  
+
   // 25. Video Tools
   {
-    id: 'video-converter',
-    name: 'Video Converter',
-    description: 'Convert videos between different formats and resolutions',
-    category: getCategoryById('video-tools'),
-    icon: createIcon("M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M12 18.75H4.5a2.25 2.25 0 01-2.25-2.25V9m12.841 9.091L16.5 19.5m-1.409-1.409c.407-.407.659-.97.659-1.591v-9a2.25 2.25 0 00-2.25-2.25h-9c-.621 0-1.184.252-1.591.659m12.182 12.182L2.909 5.909M1.5 4.5l1.409 1.409"),
+    id: "video-converter",
+    name: "Video Converter",
+    description: "Convert videos between different formats and resolutions",
+    category: getCategoryById("video-tools"),
+    icon: createIcon(
+      "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M12 18.75H4.5a2.25 2.25 0 01-2.25-2.25V9m12.841 9.091L16.5 19.5m-1.409-1.409c.407-.407.659-.97.659-1.591v-9a2.25 2.25 0 00-2.25-2.25h-9c-.621 0-1.184.252-1.591.659m12.182 12.182L2.909 5.909M1.5 4.5l1.409 1.409",
+    ),
     views: 14250,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Convert between MP4, AVI, MOV, MKV, and other formats',
-      'Change video resolution and quality',
-      'Compress videos to reduce file size',
-      'Extract audio from video files',
-      'Batch conversion for multiple videos',
-      'Custom output settings for specific devices'
-    ]
+      "Convert between MP4, AVI, MOV, MKV, and other formats",
+      "Change video resolution and quality",
+      "Compress videos to reduce file size",
+      "Extract audio from video files",
+      "Batch conversion for multiple videos",
+      "Custom output settings for specific devices",
+    ],
   },
   {
-    id: 'video-editor',
-    name: 'Video Editor',
-    description: 'Edit videos with basic trimming, cropping, and effects',
-    category: getCategoryById('video-tools'),
-    icon: createIcon("M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 0h-17.25m0 0h-1.5c-.621 0-1.125.504-1.125 1.125m0 0h1.5m-1.5 0V5.625m0 0c0-.621.504-1.125 1.125-1.125h17.25c.621 0 1.125.504 1.125 1.125m-17.25 0h17.25m-17.25 0h-1.5m17.25 0h-1.5m-16.5 11.25c0 .621.504 1.125 1.125 1.125h15.75c.621 0 1.125-.504 1.125-1.125v-7.5c0-.621-.504-1.125-1.125-1.125h-15.75c-.621 0-1.125.504-1.125 1.125v7.5z"),
+    id: "video-editor",
+    name: "Video Editor",
+    description: "Edit videos with basic trimming, cropping, and effects",
+    category: getCategoryById("video-tools"),
+    icon: createIcon(
+      "M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 01-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 0h-17.25m0 0h-1.5c-.621 0-1.125.504-1.125 1.125m0 0h1.5m-1.5 0V5.625m0 0c0-.621.504-1.125 1.125-1.125h17.25c.621 0 1.125.504 1.125 1.125m-17.25 0h17.25m-17.25 0h-1.5m17.25 0h-1.5m-16.5 11.25c0 .621.504 1.125 1.125 1.125h15.75c.621 0 1.125-.504 1.125-1.125v-7.5c0-.621-.504-1.125-1.125-1.125h-15.75c-.621 0-1.125.504-1.125 1.125v7.5z",
+    ),
     views: 12340,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Trim and cut video clips',
-      'Crop and resize video frames',
-      'Add text overlays and captions',
-      'Apply filters and visual effects',
-      'Merge multiple video clips',
-      'Add background music and adjust audio'
-    ]
+      "Trim and cut video clips",
+      "Crop and resize video frames",
+      "Add text overlays and captions",
+      "Apply filters and visual effects",
+      "Merge multiple video clips",
+      "Add background music and adjust audio",
+    ],
   },
-  
+
   // 26. Screen & Webcam Tools
   {
-    id: 'screen-recorder',
-    name: 'Screen Recorder',
-    description: 'Record your screen for tutorials and demonstrations',
-    category: getCategoryById('screen-webcam'),
-    icon: createIcon("M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z"),
+    id: "screen-recorder",
+    name: "Screen Recorder",
+    description: "Record your screen for tutorials and demonstrations",
+    category: getCategoryById("screen-webcam"),
+    icon: createIcon(
+      "M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125z",
+    ),
     views: 13570,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: "from-green-500 to-emerald-500",
     features: [
-      'Record screen with audio narration',
-      'Capture specific windows or applications',
-      'Select screen area for recording',
-      'Show mouse clicks and keystrokes',
-      'Export in multiple formats and qualities',
-      'Schedule automated recordings'
-    ]
+      "Record screen with audio narration",
+      "Capture specific windows or applications",
+      "Select screen area for recording",
+      "Show mouse clicks and keystrokes",
+      "Export in multiple formats and qualities",
+      "Schedule automated recordings",
+    ],
   },
   {
-    id: 'webcam-tools',
-    name: 'Webcam Tools',
-    description: 'Capture, enhance, and apply effects to webcam video',
-    category: getCategoryById('screen-webcam'),
-    icon: createIcon("M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"),
+    id: "webcam-tools",
+    name: "Webcam Tools",
+    description: "Capture, enhance, and apply effects to webcam video",
+    category: getCategoryById("screen-webcam"),
+    icon: createIcon(
+      "M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z",
+    ),
     views: 8430,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Webcam recording and photo capture',
-      'Apply filters and effects in real-time',
-      'Virtual backgrounds and green screen effects',
-      'Adjust brightness, contrast, and color balance',
-      'Face tracking and augmented reality features',
-      'Time-lapse and stop motion recording'
-    ]
+      "Webcam recording and photo capture",
+      "Apply filters and effects in real-time",
+      "Virtual backgrounds and green screen effects",
+      "Adjust brightness, contrast, and color balance",
+      "Face tracking and augmented reality features",
+      "Time-lapse and stop motion recording",
+    ],
   },
-  
+
   // 27. Language & Translation Tools
   {
-    id: 'translator',
-    name: 'Text Translator',
-    description: 'Translate text between multiple languages',
-    category: getCategoryById('language-translation'),
-    icon: createIcon("M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802"),
+    id: "translator",
+    name: "Text Translator",
+    description: "Translate text between multiple languages",
+    category: getCategoryById("language-translation"),
+    icon: createIcon(
+      "M10.5 21l5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 016-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 01-3.827-5.802",
+    ),
     views: 15980,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Translate text between 100+ languages',
-      'Auto-detect source language',
-      'Text-to-speech pronunciation',
-      'Offline translation for common languages',
-      'Save and organize translation history',
-      'OCR translation from images'
-    ]
+      "Translate text between 100+ languages",
+      "Auto-detect source language",
+      "Text-to-speech pronunciation",
+      "Offline translation for common languages",
+      "Save and organize translation history",
+      "OCR translation from images",
+    ],
   },
   {
-    id: 'language-detector',
-    name: 'Language Detector',
-    description: 'Automatically identify the language of any text',
-    category: getCategoryById('language-translation'),
-    icon: createIcon("M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"),
+    id: "language-detector",
+    name: "Language Detector",
+    description: "Automatically identify the language of any text",
+    category: getCategoryById("language-translation"),
+    icon: createIcon(
+      "M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z",
+    ),
     views: 7650,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Identify language from text samples',
-      'Support for 170+ languages',
-      'Confidence score for language detection',
-      'Detect multiple languages in the same text',
-      'Statistical analysis of language probability',
-      'Batch processing for multiple texts'
-    ]
+      "Identify language from text samples",
+      "Support for 170+ languages",
+      "Confidence score for language detection",
+      "Detect multiple languages in the same text",
+      "Statistical analysis of language probability",
+      "Batch processing for multiple texts",
+    ],
   },
-  
+
   // 28. Measurement Tools
   {
-    id: 'ruler',
-    name: 'Online Ruler',
-    description: 'Measure physical objects using your screen',
-    category: getCategoryById('measurement'),
-    icon: createIcon("M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5"),
+    id: "ruler",
+    name: "Online Ruler",
+    description: "Measure physical objects using your screen",
+    category: getCategoryById("measurement"),
+    icon: createIcon(
+      "M6 13.5V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m12-3V3.75m0 9.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 3.75V16.5m-6-9V3.75m0 3.75a1.5 1.5 0 010 3m0-3a1.5 1.5 0 000 3m0 9.75V10.5",
+    ),
     views: 9870,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Screen calibration for accurate measurements',
-      'Metric and imperial units',
-      'Multiple ruler types (straight, angle, protractor)',
-      'Customizable ruler size and appearance',
-      'Save measurements with annotations',
-      'Camera-based measurement with reference object'
-    ]
+      "Screen calibration for accurate measurements",
+      "Metric and imperial units",
+      "Multiple ruler types (straight, angle, protractor)",
+      "Customizable ruler size and appearance",
+      "Save measurements with annotations",
+      "Camera-based measurement with reference object",
+    ],
   },
   {
-    id: 'screen-measurer',
-    name: 'Screen Measurer',
-    description: 'Measure distances and angles on your screen',
-    category: getCategoryById('measurement'),
-    icon: createIcon("M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z"),
+    id: "screen-measurer",
+    name: "Screen Measurer",
+    description: "Measure distances and angles on your screen",
+    category: getCategoryById("measurement"),
+    icon: createIcon(
+      "M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z",
+    ),
     views: 7850,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Measure pixel distances on screen',
-      'Calculate angles between points',
-      'Color picking at measurement points',
-      'Grid overlay for precise alignment',
-      'Screenshot capability with measurements',
-      'Responsive design measurements for web development'
-    ]
+      "Measure pixel distances on screen",
+      "Calculate angles between points",
+      "Color picking at measurement points",
+      "Grid overlay for precise alignment",
+      "Screenshot capability with measurements",
+      "Responsive design measurements for web development",
+    ],
   },
-  
+
   // 29. Health & Fitness Tools
   {
-    id: 'bmi-calculator-health',
-    name: 'BMI Calculator',
-    description: 'Calculate your Body Mass Index and understand your results',
-    category: getCategoryById('health'),
-    icon: createIcon("M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"),
+    id: "bmi-calculator-health",
+    name: "BMI Calculator",
+    description: "Calculate your Body Mass Index and understand your results",
+    category: getCategoryById("health"),
+    icon: createIcon(
+      "M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z",
+    ),
     views: 12450,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Calculate BMI with metric or imperial units',
-      'Personalized weight category assessment',
-      'Body fat percentage estimation',
-      'Track BMI changes over time',
-      'Recommended weight ranges for your height',
-      'Health insights based on your BMI'
-    ]
+      "Calculate BMI with metric or imperial units",
+      "Personalized weight category assessment",
+      "Body fat percentage estimation",
+      "Track BMI changes over time",
+      "Recommended weight ranges for your height",
+      "Health insights based on your BMI",
+    ],
   },
   {
-    id: 'calorie-calculator',
-    name: 'Calorie Calculator',
-    description: 'Calculate daily calorie needs based on your profile',
-    category: getCategoryById('health'),
-    icon: createIcon("M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z"),
+    id: "calorie-calculator",
+    name: "Calorie Calculator",
+    description: "Calculate daily calorie needs based on your profile",
+    category: getCategoryById("health"),
+    icon: createIcon(
+      "M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z",
+    ),
     views: 10980,
-    gradient: 'from-green-500 to-emerald-500',
+    gradient: "from-green-500 to-emerald-500",
     features: [
-      'Calculate basal metabolic rate (BMR)',
-      'Determine daily calorie needs based on activity level',
-      'Weight loss and gain calorie targets',
-      'Macronutrient distribution recommendations',
-      'Meal planning suggestions',
-      'Calorie tracking with food database'
-    ]
+      "Calculate basal metabolic rate (BMR)",
+      "Determine daily calorie needs based on activity level",
+      "Weight loss and gain calorie targets",
+      "Macronutrient distribution recommendations",
+      "Meal planning suggestions",
+      "Calorie tracking with food database",
+    ],
   },
-  
+
   // 30. Finance & Budget Tools
   {
-    id: 'budget-calculator',
-    name: 'Budget Calculator',
-    description: 'Create and manage your personal or business budget',
-    category: getCategoryById('finance'),
-    icon: createIcon("M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"),
+    id: "budget-calculator",
+    name: "Budget Calculator",
+    description: "Create and manage your personal or business budget",
+    category: getCategoryById("finance"),
+    icon: createIcon(
+      "M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    ),
     views: 14520,
-    gradient: 'from-cyan-500 to-blue-500',
+    gradient: "from-cyan-500 to-blue-500",
     features: [
-      'Create detailed income and expense budgets',
-      'Track spending across categories',
-      'Set financial goals and track progress',
-      'Generate budget reports and insights',
-      'Forecast future financial scenarios',
-      'Export budgets to Excel or PDF'
-    ]
+      "Create detailed income and expense budgets",
+      "Track spending across categories",
+      "Set financial goals and track progress",
+      "Generate budget reports and insights",
+      "Forecast future financial scenarios",
+      "Export budgets to Excel or PDF",
+    ],
   },
   {
-    id: 'mortgage-calculator',
-    name: 'Mortgage Calculator',
-    description: 'Calculate mortgage payments and amortization schedules',
-    category: getCategoryById('finance'),
-    icon: createIcon("M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"),
+    id: "mortgage-calculator",
+    name: "Mortgage Calculator",
+    description: "Calculate mortgage payments and amortization schedules",
+    category: getCategoryById("finance"),
+    icon: createIcon(
+      "M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25",
+    ),
     views: 12350,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Calculate monthly mortgage payments',
-      'Generate complete amortization schedules',
-      'Compare different loan terms and rates',
-      'Include property taxes and insurance',
-      'Early payoff and refinancing calculators',
-      'Affordability analysis based on income'
-    ]
+      "Calculate monthly mortgage payments",
+      "Generate complete amortization schedules",
+      "Compare different loan terms and rates",
+      "Include property taxes and insurance",
+      "Early payoff and refinancing calculators",
+      "Affordability analysis based on income",
+    ],
   },
-  
+
   // 31. Legal & Policy Tools
   {
-    id: 'privacy-policy-generator',
-    name: 'Privacy Policy Generator',
-    description: 'Create a customized privacy policy for your website or app',
-    category: getCategoryById('legal-policy'),
-    icon: createIcon("M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"),
+    id: "privacy-policy-generator",
+    name: "Privacy Policy Generator",
+    description: "Create a customized privacy policy for your website or app",
+    category: getCategoryById("legal-policy"),
+    icon: createIcon(
+      "M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z",
+    ),
     views: 9540,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Generate GDPR and CCPA compliant privacy policies',
-      'Customized for websites, apps, and businesses',
-      'Legal clause templates for specific industries',
-      'Update notifications for privacy law changes',
-      'Multiple language versions available',
-      'Export in HTML, PDF, or Word formats'
-    ]
+      "Generate GDPR and CCPA compliant privacy policies",
+      "Customized for websites, apps, and businesses",
+      "Legal clause templates for specific industries",
+      "Update notifications for privacy law changes",
+      "Multiple language versions available",
+      "Export in HTML, PDF, or Word formats",
+    ],
   },
   {
-    id: 'terms-generator',
-    name: 'Terms & Conditions Generator',
-    description: 'Create legal terms and conditions for websites and apps',
-    category: getCategoryById('legal-policy'),
-    icon: createIcon("M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"),
+    id: "terms-generator",
+    name: "Terms & Conditions Generator",
+    description: "Create legal terms and conditions for websites and apps",
+    category: getCategoryById("legal-policy"),
+    icon: createIcon(
+      "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z",
+    ),
     views: 8230,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Generate legally-sound terms and conditions',
-      'Customized for websites, apps, and e-commerce',
-      'Include specific clauses based on your business',
-      'User-friendly questionnaire for policy creation',
-      'Regular updates for changing legal requirements',
-      'Export in multiple formats (HTML, PDF, Word)'
-    ]
+      "Generate legally-sound terms and conditions",
+      "Customized for websites, apps, and e-commerce",
+      "Include specific clauses based on your business",
+      "User-friendly questionnaire for policy creation",
+      "Regular updates for changing legal requirements",
+      "Export in multiple formats (HTML, PDF, Word)",
+    ],
   },
-  
+
   // 32. E-commerce & Product Tools
   {
-    id: 'product-description-generator',
-    name: 'Product Description Generator',
-    description: 'Create compelling product descriptions for e-commerce',
-    category: getCategoryById('ecommerce-product'),
-    icon: createIcon("M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"),
+    id: "product-description-generator",
+    name: "Product Description Generator",
+    description: "Create compelling product descriptions for e-commerce",
+    category: getCategoryById("ecommerce-product"),
+    icon: createIcon(
+      "M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z",
+    ),
     views: 11250,
-    gradient: 'from-green-500 to-teal-500',
+    gradient: "from-green-500 to-teal-500",
     features: [
-      'Generate SEO-optimized product descriptions',
-      'Customize tone and style for your brand',
-      'Create variations for different marketplaces',
-      'Highlight key product features automatically',
-      'Support for multiple product categories',
-      'Bulk generation for product catalogs'
-    ]
+      "Generate SEO-optimized product descriptions",
+      "Customize tone and style for your brand",
+      "Create variations for different marketplaces",
+      "Highlight key product features automatically",
+      "Support for multiple product categories",
+      "Bulk generation for product catalogs",
+    ],
   },
   {
-    id: 'price-calculator',
-    name: 'Pricing Calculator',
-    description: 'Calculate optimal pricing for products and services',
-    category: getCategoryById('ecommerce-product'),
-    icon: createIcon("M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z"),
+    id: "price-calculator",
+    name: "Pricing Calculator",
+    description: "Calculate optimal pricing for products and services",
+    category: getCategoryById("ecommerce-product"),
+    icon: createIcon(
+      "M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    ),
     views: 9430,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Calculate profit margins and breakeven points',
-      'Compare different pricing strategies',
-      'Factor in costs, overhead, and competition',
-      'Analyze price elasticity and market sensitivity',
-      'Create tiered pricing models',
-      'Seasonal pricing adjustments calculator'
-    ]
+      "Calculate profit margins and breakeven points",
+      "Compare different pricing strategies",
+      "Factor in costs, overhead, and competition",
+      "Analyze price elasticity and market sensitivity",
+      "Create tiered pricing models",
+      "Seasonal pricing adjustments calculator",
+    ],
   },
-  
+
   // 33. Blogging & Publishing Tools
   {
-    id: 'blog-title-generator',
-    name: 'Blog Title Generator',
-    description: 'Generate engaging titles for blog posts and articles',
-    category: getCategoryById('blogging-publishing'),
-    icon: createIcon("M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"),
+    id: "blog-title-generator",
+    name: "Blog Title Generator",
+    description: "Generate engaging titles for blog posts and articles",
+    category: getCategoryById("blogging-publishing"),
+    icon: createIcon(
+      "M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10",
+    ),
     views: 13570,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Generate attention-grabbing blog titles',
-      'Optimize titles for SEO and click-through rates',
-      'Create variations with different emotional appeals',
-      'Analyze title effectiveness with scoring',
-      'Generate titles based on keywords or topics',
-      'Title A/B testing suggestions'
-    ]
+      "Generate attention-grabbing blog titles",
+      "Optimize titles for SEO and click-through rates",
+      "Create variations with different emotional appeals",
+      "Analyze title effectiveness with scoring",
+      "Generate titles based on keywords or topics",
+      "Title A/B testing suggestions",
+    ],
   },
   {
-    id: 'content-calendar',
-    name: 'Content Calendar',
-    description: 'Plan and schedule your content publishing strategy',
-    category: getCategoryById('blogging-publishing'),
-    icon: createIcon("M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"),
+    id: "content-calendar",
+    name: "Content Calendar",
+    description: "Plan and schedule your content publishing strategy",
+    category: getCategoryById("blogging-publishing"),
+    icon: createIcon(
+      "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
+    ),
     views: 8950,
-    gradient: 'from-pink-500 to-rose-500',
+    gradient: "from-pink-500 to-rose-500",
     features: [
-      'Plan content publishing across multiple platforms',
-      'Visual calendar interface with drag-and-drop',
-      'Content categorization and tagging',
-      'Team collaboration for content creation',
-      'Analytics integration for performance tracking',
-      'Content idea bank and topic clustering'
-    ]
+      "Plan content publishing across multiple platforms",
+      "Visual calendar interface with drag-and-drop",
+      "Content categorization and tagging",
+      "Team collaboration for content creation",
+      "Analytics integration for performance tracking",
+      "Content idea bank and topic clustering",
+    ],
   },
-  
+
   // 34. Game & Entertainment Tools
   {
-    id: 'dice-roller',
-    name: 'Dice Roller',
-    description: 'Virtual dice roller for games and random number generation',
-    category: getCategoryById('game-entertainment'),
-    icon: createIcon("M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"),
+    id: "dice-roller",
+    name: "Dice Roller",
+    description: "Virtual dice roller for games and random number generation",
+    category: getCategoryById("game-entertainment"),
+    icon: createIcon(
+      "M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9",
+    ),
     views: 10480,
-    gradient: 'from-amber-500 to-orange-500',
+    gradient: "from-amber-500 to-orange-500",
     features: [
-      'Roll various dice types (d4, d6, d8, d10, d12, d20, etc.)',
-      'Custom dice with specific number ranges',
-      'Dice combinations with modifiers',
-      'Save favorite dice combinations',
-      'Statistical analysis of roll results',
-      'Visual 3D dice animation'
-    ]
+      "Roll various dice types (d4, d6, d8, d10, d12, d20, etc.)",
+      "Custom dice with specific number ranges",
+      "Dice combinations with modifiers",
+      "Save favorite dice combinations",
+      "Statistical analysis of roll results",
+      "Visual 3D dice animation",
+    ],
   },
   {
-    id: 'random-name-picker',
-    name: 'Random Name Picker',
-    description: 'Pick random names from a list for contests and selections',
-    category: getCategoryById('game-entertainment'),
-    icon: createIcon("M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"),
+    id: "random-name-picker",
+    name: "Random Name Picker",
+    description: "Pick random names from a list for contests and selections",
+    category: getCategoryById("game-entertainment"),
+    icon: createIcon(
+      "M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z",
+    ),
     views: 7850,
-    gradient: 'from-green-500 to-teal-500',
+    gradient: "from-green-500 to-teal-500",
     features: [
-      'Random selection from lists of names',
-      'Spinning wheel animation for selection',
-      'Exclude previously selected entries option',
-      'Import names from text or CSV files',
-      'Team generator with balanced groups',
-      'Drawing order randomizer'
-    ]
+      "Random selection from lists of names",
+      "Spinning wheel animation for selection",
+      "Exclude previously selected entries option",
+      "Import names from text or CSV files",
+      "Team generator with balanced groups",
+      "Drawing order randomizer",
+    ],
   },
-  
+
   // 35. Resume & Career Tools
   {
-    id: 'resume-builder',
-    name: 'Resume Builder',
-    description: 'Create professional resumes with customizable templates',
-    category: getCategoryById('resume-career'),
-    icon: createIcon("M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"),
+    id: "resume-builder",
+    name: "Resume Builder",
+    description: "Create professional resumes with customizable templates",
+    category: getCategoryById("resume-career"),
+    icon: createIcon(
+      "M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m6.75 12H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z",
+    ),
     views: 15830,
-    gradient: 'from-blue-500 to-indigo-500',
+    gradient: "from-blue-500 to-indigo-500",
     features: [
-      'Professional resume templates with customization',
-      'ATS-friendly formatting options',
-      'Content suggestions for different job roles',
-      'Skills database for relevant keyword inclusion',
-      'Export to PDF, Word, or HTML formats',
-      'Achievement statement generator'
-    ]
+      "Professional resume templates with customization",
+      "ATS-friendly formatting options",
+      "Content suggestions for different job roles",
+      "Skills database for relevant keyword inclusion",
+      "Export to PDF, Word, or HTML formats",
+      "Achievement statement generator",
+    ],
   },
   {
-    id: 'job-interview',
-    name: 'Interview Question Generator',
-    description: 'Prepare for job interviews with practice questions',
-    category: getCategoryById('resume-career'),
-    icon: createIcon("M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"),
+    id: "job-interview",
+    name: "Interview Question Generator",
+    description: "Prepare for job interviews with practice questions",
+    category: getCategoryById("resume-career"),
+    icon: createIcon(
+      "M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155",
+    ),
     views: 12460,
-    gradient: 'from-violet-500 to-purple-500',
+    gradient: "from-violet-500 to-purple-500",
     features: [
-      'Generate interview questions by job role and industry',
-      'Common and behavioral question libraries',
-      'STAR method answer framework guidance',
-      'Interview question and answer practice mode',
-      'Industry-specific technical question database',
-      'Record and review practice answers'
-    ]
-  }
+      "Generate interview questions by job role and industry",
+      "Common and behavioral question libraries",
+      "STAR method answer framework guidance",
+      "Interview question and answer practice mode",
+      "Industry-specific technical question database",
+      "Record and review practice answers",
+    ],
+  },
 ];
