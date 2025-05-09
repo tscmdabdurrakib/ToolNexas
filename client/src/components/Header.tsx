@@ -68,7 +68,7 @@ export function Header() {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-border py-4 bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-5 duration-300">
           <div className="container mx-auto px-4 space-y-4">
-            <SearchBar />
+            <SearchBar onSearchSubmit={() => setMobileMenuOpen(false)} />
 
             <div className="grid grid-cols-2 gap-3">
               <Button 

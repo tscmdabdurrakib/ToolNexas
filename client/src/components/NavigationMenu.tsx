@@ -19,10 +19,20 @@ export function MainNavigationMenu() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [_location, setLocation] = useLocation();
 
-  // Show back to top button when scrolled down 300px
+  // Show back to top button when scrolled down 200px 
+  // Only display at the bottom of the page
   useEffect(() => {
     const handleScroll = () => {
-      setShowBackToTop(window.scrollY > 300);
+      // Check if we've scrolled at least 200px
+      const isScrolled = window.scrollY > 200;
+      
+      // Calculate if we're near the bottom (within 1500px of bottom)
+      const nearBottom = 
+        window.innerHeight + window.scrollY > 
+        document.body.offsetHeight - 1500;
+      
+      // Only show when scrolled AND near the bottom of the page
+      setShowBackToTop(isScrolled && nearBottom);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -56,44 +66,24 @@ export function MainNavigationMenu() {
             <NavigationMenuItem>
               <NavigationMenuTrigger className="bg-background hover:bg-secondary">Browse Categories</NavigationMenuTrigger>
               <NavigationMenuContent className="z-50">
-                <div className="grid w-[800px] grid-cols-3 gap-3 p-4">
+                <div className="grid w-[800px] max-h-[500px] overflow-y-auto custom-scrollbar grid-cols-3 gap-3 p-4">
                   {categories.map((category) => (
                     <NavigationMenuItem key={category.id} className="row-span-1">
-                      <NavigationMenuTrigger className="mb-1 w-full justify-between">
+                      <div 
+                        onClick={() => setLocation(`/category/${category.id}`)}
+                        className={cn(
+                          "flex items-center justify-between w-full p-3 rounded-lg cursor-pointer",
+                          "bg-card hover:bg-secondary/70 transition-colors"
+                        )}
+                      >
                         <div className="flex items-center">
                           <span className={cn("mr-2", category.color.text)}>{category.icon}</span>
-                          <span>{category.name}</span>
+                          <span className="font-medium">{category.name}</span>
                         </div>
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[250px] gap-2 p-4">
-                          {toolsByCategory[category.id]?.map((tool) => (
-                            <li key={tool.id}>
-                              <button 
-                                className="w-full block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-left"
-                                onClick={() => {
-                                  setLocation(`/tool/${tool.id}`);
-                                }}
-                              >
-                                <div className="flex items-center">
-                                  <span className="mr-2 text-primary">{tool.icon}</span>
-                                  <span className="text-sm font-medium leading-none">{tool.name}</span>
-                                </div>
-                              </button>
-                            </li>
-                          ))}
-                          <li className="mt-3">
-                            <button
-                              className="block w-full rounded-md bg-primary/10 px-4 py-2 text-center text-sm font-medium text-primary hover:bg-primary/20"
-                              onClick={() => {
-                                setLocation(`/category/${category.id}`);
-                              }}
-                            >
-                              View All {category.name}
-                            </button>
-                          </li>
-                        </ul>
-                      </NavigationMenuContent>
+                        <span className="text-xs text-muted-foreground">
+                          {toolsByCategory[category.id]?.length || 0} tools
+                        </span>
+                      </div>
                     </NavigationMenuItem>
                   ))}
                 </div>
