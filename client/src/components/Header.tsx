@@ -37,7 +37,7 @@ export function Header() {
         
         <div className="flex items-center space-x-4">
           <div className="hidden lg:block">
-            <SearchBar />
+            <SearchBar onSearchSubmit={() => setMobileMenuOpen(false)} />
           </div>
           
           <ThemeToggle />

@@ -11,7 +11,12 @@ interface Suggestion {
   id?: string;
 }
 
-export function SearchBar() {
+interface SearchBarProps {
+  onSearchSubmit?: () => void;
+  className?: string;
+}
+
+export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
   const { tools, categories } = useTools();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -125,6 +130,11 @@ export function SearchBar() {
     if (query.trim()) {
       setLocation(`/search?q=${encodeURIComponent(query)}`);
       setIsOpen(false);
+      
+      // Call the optional callback if provided (to close mobile menu)
+      if (onSearchSubmit) {
+        onSearchSubmit();
+      }
     }
   }
 
@@ -149,6 +159,11 @@ export function SearchBar() {
       setLocation(`/search?q=${encodeURIComponent(searchQuery)}`);
     }
     setIsOpen(false);
+    
+    // Call the callback to hide mobile menu if provided
+    if (onSearchSubmit) {
+      onSearchSubmit();
+    }
   }
 
   return (
@@ -163,20 +178,32 @@ export function SearchBar() {
 
       {isOpen && (
         <div className="absolute top-0 left-0 w-72 sm:w-96 bg-card shadow-xl rounded-lg border border-border z-50 overflow-hidden">
-          <div className="flex items-center p-3 border-b border-border">
-            <SearchIcon className="h-4 w-4 mr-2 text-muted-foreground" />
+          <div className="flex items-center p-3 border-b border-border bg-muted/30">
+            <SearchIcon className="h-4 w-4 mr-2 text-primary" />
             <input
               ref={inputRef}
               type="text"
-              placeholder="Search for tools..."
-              className="flex-1 bg-transparent border-none outline-none"
+              placeholder="Search for tools and categories..."
+              className="flex-1 bg-transparent border-none outline-none placeholder:text-muted-foreground/70"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={handleKeyDown}
+              autoComplete="off"
+              autoFocus
             />
+            {query && (
+              <button
+                onClick={() => setQuery("")}
+                className="text-muted-foreground hover:text-foreground mr-1"
+                title="Clear search"
+              >
+                <XIcon className="h-3.5 w-3.5" />
+              </button>
+            )}
             <button
               onClick={() => setIsOpen(false)}
               className="text-muted-foreground hover:text-foreground"
+              title="Close search"
             >
               <XIcon className="h-4 w-4" />
             </button>
@@ -192,12 +219,38 @@ export function SearchBar() {
                       className="w-full text-left px-3 py-2 hover:bg-muted rounded-md text-sm transition-colors"
                       onClick={() => handleSuggestionClick(suggestion)}
                     >
-                      <span>{suggestion.text}</span>
                       {suggestion.type === "tool" && (
-                        <span className="ml-2 text-xs text-muted-foreground">(Tool)</span>
+                        <>
+                          <span className="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                            </svg>
+                            <span>{suggestion.text}</span>
+                            <span className="ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary rounded">Tool</span>
+                          </span>
+                        </>
                       )}
                       {suggestion.type === "category" && (
-                        <span className="ml-2 text-xs text-muted-foreground">(Category)</span>
+                        <>
+                          <span className="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                            </svg>
+                            <span>{suggestion.text}</span>
+                            <span className="ml-2 text-xs px-1.5 py-0.5 bg-primary/10 text-primary rounded">Category</span>
+                          </span>
+                        </>
+                      )}
+                      {suggestion.type === "general" && (
+                        <>
+                          <span className="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <circle cx="11" cy="11" r="8" />
+                              <path d="m21 21-4.3-4.3" />
+                            </svg>
+                            <span>{suggestion.text}</span>
+                          </span>
+                        </>
                       )}
                     </button>
                   </li>
