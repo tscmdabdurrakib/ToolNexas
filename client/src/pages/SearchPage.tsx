@@ -17,6 +17,10 @@ export default function SearchPage() {
   
   // Perform search whenever query changes
   useEffect(() => {
+    console.log("Search page effect running, query:", query);
+    console.log("Tools available:", tools.length);
+    console.log("Categories available:", categories.length);
+    
     if (!query.trim()) {
       setFilteredTools([]);
       setFilteredCategories([]);
@@ -30,12 +34,14 @@ export default function SearchPage() {
       tool.name.toLowerCase().includes(lowerQuery) || 
       tool.description.toLowerCase().includes(lowerQuery)
     );
+    console.log("Matched tools:", matchedTools.length);
     
     // Search in categories
     const matchedCategories = categories.filter(cat => 
       cat.name.toLowerCase().includes(lowerQuery) || 
       cat.description.toLowerCase().includes(lowerQuery)
     );
+    console.log("Matched categories:", matchedCategories.length);
     
     setFilteredTools(matchedTools);
     setFilteredCategories(matchedCategories);
