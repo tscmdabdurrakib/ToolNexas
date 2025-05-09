@@ -16,28 +16,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
 
 export function MainNavigationMenu() {
-  const [showBackToTop, setShowBackToTop] = useState(false);
   const [_location, setLocation] = useLocation();
-
-  // Show back to top button ONLY when scrolled to bottom of the page
-  useEffect(() => {
-    const handleScroll = () => {
-      // Calculate the total height of the page
-      const totalHeight = document.body.scrollHeight;
-      
-      // Get the current scroll position
-      const scrollPosition = window.scrollY + window.innerHeight;
-      
-      // Calculate how close we are to the bottom (within last 15% of the page)
-      const threshold = totalHeight * 0.85;
-      
-      // Only show when we're in the bottom portion of the page
-      setShowBackToTop(scrollPosition > threshold);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  // Temporarily use hardcoded data instead of useTools()
+  // const { tools, categories } = useTools();
 
   // Function to scroll back to top
   const scrollToTop = () => {
@@ -140,26 +121,17 @@ export function MainNavigationMenu() {
         </div>
       </div>
 
-      {/* Back to Top Button */}
-      <AnimatePresence>
-        {showBackToTop && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-6 right-6 z-50"
-          >
-            <Button 
-              size="icon" 
-              className="rounded-full shadow-lg w-12 h-12 bg-primary hover:bg-primary/90"
-              onClick={scrollToTop}
-            >
-              <ChevronUp className="h-6 w-6" />
-              <span className="sr-only">Back to top</span>
-            </Button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Permanently fixed Back to Top Button at the bottom */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button 
+          size="icon" 
+          className="rounded-full shadow-lg w-12 h-12 bg-primary hover:bg-primary/90"
+          onClick={scrollToTop}
+        >
+          <ChevronUp className="h-6 w-6" />
+          <span className="sr-only">Back to top</span>
+        </Button>
+      </div>
     </>
   );
 }
