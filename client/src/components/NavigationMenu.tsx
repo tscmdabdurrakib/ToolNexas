@@ -119,14 +119,14 @@ export function MainNavigationMenu() {
         </div>
       </div>
 
-      {/* Permanently fixed Back to Top Button at the bottom */}
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* Permanently fixed Back to Top Button at very bottom */}
+      <div className="fixed bottom-4 right-4 z-50 mb-2">
         <Button 
           size="icon" 
-          className="rounded-full shadow-lg w-12 h-12 bg-primary hover:bg-primary/90"
+          className="rounded-full shadow-lg w-14 h-14 bg-primary hover:bg-primary/90"
           onClick={scrollToTop}
         >
-          <ChevronUp className="h-6 w-6" />
+          <ChevronUp className="h-7 w-7" />
           <span className="sr-only">Back to top</span>
         </Button>
       </div>
