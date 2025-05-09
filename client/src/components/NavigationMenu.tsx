@@ -19,20 +19,20 @@ export function MainNavigationMenu() {
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [_location, setLocation] = useLocation();
 
-  // Show back to top button when scrolled down 200px 
-  // Only display at the bottom of the page
+  // Show back to top button ONLY when scrolled to bottom of the page
   useEffect(() => {
     const handleScroll = () => {
-      // Check if we've scrolled at least 200px
-      const isScrolled = window.scrollY > 200;
+      // Calculate the total height of the page
+      const totalHeight = document.body.scrollHeight;
       
-      // Calculate if we're near the bottom (within 1500px of bottom)
-      const nearBottom = 
-        window.innerHeight + window.scrollY > 
-        document.body.offsetHeight - 1500;
+      // Get the current scroll position
+      const scrollPosition = window.scrollY + window.innerHeight;
       
-      // Only show when scrolled AND near the bottom of the page
-      setShowBackToTop(isScrolled && nearBottom);
+      // Calculate how close we are to the bottom (within last 15% of the page)
+      const threshold = totalHeight * 0.85;
+      
+      // Only show when we're in the bottom portion of the page
+      setShowBackToTop(scrollPosition > threshold);
     };
 
     window.addEventListener('scroll', handleScroll);
