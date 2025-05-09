@@ -2,8 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { Search as SearchIcon, X as XIcon } from "lucide-react";
 import { useTools } from "@/context/ToolsContext";
 import { useLocation } from "wouter";
-import { Tool } from "@/data/tools";
-import { CategoryWithIcon } from "@/data/categories";
+// Import directly from data files for fallback
+import { tools, Tool } from "@/data/tools";
+import { categories, CategoryWithIcon } from "@/data/categories";
 
 interface Suggestion {
   text: string;
@@ -17,7 +18,13 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
-  const { tools, categories } = useTools();
+  // Try to get data from context, or use the imported data as fallback
+  let contextData = { tools: tools, categories: categories };
+  try {
+    contextData = useTools();
+  } catch (error) {
+    console.log("Using fallback data for search");
+  }
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
@@ -36,7 +43,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
     const newSuggestions: Suggestion[] = [];
     
     // Find matching tools
-    const matchedTools = tools.filter(tool => 
+    const matchedTools = contextData.tools.filter(tool => 
       tool.name.toLowerCase().includes(lowerQuery) || 
       tool.description.toLowerCase().includes(lowerQuery)
     );
@@ -51,7 +58,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
     });
     
     // Find matching categories
-    const matchedCategories = categories.filter(cat => 
+    const matchedCategories = contextData.categories.filter(cat => 
       cat.name.toLowerCase().includes(lowerQuery) || 
       cat.description.toLowerCase().includes(lowerQuery)
     );
@@ -69,7 +76,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
     if (matchedTools.length === 0 && matchedCategories.length === 0) {
       // Only add these if we don't have direct matches
       if (lowerQuery.includes("convert")) {
-        const category = categories.find(c => c.name.toLowerCase().includes("conversion"));
+        const category = contextData.categories.find(c => c.name.toLowerCase().includes("conversion"));
         newSuggestions.push({
           text: "Unit Conversion Tools",
           type: "general",
@@ -78,7 +85,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
       }
       
       if (lowerQuery.includes("text") || lowerQuery.includes("string")) {
-        const category = categories.find(c => c.name.toLowerCase().includes("text"));
+        const category = contextData.categories.find(c => c.name.toLowerCase().includes("text"));
         newSuggestions.push({
           text: "Text & String Tools",
           type: "general",
@@ -87,7 +94,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
       }
       
       if (lowerQuery.includes("image") || lowerQuery.includes("picture")) {
-        const category = categories.find(c => c.name.toLowerCase().includes("image"));
+        const category = contextData.categories.find(c => c.name.toLowerCase().includes("image"));
         newSuggestions.push({
           text: "Image & Media Tools",
           type: "general",
@@ -103,7 +110,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
     });
     
     setSuggestions(newSuggestions);
-  }, [query, tools, categories]);
+  }, [query, contextData]);
 
   // Close search when clicking outside
   useEffect(() => {

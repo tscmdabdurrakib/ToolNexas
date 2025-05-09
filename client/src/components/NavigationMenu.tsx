@@ -17,8 +17,6 @@ import { Button } from './ui/button';
 
 export function MainNavigationMenu() {
   const [_location, setLocation] = useLocation();
-  // Temporarily use hardcoded data instead of useTools()
-  // const { tools, categories } = useTools();
 
   // Function to scroll back to top
   const scrollToTop = () => {
@@ -29,14 +27,14 @@ export function MainNavigationMenu() {
   };
 
   // Group tools by category ID
-  const toolsByCategory = tools.reduce((acc, tool) => {
+  const toolsByCategory: Record<string, typeof tools> = {};
+  tools.forEach(tool => {
     const categoryId = tool.category.id;
-    if (!acc[categoryId]) {
-      acc[categoryId] = [];
+    if (!toolsByCategory[categoryId]) {
+      toolsByCategory[categoryId] = [];
     }
-    acc[categoryId].push(tool);
-    return acc;
-  }, {} as Record<string, typeof tools>);
+    toolsByCategory[categoryId].push(tool);
+  });
 
   return (
     <>
