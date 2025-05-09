@@ -59,57 +59,68 @@ export function MainNavigationMenu() {
 
   return (
     <>
-      {/* Desktop and Tablet Navigation */}
+      {/* Desktop and Tablet Navigation - Redesigned Modern Menu */}
       <div className="hidden md:block">
-        <NavigationMenu className="mx-auto">
-          <NavigationMenuList className="flex-wrap justify-center">
-            <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-background hover:bg-secondary">Browse Categories</NavigationMenuTrigger>
-              <NavigationMenuContent className="z-50">
-                <div className="grid w-[800px] max-h-[500px] overflow-y-auto custom-scrollbar grid-cols-3 gap-3 p-4">
-                  {categories.map((category) => (
-                    <NavigationMenuItem key={category.id} className="row-span-1">
-                      <div 
-                        onClick={() => setLocation(`/category/${category.id}`)}
-                        className={cn(
-                          "flex items-center justify-between w-full p-3 rounded-lg cursor-pointer",
-                          "bg-card hover:bg-secondary/70 transition-colors"
-                        )}
-                      >
-                        <div className="flex items-center">
-                          <span className={cn("mr-2", category.color.text)}>{category.icon}</span>
-                          <span className="font-medium">{category.name}</span>
-                        </div>
-                        <span className="text-xs text-muted-foreground">
-                          {toolsByCategory[category.id]?.length || 0} tools
-                        </span>
-                      </div>
-                    </NavigationMenuItem>
-                  ))}
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <button 
-                onClick={() => setLocation("/popular")}
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-secondary focus:bg-secondary focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                Popular Tools
-              </button>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <button
-                onClick={() => setLocation("/recent")}
-                className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-secondary focus:bg-secondary focus:outline-none disabled:pointer-events-none disabled:opacity-50"
-              >
-                Recent Tools
-              </button>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-          <NavigationMenuViewport className="origin-top-center" />
-        </NavigationMenu>
+        <div className="flex items-center justify-center space-x-1">
+          {/* Dropdown menu with smooth animation */}
+          <div className="relative">
+            <button className="nav-dropdown-trigger nav-btn flex items-center px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60">
+              Browse Categories
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            
+            {/* Animated dropdown content */}
+            <div className="nav-dropdown absolute left-0 z-50 w-[800px] p-4 mt-1 -translate-x-1/4 bg-popover shadow-lg rounded-xl border border-border">
+              <div className="grid grid-cols-3 gap-3 max-h-[500px] overflow-y-auto custom-scrollbar">
+                {categories.map((category) => (
+                  <div 
+                    key={category.id}
+                    onClick={() => setLocation(`/category/${category.id}`)}
+                    className={cn(
+                      "flex items-center justify-between p-3 rounded-lg cursor-pointer",
+                      "bg-card hover:bg-secondary/70 transition-colors hover:shadow-md"
+                    )}
+                  >
+                    <div className="flex items-center">
+                      <span className={cn("mr-2 text-lg", category.color.text)}>{category.icon}</span>
+                      <span className="font-medium">{category.name}</span>
+                    </div>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-secondary/50 text-foreground/80">
+                      {toolsByCategory[category.id]?.length || 0} tools
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          {/* Enhanced regular menu items */}
+          <button 
+            onClick={() => setLocation("/popular")}
+            className="nav-btn px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60"
+          >
+            <span className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-1.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+              </svg>
+              Popular Tools
+            </span>
+          </button>
+          
+          <button
+            onClick={() => setLocation("/recent")}
+            className="nav-btn px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60"
+          >
+            <span className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-1.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+              Recent Tools
+            </span>
+          </button>
+        </div>
       </div>
 
       {/* Mobile Navigation - Simplified dropdown list with scrolling */}
