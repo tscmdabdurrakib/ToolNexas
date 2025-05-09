@@ -7,9 +7,34 @@ import { Tool } from "@/data/tools";
 import { CategoryWithIcon } from "@/data/categories";
 
 export default function SearchPage() {
-  // Parse query from URL
+  // Parse query from URL - using window.location since wouter doesn't pass query params
   const [location] = useLocation();
-  const query = new URLSearchParams(location.split("?")[1] || "").get("q") || "";
+  console.log("Wouter location:", location);
+  
+  // Use window.location.search to get the query string
+  const searchParams = new URLSearchParams(window.location.search);
+  console.log("Window location search:", window.location.search);
+  
+  // Extract search query from URL
+  const [query, setQuery] = useState(searchParams.get("q") || "");
+  console.log("Initial query:", query);
+  
+  // Listen for URL changes
+  useEffect(() => {
+    // Update query when URL changes
+    const handleUrlChange = () => {
+      const newParams = new URLSearchParams(window.location.search);
+      const newQuery = newParams.get("q") || "";
+      console.log("URL changed, new query:", newQuery);
+      setQuery(newQuery);
+    };
+    
+    // Add event listener for URL changes
+    window.addEventListener("popstate", handleUrlChange);
+    
+    // Cleanup
+    return () => window.removeEventListener("popstate", handleUrlChange);
+  }, []);
   
   const { tools, categories } = useTools();
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
