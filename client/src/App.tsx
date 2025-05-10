@@ -15,6 +15,7 @@ import DMCAPolicyPage from "@/pages/DMCAPolicyPage";
 import SitemapPage from "@/pages/SitemapPage";
 import ContactPage from "@/pages/ContactPage";
 import LengthConverterPage from "@/pages/tools/LengthConverterPage";
+import WeightMassConverterPage from "@/pages/tools/WeightMassConverterPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -40,6 +41,7 @@ function Router() {
           <Route path="/dmca" component={DMCAPolicyPage} />
           <Route path="/sitemap" component={SitemapPage} />
           <Route path="/tools/length-converter" component={LengthConverterPage} />
+          <Route path="/tools/weight-mass-converter" component={WeightMassConverterPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
