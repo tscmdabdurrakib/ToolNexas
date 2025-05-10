@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function ToolPage() {
   const [, params] = useRoute("/tool/:id");
-  const { tools } = useTools();
+  const { tools = [] } = useTools() || { tools: [] };
   const [isLoading, setIsLoading] = useState(true);
   
   const toolId = params?.id;

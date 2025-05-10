@@ -19,7 +19,7 @@ import {
 } from "lucide-react";
 
 export default function SitemapPage() {
-  const { categories, tools } = useTools();
+  const { categories = [], tools = [] } = useTools() || { categories: [], tools: [] };
 
   // Group categories for better organization
   const groupedCategories = {

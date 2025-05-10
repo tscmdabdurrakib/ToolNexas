@@ -27,6 +27,9 @@ const conversionFactors = {
   grain: 0.06479891
 };
 
+// Type for Weight/Mass units
+type WeightUnit = keyof typeof conversionFactors;
+
 // Unit display names with abbreviations
 const unitLabels = {
   gram: "Gram (g)",
@@ -43,17 +46,22 @@ const unitLabels = {
   grain: "Grain (gr)"
 };
 
+// Interface for common conversion examples
+interface CommonConversion {
+  from: WeightUnit;
+  to: WeightUnit;
+  value: number;
+  result: number;
+}
+
 // Common conversion references for educational purposes
-const commonConversions = [
+const commonConversions: CommonConversion[] = [
   { from: "kilogram", to: "pound", value: 1, result: 2.20462 },
   { from: "pound", to: "kilogram", value: 1, result: 0.453592 },
   { from: "gram", to: "ounce", value: 28, result: 0.987563 },
   { from: "stone", to: "kilogram", value: 1, result: 6.35029 },
   { from: "ounce", to: "gram", value: 1, result: 28.3495 }
 ];
-
-// Type for Weight/Mass units
-type WeightUnit = keyof typeof conversionFactors;
 
 /**
  * Weight and Mass Converter Component
@@ -426,10 +434,10 @@ export default function WeightMassConverter() {
                 <div>
                   <span className="font-medium">Conversion Details:</span>
                   <p className="text-muted-foreground mt-1">
-                    {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
+                    {`${inputValue} ${unitLabels[fromUnit as keyof typeof unitLabels]?.split(' ')[0]} = ${result} ${unitLabels[toUnit as keyof typeof unitLabels]?.split(' ')[0]}`}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(6)} ${unitLabels[toUnit]?.split(' ')[0]}`}
+                    {`1 ${unitLabels[fromUnit as keyof typeof unitLabels]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(6)} ${unitLabels[toUnit as keyof typeof unitLabels]?.split(' ')[0]}`}
                   </p>
                 </div>
               </div>
@@ -445,11 +453,11 @@ export default function WeightMassConverter() {
             {commonConversions.map((conv, i) => (
               <div key={i} className="flex items-center gap-1.5">
                 <Badge variant="outline" className="h-6 px-1.5 text-xs whitespace-nowrap">
-                  {conv.value} {unitLabels[conv.from]?.match(/\(([^)]+)\)/)?.[1]}
+                  {conv.value} {unitLabels[conv.from as keyof typeof unitLabels]?.match(/\(([^)]+)\)/)?.[1]}
                 </Badge>
                 <span>=</span>
                 <Badge variant="outline" className="h-6 px-1.5 text-xs bg-primary/5 whitespace-nowrap">
-                  {conv.result} {unitLabels[conv.to]?.match(/\(([^)]+)\)/)?.[1]}
+                  {conv.result} {unitLabels[conv.to as keyof typeof unitLabels]?.match(/\(([^)]+)\)/)?.[1]}
                 </Badge>
               </div>
             ))}
