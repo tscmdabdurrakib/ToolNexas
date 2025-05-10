@@ -1,8 +1,9 @@
 import { Link } from "wouter";
 import { motion } from "framer-motion";
-import { useTools } from "@/context/ToolsContext";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { categories } from "@/data/categories";
+import { tools } from "@/data/tools";
 import { 
   Users, 
   Lightbulb, 
@@ -19,7 +20,7 @@ import {
 } from "lucide-react";
 
 export default function AboutPage() {
-  const { categories, tools } = useTools();
+  // Data is imported directly at the top of the file
   
   return (
     <div className="container py-8 space-y-12 max-w-5xl mx-auto px-4 sm:px-6">
@@ -185,7 +186,7 @@ export default function AboutPage() {
           
           <TabsContent value="categories" className="space-y-8">
             <div className="grid md:grid-cols-3 gap-4">
-              {categories.slice(0, 6).map(category => (
+              {categories.slice(0, 6).map((category: any) => (
                 <div key={category.id} className="flex items-center p-4 border rounded-lg gap-3 group hover:border-primary transition-colors">
                   <div className={`p-2 rounded-lg ${category.color.bg} ${category.color.text}`}>
                     {category.icon}
