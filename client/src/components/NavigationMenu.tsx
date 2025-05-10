@@ -18,14 +18,6 @@ import { Button } from './ui/button';
 export function MainNavigationMenu() {
   const [_location, setLocation] = useLocation();
 
-  // Function to scroll back to top
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   // Group tools by category ID
   const toolsByCategory: Record<string, typeof tools> = {};
   tools.forEach(tool => {
@@ -119,17 +111,7 @@ export function MainNavigationMenu() {
         </div>
       </div>
 
-      {/* Permanently fixed Back to Top Button at very bottom */}
-      <div className="fixed bottom-4 right-4 z-50 mb-2">
-        <Button 
-          size="icon" 
-          className="rounded-full shadow-lg w-14 h-14 bg-primary hover:bg-primary/90"
-          onClick={scrollToTop}
-        >
-          <ChevronUp className="h-7 w-7" />
-          <span className="sr-only">Back to top</span>
-        </Button>
-      </div>
+
     </>
   );
 }
