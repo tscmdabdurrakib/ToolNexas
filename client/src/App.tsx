@@ -12,6 +12,7 @@ import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TermsOfServicePage from "@/pages/TermsOfServicePage";
 import DisclaimerPage from "@/pages/DisclaimerPage";
 import DMCAPolicyPage from "@/pages/DMCAPolicyPage";
+import SitemapPage from "@/pages/SitemapPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
@@ -32,6 +33,7 @@ function Router() {
           <Route path="/terms" component={TermsOfServicePage} />
           <Route path="/disclaimer" component={DisclaimerPage} />
           <Route path="/dmca" component={DMCAPolicyPage} />
+          <Route path="/sitemap" component={SitemapPage} />
           <Route component={NotFound} />
         </Switch>
       </div>

@@ -81,6 +81,7 @@ export function Footer() {
             <Link href="/terms" className="text-muted-foreground hover:text-primary transition">Terms</Link>
             <Link href="/disclaimer" className="text-muted-foreground hover:text-primary transition">Disclaimer</Link>
             <Link href="/cookies" className="text-muted-foreground hover:text-primary transition">Cookies</Link>
+            <Link href="/sitemap" className="text-muted-foreground hover:text-primary transition">Sitemap</Link>
           </div>
         </div>
       </div>
