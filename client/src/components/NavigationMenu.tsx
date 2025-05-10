@@ -105,7 +105,7 @@ export function MainNavigationMenu() {
       {/* Mobile Navigation - Simplified dropdown list with scrolling */}
       <div className="md:hidden">
         <div className="px-4 pb-2 max-h-[70vh] overflow-y-auto custom-scrollbar">
-          <MobileNav categories={categories.slice(0, 12)} toolsByCategory={toolsByCategory} />
+          <MobileNav categories={categories} toolsByCategory={toolsByCategory} />
           
           {/* Show "View All Categories" button at the bottom */}
           <div className="mt-4 mb-2">
@@ -113,7 +113,7 @@ export function MainNavigationMenu() {
               className="w-full rounded-md bg-primary py-2.5 text-sm font-medium text-white hover:bg-primary/90"
               onClick={() => setLocation("/categories")}
             >
-              View All 35 Categories
+              View All Categories
             </button>
           </div>
         </div>
@@ -134,7 +134,7 @@ export function MainNavigationMenu() {
   );
 }
 
-// Mobile navigation component with accordion style dropdowns
+// Mobile navigation component with accordion style dropdowns and category grouping
 function MobileNav({ 
   categories, 
   toolsByCategory 
@@ -144,74 +144,126 @@ function MobileNav({
 }) {
   const [openCategory, setOpenCategory] = useState<string | null>(null);
   const [_location, setLocation] = useLocation();
+  const [activeGroup, setActiveGroup] = useState<string>("popular");
+  
+  // Group categories for easier mobile navigation
+  const categoryGroups = {
+    popular: categories.slice(0, 8),
+    media: categories.filter(c => 
+      c.name.toLowerCase().includes("image") || 
+      c.name.toLowerCase().includes("video") || 
+      c.name.toLowerCase().includes("audio") ||
+      c.name.toLowerCase().includes("media")
+    ),
+    data: categories.filter(c => 
+      c.name.toLowerCase().includes("data") || 
+      c.name.toLowerCase().includes("file") || 
+      c.name.toLowerCase().includes("convert")
+    ),
+    dev: categories.filter(c => 
+      c.name.toLowerCase().includes("code") || 
+      c.name.toLowerCase().includes("developer") || 
+      c.name.toLowerCase().includes("programming")
+    ),
+    other: categories
+  };
+  
+  // Get the currently active categories based on selected group
+  const activeCategoriesList = activeGroup === "all" 
+    ? categories 
+    : categoryGroups[activeGroup as keyof typeof categoryGroups] || categories.slice(0, 8);
   
   return (
-    <div className="space-y-2">
-      {categories.map((category: import('@/data/categories').CategoryWithIcon) => (
-        <div key={category.id} className="border rounded-lg overflow-hidden">
+    <div className="space-y-4">
+      {/* Category group selector */}
+      <div className="grid grid-cols-5 gap-1 p-1 bg-secondary/30 rounded-lg mb-3">
+        {["popular", "media", "data", "dev", "all"].map(group => (
           <button
+            key={group}
             className={cn(
-              "flex items-center justify-between w-full p-3 text-left",
-              openCategory === category.id ? `${category.color.bg} ${category.color.text}` : "bg-card"
+              "py-1.5 px-1 text-xs font-medium rounded-md text-center capitalize",
+              activeGroup === group ? "bg-primary text-white" : "bg-card/80 hover:bg-card"
             )}
-            onClick={() => setOpenCategory(openCategory === category.id ? null : category.id)}
+            onClick={() => setActiveGroup(group)}
           >
-            <div className="flex items-center">
-              <span className="mr-2">{category.icon}</span>
-              <span className="font-medium">{category.name}</span>
-            </div>
-            <ChevronUp
-              className={cn(
-                "h-5 w-5 transition-transform duration-200",
-                openCategory === category.id ? "rotate-0" : "rotate-180"
-              )}
-            />
+            {group}
           </button>
-          
-          <AnimatePresence>
-            {openCategory === category.id && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
-                <div className="p-2 space-y-1.5 bg-card/50">
-                  <div className="max-h-[35vh] overflow-y-auto custom-scrollbar pr-1">
-                    <div className="grid grid-cols-1 gap-1.5">
-                      {toolsByCategory[category.id]?.slice(0, 8)?.map((tool) => (
-                        <button
-                          key={tool.id}
-                          className="flex items-center w-full p-2 rounded-md hover:bg-secondary/50 text-left"
-                          onClick={() => {
-                            setLocation(`/tool/${tool.id}`);
-                            setOpenCategory(null);
-                          }}
-                        >
-                          <span className="mr-2 text-primary flex-shrink-0">{tool.icon}</span>
-                          <span className="text-sm truncate">{tool.name}</span>
-                        </button>
-                      ))}
+        ))}
+      </div>
+    
+      {/* Categories list */}
+      <div className="space-y-2">
+        {activeCategoriesList.map((category: import('@/data/categories').CategoryWithIcon) => (
+          <div key={category.id} className="border rounded-lg overflow-hidden">
+            <button
+              className={cn(
+                "flex items-center justify-between w-full p-3 text-left",
+                openCategory === category.id ? `${category.color.bg} ${category.color.text}` : "bg-card"
+              )}
+              onClick={() => setOpenCategory(openCategory === category.id ? null : category.id)}
+            >
+              <div className="flex items-center">
+                <span className="mr-2">{category.icon}</span>
+                <span className="font-medium">{category.name}</span>
+              </div>
+              <div className="flex items-center">
+                <span className="text-xs px-2 py-0.5 mr-2 rounded-full bg-secondary/50 text-foreground/80">
+                  {toolsByCategory[category.id]?.length || 0}
+                </span>
+                <ChevronUp
+                  className={cn(
+                    "h-5 w-5 transition-transform duration-200",
+                    openCategory === category.id ? "rotate-0" : "rotate-180"
+                  )}
+                />
+              </div>
+            </button>
+            
+            <AnimatePresence>
+              {openCategory === category.id && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <div className="p-2 space-y-1.5 bg-card/50">
+                    <div className="max-h-[35vh] overflow-y-auto custom-scrollbar pr-1">
+                      <div className="grid grid-cols-1 gap-1.5">
+                        {toolsByCategory[category.id]?.slice(0, 8)?.map((tool) => (
+                          <button
+                            key={tool.id}
+                            className="flex items-center w-full p-2 rounded-md hover:bg-secondary/50 text-left"
+                            onClick={() => {
+                              setLocation(`/tool/${tool.id}`);
+                              setOpenCategory(null);
+                            }}
+                          >
+                            <span className="mr-2 text-primary flex-shrink-0">{tool.icon}</span>
+                            <span className="text-sm truncate">{tool.name}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="pt-1.5">
+                      <button
+                        className="w-full rounded-md bg-primary/10 py-2 text-sm font-medium text-primary hover:bg-primary/20"
+                        onClick={() => {
+                          setLocation(`/category/${category.id}`);
+                          setOpenCategory(null);
+                        }}
+                      >
+                        View All {category.name} Tools ({toolsByCategory[category.id]?.length || 0})
+                      </button>
                     </div>
                   </div>
-                  <div className="pt-1.5">
-                    <button
-                      className="w-full rounded-md bg-primary/10 py-2 text-sm font-medium text-primary hover:bg-primary/20"
-                      onClick={() => {
-                        setLocation(`/category/${category.id}`);
-                        setOpenCategory(null);
-                      }}
-                    >
-                      View All {category.name} ({toolsByCategory[category.id]?.length || 0})
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
