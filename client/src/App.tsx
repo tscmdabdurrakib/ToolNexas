@@ -14,6 +14,7 @@ import DisclaimerPage from "@/pages/DisclaimerPage";
 import DMCAPolicyPage from "@/pages/DMCAPolicyPage";
 import SitemapPage from "@/pages/SitemapPage";
 import ContactPage from "@/pages/ContactPage";
+import LengthConverterPage from "@/pages/tools/LengthConverterPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
@@ -36,6 +37,7 @@ function Router() {
           <Route path="/disclaimer" component={DisclaimerPage} />
           <Route path="/dmca" component={DMCAPolicyPage} />
           <Route path="/sitemap" component={SitemapPage} />
+          <Route path="/tools/length-converter" component={LengthConverterPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
