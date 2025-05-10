@@ -78,6 +78,7 @@ export function Footer() {
           <div className="flex space-x-6 text-sm">
             <Link href="/privacy" className="text-muted-foreground hover:text-primary transition">Privacy</Link>
             <Link href="/terms" className="text-muted-foreground hover:text-primary transition">Terms</Link>
+            <Link href="/disclaimer" className="text-muted-foreground hover:text-primary transition">Disclaimer</Link>
             <Link href="/cookies" className="text-muted-foreground hover:text-primary transition">Cookies</Link>
           </div>
         </div>
