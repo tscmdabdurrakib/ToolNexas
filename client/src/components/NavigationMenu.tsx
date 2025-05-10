@@ -32,7 +32,15 @@ export function MainNavigationMenu() {
     <>
       {/* Desktop and Tablet Navigation - Redesigned Modern Menu */}
       <div className="hidden md:block">
-        <div className="flex items-center justify-center space-x-1">
+        <div className="flex items-center justify-center space-x-4">
+          {/* About Us Link */}
+          <a 
+            href="/about" 
+            className="flex items-center px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60"
+          >
+            About Us
+          </a>
+          
           {/* Dropdown menu with smooth animation */}
           <div className="relative">
             <button className="nav-dropdown-trigger nav-btn flex items-center px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60">

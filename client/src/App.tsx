@@ -7,6 +7,7 @@ import Home from "@/pages/Home";
 import CategoryPage from "@/pages/CategoryPage";
 import ToolPage from "@/pages/ToolPage";
 import SearchPage from "@/pages/SearchPage";
+import AboutPage from "@/pages/AboutPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
@@ -22,6 +23,7 @@ function Router() {
           <Route path="/category/:id" component={CategoryPage} />
           <Route path="/tool/:id" component={ToolPage} />
           <Route path="/search" component={SearchPage} />
+          <Route path="/about" component={AboutPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
