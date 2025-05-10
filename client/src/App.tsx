@@ -9,6 +9,7 @@ import ToolPage from "@/pages/ToolPage";
 import SearchPage from "@/pages/SearchPage";
 import AboutPage from "@/pages/AboutPage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsOfServicePage from "@/pages/TermsOfServicePage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
@@ -26,6 +27,7 @@ function Router() {
           <Route path="/search" component={SearchPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/privacy" component={PrivacyPolicyPage} />
+          <Route path="/terms" component={TermsOfServicePage} />
           <Route component={NotFound} />
         </Switch>
       </div>
