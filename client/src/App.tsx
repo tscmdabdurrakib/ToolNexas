@@ -13,6 +13,7 @@ import TermsOfServicePage from "@/pages/TermsOfServicePage";
 import DisclaimerPage from "@/pages/DisclaimerPage";
 import DMCAPolicyPage from "@/pages/DMCAPolicyPage";
 import SitemapPage from "@/pages/SitemapPage";
+import ContactPage from "@/pages/ContactPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
@@ -29,6 +30,7 @@ function Router() {
           <Route path="/tool/:id" component={ToolPage} />
           <Route path="/search" component={SearchPage} />
           <Route path="/about" component={AboutPage} />
+          <Route path="/contact" component={ContactPage} />
           <Route path="/privacy" component={PrivacyPolicyPage} />
           <Route path="/terms" component={TermsOfServicePage} />
           <Route path="/disclaimer" component={DisclaimerPage} />
