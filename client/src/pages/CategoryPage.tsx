@@ -10,12 +10,12 @@ export default function CategoryPage({ params }: { params?: { id?: string } }) {
   const [, routeParams] = useRoute("/category/:id");
   const effectiveParams = params || routeParams;
   
-  const { categories, tools } = useTools();
+  const { categories = [], tools = [] } = useTools() || { categories: [], tools: [] };
   const [isLoading, setIsLoading] = useState(true);
   
   const categoryId = effectiveParams?.id;
-  const category = categories.find(c => c.id === categoryId);
-  const categoryTools = tools.filter(tool => tool.category.id === categoryId);
+  const category = categories.find((c: any) => c.id === categoryId);
+  const categoryTools = tools.filter((tool: any) => tool.category.id === categoryId);
 
   useEffect(() => {
     // Simulate loading
@@ -76,7 +76,7 @@ export default function CategoryPage({ params }: { params?: { id?: string } }) {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {categoryTools.length > 0 ? (
-            categoryTools.map(tool => (
+            categoryTools.map((tool: any) => (
               <ToolCard key={tool.id} tool={tool} />
             ))
           ) : (

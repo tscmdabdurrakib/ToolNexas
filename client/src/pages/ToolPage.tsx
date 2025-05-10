@@ -8,13 +8,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-export default function ToolPage() {
-  const [, params] = useRoute("/tool/:id");
+export default function ToolPage({ params }: { params?: { id?: string } }) {
+  // If params is not provided via props, try to get from useRoute
+  const [, routeParams] = useRoute("/tool/:id");
+  const effectiveParams = params || routeParams;
+  
   const { tools = [] } = useTools() || { tools: [] };
   const [isLoading, setIsLoading] = useState(true);
   
-  const toolId = params?.id;
-  const tool = tools.find(t => t.id === toolId);
+  const toolId = effectiveParams?.id;
+  const tool = tools.find((t: any) => t.id === toolId);
   
   // Common state
   const [inputValue, setInputValue] = useState("");

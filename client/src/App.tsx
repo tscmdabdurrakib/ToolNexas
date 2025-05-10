@@ -29,25 +29,9 @@ function Router() {
       <div className="flex-grow">
         <Switch>
           <Route path="/" component={Home} />
-          <Route path="/category/:id">
-            {(params) => (
-              <ToolsProvider>
-                <CategoryPage params={params} />
-              </ToolsProvider>
-            )}
-          </Route>
-          <Route path="/tool/:id">
-            {(params) => (
-              <ToolsProvider>
-                <ToolPage params={params} />
-              </ToolsProvider>
-            )}
-          </Route>
-          <Route path="/search">
-            <ToolsProvider>
-              <SearchPage />
-            </ToolsProvider>
-          </Route>
+          <Route path="/category/:id" component={CategoryPage} />
+          <Route path="/tool/:id" component={ToolPage} />
+          <Route path="/search" component={SearchPage} />
           <Route path="/about" component={AboutPage} />
           <Route path="/author" component={AuthorPage} />
           <Route path="/contact" component={ContactPage} />
@@ -55,11 +39,7 @@ function Router() {
           <Route path="/terms" component={TermsOfServicePage} />
           <Route path="/disclaimer" component={DisclaimerPage} />
           <Route path="/dmca" component={DMCAPolicyPage} />
-          <Route path="/sitemap">
-            <ToolsProvider>
-              <SitemapPage />
-            </ToolsProvider>
-          </Route>
+          <Route path="/sitemap" component={SitemapPage} />
           <Route path="/tools/length-converter" component={LengthConverterPage} />
           <Route path="/tools/weight-mass-converter" component={WeightMassConverterPage} />
           <Route component={NotFound} />
