@@ -15,6 +15,7 @@ import DMCAPolicyPage from "@/pages/DMCAPolicyPage";
 import SitemapPage from "@/pages/SitemapPage";
 import ContactPage from "@/pages/ContactPage";
 import LengthConverterPage from "@/pages/tools/LengthConverterPage";
+import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
@@ -31,6 +32,7 @@ function Router() {
           <Route path="/tool/:id" component={ToolPage} />
           <Route path="/search" component={SearchPage} />
           <Route path="/about" component={AboutPage} />
+          <Route path="/author" component={AuthorPage} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/privacy" component={PrivacyPolicyPage} />
           <Route path="/terms" component={TermsOfServicePage} />
