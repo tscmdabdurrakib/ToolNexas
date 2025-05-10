@@ -69,8 +69,6 @@ export function ToolsProvider({ children }: { children: ReactNode }) {
 
 export function useTools() {
   const context = useContext(ToolsContext);
-  if (context === undefined) {
-    throw new Error('useTools must be used within a ToolsProvider');
-  }
+  // Instead of throwing an error, returning undefined
   return context;
 }

@@ -36,7 +36,7 @@ export default function SearchPage() {
     return () => window.removeEventListener("popstate", handleUrlChange);
   }, []);
   
-  const { tools, categories } = useTools();
+  const { tools = [], categories = [] } = useTools() || { tools: [], categories: [] };
   const [filteredTools, setFilteredTools] = useState<Tool[]>([]);
   const [filteredCategories, setFilteredCategories] = useState<CategoryWithIcon[]>([]);
   

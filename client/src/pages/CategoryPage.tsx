@@ -5,12 +5,15 @@ import { useTools } from "@/context/ToolsContext";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
-export default function CategoryPage() {
-  const [, params] = useRoute("/category/:id");
+export default function CategoryPage({ params }: { params?: { id?: string } }) {
+  // If params is not provided via props, try to get from useRoute
+  const [, routeParams] = useRoute("/category/:id");
+  const effectiveParams = params || routeParams;
+  
   const { categories, tools } = useTools();
   const [isLoading, setIsLoading] = useState(true);
   
-  const categoryId = params?.id;
+  const categoryId = effectiveParams?.id;
   const category = categories.find(c => c.id === categoryId);
   const categoryTools = tools.filter(tool => tool.category.id === categoryId);
 
