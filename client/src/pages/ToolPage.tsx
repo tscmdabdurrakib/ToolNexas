@@ -12,6 +12,7 @@ export default function ToolPage() {
   const [, params] = useRoute("/tool/:id");
   const { tools } = useTools();
   const [isLoading, setIsLoading] = useState(true);
+  const [, navigate] = useRoute();
   
   const toolId = params?.id;
   const tool = tools.find(t => t.id === toolId);
@@ -26,9 +27,14 @@ export default function ToolPage() {
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 500);
+
+    // For specific tools, redirect to their dedicated pages
+    if (toolId === "length-converter") {
+      navigate("/tools/length-converter");
+    }
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [toolId, navigate]);
 
   // Generic handlers
   const handleProcess = () => {
