@@ -16,6 +16,7 @@ import SitemapPage from "@/pages/SitemapPage";
 import ContactPage from "@/pages/ContactPage";
 import LengthConverterPage from "@/pages/tools/LengthConverterPage";
 import WeightMassConverterPage from "@/pages/tools/WeightMassConverterPage";
+import VolumeConverterPage from "@/pages/tools/VolumeConverterPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
