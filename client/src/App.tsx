@@ -23,6 +23,7 @@ import PressureConverterPage from "@/pages/tools/PressureConverterPage";
 import DataStorageConverterPage from "@/pages/tools/DataStorageConverterPage";
 import TimeConverterPage from "@/pages/tools/TimeConverterPage";
 import SpeedConverterPage from "@/pages/tools/SpeedConverterPage";
+import NumbersConverterPage from "@/pages/tools/NumbersConverterPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -55,6 +56,8 @@ function Router() {
           <Route path="/tools/pressure-converter" component={PressureConverterPage} />
           <Route path="/tools/data-storage-converter" component={DataStorageConverterPage} />
           <Route path="/tools/time-converter" component={TimeConverterPage} />
+          <Route path="/tools/speed-converter" component={SpeedConverterPage} />
+          <Route path="/tools/numbers-converter" component={NumbersConverterPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
