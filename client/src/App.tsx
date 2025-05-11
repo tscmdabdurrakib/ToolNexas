@@ -18,6 +18,8 @@ import LengthConverterPage from "@/pages/tools/LengthConverterPage";
 import WeightMassConverterPage from "@/pages/tools/WeightMassConverterPage";
 import VolumeConverterPage from "@/pages/tools/VolumeConverterPage";
 import TemperatureConverterPage from "@/pages/tools/TemperatureConverterPage";
+import AreaConverterPage from "@/pages/tools/AreaConverterPage";
+import PressureConverterPage from "@/pages/tools/PressureConverterPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -46,6 +48,8 @@ function Router() {
           <Route path="/tools/weight-mass-converter" component={WeightMassConverterPage} />
           <Route path="/tools/volume-converter" component={VolumeConverterPage} />
           <Route path="/tools/temperature-converter" component={TemperatureConverterPage} />
+          <Route path="/tools/area-converter" component={AreaConverterPage} />
+          <Route path="/tools/pressure-converter" component={PressureConverterPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
