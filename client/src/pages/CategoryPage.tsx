@@ -55,12 +55,14 @@ export default function CategoryPage({ params }: { params?: { id?: string } }) {
       >
         <div className="mb-8">
           <Link href="/">
-            <a className="text-muted-foreground hover:text-primary transition flex items-center mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-              </svg>
-              Back to Home
-            </a>
+            <Button variant="ghost" className="p-0 h-auto mb-4" asChild>
+              <div className="text-muted-foreground hover:text-primary transition flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Back to Home
+              </div>
+            </Button>
           </Link>
           
           <div className="flex items-center space-x-4 mb-4">
