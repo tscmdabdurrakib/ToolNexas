@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'wouter';
 import { ArrowLeft } from 'lucide-react';
-import VolumeConverter from '@/tools/unit-conversion/volume-converter';
+import TemperatureConverter from '@/tools/unit-conversion/temperature-converter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
-export default function VolumeConverterPage() {
+export default function TemperatureConverterPage() {
   useEffect(() => {
     // Scroll to top on component mount
     window.scrollTo(0, 0);
@@ -15,7 +15,7 @@ export default function VolumeConverterPage() {
 
   // Set document title
   useEffect(() => {
-    document.title = "Volume Converter | Convert Between Various Volume Units";
+    document.title = "Temperature Converter | Convert Between Celsius, Fahrenheit, Kelvin and More";
   }, []);
   
   return (
@@ -39,12 +39,12 @@ export default function VolumeConverterPage() {
             </Link>
           </div>
           
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Volume Converter</h1>
-          <p className="text-lg text-muted-foreground">Convert between different volume units including metric and imperial systems</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">Temperature Converter</h1>
+          <p className="text-lg text-muted-foreground">Convert between Celsius, Fahrenheit, Kelvin, and other temperature units</p>
         </div>
 
         <div className="grid gap-8 mb-10">
-          <VolumeConverter />
+          <TemperatureConverter />
         </div>
 
         <div className="grid gap-8 md:grid-cols-2">
@@ -57,11 +57,11 @@ export default function VolumeConverterPage() {
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start">
                   <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Supports all common volume units including metric and imperial</span>
+                  <span>Convert between Celsius, Fahrenheit, Kelvin, Rankine, and Réaumur</span>
                 </li>
                 <li className="flex items-start">
                   <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Real-time conversion as you type</span>
+                  <span>Real-time conversion with accurate formulas</span>
                 </li>
                 <li className="flex items-start">
                   <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
@@ -69,11 +69,11 @@ export default function VolumeConverterPage() {
                 </li>
                 <li className="flex items-start">
                   <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Copy results with one click</span>
+                  <span>Conversion formulas displayed for educational purposes</span>
                 </li>
                 <li className="flex items-start">
                   <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Common conversion reference table</span>
+                  <span>Copy results with one click</span>
                 </li>
               </ul>
             </CardContent>
@@ -88,8 +88,9 @@ export default function VolumeConverterPage() {
               <div>
                 <h3 className="font-medium mb-1">Description</h3>
                 <p className="text-sm text-muted-foreground">
-                  This volume converter allows you to easily convert between different units of volume measurement.
-                  It supports both metric units (like liters and cubic meters) and imperial/US units (like gallons and fluid ounces).
+                  This temperature converter allows you to easily convert between different temperature scales.
+                  From everyday Celsius/Fahrenheit conversions to scientific measurements in Kelvin,
+                  the tool provides accurate results with precise formulas.
                 </p>
               </div>
               
@@ -98,27 +99,24 @@ export default function VolumeConverterPage() {
               <div>
                 <h3 className="font-medium mb-1">Supported Units</h3>
                 <div className="grid grid-cols-2 text-sm text-muted-foreground gap-y-1">
-                  <span>• Cubic Meter (m³)</span>
-                  <span>• Liter (L)</span>
-                  <span>• Milliliter (mL)</span>
-                  <span>• Cubic Centimeter (cm³)</span>
-                  <span>• Cubic Inch (in³)</span>
-                  <span>• Cubic Foot (ft³)</span>
-                  <span>• US Gallon (gal)</span>
-                  <span>• Imperial Gallon (gal)</span>
-                  <span>• US Fluid Ounce (fl oz)</span>
-                  <span>• US Cup (cup)</span>
+                  <span>• Celsius (°C)</span>
+                  <span>• Fahrenheit (°F)</span>
+                  <span>• Kelvin (K)</span>
+                  <span>• Rankine (°R)</span>
+                  <span>• Réaumur (°Ré)</span>
                 </div>
               </div>
               
               <Separator />
               
               <div>
-                <h3 className="font-medium mb-1">How It Works</h3>
-                <p className="text-sm text-muted-foreground">
-                  The converter uses standard conversion rates to transform volumes between different measurement systems.
-                  All conversions are performed locally in your browser with no data sent to any server.
-                </p>
+                <h3 className="font-medium mb-1">Common Conversion Formulas</h3>
+                <div className="text-sm text-muted-foreground space-y-1">
+                  <p>• °F = (°C × 9/5) + 32</p>
+                  <p>• °C = (°F - 32) × 5/9</p>
+                  <p>• K = °C + 273.15</p>
+                  <p>• °C = K - 273.15</p>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -138,9 +136,9 @@ export default function VolumeConverterPage() {
                 Weight Mass Converter
               </Button>
             </Link>
-            <Link href="/tools/temperature-converter">
+            <Link href="/tools/volume-converter">
               <Button variant="outline" className="w-full justify-start h-auto py-2">
-                Temperature Converter
+                Volume Converter
               </Button>
             </Link>
           </div>
