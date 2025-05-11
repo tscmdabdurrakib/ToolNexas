@@ -138,7 +138,7 @@ export default function NotFound() {
             </span>
 
             {/* Glitch layers */}
-            <AnimatePresence>
+            <div>
               <motion.span
                 className="absolute inset-0 text-primary text-9xl md:text-[15rem] font-bold"
                 style={{ clipPath: "inset(0 0 0 0)" }}
@@ -191,7 +191,7 @@ export default function NotFound() {
               >
                 404
               </motion.span>
-            </AnimatePresence>
+            </div>
 
             <span className="relative text-9xl md:text-[15rem] font-bold text-primary">
               404

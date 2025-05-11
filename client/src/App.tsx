@@ -21,6 +21,8 @@ import TemperatureConverterPage from "@/pages/tools/TemperatureConverterPage";
 import AreaConverterPage from "@/pages/tools/AreaConverterPage";
 import PressureConverterPage from "@/pages/tools/PressureConverterPage";
 import DataStorageConverterPage from "@/pages/tools/DataStorageConverterPage";
+import TimeConverterPage from "@/pages/tools/TimeConverterPage";
+import SpeedConverterPage from "@/pages/tools/SpeedConverterPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -52,6 +54,7 @@ function Router() {
           <Route path="/tools/area-converter" component={AreaConverterPage} />
           <Route path="/tools/pressure-converter" component={PressureConverterPage} />
           <Route path="/tools/data-storage-converter" component={DataStorageConverterPage} />
+          <Route path="/tools/time-converter" component={TimeConverterPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
