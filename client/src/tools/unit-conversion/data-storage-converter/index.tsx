@@ -1,19 +1,11 @@
-import { useState, useEffect, useRef } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDownUp, Copy, RotateCcw, Info } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { ArrowRightLeft, RotateCcw, Info, Database } from "lucide-react";
+import { motion } from "framer-motion";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 // Data storage conversion factors (to bits)
 const conversionFactors = {
@@ -78,352 +70,279 @@ const unitLabels = {
   exbibyte: "Exbibyte (EiB)"
 };
 
-// Interface for common conversion examples
-interface CommonConversion {
-  from: DataStorageUnit;
-  to: DataStorageUnit;
-  value: number;
-  result: number;
-}
-
-// Common conversion references for educational purposes
-const commonConversions: CommonConversion[] = [
-  { from: "byte", to: "bit", value: 1, result: 8 },
-  { from: "kilobyte", to: "kibibyte", value: 1, result: 0.9765625 },
-  { from: "megabyte", to: "mebibyte", value: 1, result: 0.9536743 },
-  { from: "gigabyte", to: "gibibyte", value: 1, result: 0.9313225 },
-  { from: "terabyte", to: "tebibyte", value: 1, result: 0.9094947 }
-];
-
 /**
  * Data Storage Converter Component
- * A modern, user-friendly tool for converting between different units of digital storage
+ * Allows users to convert between different units of digital storage
  */
 export default function DataStorageConverter() {
-  const { toast } = useToast();
-  const [fromUnit, setFromUnit] = useState<DataStorageUnit>("megabyte");
-  const [toUnit, setToUnit] = useState<DataStorageUnit>("gigabyte");
-  const [inputValue, setInputValue] = useState<string>("");
-  const [result, setResult] = useState<string>("");
-  const [animateResult, setAnimateResult] = useState(false);
+  // State for input value, source and target units
+  const [inputValue, setInputValue] = useState<string>('');
+  const [fromUnit, setFromUnit] = useState<DataStorageUnit>('megabyte');
+  const [toUnit, setToUnit] = useState<DataStorageUnit>('gigabyte');
+  const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [swapAnimation, setSwapAnimation] = useState(false);
 
-  // Group units for select dropdown
-  const unitGroups = {
-    decimal_bits: ["bit", "kilobit", "megabit", "gigabit", "terabit", "petabit", "exabit"],
-    binary_bits: ["kibibit", "mebibit", "gibibit", "tebibit", "pebibit", "exbibit"],
-    decimal_bytes: ["byte", "kilobyte", "megabyte", "gigabyte", "terabyte", "petabyte", "exabyte"],
-    binary_bytes: ["kibibyte", "mebibyte", "gibibyte", "tebibyte", "pebibyte", "exbibyte"]
-  };
+  // Perform the conversion whenever inputs change
+  useEffect(() => {
+    convertDataStorage();
+  }, [inputValue, fromUnit, toUnit]);
 
   /**
    * Convert from one data storage unit to another
    */
-  const convert = () => {
-    if (!inputValue) {
-      setResult("");
-      setError(null);
-      return;
-    }
-
-    const numValue = parseFloat(inputValue);
-    
-    // Validate input
-    if (isNaN(numValue)) {
-      setError("Please enter a valid number");
-      setResult("");
-      return;
-    }
-    
-    if (numValue < 0) {
-      setError("Data storage cannot be negative");
-      setResult("");
-      return;
-    }
-
+  const convertDataStorage = () => {
+    // Clear previous errors
     setError(null);
+
+    // If input is empty, clear the result
+    if (!inputValue) {
+      setResult('');
+      return;
+    }
+
+    // Parse the input value
+    const value = parseFloat(inputValue);
+
+    // Validate the input is a number
+    if (isNaN(value)) {
+      setError('Please enter a valid number');
+      setResult('');
+      return;
+    }
     
-    // Convert to base unit (bits) then to target unit
-    const inBits = numValue * conversionFactors[fromUnit];
+    // Data storage cannot be negative
+    if (value < 0) {
+      setError('Data storage cannot be negative');
+      setResult('');
+      return;
+    }
+
+    // Perform conversion
+    // First convert to bits (base unit), then to target unit
+    const inBits = value * conversionFactors[fromUnit];
     const converted = inBits / conversionFactors[toUnit];
-    
-    // Format result based on magnitude
-    setResult(formatValue(converted));
-    
-    // Animate the result
-    setAnimateResult(true);
-    setTimeout(() => setAnimateResult(false), 500);
+
+    // Format the result based on the magnitude for better readability
+    const roundedResult = formatResult(converted);
+    setResult(roundedResult);
   };
 
   /**
    * Format number based on its magnitude
    */
-  const formatValue = (value: number): string => {
-    if (value === 0) return "0";
+  const formatResult = (num: number): string => {
+    if (num === 0) return "0";
     
-    const absValue = Math.abs(value);
+    const absNum = Math.abs(num);
     
-    if (absValue < 0.0000001) return value.toExponential(6);
-    if (absValue < 0.00001) return value.toFixed(10);
-    if (absValue < 0.0001) return value.toFixed(8);
-    if (absValue < 0.001) return value.toFixed(6);
-    if (absValue < 0.01) return value.toFixed(5);
-    if (absValue < 1) return value.toFixed(4);
-    if (absValue < 10) return value.toFixed(3);
-    if (absValue < 100) return value.toFixed(2);
-    if (absValue < 1000) return value.toFixed(1);
+    if (absNum < 0.0000001) return num.toExponential(6);
+    if (absNum < 0.00001) return num.toFixed(10);
+    if (absNum < 0.0001) return num.toFixed(8);
+    if (absNum < 0.001) return num.toFixed(6);
+    if (absNum < 0.01) return num.toFixed(5);
+    if (absNum < 1) return num.toFixed(4);
+    if (absNum < 10) return num.toFixed(3);
+    if (absNum < 100) return num.toFixed(2);
+    if (absNum < 1000) return num.toFixed(1);
     
-    return value.toFixed(0);
+    return num.toFixed(0);
   };
 
   /**
    * Swap the from and to units
    */
   const swapUnits = () => {
+    setSwapAnimation(true);
+    const temp = fromUnit;
     setFromUnit(toUnit);
-    setToUnit(fromUnit);
+    setToUnit(temp);
+    
+    // Reset animation state after animation completes
+    setTimeout(() => setSwapAnimation(false), 500);
   };
 
   /**
    * Reset all fields to default
    */
-  const resetFields = () => {
-    setInputValue("");
-    setResult("");
-    setFromUnit("megabyte");
-    setToUnit("gigabyte");
+  const resetConverter = () => {
+    setInputValue('');
+    setFromUnit('megabyte');
+    setToUnit('gigabyte');
+    setResult('');
     setError(null);
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
   };
 
-  /**
-   * Copy result to clipboard
-   */
-  const copyResult = () => {
-    if (result) {
-      navigator.clipboard.writeText(result);
-      toast({
-        title: "Copied!",
-        description: `${result} ${unitLabels[toUnit as keyof typeof unitLabels]?.split(' ')[0]} copied to clipboard.`,
-        duration: 2000,
-      });
-    }
-  };
+  // Generate the Select options grouped by category
+  const renderUnitOptions = () => {
+    const groups = {
+      "Decimal Bits": ["bit", "kilobit", "megabit", "gigabit", "terabit", "petabit", "exabit"],
+      "Binary Bits": ["bit", "kibibit", "mebibit", "gibibit", "tebibit", "pebibit", "exbibit"],
+      "Decimal Bytes": ["byte", "kilobyte", "megabyte", "gigabyte", "terabyte", "petabyte", "exabyte"],
+      "Binary Bytes": ["byte", "kibibyte", "mebibyte", "gibibyte", "tebibyte", "pebibyte", "exbibyte"]
+    };
 
-  // Convert when input or units change
-  useEffect(() => {
-    convert();
-  }, [inputValue, fromUnit, toUnit]);
+    return Object.entries(groups).map(([groupName, units]) => (
+      <React.Fragment key={groupName}>
+        <SelectItem value={units[0]} disabled className="font-semibold text-primary">
+          {groupName}
+        </SelectItem>
+        {units.map(unit => (
+          <SelectItem key={unit} value={unit}>
+            {unitLabels[unit as DataStorageUnit]}
+          </SelectItem>
+        ))}
+      </React.Fragment>
+    ));
+  };
 
   return (
-    <Card className="w-full max-w-4xl mx-auto border-none shadow-none">
-      <CardContent className="p-0">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-6">
-          {/* From Unit */}
-          <div className="space-y-2">
-            <h3 className="text-sm font-medium">From</h3>
-            <Select 
-              value={fromUnit} 
-              onValueChange={(value: string) => setFromUnit(value as DataStorageUnit)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select unit" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="bit">Bit (b)</SelectItem>
-                <SelectItem value="kilobit">Kilobit (kb)</SelectItem>
-                <SelectItem value="megabit">Megabit (Mb)</SelectItem>
-                <SelectItem value="gigabit">Gigabit (Gb)</SelectItem>
-                <SelectItem value="terabit">Terabit (Tb)</SelectItem>
-                <SelectItem value="petabit">Petabit (Pb)</SelectItem>
-                <SelectItem value="exabit">Exabit (Eb)</SelectItem>
-                <SelectItem value="kibibit">Kibibit (Kib)</SelectItem>
-                <SelectItem value="mebibit">Mebibit (Mib)</SelectItem>
-                <SelectItem value="gibibit">Gibibit (Gib)</SelectItem>
-                <SelectItem value="tebibit">Tebibit (Tib)</SelectItem>
-                <SelectItem value="pebibit">Pebibit (Pib)</SelectItem>
-                <SelectItem value="exbibit">Exbibit (Eib)</SelectItem>
-                <SelectItem value="byte">Byte (B)</SelectItem>
-                <SelectItem value="kilobyte">Kilobyte (kB)</SelectItem>
-                <SelectItem value="megabyte">Megabyte (MB)</SelectItem>
-                <SelectItem value="gigabyte">Gigabyte (GB)</SelectItem>
-                <SelectItem value="terabyte">Terabyte (TB)</SelectItem>
-                <SelectItem value="petabyte">Petabyte (PB)</SelectItem>
-                <SelectItem value="exabyte">Exabyte (EB)</SelectItem>
-                <SelectItem value="kibibyte">Kibibyte (KiB)</SelectItem>
-                <SelectItem value="mebibyte">Mebibyte (MiB)</SelectItem>
-                <SelectItem value="gibibyte">Gibibyte (GiB)</SelectItem>
-                <SelectItem value="tebibyte">Tebibyte (TiB)</SelectItem>
-                <SelectItem value="pebibyte">Pebibyte (PiB)</SelectItem>
-                <SelectItem value="exbibyte">Exbibyte (EiB)</SelectItem>
-              </SelectContent>
-            </Select>
-            <Input
-              type="text"
-              placeholder="Enter value"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              className="mt-2"
-              ref={inputRef}
-              inputMode="decimal"
-            />
-            {error && (
-              <p className="text-sm text-red-500 mt-1">{error}</p>
-            )}
+    <Card className="w-full max-w-3xl mx-auto shadow-lg">
+      <CardHeader className="bg-primary/5 border-b">
+        <div className="flex items-center gap-3">
+          <Database className="h-6 w-6 text-primary" />
+          <div>
+            <CardTitle className="text-2xl">Data Storage Converter</CardTitle>
+            <CardDescription>
+              Convert between different units of digital data storage and memory
+            </CardDescription>
           </div>
+        </div>
+      </CardHeader>
 
-          {/* To Unit */}
-          <div className="space-y-2">
-            <div className="flex items-center justify-between">
-              <h3 className="text-sm font-medium">To</h3>
-              <Button 
-                variant="ghost" 
-                size="icon"
-                className="h-8 w-8"
-                onClick={swapUnits}
-                title="Swap units"
-              >
-                <ArrowDownUp className="h-4 w-4" />
-              </Button>
+      <CardContent className="pt-6">
+        <div className="space-y-6">
+          {/* Input value and unit selection */}
+          <div className="grid gap-6 sm:grid-cols-5">
+            <div className="sm:col-span-2">
+              <label htmlFor="storage-value" className="block text-sm font-medium mb-2">
+                Enter Value
+              </label>
+              <Input
+                id="storage-value"
+                type="number"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Enter data size"
+                className="w-full"
+              />
             </div>
-            <Select 
-              value={toUnit} 
-              onValueChange={(value: string) => setToUnit(value as DataStorageUnit)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select unit" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="bit">Bit (b)</SelectItem>
-                <SelectItem value="kilobit">Kilobit (kb)</SelectItem>
-                <SelectItem value="megabit">Megabit (Mb)</SelectItem>
-                <SelectItem value="gigabit">Gigabit (Gb)</SelectItem>
-                <SelectItem value="terabit">Terabit (Tb)</SelectItem>
-                <SelectItem value="petabit">Petabit (Pb)</SelectItem>
-                <SelectItem value="exabit">Exabit (Eb)</SelectItem>
-                <SelectItem value="kibibit">Kibibit (Kib)</SelectItem>
-                <SelectItem value="mebibit">Mebibit (Mib)</SelectItem>
-                <SelectItem value="gibibit">Gibibit (Gib)</SelectItem>
-                <SelectItem value="tebibit">Tebibit (Tib)</SelectItem>
-                <SelectItem value="pebibit">Pebibit (Pib)</SelectItem>
-                <SelectItem value="exbibit">Exbibit (Eib)</SelectItem>
-                <SelectItem value="byte">Byte (B)</SelectItem>
-                <SelectItem value="kilobyte">Kilobyte (kB)</SelectItem>
-                <SelectItem value="megabyte">Megabyte (MB)</SelectItem>
-                <SelectItem value="gigabyte">Gigabyte (GB)</SelectItem>
-                <SelectItem value="terabyte">Terabyte (TB)</SelectItem>
-                <SelectItem value="petabyte">Petabyte (PB)</SelectItem>
-                <SelectItem value="exabyte">Exabyte (EB)</SelectItem>
-                <SelectItem value="kibibyte">Kibibyte (KiB)</SelectItem>
-                <SelectItem value="mebibyte">Mebibyte (MiB)</SelectItem>
-                <SelectItem value="gibibyte">Gibibyte (GiB)</SelectItem>
-                <SelectItem value="tebibyte">Tebibyte (TiB)</SelectItem>
-                <SelectItem value="pebibyte">Pebibyte (PiB)</SelectItem>
-                <SelectItem value="exbibyte">Exbibyte (EiB)</SelectItem>
-              </SelectContent>
-            </Select>
             
-            <div className="border rounded-md mt-2 h-[40px] p-2 flex items-center justify-between bg-muted/30">
-              <AnimatePresence>
+            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
+              <div className="sm:col-span-3">
+                <label htmlFor="from-unit" className="block text-sm font-medium mb-2">
+                  From
+                </label>
+                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as DataStorageUnit)}>
+                  <SelectTrigger id="from-unit">
+                    <SelectValue placeholder="Select unit" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {renderUnitOptions()}
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="flex justify-center items-center sm:col-span-1">
                 <motion.div
-                  key={result}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex items-center justify-between w-full"
+                  animate={{ rotate: swapAnimation ? 360 : 0 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <div className="text-lg font-medium">
-                    {result ? (
-                      <motion.div 
-                        animate={animateResult ? { scale: [1, 1.05, 1] } : {}}
-                        transition={{ duration: 0.5 }}
-                      >
-                        {result} <span className="text-sm font-normal">
-                          {unitLabels[toUnit as keyof typeof unitLabels]?.match(/\(([^)]+)\)/)?.[1]}
-                        </span>
-                      </motion.div>
-                    ) : (
-                      <span className="text-muted-foreground text-sm">Enter a value to convert</span>
-                    )}
-                  </div>
-                  {result && (
-                    <Button 
-                      variant="ghost" 
-                      size="icon" 
-                      className="h-6 w-6" 
-                      onClick={copyResult}
-                      title="Copy result"
-                    >
-                      <Copy className="h-3.5 w-3.5" />
-                    </Button>
-                  )}
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    onClick={swapUnits}
+                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
+                  >
+                    <ArrowRightLeft className="h-4 w-4" />
+                    <span className="sr-only">Swap units</span>
+                  </Button>
                 </motion.div>
-              </AnimatePresence>
+              </div>
+              
+              <div className="sm:col-span-3">
+                <label htmlFor="to-unit" className="block text-sm font-medium mb-2">
+                  To
+                </label>
+                <Select value={toUnit} onValueChange={(value) => setToUnit(value as DataStorageUnit)}>
+                  <SelectTrigger id="to-unit">
+                    <SelectValue placeholder="Select unit" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {renderUnitOptions()}
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Action Buttons */}
-        <div className="flex justify-end space-x-2 mb-6">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={resetFields}
-            className="flex items-center gap-1"
-          >
-            <RotateCcw className="h-3.5 w-3.5 mr-1" />
-            Reset
-          </Button>
-        </div>
-        
-        {/* Conversion details box */}
-        <div className="space-y-4">
-          {inputValue && !error && result && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="bg-muted/30 p-4 rounded-lg text-sm"
-            >
+          {/* Conversion Result */}
+          <div className="bg-muted/50 p-4 rounded-lg">
+            <h3 className="text-sm font-medium text-muted-foreground mb-2">Result</h3>
+            <div className="flex items-center justify-between">
+              <div className="text-3xl font-bold">
+                {result ? (
+                  <>
+                    {result} <span className="text-lg font-normal">{unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '')}</span>
+                  </>
+                ) : (
+                  <span className="text-muted-foreground text-lg">— Enter a value to convert —</span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Error Message */}
+          {error && (
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          {/* Conversion Formula Display */}
+          {result && (
+            <div className="bg-muted/30 p-4 rounded-lg text-sm">
               <div className="flex items-start gap-2">
                 <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
                 <div>
                   <span className="font-medium">Conversion Details:</span>
                   <p className="text-muted-foreground mt-1">
-                    {`${inputValue} ${unitLabels[fromUnit as keyof typeof unitLabels]?.split(' ')[0]} = ${result} ${unitLabels[toUnit as keyof typeof unitLabels]?.split(' ')[0]}`}
+                    {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit as keyof typeof unitLabels]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} ${unitLabels[toUnit as keyof typeof unitLabels]?.split(' ')[0]}`}
+                    {`1 ${unitLabels[fromUnit]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
-        </div>
-        
-        {/* Common Conversions Table */}
-        <Separator className="my-6" />
-        <div className="space-y-3">
-          <h3 className="text-sm font-medium">Common Data Storage Conversions</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm">
-            {commonConversions.map((conv, i) => (
-              <div key={i} className="flex items-center gap-1.5">
-                <Badge variant="outline" className="h-6 px-1.5 text-xs whitespace-nowrap">
-                  {conv.value} {unitLabels[conv.from as keyof typeof unitLabels]?.match(/\(([^)]+)\)/)?.[1]}
-                </Badge>
-                <span>=</span>
-                <Badge variant="outline" className="h-6 px-1.5 text-xs bg-primary/5 whitespace-nowrap">
-                  {conv.result} {unitLabels[conv.to as keyof typeof unitLabels]?.match(/\(([^)]+)\)/)?.[1]}
-                </Badge>
-              </div>
-            ))}
+
+          {/* Explanation of Decimal vs Binary units */}
+          <div className="bg-primary/5 p-4 rounded-lg text-xs">
+            <h4 className="font-medium mb-1">About Digital Storage Units:</h4>
+            <ul className="space-y-1 text-muted-foreground">
+              <li><strong>Decimal Units (kB, MB, GB):</strong> Base 10 - Powers of 1000 (1 kB = 1000 bytes)</li>
+              <li><strong>Binary Units (KiB, MiB, GiB):</strong> Base 2 - Powers of 1024 (1 KiB = 1024 bytes)</li>
+              <li>Storage manufacturers typically use decimal units, while operating systems often use binary units</li>
+            </ul>
           </div>
         </div>
       </CardContent>
+
+      <CardFooter className="flex justify-between border-t p-4 bg-muted/10">
+        <Button
+          variant="outline"
+          onClick={resetConverter}
+          className="gap-2"
+        >
+          <RotateCcw className="h-4 w-4" /> Reset
+        </Button>
+        
+        <div className="text-xs text-muted-foreground">
+          Accurate conversions between decimal and binary storage units
+        </div>
+      </CardFooter>
     </Card>
   );
 }
