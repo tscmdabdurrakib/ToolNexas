@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ArrowRightLeft, RotateCcw, Info, SquareIcon } from "lucide-react";
+import { ArrowRightLeft, RotateCcw, Info, Square } from "lucide-react";
 import { motion } from "framer-motion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
@@ -49,15 +49,6 @@ const unitLabels = {
   section: "Section (sec)",
   homestead: "Homestead (hmsd)"
 };
-
-// Common conversion references for educational purposes
-const commonConversions = [
-  { from: "hectare", to: "acre", value: 1, result: 2.47105 },
-  { from: "squareMeter", to: "squareFoot", value: 1, result: 10.7639 },
-  { from: "acre", to: "squareMeter", value: 1, result: 4046.86 },
-  { from: "squareMile", to: "squareKilometer", value: 1, result: 2.58999 },
-  { from: "squareFoot", to: "squareInch", value: 1, result: 144 }
-];
 
 /**
  * Area Converter Component
@@ -166,7 +157,7 @@ export default function AreaConverter() {
     <Card className="w-full max-w-3xl mx-auto shadow-lg">
       <CardHeader className="bg-primary/5 border-b">
         <div className="flex items-center gap-3">
-          <SquareIcon className="h-6 w-6 text-primary" />
+          <Square className="h-6 w-6 text-primary" />
           <div>
             <CardTitle className="text-2xl">Area Converter</CardTitle>
             <CardDescription>
