@@ -24,6 +24,10 @@ import DataStorageConverterPage from "@/pages/tools/DataStorageConverterPage";
 import TimeConverterPage from "@/pages/tools/TimeConverterPage";
 import SpeedConverterPage from "@/pages/tools/SpeedConverterPage";
 import NumbersConverterPage from "@/pages/tools/NumbersConverterPage";
+import EnergyConverterPage from "@/pages/tools/EnergyConverterPage";
+import PowerConverterPage from "@/pages/tools/PowerConverterPage";
+import ForceConverterPage from "@/pages/tools/ForceConverterPage";
+import AngleConverterPage from "@/pages/tools/AngleConverterPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -58,6 +62,10 @@ function Router() {
           <Route path="/tools/time-converter" component={TimeConverterPage} />
           <Route path="/tools/speed-converter" component={SpeedConverterPage} />
           <Route path="/tools/numbers-converter" component={NumbersConverterPage} />
+          <Route path="/tools/energy-converter" component={EnergyConverterPage} />
+          <Route path="/tools/power-converter" component={PowerConverterPage} />
+          <Route path="/tools/force-converter" component={ForceConverterPage} />
+          <Route path="/tools/angle-converter" component={AngleConverterPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
