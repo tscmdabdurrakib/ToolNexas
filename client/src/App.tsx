@@ -28,6 +28,7 @@ import EnergyConverterPage from "@/pages/tools/EnergyConverterPage";
 import PowerConverterPage from "@/pages/tools/PowerConverterPage";
 import ForceConverterPage from "@/pages/tools/ForceConverterPage";
 import AngleConverterPage from "@/pages/tools/AngleConverterPage";
+import MortgageCalculatorPage from "@/pages/tools/MortgageCalculatorPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -66,6 +67,7 @@ function Router() {
           <Route path="/tools/power-converter" component={PowerConverterPage} />
           <Route path="/tools/force-converter" component={ForceConverterPage} />
           <Route path="/tools/angle-converter" component={AngleConverterPage} />
+          <Route path="/tools/mortgage-calculator" component={MortgageCalculatorPage} />
           <Route component={NotFound} />
         </Switch>
       </div>
