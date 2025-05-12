@@ -14,33 +14,7 @@ const countryToLanguage: Record<string, string> = {
   'BD': 'bn'
 };
 
-// Define translations manually
-const resources = {
-  en: {
-    translation: {
-      common: {
-        language: "Language",
-        home: "Home"
-      }
-    }
-  },
-  bn: {
-    translation: {
-      common: {
-        language: "ভাষা",
-        home: "হোম"
-      }
-    }
-  },
-  hi: {
-    translation: {
-      common: {
-        language: "भाषा",
-        home: "होम"
-      }
-    }
-  }
-};
+// Import translations dynamically through backend
 
 // Initialize i18next
 i18n
@@ -48,7 +22,7 @@ i18n
   .use(LanguageDetector) // Detects user language
   .use(initReactI18next) // Passes i18n to react-i18next
   .init({
-    resources,
+    // No resources specified as they will be loaded from the backend
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
     

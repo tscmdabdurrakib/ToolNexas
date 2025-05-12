@@ -5,7 +5,7 @@
     "language": "Language",
     "search": "Search",
     "home": "Home",
-    "about": "About",
+    "about": "About Us",
     "contact": "Contact",
     "categories": "Categories",
     "tools": "Tools",
@@ -56,7 +56,7 @@
   "tools": {
     "mortgage": {
       "title": "Mortgage Calculator",
-      "description": "Calculate monthly mortgage payments, interest, and view payment breakdowns",
+      "description": "Calculate monthly mortgage payments, interest, and payment breakdown",
       "loanAmount": "Loan Amount",
       "downPayment": "Down Payment",
       "interestRate": "Interest Rate (%)",
@@ -66,7 +66,7 @@
       "monthlyPayment": "Monthly Payment",
       "totalPrincipal": "Total Principal",
       "totalInterest": "Total Interest",
-      "totalPayment": "Total Payment Over Term",
+      "totalPayment": "Total Payment over Term",
       "paymentBreakdown": "Payment Breakdown",
       "pieChart": "Pie Chart",
       "barChart": "Bar Chart",
@@ -75,16 +75,16 @@
       "resetValues": "Reset Values",
       "understanding": "Understanding Your Mortgage",
       "whatIs": "What is a Mortgage?",
-      "howItWorks": "How it Works",
+      "howItWorks": "How It Works",
       "whyUse": "Why Use This Calculator?",
-      "whatIsText": "A mortgage is a loan used to purchase a home or property, where the property serves as collateral. The borrower agrees to make regular payments over time, typically including principal and interest.",
-      "howItWorksText": "Your monthly payment consists of principal (the amount borrowed), interest (the cost of borrowing), and often taxes and insurance. Over time, more of your payment goes toward the principal as the loan balance decreases.",
+      "whatIsText": "A mortgage is a loan used to purchase a home or property, with the property serving as collateral. The borrower agrees to make regular payments over time, typically including principal and interest.",
+      "howItWorksText": "Your monthly payment includes principal (the amount borrowed), interest (the cost of borrowing), and often taxes and insurance. Over time, as the loan balance decreases, more of your payment goes toward principal.",
       "whyUseText": "This calculator helps you understand the true cost of your mortgage, plan your budget accordingly, and make informed decisions about loan terms, down payment amounts, and interest rates."
     }
   },
   "languages": {
     "en": "English",
-    "bn": "বাংলা",
-    "hi": "हिंदी"
+    "bn": "Bengali",
+    "hi": "Hindi"
   }
 }
