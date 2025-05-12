@@ -1,6 +1,8 @@
 import { Link } from "wouter";
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="bg-card border-t border-border py-10">
       <div className="container mx-auto px-4 md:px-6">

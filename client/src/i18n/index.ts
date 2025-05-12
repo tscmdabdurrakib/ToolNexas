@@ -34,7 +34,7 @@ i18n
       lookupLocalStorage: 'i18nextLng',
       lookupCookie: 'i18next',
       caches: ['localStorage', 'cookie'],
-      cookieExpirationDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365), // 1 year
+      cookieMinutes: 525600, // 1 year in minutes
     },
     
     interpolation: {
