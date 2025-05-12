@@ -14,12 +14,41 @@ const countryToLanguage: Record<string, string> = {
   'BD': 'bn'
 };
 
+// Define translations manually
+const resources = {
+  en: {
+    translation: {
+      common: {
+        language: "Language",
+        home: "Home"
+      }
+    }
+  },
+  bn: {
+    translation: {
+      common: {
+        language: "ভাষা",
+        home: "হোম"
+      }
+    }
+  },
+  hi: {
+    translation: {
+      common: {
+        language: "भाषा",
+        home: "होम"
+      }
+    }
+  }
+};
+
 // Initialize i18next
 i18n
   .use(Backend) // Loads translations from backend
   .use(LanguageDetector) // Detects user language
   .use(initReactI18next) // Passes i18n to react-i18next
   .init({
+    resources,
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
     
@@ -33,13 +62,17 @@ i18n
       order: ['localStorage', 'cookie', 'navigator', 'htmlTag', 'path'],
       lookupLocalStorage: 'i18nextLng',
       lookupCookie: 'i18next',
-      caches: ['localStorage', 'cookie'],
-      cookieMinutes: 525600, // 1 year in minutes
+      caches: ['localStorage', 'cookie']
     },
     
     interpolation: {
       escapeValue: false, // React already escapes values
     },
+    
+    // React specific options
+    react: {
+      useSuspense: false
+    }
   });
 
 // Function to attempt to detect country from IP and set language
