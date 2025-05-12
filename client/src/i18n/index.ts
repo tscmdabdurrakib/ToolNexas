@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import Backend from 'i18next-http-backend';
 import axios from 'axios';
 
 // Country to language mapping
@@ -14,22 +13,93 @@ const countryToLanguage: Record<string, string> = {
   'BD': 'bn'
 };
 
-// Import translations dynamically through backend
+// Hard-coded translations for initial loading
+const resources = {
+  en: {
+    translation: {
+      common: {
+        title: "Tools Website",
+        language: "Language",
+        home: "Home",
+        about: "About Us",
+        contact: "Contact",
+        categories: "Categories",
+        tools: "Tools"
+      },
+      header: {
+        searchPlaceholder: "Search for tools..."
+      },
+      home: {
+        featuredTools: "Featured Tools",
+        popularCategories: "Popular Categories" 
+      },
+      languages: {
+        en: "English",
+        bn: "Bengali",
+        hi: "Hindi"
+      }
+    }
+  },
+  bn: {
+    translation: {
+      common: {
+        title: "টুলস ওয়েবসাইট",
+        language: "ভাষা",
+        home: "হোম",
+        about: "আমাদের সম্পর্কে",
+        contact: "যোগাযোগ",
+        categories: "বিভাগসমূহ",
+        tools: "টুলস"
+      },
+      header: {
+        searchPlaceholder: "টুলস খুঁজুন..."
+      },
+      home: {
+        featuredTools: "বৈশিষ্ট্যযুক্ত টুলস",
+        popularCategories: "জনপ্রিয় বিভাগসমূহ"
+      },
+      languages: {
+        en: "English",
+        bn: "বাংলা",
+        hi: "हिंदी"
+      }
+    }
+  },
+  hi: {
+    translation: {
+      common: {
+        title: "टूल्स वेबसाइट",
+        language: "भाषा",
+        home: "होम",
+        about: "हमारे बारे में",
+        contact: "संपर्क करें",
+        categories: "श्रेणियां",
+        tools: "टूल्स"
+      },
+      header: {
+        searchPlaceholder: "टूल्स खोजें..."
+      },
+      home: {
+        featuredTools: "विशेष टूल्स",
+        popularCategories: "लोकप्रिय श्रेणियां"
+      },
+      languages: {
+        en: "English",
+        bn: "বাংলা",
+        hi: "हिंदी"
+      }
+    }
+  }
+};
 
 // Initialize i18next
 i18n
-  .use(Backend) // Loads translations from backend
   .use(LanguageDetector) // Detects user language
   .use(initReactI18next) // Passes i18n to react-i18next
   .init({
-    // No resources specified as they will be loaded from the backend
+    resources,
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
-    
-    // Backend configuration
-    backend: {
-      loadPath: '/locales/{{lng}}/translation.json',
-    },
     
     // Detection options
     detection: {
