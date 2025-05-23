@@ -1,8 +1,6 @@
 import { Link } from "wouter";
-import { useTranslation } from "react-i18next";
 
 export function Footer() {
-  const { t } = useTranslation();
   return (
     <footer className="bg-card border-t border-border py-10">
       <div className="container mx-auto px-4 md:px-6">
@@ -40,7 +38,7 @@ export function Footer() {
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">{t('common.categories')}</h3>
+            <h3 className="font-semibold mb-4">Categories</h3>
             <ul className="space-y-2 text-sm">
               <li><Link href="/category/writing" className="text-muted-foreground hover:text-primary transition">Writing Tools</Link></li>
               <li><Link href="/category/developer" className="text-muted-foreground hover:text-primary transition">Developer Tools</Link></li>
