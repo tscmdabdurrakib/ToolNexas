@@ -48,6 +48,28 @@ interface ImageElement {
 const FONT_SIZES = [8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 36];
 const COLORS = ['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF', '#808080'];
 
+interface AnnotationElement {
+  id: string;
+  type: 'highlight' | 'underline' | 'strikethrough' | 'rectangle' | 'circle';
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  color: string;
+  pageId: string;
+}
+
+interface SignatureElement {
+  id: string;
+  type: 'draw' | 'upload';
+  data: string; // SVG path or image data
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  pageId: string;
+}
+
 export default function PDFEditor() {
   const { theme } = useTheme();
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -55,10 +77,15 @@ export default function PDFEditor() {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [tool, setTool] = useState<'select' | 'text' | 'image' | 'highlight'>('select');
+  const [tool, setTool] = useState<'select' | 'text' | 'image' | 'highlight' | 'annotation' | 'signature'>('select');
   const [textElements, setTextElements] = useState<TextElement[]>([]);
   const [imageElements, setImageElements] = useState<ImageElement[]>([]);
+  const [annotationElements, setAnnotationElements] = useState<AnnotationElement[]>([]);
+  const [signatureElements, setSignatureElements] = useState<SignatureElement[]>([]);
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
+  const [isDrawingSignature, setIsDrawingSignature] = useState(false);
+  const [signaturePath, setSignaturePath] = useState<string>('');
   const [editingText, setEditingText] = useState<string | null>(null);
   const [newText, setNewText] = useState('');
   const [fontSize, setFontSize] = useState([14]);
@@ -195,13 +222,13 @@ export default function PDFEditor() {
     if (file) handleFileUpload(file);
   }, [handleFileUpload]);
 
-  // Handle page click for adding text
+  // Handle page click for adding elements
   const handlePageClick = useCallback((e: React.MouseEvent, pageId: string) => {
-    if (tool === 'text') {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / zoomLevel;
+    const y = (e.clientY - rect.top) / zoomLevel;
 
+    if (tool === 'text') {
       const newTextElement: TextElement = {
         id: `text-${Date.now()}`,
         text: 'New Text',
@@ -218,8 +245,20 @@ export default function PDFEditor() {
       setTextElements(prev => [...prev, newTextElement]);
       setEditingText(newTextElement.id);
       setNewText(newTextElement.text);
+    } else if (tool === 'highlight') {
+      const newAnnotation: AnnotationElement = {
+        id: `annotation-${Date.now()}`,
+        type: 'highlight',
+        x,
+        y,
+        width: 100,
+        height: 20,
+        color: '#FFFF00',
+        pageId
+      };
+      setAnnotationElements(prev => [...prev, newAnnotation]);
     }
-  }, [tool, fontSize, textColor, fontWeight, fontStyle, textDecoration]);
+  }, [tool, fontSize, textColor, fontWeight, fontStyle, textDecoration, zoomLevel]);
 
   // Handle text editing
   const handleTextEdit = useCallback((elementId: string, newTextValue: string) => {
@@ -230,10 +269,79 @@ export default function PDFEditor() {
     );
   }, []);
 
+  // Handle zoom
+  const handleZoom = useCallback((direction: 'in' | 'out') => {
+    setZoomLevel(prev => {
+      const newZoom = direction === 'in' ? prev * 1.2 : prev / 1.2;
+      return Math.max(0.5, Math.min(3, newZoom));
+    });
+  }, []);
+
+  // Handle annotation creation
+  const handleAnnotationClick = useCallback((e: React.MouseEvent, pageId: string, type: AnnotationElement['type']) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / zoomLevel;
+    const y = (e.clientY - rect.top) / zoomLevel;
+
+    const newAnnotation: AnnotationElement = {
+      id: `annotation-${Date.now()}`,
+      type,
+      x,
+      y,
+      width: type === 'highlight' ? 100 : 50,
+      height: type === 'highlight' ? 20 : 50,
+      color: type === 'highlight' ? '#FFFF00' : textColor,
+      pageId
+    };
+
+    setAnnotationElements(prev => [...prev, newAnnotation]);
+  }, [zoomLevel, textColor]);
+
+  // Handle signature drawing
+  const handleSignatureStart = useCallback((e: React.MouseEvent) => {
+    if (tool === 'signature') {
+      setIsDrawingSignature(true);
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setSignaturePath(`M${x},${y}`);
+    }
+  }, [tool]);
+
+  const handleSignatureMove = useCallback((e: React.MouseEvent) => {
+    if (isDrawingSignature) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setSignaturePath(prev => prev + ` L${x},${y}`);
+    }
+  }, [isDrawingSignature]);
+
+  const handleSignatureEnd = useCallback(() => {
+    if (isDrawingSignature && signaturePath) {
+      const newSignature: SignatureElement = {
+        id: `signature-${Date.now()}`,
+        type: 'draw',
+        data: signaturePath,
+        x: 100,
+        y: 100,
+        width: 200,
+        height: 100,
+        pageId: pages[currentPage]?.id || '0'
+      };
+
+      setSignatureElements(prev => [...prev, newSignature]);
+      setIsDrawingSignature(false);
+      setSignaturePath('');
+    }
+  }, [isDrawingSignature, signaturePath, pages, currentPage]);
+
   // Handle element deletion
   const handleDeleteElement = useCallback((elementId: string) => {
     setTextElements(prev => prev.filter(el => el.id !== elementId));
     setImageElements(prev => prev.filter(el => el.id !== elementId));
+    setAnnotationElements(prev => prev.filter(el => el.id !== elementId));
+    setSignatureElements(prev => prev.filter(el => el.id !== elementId));
     setSelectedElement(null);
   }, []);
 
@@ -467,7 +575,10 @@ export default function PDFEditor() {
                       <Button
                         variant={tool === 'image' ? 'default' : 'outline'}
                         size="sm"
-                        onClick={() => imageInputRef.current?.click()}
+                        onClick={() => {
+                          setTool('image');
+                          imageInputRef.current?.click();
+                        }}
                         className="flex items-center gap-1"
                       >
                         <Image className="w-4 h-4" />
@@ -480,10 +591,102 @@ export default function PDFEditor() {
                         className="flex items-center gap-1"
                       >
                         <Highlighter className="w-4 h-4" />
-                        Mark
+                        Highlight
+                      </Button>
+                      <Button
+                        variant={tool === 'annotation' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setTool('annotation')}
+                        className="flex items-center gap-1"
+                      >
+                        <Edit3 className="w-4 h-4" />
+                        Annotate
+                      </Button>
+                      <Button
+                        variant={tool === 'signature' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setTool('signature')}
+                        className="flex items-center gap-1"
+                      >
+                        <Edit3 className="w-4 h-4" />
+                        Signature
                       </Button>
                     </div>
                   </div>
+
+                  {/* Zoom Controls */}
+                  <div>
+                    <label className="block text-sm font-medium mb-2">
+                      Zoom: {Math.round(zoomLevel * 100)}%
+                    </label>
+                    <div className="flex gap-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleZoom('out')}
+                        className="flex-1"
+                      >
+                        Zoom Out
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setZoomLevel(1)}
+                        className="flex-1"
+                      >
+                        Reset
+                      </Button>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleZoom('in')}
+                        className="flex-1"
+                      >
+                        Zoom In
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Annotation Tools */}
+                  {tool === 'annotation' && (
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Annotation Type</label>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleAnnotationClick({ currentTarget: pdfViewerRef.current } as any, pages[currentPage]?.id || '0', 'rectangle')}
+                          className="flex items-center gap-1"
+                        >
+                          Rectangle
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleAnnotationClick({ currentTarget: pdfViewerRef.current } as any, pages[currentPage]?.id || '0', 'circle')}
+                          className="flex items-center gap-1"
+                        >
+                          Circle
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleAnnotationClick({ currentTarget: pdfViewerRef.current } as any, pages[currentPage]?.id || '0', 'underline')}
+                          className="flex items-center gap-1"
+                        >
+                          Underline
+                        </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleAnnotationClick({ currentTarget: pdfViewerRef.current } as any, pages[currentPage]?.id || '0', 'strikethrough')}
+                          className="flex items-center gap-1"
+                        >
+                          Strike
+                        </Button>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Text Formatting */}
                   {(tool === 'text' || selectedElement?.startsWith('text')) && (
@@ -626,7 +829,13 @@ export default function PDFEditor() {
                     ) : pages.length > 0 ? (
                       <div className="flex flex-col items-center p-4">
                         {/* PDF Page Canvas */}
-                        <div className="relative bg-white shadow-lg">
+                        <div 
+                          className="relative bg-white shadow-lg"
+                          style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'top left' }}
+                          onMouseDown={tool === 'signature' ? handleSignatureStart : undefined}
+                          onMouseMove={tool === 'signature' ? handleSignatureMove : undefined}
+                          onMouseUp={tool === 'signature' ? handleSignatureEnd : undefined}
+                        >
                           <canvas
                             ref={(canvas) => {
                               if (canvas && pages[currentPage]) {
@@ -640,6 +849,21 @@ export default function PDFEditor() {
                             }}
                             className="max-w-full h-auto border border-gray-300"
                           />
+
+                          {/* Current signature drawing */}
+                          {isDrawingSignature && signaturePath && (
+                            <svg 
+                              className="absolute inset-0 pointer-events-none"
+                              style={{ width: pages[currentPage]?.width, height: pages[currentPage]?.height }}
+                            >
+                              <path 
+                                d={signaturePath} 
+                                stroke="#000000" 
+                                strokeWidth="2" 
+                                fill="none"
+                              />
+                            </svg>
+                          )}
                           
                           {/* Text elements overlay */}
                           {textElements
@@ -716,6 +940,73 @@ export default function PDFEditor() {
                                   alt="PDF Element"
                                   className="w-full h-full object-contain"
                                 />
+                              </div>
+                            ))}
+
+                          {/* Annotation elements overlay */}
+                          {annotationElements
+                            .filter(el => el.pageId === pages[currentPage]?.id)
+                            .map(element => (
+                              <div
+                                key={element.id}
+                                className={`absolute cursor-pointer ${
+                                  selectedElement === element.id ? 'ring-2 ring-blue-500' : ''
+                                }`}
+                                style={{
+                                  left: element.x,
+                                  top: element.y,
+                                  width: element.width,
+                                  height: element.height,
+                                  backgroundColor: element.type === 'highlight' ? element.color : 'transparent',
+                                  border: element.type === 'rectangle' ? `2px solid ${element.color}` : 'none',
+                                  borderRadius: element.type === 'circle' ? '50%' : '0',
+                                  borderBottom: element.type === 'underline' ? `2px solid ${element.color}` : 'none',
+                                  textDecoration: element.type === 'strikethrough' ? 'line-through' : 'none',
+                                  opacity: element.type === 'highlight' ? 0.5 : 1,
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedElement(element.id);
+                                }}
+                              />
+                            ))}
+
+                          {/* Signature elements overlay */}
+                          {signatureElements
+                            .filter(el => el.pageId === pages[currentPage]?.id)
+                            .map(element => (
+                              <div
+                                key={element.id}
+                                className={`absolute cursor-move ${
+                                  selectedElement === element.id ? 'ring-2 ring-blue-500' : ''
+                                }`}
+                                style={{
+                                  left: element.x,
+                                  top: element.y,
+                                  width: element.width,
+                                  height: element.height,
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedElement(element.id);
+                                }}
+                              >
+                                {element.type === 'draw' ? (
+                                  <svg width="100%" height="100%" viewBox="0 0 200 100">
+                                    <path 
+                                      d={element.data} 
+                                      stroke="#000000" 
+                                      strokeWidth="2" 
+                                      fill="none"
+                                    />
+                                  </svg>
+                                ) : (
+                                  <img
+                                    src={element.data}
+                                    alt="Signature"
+                                    className="w-full h-full object-contain"
+                                  />
+                                )}
                               </div>
                             ))}
                         </div>
