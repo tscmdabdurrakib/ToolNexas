@@ -1,4 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
+import * as pdfjsLib from 'pdfjs-dist';
+import { PDFDocument, rgb } from 'pdf-lib';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Upload, Download, FileText, Type, Image, Highlighter, 
@@ -70,6 +72,11 @@ export default function PDFEditor() {
   const imageInputRef = useRef<HTMLInputElement>(null);
   const pdfViewerRef = useRef<HTMLDivElement>(null);
 
+  // Setup PDF.js worker
+  useEffect(() => {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+  }, []);
+
   // Handle PDF file upload
   const handleFileUpload = useCallback(async (file: File) => {
     if (!file.type.includes('pdf')) {
@@ -87,12 +94,47 @@ export default function PDFEditor() {
     setPdfFile(file);
 
     try {
-      // Note: In a real implementation, we would use PDF.js library
-      // For now, we'll create a placeholder structure
-      setError('PDF processing requires PDF.js library. Would you like me to add the necessary dependencies?');
+      const arrayBuffer = await file.arrayBuffer();
+      const loadingTask = pdfjsLib.getDocument(arrayBuffer);
+      const pdf = await loadingTask.promise;
+      
+      const pdfPages: PDFPage[] = [];
+      
+      // Render each page
+      for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+        const page = await pdf.getPage(pageNum);
+        const scale = 1.5;
+        const viewport = page.getViewport({ scale });
+        
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+        
+        if (context) {
+          const renderContext = {
+            canvasContext: context,
+            viewport: viewport,
+          };
+          
+          await page.render(renderContext).promise;
+          
+          pdfPages.push({
+            id: `page-${pageNum}`,
+            canvas,
+            width: viewport.width,
+            height: viewport.height,
+            scale
+          });
+        }
+      }
+      
+      setPages(pdfPages);
+      setCurrentPage(0);
       setLoading(false);
     } catch (err) {
-      setError('Failed to process PDF file');
+      console.error('PDF processing error:', err);
+      setError('Failed to process PDF file. Please try with a different PDF.');
       setLoading(false);
     }
   }, []);
@@ -200,8 +242,61 @@ export default function PDFEditor() {
 
   // Export PDF
   const handleExportPDF = useCallback(async () => {
-    setError('PDF export requires PDF-lib library. Would you like me to add the necessary dependencies?');
-  }, []);
+    if (!pdfFile || pages.length === 0) {
+      setError('No PDF loaded to export');
+      return;
+    }
+
+    try {
+      setLoading(true);
+      
+      const arrayBuffer = await pdfFile.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      const pdfPages = pdfDoc.getPages();
+
+      // Add text elements to PDF
+      textElements.forEach(textEl => {
+        const pageIndex = pages.findIndex(p => p.id === textEl.pageId);
+        if (pageIndex >= 0 && pdfPages[pageIndex]) {
+          const page = pdfPages[pageIndex];
+          const { width, height } = page.getSize();
+          
+          // Convert screen coordinates to PDF coordinates
+          const pdfX = (textEl.x / pages[pageIndex].width) * width;
+          const pdfY = height - ((textEl.y / pages[pageIndex].height) * height);
+          
+          page.drawText(textEl.text, {
+            x: pdfX,
+            y: pdfY,
+            size: textEl.fontSize,
+            color: rgb(
+              parseInt(textEl.color.slice(1, 3), 16) / 255,
+              parseInt(textEl.color.slice(3, 5), 16) / 255,
+              parseInt(textEl.color.slice(5, 7), 16) / 255
+            ),
+          });
+        }
+      });
+
+      const pdfBytes = await pdfDoc.save();
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const url = URL.createObjectURL(blob);
+      
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'edited-document.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      
+      setLoading(false);
+    } catch (err) {
+      console.error('Export error:', err);
+      setError('Failed to export PDF. Please try again.');
+      setLoading(false);
+    }
+  }, [pdfFile, pages, textElements]);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
@@ -477,108 +572,128 @@ export default function PDFEditor() {
                     {loading ? (
                       <div className="flex items-center justify-center h-full">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-500"></div>
+                        <p className="ml-4 text-gray-600 dark:text-gray-300">Processing PDF...</p>
+                      </div>
+                    ) : pages.length > 0 ? (
+                      <div className="flex flex-col items-center p-4">
+                        {/* PDF Page Canvas */}
+                        <div className="relative bg-white shadow-lg">
+                          <canvas
+                            ref={(canvas) => {
+                              if (canvas && pages[currentPage]) {
+                                const ctx = canvas.getContext('2d');
+                                if (ctx) {
+                                  canvas.width = pages[currentPage].width;
+                                  canvas.height = pages[currentPage].height;
+                                  ctx.drawImage(pages[currentPage].canvas, 0, 0);
+                                }
+                              }
+                            }}
+                            className="max-w-full h-auto border border-gray-300"
+                          />
+                          
+                          {/* Text elements overlay */}
+                          {textElements
+                            .filter(el => el.pageId === pages[currentPage]?.id)
+                            .map(element => (
+                              <div
+                                key={element.id}
+                                className={`absolute cursor-pointer ${
+                                  selectedElement === element.id ? 'ring-2 ring-blue-500' : ''
+                                }`}
+                                style={{
+                                  left: element.x,
+                                  top: element.y,
+                                  fontSize: element.fontSize,
+                                  color: element.color,
+                                  fontWeight: element.fontWeight,
+                                  fontStyle: element.fontStyle,
+                                  textDecoration: element.textDecoration,
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedElement(element.id);
+                                }}
+                                onDoubleClick={() => {
+                                  setEditingText(element.id);
+                                  setNewText(element.text);
+                                }}
+                              >
+                                {editingText === element.id ? (
+                                  <Input
+                                    value={newText}
+                                    onChange={(e) => setNewText(e.target.value)}
+                                    onBlur={() => {
+                                      handleTextEdit(element.id, newText);
+                                      setEditingText(null);
+                                    }}
+                                    onKeyPress={(e) => {
+                                      if (e.key === 'Enter') {
+                                        handleTextEdit(element.id, newText);
+                                        setEditingText(null);
+                                      }
+                                    }}
+                                    className="text-inherit bg-transparent border-none p-0 focus:ring-0"
+                                    autoFocus
+                                  />
+                                ) : (
+                                  element.text
+                                )}
+                              </div>
+                            ))}
+
+                          {/* Image elements overlay */}
+                          {imageElements
+                            .filter(el => el.pageId === pages[currentPage]?.id)
+                            .map(element => (
+                              <div
+                                key={element.id}
+                                className={`absolute cursor-move ${
+                                  selectedElement === element.id ? 'ring-2 ring-blue-500' : ''
+                                }`}
+                                style={{
+                                  left: element.x,
+                                  top: element.y,
+                                  width: element.width,
+                                  height: element.height,
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedElement(element.id);
+                                }}
+                              >
+                                <img
+                                  src={element.src}
+                                  alt="PDF Element"
+                                  className="w-full h-full object-contain"
+                                />
+                              </div>
+                            ))}
+                        </div>
+                        
+                        {/* Page info */}
+                        <div className="mt-4">
+                          <Badge variant="secondary">
+                            Page {currentPage + 1} of {pages.length}
+                          </Badge>
+                        </div>
                       </div>
                     ) : (
                       <div className="flex flex-col items-center justify-center h-full text-gray-500">
                         <FileText className="w-24 h-24 mb-4" />
                         <p className="text-lg mb-2">PDF Preview Area</p>
                         <p className="text-sm">
-                          {error ? error : 'Click here to add text elements or upload images'}
+                          {error ? error : 'Upload a PDF file to start editing'}
                         </p>
-                        {currentPage > 0 && (
-                          <div className="mt-4">
-                            <Badge variant="secondary">
-                              Page {currentPage + 1} of {pages.length}
-                            </Badge>
-                          </div>
-                        )}
                       </div>
                     )}
 
-                    {/* Render text elements */}
-                    {textElements
-                      .filter(el => el.pageId === pages[currentPage]?.id)
-                      .map(element => (
-                        <div
-                          key={element.id}
-                          className={`absolute cursor-pointer ${
-                            selectedElement === element.id ? 'ring-2 ring-blue-500' : ''
-                          }`}
-                          style={{
-                            left: element.x,
-                            top: element.y,
-                            fontSize: element.fontSize,
-                            color: element.color,
-                            fontWeight: element.fontWeight,
-                            fontStyle: element.fontStyle,
-                            textDecoration: element.textDecoration,
-                          }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedElement(element.id);
-                          }}
-                          onDoubleClick={() => {
-                            setEditingText(element.id);
-                            setNewText(element.text);
-                          }}
-                        >
-                          {editingText === element.id ? (
-                            <Input
-                              value={newText}
-                              onChange={(e) => setNewText(e.target.value)}
-                              onBlur={() => {
-                                handleTextEdit(element.id, newText);
-                                setEditingText(null);
-                              }}
-                              onKeyPress={(e) => {
-                                if (e.key === 'Enter') {
-                                  handleTextEdit(element.id, newText);
-                                  setEditingText(null);
-                                }
-                              }}
-                              className="text-inherit bg-transparent border-none p-0 focus:ring-0"
-                              autoFocus
-                            />
-                          ) : (
-                            element.text
-                          )}
-                        </div>
-                      ))}
-
-                    {/* Render image elements */}
-                    {imageElements
-                      .filter(el => el.pageId === pages[currentPage]?.id)
-                      .map(element => (
-                        <div
-                          key={element.id}
-                          className={`absolute cursor-move ${
-                            selectedElement === element.id ? 'ring-2 ring-blue-500' : ''
-                          }`}
-                          style={{
-                            left: element.x,
-                            top: element.y,
-                            width: element.width,
-                            height: element.height,
-                          }}
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectedElement(element.id);
-                          }}
-                        >
-                          <img
-                            src={element.src}
-                            alt="PDF Element"
-                            className="w-full h-full object-contain"
-                          />
-                        </div>
-                      ))}
-
                     {/* Delete button for selected element */}
-                    {selectedElement && (
+                    {selectedElement && pages.length > 0 && (
                       <Button
                         variant="destructive"
                         size="sm"
-                        className="absolute top-2 right-2"
+                        className="absolute top-2 right-2 z-10"
                         onClick={() => handleDeleteElement(selectedElement)}
                       >
                         <Trash2 className="w-4 h-4" />
