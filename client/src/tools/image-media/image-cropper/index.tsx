@@ -288,7 +288,7 @@ export default function ImageCropper() {
   }, [originalImage, cropArea, outputFormat, quality]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 p-4">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -641,6 +641,134 @@ export default function ImageCropper() {
             </Card>
           </motion.div>
         )}
+
+        {/* Tool Details Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="mt-8"
+        >
+          <Card className="border-0 shadow-xl bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold">About Image Cropper Tool</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              {/* What is this tool */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-blue-600 dark:text-blue-400">What is Image Cropper?</h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Image Cropper হল একটি professional-grade online tool যা আপনাকে ছবির যে কোনো অংশ সুন্দরভাবে crop করতে দেয়। 
+                  এটি drag & drop interface, precise controls, এবং multiple aspect ratios সহ advanced features প্রদান করে। 
+                  আপনি সহজেই custom dimensions সেট করতে পারেন, zoom করতে পারেন, rotate করতে পারেন এবং high-quality output পেতে পারেন।
+                </p>
+              </div>
+
+              {/* How to use */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-green-600 dark:text-green-400">How to Use Image Cropper?</h3>
+                <ol className="text-gray-700 dark:text-gray-300 space-y-2 list-decimal list-inside">
+                  <li><strong>Upload Image:</strong> Drag & drop করুন অথবা "Select Image" button এ click করে JPG, PNG, WebP বা GIF file upload করুন</li>
+                  <li><strong>Select Crop Area:</strong> Image এর উপর white border দিয়ে crop area adjust করুন। Corner এবং edge handles টেনে size পরিবর্তন করুন</li>
+                  <li><strong>Set Aspect Ratio:</strong> Dropdown থেকে desired ratio (1:1, 4:3, 16:9, etc.) select করুন অথবা freeform রাখুন</li>
+                  <li><strong>Adjust Settings:</strong> Zoom in/out, rotate clockwise/counter-clockwise ব্যবহার করুন প্রয়োজন অনুযায়ী</li>
+                  <li><strong>Choose Output:</strong> Format (JPEG, PNG, WebP) এবং quality select করুন</li>
+                  <li><strong>Download:</strong> "Download Cropped Image" button এ click করে final result save করুন</li>
+                </ol>
+              </div>
+
+              {/* Why use this tool */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-purple-600 dark:text-purple-400">Why Choose Our Image Cropper?</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>No Registration Required:</strong> Instantly start cropping without any signup</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>High Quality Output:</strong> Lossless cropping with adjustable quality settings</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>Multiple Formats:</strong> Support for JPEG, PNG, WebP output formats</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>Privacy Focused:</strong> All processing happens in your browser, no data uploaded</span>
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>Advanced Controls:</strong> Zoom, rotate, precise drag handles</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>Responsive Design:</strong> Works perfectly on desktop, tablet, and mobile</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>Fixed Ratios:</strong> Pre-defined aspect ratios for social media, printing</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <span className="text-green-500 mt-1">✓</span>
+                      <span className="text-gray-700 dark:text-gray-300"><strong>Real-time Preview:</strong> See live crop size and instant feedback</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Use cases */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-orange-600 dark:text-orange-400">Perfect for</h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg text-center">
+                    <div className="text-blue-600 dark:text-blue-400 font-medium">Social Media</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Instagram, Facebook posts</div>
+                  </div>
+                  <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg text-center">
+                    <div className="text-green-600 dark:text-green-400 font-medium">Profile Photos</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Perfect square crops</div>
+                  </div>
+                  <div className="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg text-center">
+                    <div className="text-purple-600 dark:text-purple-400 font-medium">Website Images</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Banners, thumbnails</div>
+                  </div>
+                  <div className="bg-orange-50 dark:bg-orange-900/20 p-3 rounded-lg text-center">
+                    <div className="text-orange-600 dark:text-orange-400 font-medium">Print Media</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Brochures, flyers</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Technical specs */}
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-red-600 dark:text-red-400">Technical Specifications</h3>
+                <div className="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                    <div>
+                      <strong>Supported Formats:</strong><br/>
+                      Input: JPG, PNG, WebP, GIF<br/>
+                      Output: JPEG, PNG, WebP
+                    </div>
+                    <div>
+                      <strong>File Size Limit:</strong><br/>
+                      Maximum: 10MB<br/>
+                      Recommended: Under 5MB
+                    </div>
+                    <div>
+                      <strong>Quality Settings:</strong><br/>
+                      JPEG: 1-100% adjustable<br/>
+                      PNG: Lossless compression
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
 
         {/* Hidden Canvas for Processing */}
         <canvas ref={canvasRef} className="hidden" />
