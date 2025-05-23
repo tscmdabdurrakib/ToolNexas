@@ -31,6 +31,10 @@ import AngleConverterPage from "@/pages/tools/AngleConverterPage";
 import MortgageCalculatorPage from "@/pages/tools/MortgageCalculatorPage";
 import FuelConsumptionConverterPage from "@/pages/tools/FuelConsumptionConverterPage";
 import VolumeDryConverterPage from "@/pages/tools/VolumeDryConverterPage";
+import CurrencyConverterPage from "@/pages/tools/CurrencyConverterPage";
+import CaseConverterPage from "@/pages/tools/CaseConverterPage";
+import AngularVelocityConverterPage from "@/pages/tools/AngularVelocityConverterPage";
+import AccelerationConverterPage from "@/pages/tools/AccelerationConverterPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -71,6 +75,10 @@ function Router() {
           <Route path="/tools/angle-converter" component={AngleConverterPage} />
           <Route path="/tools/fuel-consumption-converter" component={FuelConsumptionConverterPage} />
           <Route path="/tools/volume-dry-converter" component={VolumeDryConverterPage} />
+          <Route path="/tools/currency-converter" component={CurrencyConverterPage} />
+          <Route path="/tools/case-converter" component={CaseConverterPage} />
+          <Route path="/tools/angular-velocity-converter" component={AngularVelocityConverterPage} />
+          <Route path="/tools/acceleration-converter" component={AccelerationConverterPage} />
           <Route path="/tools/mortgage-calculator" component={MortgageCalculatorPage} />
           <Route component={NotFound} />
         </Switch>
