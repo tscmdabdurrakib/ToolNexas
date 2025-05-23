@@ -15,25 +15,25 @@ export function CategoryCard({ category }: CategoryCardProps) {
 
   return (
     <motion.div
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -4, scale: 1.02 }}
       transition={{ duration: 0.2 }}
-      className="block h-full"
+      className="block h-full w-full"
       onClick={() => {
         window.location.href = `/category/${id}`;
       }}
     >
-      <div className="category-card h-full rounded-xl overflow-hidden bg-card border border-border hover:shadow-xl transition cursor-pointer">
-        <div className="p-6">
-          <div className="flex items-center space-x-5 mb-5">
+      <div className="category-card h-full w-full rounded-xl overflow-hidden bg-card border border-border hover:shadow-xl hover:border-primary transition-all duration-300 cursor-pointer flex flex-col">
+        <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col">
+          <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-5">
             <div
-              className={`w-12 h-12 flex items-center justify-center rounded-lg ${color.bg} ${color.text}`}
+              className={`w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-lg ${color.bg} ${color.text} flex-shrink-0`}
             >
               {icon}
             </div>
-            <h3 className="text-lg font-semibold">{name}</h3>
+            <h3 className="text-base sm:text-lg font-semibold line-clamp-2 flex-1">{name}</h3>
           </div>
-          <p className="text-muted-foreground text-sm mb-4">{description}</p>
-          <div className="flex justify-between items-center">
+          <p className="text-muted-foreground text-xs sm:text-sm mb-4 flex-1 line-clamp-3">{description}</p>
+          <div className="flex justify-between items-center mt-auto">
             <span
               className={`text-xs font-medium px-2 py-1 rounded-full ${color.badge.bg} ${color.badge.text}`}
             >
@@ -41,7 +41,7 @@ export function CategoryCard({ category }: CategoryCardProps) {
             </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-primary"
+              className="h-4 w-4 sm:h-5 sm:w-5 text-primary"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
