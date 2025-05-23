@@ -51,6 +51,7 @@ export default function ImageCropper() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState<{ x: number; y: number } | null>(null);
   const [resizing, setResizing] = useState<string | null>(null);
+  const [initialCropArea, setInitialCropArea] = useState<CropArea | null>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -178,48 +179,121 @@ export default function ImageCropper() {
   }, [cropArea, originalImage]);
 
   // Handle mouse events for cropping
-  const handleMouseDown = useCallback((e: React.MouseEvent, type: 'move' | 'resize') => {
+  const handleMouseDown = useCallback((e: React.MouseEvent, type: 'move' | string) => {
     e.preventDefault();
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
 
+    const scaleX = originalImage ? originalImage.width / rect.width : 1;
+    const scaleY = originalImage ? originalImage.height / rect.height : 1;
+
     setDragStart({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      x: (e.clientX - rect.left) * scaleX,
+      y: (e.clientY - rect.top) * scaleY
     });
+
+    setInitialCropArea({ ...cropArea });
 
     if (type === 'move') {
       setIsDragging(true);
     } else {
       setResizing(type);
     }
-  }, []);
+  }, [cropArea, originalImage]);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!dragStart || !originalImage) return;
+    if (!dragStart || !originalImage || !initialCropArea) return;
 
     const rect = containerRef.current?.getBoundingClientRect();
     if (!rect) return;
 
-    const currentX = e.clientX - rect.left;
-    const currentY = e.clientY - rect.top;
+    const scaleX = originalImage.width / rect.width;
+    const scaleY = originalImage.height / rect.height;
+    const currentX = (e.clientX - rect.left) * scaleX;
+    const currentY = (e.clientY - rect.top) * scaleY;
     const deltaX = currentX - dragStart.x;
     const deltaY = currentY - dragStart.y;
 
     if (isDragging) {
       // Move crop area
-      const newX = Math.max(0, Math.min(originalImage.width - cropArea.width, cropArea.x + deltaX));
-      const newY = Math.max(0, Math.min(originalImage.height - cropArea.height, cropArea.y + deltaY));
+      const newX = Math.max(0, Math.min(originalImage.width - cropArea.width, initialCropArea.x + deltaX));
+      const newY = Math.max(0, Math.min(originalImage.height - cropArea.height, initialCropArea.y + deltaY));
       
       setCropArea(prev => ({
         ...prev,
         x: newX,
         y: newY
       }));
+    } else if (resizing) {
+      // Resize crop area based on handle
+      let newCropArea = { ...initialCropArea };
       
-      setDragStart({ x: currentX, y: currentY });
+      const selectedRatio = ASPECT_RATIOS.find(r => r.value === aspectRatio)?.ratio;
+
+      switch (resizing) {
+        case 'nw-resize': // Top-left corner
+          newCropArea.width = Math.max(50, initialCropArea.width - deltaX);
+          newCropArea.height = Math.max(50, initialCropArea.height - deltaY);
+          newCropArea.x = initialCropArea.x + deltaX;
+          newCropArea.y = initialCropArea.y + deltaY;
+          break;
+        
+        case 'ne-resize': // Top-right corner
+          newCropArea.width = Math.max(50, initialCropArea.width + deltaX);
+          newCropArea.height = Math.max(50, initialCropArea.height - deltaY);
+          newCropArea.y = initialCropArea.y + deltaY;
+          break;
+        
+        case 'sw-resize': // Bottom-left corner
+          newCropArea.width = Math.max(50, initialCropArea.width - deltaX);
+          newCropArea.height = Math.max(50, initialCropArea.height + deltaY);
+          newCropArea.x = initialCropArea.x + deltaX;
+          break;
+        
+        case 'se-resize': // Bottom-right corner
+          newCropArea.width = Math.max(50, initialCropArea.width + deltaX);
+          newCropArea.height = Math.max(50, initialCropArea.height + deltaY);
+          break;
+        
+        case 'n-resize': // Top edge
+          newCropArea.height = Math.max(50, initialCropArea.height - deltaY);
+          newCropArea.y = initialCropArea.y + deltaY;
+          break;
+        
+        case 's-resize': // Bottom edge
+          newCropArea.height = Math.max(50, initialCropArea.height + deltaY);
+          break;
+        
+        case 'w-resize': // Left edge
+          newCropArea.width = Math.max(50, initialCropArea.width - deltaX);
+          newCropArea.x = initialCropArea.x + deltaX;
+          break;
+        
+        case 'e-resize': // Right edge
+          newCropArea.width = Math.max(50, initialCropArea.width + deltaX);
+          break;
+      }
+
+      // Apply aspect ratio constraint if needed
+      if (selectedRatio) {
+        if (newCropArea.width / newCropArea.height !== selectedRatio) {
+          if (resizing.includes('e') || resizing.includes('w')) {
+            newCropArea.height = newCropArea.width / selectedRatio;
+          } else {
+            newCropArea.width = newCropArea.height * selectedRatio;
+          }
+        }
+      }
+
+      // Ensure crop area stays within image bounds
+      newCropArea.x = Math.max(0, newCropArea.x);
+      newCropArea.y = Math.max(0, newCropArea.y);
+      newCropArea.width = Math.min(newCropArea.width, originalImage.width - newCropArea.x);
+      newCropArea.height = Math.min(newCropArea.height, originalImage.height - newCropArea.y);
+
+      setCropArea(newCropArea);
     }
-  }, [dragStart, isDragging, cropArea, originalImage]);
+  }, [dragStart, isDragging, resizing, cropArea, originalImage, initialCropArea, aspectRatio]);
 
   const handleMouseUp = useCallback(() => {
     setIsDragging(false);
@@ -533,16 +607,40 @@ export default function ImageCropper() {
                         </div>
 
                         {/* Corner Handles */}
-                        <div className="absolute -top-1 -left-1 w-3 h-3 bg-white border border-gray-300 cursor-nw-resize"></div>
-                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-white border border-gray-300 cursor-ne-resize"></div>
-                        <div className="absolute -bottom-1 -left-1 w-3 h-3 bg-white border border-gray-300 cursor-sw-resize"></div>
-                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-white border border-gray-300 cursor-se-resize"></div>
+                        <div 
+                          className="absolute -top-1 -left-1 w-3 h-3 bg-white border border-gray-300 cursor-nw-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 'nw-resize')}
+                        ></div>
+                        <div 
+                          className="absolute -top-1 -right-1 w-3 h-3 bg-white border border-gray-300 cursor-ne-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 'ne-resize')}
+                        ></div>
+                        <div 
+                          className="absolute -bottom-1 -left-1 w-3 h-3 bg-white border border-gray-300 cursor-sw-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 'sw-resize')}
+                        ></div>
+                        <div 
+                          className="absolute -bottom-1 -right-1 w-3 h-3 bg-white border border-gray-300 cursor-se-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 'se-resize')}
+                        ></div>
 
                         {/* Edge Handles */}
-                        <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-gray-300 cursor-n-resize"></div>
-                        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-gray-300 cursor-s-resize"></div>
-                        <div className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-300 cursor-w-resize"></div>
-                        <div className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-300 cursor-e-resize"></div>
+                        <div 
+                          className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-gray-300 cursor-n-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 'n-resize')}
+                        ></div>
+                        <div 
+                          className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-white border border-gray-300 cursor-s-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 's-resize')}
+                        ></div>
+                        <div 
+                          className="absolute -left-1 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-300 cursor-w-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 'w-resize')}
+                        ></div>
+                        <div 
+                          className="absolute -right-1 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-white border border-gray-300 cursor-e-resize hover:bg-blue-100 transition-colors"
+                          onMouseDown={(e) => handleMouseDown(e, 'e-resize')}
+                        ></div>
 
                         {/* Move Icon */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
