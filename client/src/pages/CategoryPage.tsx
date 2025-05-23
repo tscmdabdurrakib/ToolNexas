@@ -10,21 +10,29 @@ export default function CategoryPage({ params }: { params?: { id?: string } }) {
   const [, routeParams] = useRoute("/category/:id");
   const effectiveParams = params || routeParams;
   
-  const { categories = [], tools = [] } = useTools() || { categories: [], tools: [] };
+  const { categories = [], tools = [], isLoading: contextLoading } = useTools() || { categories: [], tools: [], isLoading: true };
   const [isLoading, setIsLoading] = useState(true);
   
   const categoryId = effectiveParams?.id;
+  console.log('CategoryPage - categoryId:', categoryId);
+  console.log('CategoryPage - categories:', categories);
+  
   const category = categories.find((c: any) => c.id === categoryId);
   const categoryTools = tools.filter((tool: any) => tool.category.id === categoryId);
+  
+  console.log('CategoryPage - found category:', category);
+  console.log('CategoryPage - categoryTools:', categoryTools);
 
   useEffect(() => {
-    // Simulate loading
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-    
-    return () => clearTimeout(timer);
-  }, [categoryId]);
+    // Wait for context loading to complete
+    if (!contextLoading) {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    }
+  }, [categoryId, contextLoading]);
 
   if (isLoading) {
     return (
