@@ -1364,6 +1364,27 @@ export const tools: Tool[] = [
       "Offline functionality",
     ],
   },
+  
+  // Image & Media Tools
+  {
+    id: "image-resizer",
+    name: "Image Resizer",
+    description: "Resize images online with custom dimensions, aspect ratios, and quality settings",
+    category: getCategoryById("image-media"),
+    icon: createIcon("M4 4h16v16H4V4z M9 9h6v6H9V9z"),
+    views: 8950,
+    gradient: "from-purple-500 to-pink-500",
+    features: [
+      "Supports JPG, PNG, WEBP, GIF formats",
+      "Custom dimensions with aspect ratio lock",
+      "Preset ratios: 1:1, 4:3, 16:9, 3:2",
+      "Quality adjustment slider",
+      "Drag & drop upload",
+      "Instant preview and download",
+      "Mobile-friendly responsive design"
+    ],
+  },
+  
   // 2. Calculation Tools
   {
     id: "mortgage-calculator",
