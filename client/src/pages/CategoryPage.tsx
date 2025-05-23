@@ -76,10 +76,12 @@ export default function CategoryPage({ params }: { params?: { id?: string } }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 justify-items-center">
           {categoryTools.length > 0 ? (
             categoryTools.map((tool: any) => (
-              <ToolCard key={tool.id} tool={tool} />
+              <div key={tool.id} className="w-full max-w-sm">
+                <ToolCard tool={tool} />
+              </div>
             ))
           ) : (
             <div className="col-span-full text-center py-12">
