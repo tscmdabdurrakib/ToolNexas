@@ -35,6 +35,7 @@ import CurrencyConverterPage from "@/pages/tools/CurrencyConverterPage";
 import CaseConverterPage from "@/pages/tools/CaseConverterPage";
 import AngularVelocityConverterPage from "@/pages/tools/AngularVelocityConverterPage";
 import AccelerationConverterPage from "@/pages/tools/AccelerationConverterPage";
+import ImageResizerPage from "@/pages/tools/ImageResizerPage";
 import AuthorPage from "@/pages/AuthorPage";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -79,6 +80,7 @@ function Router() {
           <Route path="/tools/case-converter" component={CaseConverterPage} />
           <Route path="/tools/angular-velocity-converter" component={AngularVelocityConverterPage} />
           <Route path="/tools/acceleration-converter" component={AccelerationConverterPage} />
+          <Route path="/tools/image-resizer" component={ImageResizerPage} />
           <Route path="/tools/mortgage-calculator" component={MortgageCalculatorPage} />
           <Route component={NotFound} />
         </Switch>
