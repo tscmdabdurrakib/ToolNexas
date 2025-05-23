@@ -299,7 +299,118 @@ export default function ImageCropper() {
     setIsDragging(false);
     setResizing(null);
     setDragStart(null);
+    setInitialCropArea(null);
   }, []);
+
+  // Global mouse events for better drag handling
+  useEffect(() => {
+    const handleGlobalMouseMove = (e: MouseEvent) => {
+      if (!dragStart || !originalImage || !initialCropArea || !containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const scaleX = originalImage.width / rect.width;
+      const scaleY = originalImage.height / rect.height;
+      const currentX = (e.clientX - rect.left) * scaleX;
+      const currentY = (e.clientY - rect.top) * scaleY;
+      const deltaX = currentX - dragStart.x;
+      const deltaY = currentY - dragStart.y;
+
+      if (isDragging) {
+        // Move crop area
+        const newX = Math.max(0, Math.min(originalImage.width - cropArea.width, initialCropArea.x + deltaX));
+        const newY = Math.max(0, Math.min(originalImage.height - cropArea.height, initialCropArea.y + deltaY));
+        
+        setCropArea(prev => ({
+          ...prev,
+          x: newX,
+          y: newY
+        }));
+      } else if (resizing) {
+        // Resize crop area based on handle
+        let newCropArea = { ...initialCropArea };
+        
+        const selectedRatio = ASPECT_RATIOS.find(r => r.value === aspectRatio)?.ratio;
+
+        switch (resizing) {
+          case 'nw-resize':
+            newCropArea.width = Math.max(50, initialCropArea.width - deltaX);
+            newCropArea.height = Math.max(50, initialCropArea.height - deltaY);
+            newCropArea.x = initialCropArea.x + (initialCropArea.width - newCropArea.width);
+            newCropArea.y = initialCropArea.y + (initialCropArea.height - newCropArea.height);
+            break;
+          
+          case 'ne-resize':
+            newCropArea.width = Math.max(50, initialCropArea.width + deltaX);
+            newCropArea.height = Math.max(50, initialCropArea.height - deltaY);
+            newCropArea.y = initialCropArea.y + (initialCropArea.height - newCropArea.height);
+            break;
+          
+          case 'sw-resize':
+            newCropArea.width = Math.max(50, initialCropArea.width - deltaX);
+            newCropArea.height = Math.max(50, initialCropArea.height + deltaY);
+            newCropArea.x = initialCropArea.x + (initialCropArea.width - newCropArea.width);
+            break;
+          
+          case 'se-resize':
+            newCropArea.width = Math.max(50, initialCropArea.width + deltaX);
+            newCropArea.height = Math.max(50, initialCropArea.height + deltaY);
+            break;
+          
+          case 'n-resize':
+            newCropArea.height = Math.max(50, initialCropArea.height - deltaY);
+            newCropArea.y = initialCropArea.y + (initialCropArea.height - newCropArea.height);
+            break;
+          
+          case 's-resize':
+            newCropArea.height = Math.max(50, initialCropArea.height + deltaY);
+            break;
+          
+          case 'w-resize':
+            newCropArea.width = Math.max(50, initialCropArea.width - deltaX);
+            newCropArea.x = initialCropArea.x + (initialCropArea.width - newCropArea.width);
+            break;
+          
+          case 'e-resize':
+            newCropArea.width = Math.max(50, initialCropArea.width + deltaX);
+            break;
+        }
+
+        // Apply aspect ratio constraint if needed
+        if (selectedRatio) {
+          if (resizing.includes('e') || resizing.includes('w')) {
+            newCropArea.height = newCropArea.width / selectedRatio;
+          } else {
+            newCropArea.width = newCropArea.height * selectedRatio;
+          }
+        }
+
+        // Ensure crop area stays within image bounds
+        newCropArea.x = Math.max(0, Math.min(newCropArea.x, originalImage.width - newCropArea.width));
+        newCropArea.y = Math.max(0, Math.min(newCropArea.y, originalImage.height - newCropArea.height));
+        newCropArea.width = Math.min(newCropArea.width, originalImage.width - newCropArea.x);
+        newCropArea.height = Math.min(newCropArea.height, originalImage.height - newCropArea.y);
+
+        setCropArea(newCropArea);
+      }
+    };
+
+    const handleGlobalMouseUp = () => {
+      setIsDragging(false);
+      setResizing(null);
+      setDragStart(null);
+      setInitialCropArea(null);
+    };
+
+    if (isDragging || resizing) {
+      document.addEventListener('mousemove', handleGlobalMouseMove);
+      document.addEventListener('mouseup', handleGlobalMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener('mousemove', handleGlobalMouseMove);
+      document.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [isDragging, resizing, dragStart, originalImage, initialCropArea, cropArea, aspectRatio]);
 
   // Process and download cropped image
   const handleDownload = useCallback(async () => {
@@ -572,9 +683,7 @@ export default function ImageCropper() {
                   <div 
                     ref={containerRef}
                     className="relative w-full h-full min-h-[500px] bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden cursor-crosshair"
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
+                    style={{ userSelect: 'none' }}
                   >
                     {/* Background Image */}
                     <img
@@ -608,8 +717,11 @@ export default function ImageCropper() {
 
                         {/* Corner Handles */}
                         <div 
-                          className="absolute -top-1 -left-1 w-3 h-3 bg-white border border-gray-300 cursor-nw-resize hover:bg-blue-100 transition-colors"
-                          onMouseDown={(e) => handleMouseDown(e, 'nw-resize')}
+                          className="absolute -top-1 -left-1 w-4 h-4 bg-blue-500 border-2 border-white cursor-nw-resize hover:bg-blue-600 transition-colors shadow-lg"
+                          onMouseDown={(e) => {
+                            e.stopPropagation();
+                            handleMouseDown(e, 'nw-resize');
+                          }}
                         ></div>
                         <div 
                           className="absolute -top-1 -right-1 w-3 h-3 bg-white border border-gray-300 cursor-ne-resize hover:bg-blue-100 transition-colors"
