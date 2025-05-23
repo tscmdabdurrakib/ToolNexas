@@ -1384,6 +1384,26 @@ export const tools: Tool[] = [
       "Mobile-friendly responsive design"
     ],
   },
+
+  {
+    id: "image-cropper",
+    name: "Image Cropper",
+    description: "Professional image cropping tool with custom ratios, zoom, rotation, and precision controls",
+    category: getCategoryById("image-media"),
+    icon: createIcon("M4 4h16v16H4V4z M6 6h4v4H6V6z M14 14h-4v-4h4v4z"),
+    views: 7850,
+    gradient: "from-emerald-500 to-teal-500",
+    features: [
+      "Drag & drop custom crop areas",
+      "Fixed aspect ratios: 1:1, 4:3, 16:9, 3:2",
+      "Zoom in/out and rotation controls",
+      "Live crop size display",
+      "Multiple output formats (JPG, PNG, WebP)",
+      "Quality adjustment slider",
+      "Responsive drag handles",
+      "Professional overlay interface"
+    ],
+  },
   
   // 2. Calculation Tools
   {
