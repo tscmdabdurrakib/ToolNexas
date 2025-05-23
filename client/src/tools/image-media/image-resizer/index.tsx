@@ -72,7 +72,7 @@ function ImageResizer() {
     setError(null);
     const url = URL.createObjectURL(file);
     
-    const img = new Image();
+    const img = document.createElement('img');
     img.onload = () => {
       setOriginalImage({
         file,
@@ -166,7 +166,7 @@ function ImageResizer() {
       canvas.width = settings.width;
       canvas.height = settings.height;
 
-      const img = new Image();
+      const img = document.createElement('img');
       img.onload = () => {
         // Clear canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
