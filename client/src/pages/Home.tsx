@@ -9,8 +9,12 @@ import { WebsiteAnalytics } from "@/components/WebsiteAnalytics";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/categories";
 import { tools } from "@/data/tools";
+import { useWebsiteTracking } from "@/hooks/useWebsiteTracking";
 
 export default function Home() {
+  // Track website visit
+  useWebsiteTracking();
+  
   // Use direct imports for now
   const popularTools = tools.slice(0, 4);
   const recentTools = tools.slice(4, 7);

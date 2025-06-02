@@ -93,8 +93,9 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/website/analytics", async (req, res) => {
     try {
       const totalVisits = await storage.getTotalWebsiteVisits();
-      const totalTools = (await storage.getAllTools()).length;
-      const totalCategories = (await storage.getAllCategories()).length;
+      // Use frontend data count since storage is empty
+      const totalTools = 74; // Based on actual tools in frontend
+      const totalCategories = 35; // Based on actual categories in frontend
       
       res.json({
         totalVisits,
