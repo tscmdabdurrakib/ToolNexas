@@ -137,39 +137,45 @@ export function WebsiteAnalytics() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="relative overflow-hidden bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-                <CardContent className="p-6">
-                  <div className={`w-12 h-12 ${stat.bgColor} rounded-lg flex items-center justify-center mb-4`}>
-                    <stat.icon className={`w-6 h-6 ${stat.color}`} />
+              <Card className="relative overflow-hidden bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 group">
+                <CardContent className="p-4 md:p-6">
+                  <div className={`w-12 h-12 md:w-14 md:h-14 ${stat.bgColor} rounded-xl flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <stat.icon className={`w-6 h-6 md:w-7 md:h-7 ${stat.color}`} />
                   </div>
                   
                   <motion.div
                     key={stat.value}
-                    initial={{ scale: 1.1 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-1"
+                    initial={{ scale: 1.05, opacity: 0.8 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-1 font-mono tracking-tight leading-none"
+                    style={{ 
+                      fontSize: stat.value > 99999 ? 'clamp(1.25rem, 4vw, 2rem)' : 'clamp(1.5rem, 5vw, 2.5rem)'
+                    }}
                   >
-                    {stat.value.toLocaleString()}
+                    {stat.value.toLocaleString('en-US')}
                   </motion.div>
                   
-                  <div className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <div className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">
                     {stat.label}
                   </div>
                   
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
+                  <div className="text-xs text-gray-500 dark:text-gray-400 leading-tight">
                     {stat.description}
                   </div>
 
                   {/* Live indicator for dynamic stats */}
                   {(stat.label === "Total Visits" || stat.label === "Active Users") && (
-                    <div className="absolute top-3 right-3">
+                    <div className="absolute top-2 md:top-3 right-2 md:right-3">
                       <div className="flex items-center space-x-1">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs text-green-600 dark:text-green-400 font-medium">LIVE</span>
+                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span className="text-xs text-green-600 dark:text-green-400 font-bold">LIVE</span>
                       </div>
                     </div>
                   )}
+
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </CardContent>
               </Card>
             </motion.div>

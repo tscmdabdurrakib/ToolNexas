@@ -82,6 +82,11 @@ export class MemStorage implements IStorage {
     this.toolsData = [];
     // Initialize with some base visits for demonstration
     this.totalWebsiteVisits = 15432;
+    
+    // Auto-increment visits every few seconds
+    setInterval(() => {
+      this.totalWebsiteVisits += Math.floor(Math.random() * 3) + 1; // Add 1-3 visits
+    }, 8000 + Math.random() * 12000); // Every 8-20 seconds
   }
 }
 
