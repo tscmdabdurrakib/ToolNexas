@@ -16,6 +16,7 @@ export interface IStorage {
 export class MemStorage implements IStorage {
   private categoriesData: Category[];
   private toolsData: Tool[];
+  private visitCounts: Map<string, number> = new Map();
 
   constructor() {
     this.categoriesData = [];
@@ -46,14 +47,16 @@ export class MemStorage implements IStorage {
   }
 
   async recordToolVisit(toolId: string, sessionId?: string, userAgent?: string, ipAddress?: string): Promise<void> {
-    // In memory storage - will be implemented with database
-    console.log(`Tool visit recorded: ${toolId}`);
+    const currentCount = this.visitCounts.get(toolId) || 0;
+    this.visitCounts.set(toolId, currentCount + 1);
+    console.log(`Tool visit recorded: ${toolId} - Total visits: ${currentCount + 1}`);
   }
 
   async getToolVisitCount(toolId: string): Promise<number> {
-    // For now, return base tool views
+    const visitCount = this.visitCounts.get(toolId) || 0;
     const tool = this.toolsData.find(t => t.id === toolId);
-    return tool ? tool.views : 0;
+    const baseViews = tool ? tool.views : 0;
+    return baseViews + visitCount;
   }
 
   private initializeData(): void {
