@@ -39,16 +39,16 @@ export function WebsiteAnalytics() {
     return () => clearInterval(interval);
   }, []);
 
-  // Real-time counter animation
+  // Real-time counter animation - only increment, never decrement
   useEffect(() => {
     if (!isLoading) {
       const interval = setInterval(() => {
         setAnalytics(prev => ({
           ...prev,
-          totalVisits: prev.totalVisits + Math.floor(Math.random() * 3) + 1,
-          usersOnline: Math.max(5, prev.usersOnline + Math.floor(Math.random() * 5) - 2)
+          // Add random users online (1-4 new users)
+          usersOnline: prev.usersOnline + Math.floor(Math.random() * 4) + 1
         }));
-      }, 5000 + Math.random() * 10000); // Random interval between 5-15 seconds
+      }, 8000 + Math.random() * 12000); // Random interval between 8-20 seconds
 
       return () => clearInterval(interval);
     }

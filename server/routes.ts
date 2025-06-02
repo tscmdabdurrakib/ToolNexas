@@ -101,7 +101,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         totalVisits,
         totalTools,
         totalCategories,
-        usersOnline: Math.floor(Math.random() * 50) + 10 // Simulated online users
+        usersOnline: Math.floor(Math.random() * 25) + 15 // Start with 15-40 users online
       });
     } catch (error) {
       res.status(500).json({ error: "Failed to get analytics" });
