@@ -52,6 +52,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Record tool visit
+  app.post("/api/tool/:id/visit", async (req, res) => {
+    try {
+      const toolId = req.params.id;
+      const sessionId = req.headers['x-session-id'] as string;
+      const userAgent = req.headers['user-agent'];
+      const ipAddress = req.ip || req.connection.remoteAddress;
+
+      await storage.recordToolVisit(toolId, sessionId, userAgent, ipAddress);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to record visit" });
+    }
+  });
+
+  // Get tool visit count
+  app.get("/api/tool/:id/visits", async (req, res) => {
+    try {
+      const toolId = req.params.id;
+      const count = await storage.getToolVisitCount(toolId);
+      res.json({ count });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to get visit count" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;

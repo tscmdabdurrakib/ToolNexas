@@ -9,6 +9,8 @@ export interface IStorage {
   getAllTools(): Promise<Tool[]>;
   getToolById(id: string): Promise<Tool | undefined>;
   getToolsByCategoryId(categoryId: string): Promise<Tool[]>;
+  recordToolVisit(toolId: string, sessionId?: string, userAgent?: string, ipAddress?: string): Promise<void>;
+  getToolVisitCount(toolId: string): Promise<number>;
 }
 
 export class MemStorage implements IStorage {
@@ -43,11 +45,21 @@ export class MemStorage implements IStorage {
     return this.toolsData.filter(tool => tool.categoryId === categoryId);
   }
 
+  async recordToolVisit(toolId: string, sessionId?: string, userAgent?: string, ipAddress?: string): Promise<void> {
+    // In memory storage - will be implemented with database
+    console.log(`Tool visit recorded: ${toolId}`);
+  }
+
+  async getToolVisitCount(toolId: string): Promise<number> {
+    // For now, return base tool views
+    const tool = this.toolsData.find(t => t.id === toolId);
+    return tool ? tool.views : 0;
+  }
+
   private initializeData(): void {
-    // This would normally come from a database, but we'll initialize with a few items
-    // The frontend will use its own data initially, but the structure is ready for an API
-    this.categoriesData = categories;
-    this.toolsData = tools;
+    // Initialize with empty arrays - data comes from frontend for now
+    this.categoriesData = [];
+    this.toolsData = [];
   }
 }
 
