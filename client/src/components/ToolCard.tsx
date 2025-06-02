@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Tool } from "@/data/tools";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 interface ToolCardProps {
   tool: Tool;
@@ -11,22 +12,24 @@ export function ToolCard({ tool }: ToolCardProps) {
   const { id, name, description, category, icon, views, gradient } = tool;
   const [currentViews, setCurrentViews] = useState(views);
 
-  // Simulate dynamic view updates based on tool popularity
-  useEffect(() => {
-    const baseInterval = 20000; // Base 20 seconds
-    const popularityMultiplier = views > 500 ? 0.5 : views > 200 ? 0.7 : 1;
-    const interval = setInterval(() => {
-      // Different increment patterns based on tool type
-      const isPopular = views > 500;
-      const increment = isPopular 
-        ? Math.floor(Math.random() * 8) + 3  // 3-10 for popular tools
-        : Math.floor(Math.random() * 3) + 1; // 1-3 for regular tools
-      
-      setCurrentViews(prev => prev + increment);
-    }, baseInterval * popularityMultiplier);
+  // Fetch real visit count from backend
+  const { data: visitData } = useQuery({
+    queryKey: ['tool-visits', id],
+    queryFn: async () => {
+      const response = await fetch(`/api/tool/${id}/visits`);
+      if (!response.ok) throw new Error('Failed to fetch visit count');
+      return response.json();
+    },
+    refetchInterval: 30000, // Refetch every 30 seconds
+    staleTime: 20000,
+  });
 
-    return () => clearInterval(interval);
-  }, [views]);
+  // Update current views when real data is available
+  useEffect(() => {
+    if (visitData?.count) {
+      setCurrentViews(visitData.count);
+    }
+  }, [visitData]);
 
   // Format views count for display
   const formatViews = (count: number) => {
