@@ -53,10 +53,8 @@ export class MemStorage implements IStorage {
   }
 
   async getToolVisitCount(toolId: string): Promise<number> {
-    const visitCount = this.visitCounts.get(toolId) || 0;
-    const tool = this.toolsData.find(t => t.id === toolId);
-    const baseViews = tool ? tool.views : 0;
-    return baseViews + visitCount;
+    // Return only the actual visit count from tracking, not base views
+    return this.visitCounts.get(toolId) || 0;
   }
 
   private initializeData(): void {

@@ -24,12 +24,15 @@ export function ToolCard({ tool }: ToolCardProps) {
     staleTime: 20000,
   });
 
-  // Update current views when real data is available
+  // Update current views: base views + actual visit count
   useEffect(() => {
-    if (visitData?.count) {
-      setCurrentViews(visitData.count);
+    if (visitData?.count !== undefined) {
+      // Add actual visits to base views count
+      setCurrentViews(views + visitData.count);
+    } else {
+      setCurrentViews(views); // Use original views as fallback
     }
-  }, [visitData]);
+  }, [visitData, views]);
 
   // Format views count for display
   const formatViews = (count: number) => {
