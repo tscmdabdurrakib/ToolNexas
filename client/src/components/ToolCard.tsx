@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Tool } from "@/data/tools";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 interface ToolCardProps {
   tool: Tool;
@@ -8,6 +9,34 @@ interface ToolCardProps {
 
 export function ToolCard({ tool }: ToolCardProps) {
   const { id, name, description, category, icon, views, gradient } = tool;
+  const [currentViews, setCurrentViews] = useState(views);
+
+  // Simulate dynamic view updates based on tool popularity
+  useEffect(() => {
+    const baseInterval = 20000; // Base 20 seconds
+    const popularityMultiplier = views > 500 ? 0.5 : views > 200 ? 0.7 : 1;
+    const interval = setInterval(() => {
+      // Different increment patterns based on tool type
+      const isPopular = views > 500;
+      const increment = isPopular 
+        ? Math.floor(Math.random() * 8) + 3  // 3-10 for popular tools
+        : Math.floor(Math.random() * 3) + 1; // 1-3 for regular tools
+      
+      setCurrentViews(prev => prev + increment);
+    }, baseInterval * popularityMultiplier);
+
+    return () => clearInterval(interval);
+  }, [views]);
+
+  // Format views count for display
+  const formatViews = (count: number) => {
+    if (count >= 1000000) {
+      return `${(count / 1000000).toFixed(1)}M`;
+    } else if (count >= 1000) {
+      return `${Math.floor(count / 1000)}K`;
+    }
+    return count.toString();
+  };
   
   return (
     <Link to={`/tools/${id}`}>
@@ -29,13 +58,19 @@ export function ToolCard({ tool }: ToolCardProps) {
             <h3 className="font-semibold text-sm sm:text-base mb-2 group-hover:text-primary transition-colors line-clamp-2">{name}</h3>
             <p className="text-muted-foreground text-xs sm:text-sm mb-4 flex-1 line-clamp-3">{description}</p>
             <div className="flex justify-between items-center mt-auto">
-              <span className="text-xs text-muted-foreground flex items-center">
+              <motion.span 
+                className="text-xs text-muted-foreground flex items-center"
+                key={currentViews}
+                initial={{ scale: 1 }}
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 0.3 }}
+              >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-4 sm:w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 </svg>
-                {views}K
-              </span>
+                {formatViews(currentViews)}
+              </motion.span>
               <button 
                 className="text-xs bg-primary/10 hover:bg-primary hover:text-white text-primary px-2 sm:px-3 py-1.5 rounded-lg transition-all duration-200 flex items-center font-medium"
               >
