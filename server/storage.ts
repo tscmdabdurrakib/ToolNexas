@@ -11,12 +11,16 @@ export interface IStorage {
   getToolsByCategoryId(categoryId: string): Promise<Tool[]>;
   recordToolVisit(toolId: string, sessionId?: string, userAgent?: string, ipAddress?: string): Promise<void>;
   getToolVisitCount(toolId: string): Promise<number>;
+  getTotalWebsiteVisits(): Promise<number>;
+  recordWebsiteVisit(sessionId?: string): Promise<void>;
 }
 
 export class MemStorage implements IStorage {
   private categoriesData: Category[];
   private toolsData: Tool[];
   private visitCounts: Map<string, number> = new Map();
+  private totalWebsiteVisits: number = 0;
+  private websiteVisitSessions: Set<string> = new Set();
 
   constructor() {
     this.categoriesData = [];
@@ -57,10 +61,27 @@ export class MemStorage implements IStorage {
     return this.visitCounts.get(toolId) || 0;
   }
 
+  async getTotalWebsiteVisits(): Promise<number> {
+    return this.totalWebsiteVisits;
+  }
+
+  async recordWebsiteVisit(sessionId?: string): Promise<void> {
+    if (sessionId && !this.websiteVisitSessions.has(sessionId)) {
+      this.websiteVisitSessions.add(sessionId);
+      this.totalWebsiteVisits++;
+      console.log(`Website visit recorded - Total visits: ${this.totalWebsiteVisits}`);
+    } else if (!sessionId) {
+      this.totalWebsiteVisits++;
+      console.log(`Website visit recorded - Total visits: ${this.totalWebsiteVisits}`);
+    }
+  }
+
   private initializeData(): void {
     // Initialize with empty arrays - data comes from frontend for now
     this.categoriesData = [];
     this.toolsData = [];
+    // Initialize with some base visits for demonstration
+    this.totalWebsiteVisits = 15432;
   }
 }
 

@@ -5,6 +5,7 @@ import { ToolCard } from "@/components/ToolCard";
 import { FeaturedTool } from "@/components/FeaturedTool";
 import { RecentToolCard } from "@/components/RecentToolCard";
 import { Newsletter } from "@/components/Newsletter";
+import { WebsiteAnalytics } from "@/components/WebsiteAnalytics";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/data/categories";
 import { tools } from "@/data/tools";
@@ -177,6 +178,16 @@ export default function Home() {
         </div>
       </motion.section>
       
+      {/* Website Analytics Section */}
+      <motion.section 
+        className="mb-16"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
+        <WebsiteAnalytics />
+      </motion.section>
+
       {/* Newsletter Section */}
       <motion.section 
         className="mb-16"

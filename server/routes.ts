@@ -78,6 +78,35 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Record website visit
+  app.post("/api/website/visit", async (req, res) => {
+    try {
+      const sessionId = req.headers['x-session-id'] as string;
+      await storage.recordWebsiteVisit(sessionId);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to record website visit" });
+    }
+  });
+
+  // Get website analytics
+  app.get("/api/website/analytics", async (req, res) => {
+    try {
+      const totalVisits = await storage.getTotalWebsiteVisits();
+      const totalTools = (await storage.getAllTools()).length;
+      const totalCategories = (await storage.getAllCategories()).length;
+      
+      res.json({
+        totalVisits,
+        totalTools,
+        totalCategories,
+        usersOnline: Math.floor(Math.random() * 50) + 10 // Simulated online users
+      });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to get analytics" });
+    }
+  });
+
   const httpServer = createServer(app);
 
   return httpServer;
