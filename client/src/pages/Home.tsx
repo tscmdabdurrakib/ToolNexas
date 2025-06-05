@@ -52,9 +52,9 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">All Tools in One Place</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to ToolShaala</h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Discover our comprehensive collection of free online tools for developers, designers, writers, marketers and more.
+          Your comprehensive collection of 70+ professional tools across 35 categories. Convert, calculate, edit and optimize with ease.
         </p>
         
         <div className="flex justify-center mt-8 gap-4 flex-wrap">

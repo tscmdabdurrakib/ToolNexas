@@ -6,14 +6,29 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
-              </svg>
-              <h2 className="text-xl font-bold">ToolHub</h2>
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="relative">
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-6 w-6 text-primary" 
+                  viewBox="0 0 32 32" 
+                  fill="none"
+                >
+                  <rect x="2" y="6" width="28" height="20" rx="4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <circle cx="8" cy="12" r="2" fill="currentColor"/>
+                  <circle cx="16" cy="12" r="2" fill="currentColor"/>
+                  <circle cx="24" cy="12" r="2" fill="currentColor"/>
+                  <rect x="6" y="18" width="4" height="4" rx="1" fill="currentColor"/>
+                  <rect x="14" y="18" width="4" height="4" rx="1" fill="currentColor"/>
+                  <rect x="22" y="18" width="4" height="4" rx="1" fill="currentColor"/>
+                  <path d="M10 2 L22 2 L24 6 L8 6 Z" fill="currentColor" opacity="0.8"/>
+                </svg>
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+              </div>
+              <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ToolShaala</h2>
             </div>
             <p className="text-muted-foreground text-sm mb-6">
-              Your all-in-one toolkit for developers, designers, writers, marketers, and everyone in between.
+              Your comprehensive collection of 70+ professional tools across 35 categories. Convert, calculate, edit and optimize with ease.
             </p>
             <div className="flex space-x-4">
               <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full bg-gray-100 dark:bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-white transition">
@@ -75,7 +90,7 @@ export function Footer() {
         
         <div className="border-t border-border mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © {new Date().getFullYear()} ToolHub. All rights reserved.
+            © {new Date().getFullYear()} ToolShaala. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm">
             <Link href="/privacy" className="text-muted-foreground hover:text-primary transition">Privacy</Link>
