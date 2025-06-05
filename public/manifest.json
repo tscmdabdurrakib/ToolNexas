@@ -1,0 +1,28 @@
+{
+  "name": "ToolHub - Professional Tools Platform",
+  "short_name": "ToolHub",
+  "description": "Comprehensive online utility platform with 70+ tools across 35 categories",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/generated-icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/generated-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["utilities", "productivity", "tools"],
+  "lang": "en",
+  "scope": "/",
+  "prefer_related_applications": false
+}
