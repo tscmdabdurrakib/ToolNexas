@@ -8,6 +8,8 @@ import { ToolsProvider } from "@/context/ToolsContext";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import { usePreloadComponents } from "@/hooks/usePreloadComponents";
+import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 
 // Lazy load components for better performance
 const Home = lazy(() => import("@/pages/Home"));
@@ -74,6 +76,11 @@ const PageLoader = () => (
 );
 
 function Router() {
+  // Enable preloading and performance optimization
+  usePreloadComponents();
+  const { useMemoryOptimization } = usePerformanceOptimization();
+  useMemoryOptimization();
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />

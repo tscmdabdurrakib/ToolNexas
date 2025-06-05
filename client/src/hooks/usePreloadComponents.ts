@@ -72,34 +72,5 @@ export const usePreloadComponents = () => {
   return { preloadOnHover };
 };
 
-// Enhanced Link component with preloading
-import { Link } from 'wouter';
-
-interface PreloadLinkProps {
-  href: string;
-  children: React.ReactNode;
-  preloadComponent?: string;
-  className?: string;
-  [key: string]: any;
-}
-
-export const PreloadLink = ({ 
-  href, 
-  children, 
-  preloadComponent,
-  className = '',
-  ...props 
-}: PreloadLinkProps) => {
-  const { preloadOnHover } = usePreloadComponents();
-  
-  return (
-    <Link
-      href={href}
-      className={className}
-      {...preloadOnHover(preloadComponent || '')}
-      {...props}
-    >
-      {children}
-    </Link>
-  );
-};
+// Enhanced navigation with preloading - simple export
+export const preloadingEnabled = true;
