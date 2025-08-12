@@ -54,6 +54,13 @@ const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
 const PDFEditorPage = lazy(() => import("@/pages/tools/PDFEditorPage"));
 
+// Professional Unit Converters
+const AccelerationAngularConverter = lazy(() => import("@/pages/tools/AccelerationAngularConverter"));
+const DensityConverter = lazy(() => import("@/pages/tools/DensityConverter"));
+const SpecificVolumeConverter = lazy(() => import("@/pages/tools/SpecificVolumeConverter"));
+const MomentOfInertiaConverter = lazy(() => import("@/pages/tools/MomentOfInertiaConverter"));
+const MomentOfForceConverter = lazy(() => import("@/pages/tools/MomentOfForceConverter"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -123,6 +130,14 @@ function Router() {
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
             <Route path="/tools/mortgage-calculator" component={MortgageCalculatorPage} />
+            
+            {/* Professional Unit Converters */}
+            <Route path="/tools/acceleration-angular-converter" component={AccelerationAngularConverter} />
+            <Route path="/tools/density-converter" component={DensityConverter} />
+            <Route path="/tools/specific-volume-converter" component={SpecificVolumeConverter} />
+            <Route path="/tools/moment-of-inertia-converter" component={MomentOfInertiaConverter} />
+            <Route path="/tools/moment-of-force-converter" component={MomentOfForceConverter} />
+            
             <Route component={NotFound} />
           </Switch>
         </Suspense>
