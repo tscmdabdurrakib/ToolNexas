@@ -61,6 +61,13 @@ const SpecificVolumeConverter = lazy(() => import("@/pages/tools/SpecificVolumeC
 const MomentOfInertiaConverter = lazy(() => import("@/pages/tools/MomentOfInertiaConverter"));
 const MomentOfForceConverter = lazy(() => import("@/pages/tools/MomentOfForceConverter"));
 
+// New Advanced Converters
+const TorqueConverter = lazy(() => import("@/pages/tools/TorqueConverter"));
+const FuelEfficiencyMassConverter = lazy(() => import("@/pages/tools/FuelEfficiencyMassConverter"));
+const FuelEfficiencyVolumeConverter = lazy(() => import("@/pages/tools/FuelEfficiencyVolumeConverter"));
+const TemperatureIntervalConverter = lazy(() => import("@/pages/tools/TemperatureIntervalConverter"));
+const ThermalExpansionConverter = lazy(() => import("@/pages/tools/ThermalExpansionConverter"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -137,6 +144,12 @@ function Router() {
             <Route path="/tools/specific-volume-converter" component={SpecificVolumeConverter} />
             <Route path="/tools/moment-of-inertia-converter" component={MomentOfInertiaConverter} />
             <Route path="/tools/moment-of-force-converter" component={MomentOfForceConverter} />
+            {/* New Advanced Converters */}
+            <Route path="/tools/torque-converter" component={TorqueConverter} />
+            <Route path="/tools/fuel-efficiency-mass-converter" component={FuelEfficiencyMassConverter} />
+            <Route path="/tools/fuel-efficiency-volume-converter" component={FuelEfficiencyVolumeConverter} />
+            <Route path="/tools/temperature-interval-converter" component={TemperatureIntervalConverter} />
+            <Route path="/tools/thermal-expansion-converter" component={ThermalExpansionConverter} />
             
             <Route component={NotFound} />
           </Switch>

@@ -14,13 +14,15 @@ A high-performance web platform offering 70+ professional tools across 35 catego
 - **Design**: Responsive blue-purple gradient theme
 - **Database**: PostgreSQL integration with Drizzle ORM
 
-## Recent Changes (August 11, 2025)
-✓ Complete branding update to "ToolShaala" across all components
-✓ Custom SVG toolbox logo with animated pulse effect
-✓ Footer and header redesign with gradient branding
-✓ Hero section messaging optimized for tool collection
+## Recent Changes (August 12, 2025)
+✓ Added 5 new advanced converter tools following Length Converter design pattern
+✓ Created Torque Converter for automotive/mechanical applications
+✓ Added Fuel Efficiency converters (Mass & Volume based) for transport optimization
+✓ Implemented Temperature Interval Converter for scientific applications
+✓ Built Thermal Expansion Converter for materials engineering
+✓ All new tools integrated with proper routing and tools.ts configuration
+✓ Center alignment issues resolved across all converter tools
 ✓ Performance metrics showing consistent sub-250ms load times
-✓ Git setup guide created for GitHub deployment
 
 ## User Preferences
 - **Language**: Bengali (Bangla) for communication
@@ -46,7 +48,7 @@ A high-performance web platform offering 70+ professional tools across 35 catego
 - **API**: RESTful endpoints for tools and analytics
 
 ### Key Features
-1. **70+ Tools** across 35 categories
+1. **75+ Tools** across 35 categories (5 new advanced converters added)
 2. **Real-time Analytics** with lifetime counters
 3. **PWA Support** with service worker
 4. **Mobile Responsive** design
