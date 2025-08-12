@@ -91,9 +91,9 @@ export default function AccelerationAngularConverter() {
   }, [acceleration, radius, accelerationUnit, angularVelocityUnit]);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+    <Card className="mx-auto max-w-4xl">
+      <CardHeader className="text-center">
+        <CardTitle className="flex items-center justify-center gap-2">
           <Calculator className="h-5 w-5" />
           Acceleration to Angular Velocity Converter
         </CardTitle>

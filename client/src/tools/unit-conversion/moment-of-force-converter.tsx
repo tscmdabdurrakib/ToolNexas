@@ -97,9 +97,9 @@ export default function MomentOfForceConverter() {
   }, [inputValue, fromUnit, toUnit]);
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+    <Card className="mx-auto max-w-4xl">
+      <CardHeader className="text-center">
+        <CardTitle className="flex items-center justify-center gap-2">
           <Calculator className="h-5 w-5" />
           Moment of Force Converter
         </CardTitle>
