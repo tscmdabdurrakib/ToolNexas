@@ -67,6 +67,8 @@ const FuelEfficiencyMassConverter = lazy(() => import("@/pages/tools/FuelEfficie
 const FuelEfficiencyVolumeConverter = lazy(() => import("@/pages/tools/FuelEfficiencyVolumeConverter"));
 const TemperatureIntervalConverter = lazy(() => import("@/pages/tools/TemperatureIntervalConverter"));
 const ThermalExpansionConverter = lazy(() => import("@/pages/tools/ThermalExpansionConverter"));
+const ThermalResistanceConverter = lazy(() => import("@/pages/tools/ThermalResistanceConverter"));
+const SpecificHeatCapacityConverter = lazy(() => import("@/pages/tools/SpecificHeatCapacityConverter"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -150,6 +152,8 @@ function Router() {
             <Route path="/tools/fuel-efficiency-volume-converter" component={FuelEfficiencyVolumeConverter} />
             <Route path="/tools/temperature-interval-converter" component={TemperatureIntervalConverter} />
             <Route path="/tools/thermal-expansion-converter" component={ThermalExpansionConverter} />
+            <Route path="/tools/thermal-resistance-converter" component={ThermalResistanceConverter} />
+            <Route path="/tools/specific-heat-capacity-converter" component={SpecificHeatCapacityConverter} />
             
             <Route component={NotFound} />
           </Switch>
