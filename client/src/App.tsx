@@ -74,6 +74,11 @@ const HeatFluxDensityConverter = lazy(() => import("@/pages/tools/HeatFluxDensit
 const HeatTransferCoefficientConverter = lazy(() => import("@/pages/tools/HeatTransferCoefficientConverter"));
 const FlowConverter = lazy(() => import("@/pages/tools/FlowConverter"));
 const FlowMassConverter = lazy(() => import("@/pages/tools/FlowMassConverter"));
+const FlowMolarConverter = lazy(() => import("@/pages/tools/FlowMolarConverter"));
+const MassFluxDensityConverter = lazy(() => import("@/pages/tools/MassFluxDensityConverter"));
+const ConcentrationMolarConverter = lazy(() => import("@/pages/tools/ConcentrationMolarConverter"));
+const ConcentrationSolutionConverter = lazy(() => import("@/pages/tools/ConcentrationSolutionConverter"));
+const ViscosityDynamicConverter = lazy(() => import("@/pages/tools/ViscosityDynamicConverter"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -164,6 +169,11 @@ function Router() {
             <Route path="/tools/heat-transfer-coefficient-converter" component={HeatTransferCoefficientConverter} />
             <Route path="/tools/flow-converter" component={FlowConverter} />
             <Route path="/tools/flow-mass-converter" component={FlowMassConverter} />
+            <Route path="/tools/flow-molar-converter" component={FlowMolarConverter} />
+            <Route path="/tools/mass-flux-density-converter" component={MassFluxDensityConverter} />
+            <Route path="/tools/concentration-molar-converter" component={ConcentrationMolarConverter} />
+            <Route path="/tools/concentration-solution-converter" component={ConcentrationSolutionConverter} />
+            <Route path="/tools/viscosity-dynamic-converter" component={ViscosityDynamicConverter} />
             
             <Route component={NotFound} />
           </Switch>
