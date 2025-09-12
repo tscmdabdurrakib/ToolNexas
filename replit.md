@@ -1,7 +1,7 @@
 # ToolShaala - Comprehensive Online Utility Platform
 
 ## Project Overview
-A high-performance web platform offering 87+ professional tools across 35 categories with super-fast SPA architecture and PWA capabilities.
+A high-performance web platform offering 92+ professional tools across 35 categories with super-fast SPA architecture and PWA capabilities.
 
 ## Project Status: PRODUCTION READY ✅
 
@@ -15,6 +15,19 @@ A high-performance web platform offering 87+ professional tools across 35 catego
 - **Database**: PostgreSQL integration with Drizzle ORM
 
 ## Recent Changes (September 12, 2025)
+✓ Added 5 additional professional converter tools: Viscosity-Kinematic, Surface Tension, Permeability, Luminance, and Luminous Intensity Converters
+✓ Created Viscosity - Kinematic Converter for fluid mechanics applications with m²/s, stokes, centistokes units
+✓ Built Surface Tension Converter for material science with N/m, dyn/cm, J/m² units
+✓ Implemented Permeability Converter for petroleum engineering with darcy, millidarcy, m² units
+✓ Added Luminance Converter for photometry with cd/m², nit, stilb, lambert units
+✓ Created Luminous Intensity Converter for optical applications with candela, lm/sr, carcel units
+✓ All new tools follow established Length Converter design pattern with shadcn/ui components
+✓ Complete integration with App.tsx lazy loading routes and page wrapper components
+✓ Fixed LSP diagnostics errors in page wrapper components
+✓ Platform performance maintained with sub-250ms load times
+✓ Total platform now offers 92+ professional tools
+
+## Earlier Changes (September 12, 2025)
 ✓ Added 5 additional advanced converter tools continuing the professional toolset expansion
 ✓ Created Flow - Molar Converter for chemical process engineering applications
 ✓ Built Mass Flux Density Converter for engineering mass transfer calculations
@@ -24,7 +37,6 @@ A high-performance web platform offering 87+ professional tools across 35 catego
 ✓ All new tools follow established Length Converter design pattern
 ✓ Complete integration with App.tsx routing and tools.ts configuration
 ✓ Platform performance maintained with sub-250ms load times
-✓ Total platform now offers 87+ professional tools
 
 ## Previous Changes (Earlier September 12, 2025)
 ✓ Added 5 thermal and flow converter tools: Heat Density, Heat Flux Density, Heat Transfer Coefficient, Flow, and Flow-Mass converters
@@ -58,7 +70,7 @@ A high-performance web platform offering 87+ professional tools across 35 catego
 - **API**: RESTful endpoints for tools and analytics
 
 ### Key Features
-1. **87+ Tools** across 35 categories (17 new advanced converters total)
+1. **92+ Tools** across 35 categories (22 new advanced converters total)
 2. **Real-time Analytics** with lifetime counters
 3. **PWA Support** with service worker
 4. **Mobile Responsive** design
