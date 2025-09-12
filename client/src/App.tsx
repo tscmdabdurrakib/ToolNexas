@@ -69,6 +69,11 @@ const TemperatureIntervalConverter = lazy(() => import("@/pages/tools/Temperatur
 const ThermalExpansionConverter = lazy(() => import("@/pages/tools/ThermalExpansionConverter"));
 const ThermalResistanceConverter = lazy(() => import("@/pages/tools/ThermalResistanceConverter"));
 const SpecificHeatCapacityConverter = lazy(() => import("@/pages/tools/SpecificHeatCapacityConverter"));
+const HeatDensityConverter = lazy(() => import("@/pages/tools/HeatDensityConverter"));
+const HeatFluxDensityConverter = lazy(() => import("@/pages/tools/HeatFluxDensityConverter"));
+const HeatTransferCoefficientConverter = lazy(() => import("@/pages/tools/HeatTransferCoefficientConverter"));
+const FlowConverter = lazy(() => import("@/pages/tools/FlowConverter"));
+const FlowMassConverter = lazy(() => import("@/pages/tools/FlowMassConverter"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -154,6 +159,11 @@ function Router() {
             <Route path="/tools/thermal-expansion-converter" component={ThermalExpansionConverter} />
             <Route path="/tools/thermal-resistance-converter" component={ThermalResistanceConverter} />
             <Route path="/tools/specific-heat-capacity-converter" component={SpecificHeatCapacityConverter} />
+            <Route path="/tools/heat-density-converter" component={HeatDensityConverter} />
+            <Route path="/tools/heat-flux-density-converter" component={HeatFluxDensityConverter} />
+            <Route path="/tools/heat-transfer-coefficient-converter" component={HeatTransferCoefficientConverter} />
+            <Route path="/tools/flow-converter" component={FlowConverter} />
+            <Route path="/tools/flow-mass-converter" component={FlowMassConverter} />
             
             <Route component={NotFound} />
           </Switch>

@@ -1,7 +1,7 @@
 # ToolShaala - Comprehensive Online Utility Platform
 
 ## Project Overview
-A high-performance web platform offering 70+ professional tools across 35 categories with super-fast SPA architecture and PWA capabilities.
+A high-performance web platform offering 82+ professional tools across 35 categories with super-fast SPA architecture and PWA capabilities.
 
 ## Project Status: PRODUCTION READY ✅
 
@@ -14,17 +14,20 @@ A high-performance web platform offering 70+ professional tools across 35 catego
 - **Design**: Responsive blue-purple gradient theme
 - **Database**: PostgreSQL integration with Drizzle ORM
 
-## Recent Changes (August 12, 2025)
-✓ Added 7 new advanced converter tools following Length Converter design pattern
-✓ Created Torque Converter for automotive/mechanical applications
-✓ Added Fuel Efficiency converters (Mass & Volume based) for transport optimization
-✓ Implemented Temperature Interval Converter for scientific applications
-✓ Built Thermal Expansion Converter for materials engineering
-✓ Added Thermal Resistance Converter for heat transfer calculations
-✓ Created Specific Heat Capacity Converter for thermal analysis
-✓ All new tools integrated with proper routing and tools.ts configuration
-✓ Center alignment issues resolved across all converter tools
+## Recent Changes (September 12, 2025)
+✓ Added 5 new advanced thermal and flow converter tools following Length Converter design pattern
+✓ Created Heat Density Converter for volumetric heat capacity calculations
+✓ Built Heat Flux Density Converter for thermal analysis applications
+✓ Implemented Heat Transfer Coefficient Converter for convective heat transfer
+✓ Added Flow Converter for volumetric flow rate calculations (fluid dynamics)
+✓ Created Flow - Mass Converter for mass flow rate in industrial processes
+✓ All new tools integrated with proper routing, App.tsx, and tools.ts configuration
 ✓ Performance metrics showing consistent sub-250ms load times
+✓ Total platform now offers 82+ professional tools
+
+## Previous Changes (August 12, 2025)
+✓ Added 7 advanced converter tools: Torque, Fuel Efficiency (Mass & Volume), Temperature Interval, Thermal Expansion, Thermal Resistance, and Specific Heat Capacity converters
+✓ Center alignment issues resolved across all converter tools
 
 ## User Preferences
 - **Language**: Bengali (Bangla) for communication
@@ -50,7 +53,7 @@ A high-performance web platform offering 70+ professional tools across 35 catego
 - **API**: RESTful endpoints for tools and analytics
 
 ### Key Features
-1. **77+ Tools** across 35 categories (7 new advanced converters added)
+1. **82+ Tools** across 35 categories (12 new advanced converters total)
 2. **Real-time Analytics** with lifetime counters
 3. **PWA Support** with service worker
 4. **Mobile Responsive** design
