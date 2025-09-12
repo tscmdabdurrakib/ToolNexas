@@ -79,6 +79,11 @@ const MassFluxDensityConverter = lazy(() => import("@/pages/tools/MassFluxDensit
 const ConcentrationMolarConverter = lazy(() => import("@/pages/tools/ConcentrationMolarConverter"));
 const ConcentrationSolutionConverter = lazy(() => import("@/pages/tools/ConcentrationSolutionConverter"));
 const ViscosityDynamicConverter = lazy(() => import("@/pages/tools/ViscosityDynamicConverter"));
+const ViscosityKinematicConverter = lazy(() => import("@/pages/tools/ViscosityKinematicConverter"));
+const SurfaceTensionConverter = lazy(() => import("@/pages/tools/SurfaceTensionConverter"));
+const PermeabilityConverter = lazy(() => import("@/pages/tools/PermeabilityConverter"));
+const LuminanceConverter = lazy(() => import("@/pages/tools/LuminanceConverter"));
+const LuminousIntensityConverter = lazy(() => import("@/pages/tools/LuminousIntensityConverter"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -174,6 +179,11 @@ function Router() {
             <Route path="/tools/concentration-molar-converter" component={ConcentrationMolarConverter} />
             <Route path="/tools/concentration-solution-converter" component={ConcentrationSolutionConverter} />
             <Route path="/tools/viscosity-dynamic-converter" component={ViscosityDynamicConverter} />
+            <Route path="/tools/viscosity-kinematic-converter" component={ViscosityKinematicConverter} />
+            <Route path="/tools/surface-tension-converter" component={SurfaceTensionConverter} />
+            <Route path="/tools/permeability-converter" component={PermeabilityConverter} />
+            <Route path="/tools/luminance-converter" component={LuminanceConverter} />
+            <Route path="/tools/luminous-intensity-converter" component={LuminousIntensityConverter} />
             
             <Route component={NotFound} />
           </Switch>
