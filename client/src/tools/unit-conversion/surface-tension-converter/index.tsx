@@ -23,7 +23,7 @@ const conversionFactors = {
   "pdl/ft": 0.453585,
   "J/m²": 1,
   "erg/cm²": 0.001,
-  "cal/cm²": 41.84,
+  "cal/cm²": 41840,
   "Btu/ft²": 11356.5,
   "kg/s²": 1,
   "g/s²": 0.001,
