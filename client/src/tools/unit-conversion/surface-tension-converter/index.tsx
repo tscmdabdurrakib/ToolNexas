@@ -15,7 +15,7 @@ const conversionFactors = {
   "μN/m": 0.000001,
   "kN/m": 1000,
   "dyn/cm": 0.001,
-  "gf/cm": 0.00980665,
+  "gf/cm": 0.980665,
   "kgf/m": 9.80665,
   "lbf/in": 175.127,
   "lbf/ft": 14.5939,

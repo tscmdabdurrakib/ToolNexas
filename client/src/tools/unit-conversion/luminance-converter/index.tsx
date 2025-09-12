@@ -13,7 +13,7 @@ const conversionFactors = {
   "cd/m²": 1,
   "cd/cm²": 10000,
   "cd/ft²": 10.764,
-  "cd/in²": 1550,
+  "cd/in²": 10.764*144,
   "nit": 1,
   "stilb": 10000,
   "apostilb": 1/Math.PI,
@@ -26,11 +26,11 @@ const conversionFactors = {
   "lm/m²/sr": 1,
   "lm/cm²/sr": 10000,
   "lm/ft²/sr": 10.764,
-  "lm/in²/sr": 1550,
+  "lm/in²/sr": 10.764*144,
   "W/(m²·sr)": 683, // at 555 nm (peak photopic sensitivity)
   "W/(cm²·sr)": 683*10000,
   "W/(ft²·sr)": 683*10.764,
-  "W/(in²·sr)": 683*1550,
+  "W/(in²·sr)": 683*10.764*144,
 };
 
 // Unit display names with abbreviations
