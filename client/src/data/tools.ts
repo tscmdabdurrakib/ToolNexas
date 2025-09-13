@@ -16717,4 +16717,91 @@ export const tools: Tool[] = [
       "Advanced electromagnetic applications",
     ],
   },
+
+  // Financial Calculator Tools
+  {
+    id: "loan-calculator-tool",
+    name: "Loan Calculator",
+    description: "Calculate monthly loan payments, total interest, and payment schedule for any loan",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M12 2C13.1 2 14 2.9 14 4V6H10V4C10 2.9 10.9 2 12 2ZM21 6V4C21 2.9 20.1 2 19 2H17V6H21ZM3 6V4C3 2.9 3.9 2 5 2H7V6H3ZM21 8H3V20C3 21.1 3.9 22 5 22H19C20.1 22 21 21.1 21 20V8Z"),
+    views: 245,
+    gradient: "from-blue-600 to-indigo-600",
+    features: [
+      "Calculate monthly loan payments instantly",
+      "View total interest over loan term",
+      "See complete payment breakdown",
+      "Works for any loan type (mortgage, personal, business)",
+      "Handles zero-interest loans automatically",
+      "Professional results with detailed breakdown"
+    ],
+  },
+  {
+    id: "auto-loan-calculator-tool",
+    name: "Auto Loan Calculator",
+    description: "Calculate car loan payments including down payment considerations and total cost",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M5 11L7.5 6.5C8.11 5.59 9.18 5 10.35 5H13.65C14.82 5 15.89 5.59 16.5 6.5L19 11H5ZM1.5 16.5V21C1.5 21.83 2.17 22.5 3 22.5S4.5 21.83 4.5 21V20H19.5V21C19.5 21.83 20.17 22.5 21 22.5S22.5 21.83 22.5 21V16.5L21.47 12.85C21.08 11.63 19.92 10.8 18.65 10.8H16.74L15.49 8.68C14.78 7.57 13.56 6.9 12.24 6.9H11.76C10.44 6.9 9.22 7.57 8.51 8.68L7.26 10.8H5.35C4.08 10.8 2.92 11.63 2.53 12.85L1.5 16.5Z"),
+    views: 189,
+    gradient: "from-green-600 to-emerald-600",
+    features: [
+      "Calculate auto loan payments with down payment",
+      "See actual loan amount after down payment",
+      "View total cost including down payment",
+      "Calculate total interest on financed amount",
+      "Perfect for car, truck, or motorcycle financing",
+      "Handles cases with full cash payment"
+    ],
+  },
+  {
+    id: "interest-calculator-tool",
+    name: "Interest Calculator",
+    description: "Calculate simple or compound interest on investments with various compounding frequencies",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M2 12C2 6.48 6.48 2 12 2S22 6.48 22 12 17.52 22 12 22 2 17.52 2 12ZM15.5 8L12 12L8.5 8H15.5ZM8.5 16L12 12L15.5 16H8.5Z"),
+    views: 156,
+    gradient: "from-purple-600 to-pink-600",
+    features: [
+      "Calculate simple interest for loans and investments",
+      "Calculate compound interest with various frequencies",
+      "Compare different compounding periods",
+      "Annual, semi-annual, quarterly, monthly, and daily compounding",
+      "View total return on investment",
+      "Perfect for savings accounts and investments"
+    ],
+  },
+  {
+    id: "payment-calculator-tool",
+    name: "Payment Calculator",
+    description: "Calculate payment schedules for different frequencies including weekly, monthly, and quarterly",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M2 17H22V19H2V17ZM1.15 12.95L4 16L1.15 19.05L2.85 20.95L7.15 16L2.85 11.05L1.15 12.95ZM21.15 12.95L18.3 16L21.15 19.05L19.45 20.95L15.15 16L19.45 11.05L21.15 12.95ZM11 14V18H13V14H17L12 9L7 14H11Z"),
+    views: 134,
+    gradient: "from-orange-600 to-red-600",
+    features: [
+      "Calculate payments for multiple frequencies",
+      "Compare weekly, bi-weekly, monthly payments",
+      "See total interest for different schedules",
+      "Perfect for debt consolidation planning",
+      "Flexible payment frequency options",
+      "Accurate calculations for any loan type"
+    ],
+  },
+  {
+    id: "retirement-calculator-tool",
+    name: "Retirement Calculator",
+    description: "Plan retirement savings based on current savings, monthly contributions, and expected returns",
+    category: getCategoryById("calculation"),
+    icon: createIcon("M9.5 2C8.4 2 7.5 2.9 7.5 4S8.4 6 9.5 6 11.5 5.1 11.5 4 10.6 2 9.5 2ZM9.75 22V16.5L7.91 10.09C7.66 9.22 8.13 8.31 8.97 8.06C9.8 7.81 10.69 8.28 10.94 9.11L12 13H15V15H12.6L12.2 13.65L13.5 19.8C13.81 21 13.09 22.22 11.89 22.53C11.26 22.71 10.62 22.53 10.16 22.12L9.75 22ZM1 22H4L6 16L4.5 10.5C4.31 9.85 4.66 9.16 5.31 8.97C5.97 8.78 6.66 9.13 6.85 9.78L8.5 15.5H11V17.5H7.65L6.5 14.26L5.92 18.48L4 22H1Z"),
+    views: 178,
+    gradient: "from-teal-600 to-cyan-600",
+    features: [
+      "Calculate retirement savings projections",
+      "Include current savings and monthly contributions",
+      "Factor in expected investment returns",
+      "See total contributions vs. interest earned",
+      "Plan for any retirement age",
+      "Understand the power of compound growth"
+    ],
+  },
 ];
