@@ -10,14 +10,14 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 // Define unit conversion factors (to km/L as base unit)
 const conversionFactors = {
   "km-per-liter": 1,
-  "miles-per-gallon-us": 0.425144,
-  "miles-per-gallon-imperial": 0.354006,
+  "miles-per-gallon-us": 0.425144, // (1.609344 km/mi) / (3.785411784 L/gal)
+  "miles-per-gallon-imperial": 0.354006, // (1.609344 km/mi) / (4.54609 L/gal)
   "liters-per-100km": -1, // Special case: inverse relationship
-  "mpg-us": 0.425144,
-  "mpg-imperial": 0.354006,
-  "km-per-gallon-us": 3.78541,
-  "km-per-gallon-imperial": 4.54609,
-  "miles-per-liter": 0.621371,
+  "mpg-us": 0.425144, // Same as miles-per-gallon-us
+  "mpg-imperial": 0.354006, // Same as miles-per-gallon-imperial
+  "km-per-gallon-us": 0.264172, // 1 / 3.785411784 L/gal
+  "km-per-gallon-imperial": 0.219969, // 1 / 4.54609 L/gal
+  "miles-per-liter": 1.609344, // 1 mile = 1.609344 km
   "gallons-per-100miles-us": -1, // Special case: inverse relationship
 };
 

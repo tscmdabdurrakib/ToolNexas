@@ -10,15 +10,15 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 // Define unit conversion factors (to km/kg as base unit)
 const conversionFactors = {
   "km-per-kg": 1,
-  "miles-per-kg": 0.621371,
-  "km-per-lb": 2.20462,
-  "miles-per-lb": 1.37088,
-  "m-per-g": 1000,
-  "ft-per-oz": 10936.1,
-  "miles-per-ton": 0.000621371,
-  "km-per-ton": 0.001,
-  "nautical-miles-per-kg": 0.539957,
-  "yards-per-lb": 1094.09,
+  "miles-per-kg": 1.609344, // 1 mile = 1.609344 km
+  "km-per-lb": 2.20462, // 1 lb = 0.453592 kg, so 1 km/lb = 2.20462 km/kg
+  "miles-per-lb": 3.5476, // 1.609344 × 2.20462
+  "m-per-g": 1, // 1 m/g = 0.001 km / 0.001 kg = 1 km/kg
+  "ft-per-oz": 0.01075, // 1 ft/oz = 0.0003048 km / 0.0283495 kg
+  "miles-per-ton": 0.001609344, // 1 mi/ton = 1.609344 km / 1000 kg
+  "km-per-ton": 0.001, // 1 km/ton = 1 km / 1000 kg
+  "nautical-miles-per-kg": 1.852, // 1 nautical mile = 1.852 km
+  "yards-per-lb": 0.002016, // 1 yd/lb = 0.0009144 km / 0.453592 kg
 };
 
 // Unit display names with abbreviations

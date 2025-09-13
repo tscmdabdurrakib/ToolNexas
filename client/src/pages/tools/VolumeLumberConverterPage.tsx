@@ -9,9 +9,10 @@ import { useLocation } from "wouter";
 export default function VolumeLumberConverterPage() {
   const [location] = useLocation();
   
-  // Scroll to top when component mounts
+  // Scroll to top when component mounts and set page title
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.title = "Volume - Lumber Converter Tool - ToolShaala";
   }, [location]);
 
   return (
