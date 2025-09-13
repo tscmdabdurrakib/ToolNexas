@@ -111,6 +111,10 @@ const InductanceConverter = lazy(() => import("@/pages/tools/InductanceConverter
 const MagnetomotiveForceConverter = lazy(() => import("@/pages/tools/MagnetomotiveForceConverter"));
 const MagneticFieldStrengthConverter = lazy(() => import("@/pages/tools/MagneticFieldStrengthConverter"));
 
+// Magnetic Flux Tools
+const MagneticFluxConverter = lazy(() => import("@/pages/tools/MagneticFluxConverter"));
+const MagneticFluxDensityConverter = lazy(() => import("@/pages/tools/MagneticFluxDensityConverter"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -236,6 +240,10 @@ function Router() {
             <Route path="/tools/inductance-converter" component={InductanceConverter} />
             <Route path="/tools/magnetomotive-force-converter" component={MagnetomotiveForceConverter} />
             <Route path="/tools/magnetic-field-strength-converter" component={MagneticFieldStrengthConverter} />
+            
+            {/* Magnetic Flux Tools */}
+            <Route path="/tools/magnetic-flux-converter" component={MagneticFluxConverter} />
+            <Route path="/tools/magnetic-flux-density-converter" component={MagneticFluxDensityConverter} />
             
             <Route component={NotFound} />
           </Switch>
