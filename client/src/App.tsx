@@ -97,6 +97,13 @@ const CurrentConverter = lazy(() => import("@/pages/tools/CurrentConverter"));
 const LinearCurrentDensityConverter = lazy(() => import("@/pages/tools/LinearCurrentDensityConverter"));
 const SurfaceCurrentDensityConverter = lazy(() => import("@/pages/tools/SurfaceCurrentDensityConverter"));
 
+// Electric Converter Tools  
+const ElectricFieldStrengthConverter = lazy(() => import("@/pages/tools/ElectricFieldStrengthConverter"));
+const ElectricPotentialConverter = lazy(() => import("@/pages/tools/ElectricPotentialConverter"));
+const ElectricResistanceConverter = lazy(() => import("@/pages/tools/ElectricResistanceConverter"));
+const ElectricResistivityConverter = lazy(() => import("@/pages/tools/ElectricResistivityConverter"));
+const ElectricConductanceConverter = lazy(() => import("@/pages/tools/ElectricConductanceConverter"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -208,6 +215,13 @@ function Router() {
             <Route path="/tools/current-converter" component={CurrentConverter} />
             <Route path="/tools/linear-current-density-converter" component={LinearCurrentDensityConverter} />
             <Route path="/tools/surface-current-density-converter" component={SurfaceCurrentDensityConverter} />
+            
+            {/* Electric Converter Tools */}
+            <Route path="/tools/electric-field-strength-converter" component={ElectricFieldStrengthConverter} />
+            <Route path="/tools/electric-potential-converter" component={ElectricPotentialConverter} />
+            <Route path="/tools/electric-resistance-converter" component={ElectricResistanceConverter} />
+            <Route path="/tools/electric-resistivity-converter" component={ElectricResistivityConverter} />
+            <Route path="/tools/electric-conductance-converter" component={ElectricConductanceConverter} />
             
             <Route component={NotFound} />
           </Switch>
