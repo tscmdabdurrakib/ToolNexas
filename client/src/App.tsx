@@ -128,6 +128,13 @@ const DataTransferConverterPage = lazy(() => import("@/pages/tools/DataTransferC
 // Volume Lumber Tool
 const VolumeLumberConverterPage = lazy(() => import("@/pages/tools/VolumeLumberConverterPage"));
 
+// Financial Calculator Tools
+const LoanCalculatorPage = lazy(() => import("@/pages/tools/LoanCalculatorPage"));
+const AutoLoanCalculatorPage = lazy(() => import("@/pages/tools/AutoLoanCalculatorPage"));
+const InterestCalculatorPage = lazy(() => import("@/pages/tools/InterestCalculatorPage"));
+const PaymentCalculatorPage = lazy(() => import("@/pages/tools/PaymentCalculatorPage"));
+const RetirementCalculatorPage = lazy(() => import("@/pages/tools/RetirementCalculatorPage"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -270,6 +277,13 @@ function Router() {
             
             {/* Volume Lumber Tool */}
             <Route path="/tools/volume-lumber-converter" component={VolumeLumberConverterPage} />
+            
+            {/* Financial Calculator Tools */}
+            <Route path="/tools/loan-calculator" component={LoanCalculatorPage} />
+            <Route path="/tools/auto-loan-calculator" component={AutoLoanCalculatorPage} />
+            <Route path="/tools/interest-calculator" component={InterestCalculatorPage} />
+            <Route path="/tools/payment-calculator" component={PaymentCalculatorPage} />
+            <Route path="/tools/retirement-calculator" component={RetirementCalculatorPage} />
             
             <Route component={NotFound} />
           </Switch>
