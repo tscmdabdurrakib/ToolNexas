@@ -104,6 +104,13 @@ const ElectricResistanceConverter = lazy(() => import("@/pages/tools/ElectricRes
 const ElectricResistivityConverter = lazy(() => import("@/pages/tools/ElectricResistivityConverter"));
 const ElectricConductanceConverter = lazy(() => import("@/pages/tools/ElectricConductanceConverter"));
 
+// Additional Electric/Magnetic Converter Tools
+const ElectricConductivityConverter = lazy(() => import("@/pages/tools/ElectricConductivityConverter"));
+const ElectrostaticCapacitanceConverter = lazy(() => import("@/pages/tools/ElectrostaticCapacitanceConverter"));
+const InductanceConverter = lazy(() => import("@/pages/tools/InductanceConverter"));
+const MagnetomotiveForceConverter = lazy(() => import("@/pages/tools/MagnetomotiveForceConverter"));
+const MagneticFieldStrengthConverter = lazy(() => import("@/pages/tools/MagneticFieldStrengthConverter"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -222,6 +229,13 @@ function Router() {
             <Route path="/tools/electric-resistance-converter" component={ElectricResistanceConverter} />
             <Route path="/tools/electric-resistivity-converter" component={ElectricResistivityConverter} />
             <Route path="/tools/electric-conductance-converter" component={ElectricConductanceConverter} />
+            
+            {/* Additional Electric/Magnetic Converter Tools */}
+            <Route path="/tools/electric-conductivity-converter" component={ElectricConductivityConverter} />
+            <Route path="/tools/electrostatic-capacitance-converter" component={ElectrostaticCapacitanceConverter} />
+            <Route path="/tools/inductance-converter" component={InductanceConverter} />
+            <Route path="/tools/magnetomotive-force-converter" component={MagnetomotiveForceConverter} />
+            <Route path="/tools/magnetic-field-strength-converter" component={MagneticFieldStrengthConverter} />
             
             <Route component={NotFound} />
           </Switch>
