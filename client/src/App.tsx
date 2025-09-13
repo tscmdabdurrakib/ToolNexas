@@ -85,6 +85,18 @@ const PermeabilityConverter = lazy(() => import("@/pages/tools/PermeabilityConve
 const LuminanceConverter = lazy(() => import("@/pages/tools/LuminanceConverter"));
 const LuminousIntensityConverter = lazy(() => import("@/pages/tools/LuminousIntensityConverter"));
 
+// My New Converter Tools
+const IlluminationConverter = lazy(() => import("@/pages/tools/IlluminationConverter"));
+const DigitalImageResolutionConverter = lazy(() => import("@/pages/tools/DigitalImageResolutionConverter"));
+const FrequencyWavelengthConverter = lazy(() => import("@/pages/tools/FrequencyWavelengthConverter"));
+const ChargeConverter = lazy(() => import("@/pages/tools/ChargeConverter"));
+const LinearChargeDensityConverter = lazy(() => import("@/pages/tools/LinearChargeDensityConverter"));
+const SurfaceChargeDensityConverter = lazy(() => import("@/pages/tools/SurfaceChargeDensityConverter"));
+const VolumeChargeDensityConverter = lazy(() => import("@/pages/tools/VolumeChargeDensityConverter"));
+const CurrentConverter = lazy(() => import("@/pages/tools/CurrentConverter"));
+const LinearCurrentDensityConverter = lazy(() => import("@/pages/tools/LinearCurrentDensityConverter"));
+const SurfaceCurrentDensityConverter = lazy(() => import("@/pages/tools/SurfaceCurrentDensityConverter"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -184,6 +196,18 @@ function Router() {
             <Route path="/tools/permeability-converter" component={PermeabilityConverter} />
             <Route path="/tools/luminance-converter" component={LuminanceConverter} />
             <Route path="/tools/luminous-intensity-converter" component={LuminousIntensityConverter} />
+            
+            {/* My New Converter Tools */}
+            <Route path="/tools/illumination-converter" component={IlluminationConverter} />
+            <Route path="/tools/digital-image-resolution-converter" component={DigitalImageResolutionConverter} />
+            <Route path="/tools/frequency-wavelength-converter" component={FrequencyWavelengthConverter} />
+            <Route path="/tools/charge-converter" component={ChargeConverter} />
+            <Route path="/tools/linear-charge-density-converter" component={LinearChargeDensityConverter} />
+            <Route path="/tools/surface-charge-density-converter" component={SurfaceChargeDensityConverter} />
+            <Route path="/tools/volume-charge-density-converter" component={VolumeChargeDensityConverter} />
+            <Route path="/tools/current-converter" component={CurrentConverter} />
+            <Route path="/tools/linear-current-density-converter" component={LinearCurrentDensityConverter} />
+            <Route path="/tools/surface-current-density-converter" component={SurfaceCurrentDensityConverter} />
             
             <Route component={NotFound} />
           </Switch>
