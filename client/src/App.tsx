@@ -115,6 +115,9 @@ const MagneticFieldStrengthConverter = lazy(() => import("@/pages/tools/Magnetic
 const MagneticFluxConverter = lazy(() => import("@/pages/tools/MagneticFluxConverter"));
 const MagneticFluxDensityConverter = lazy(() => import("@/pages/tools/MagneticFluxDensityConverter"));
 
+// Radiation Tool
+const RadiationConverter = lazy(() => import("@/pages/tools/RadiationConverter"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -244,6 +247,9 @@ function Router() {
             {/* Magnetic Flux Tools */}
             <Route path="/tools/magnetic-flux-converter" component={MagneticFluxConverter} />
             <Route path="/tools/magnetic-flux-density-converter" component={MagneticFluxDensityConverter} />
+            
+            {/* Radiation Tool */}
+            <Route path="/tools/radiation-converter" component={RadiationConverter} />
             
             <Route component={NotFound} />
           </Switch>
