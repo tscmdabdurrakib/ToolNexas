@@ -125,6 +125,9 @@ const RadiationAbsorbedDoseConverterPage = lazy(() => import("@/pages/tools/Radi
 const PrefixesConverterPage = lazy(() => import("@/pages/tools/PrefixesConverterPage"));
 const DataTransferConverterPage = lazy(() => import("@/pages/tools/DataTransferConverterPage"));
 
+// Volume Lumber Tool
+const VolumeLumberConverterPage = lazy(() => import("@/pages/tools/VolumeLumberConverterPage"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -264,6 +267,9 @@ function Router() {
             <Route path="/tools/radiation-absorbed-dose-converter" component={RadiationAbsorbedDoseConverterPage} />
             <Route path="/tools/prefixes-converter" component={PrefixesConverterPage} />
             <Route path="/tools/data-transfer-rate-converter" component={DataTransferConverterPage} />
+            
+            {/* Volume Lumber Tool */}
+            <Route path="/tools/volume-lumber-converter" component={VolumeLumberConverterPage} />
             
             <Route component={NotFound} />
           </Switch>
