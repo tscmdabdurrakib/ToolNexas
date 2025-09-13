@@ -118,6 +118,13 @@ const MagneticFluxDensityConverter = lazy(() => import("@/pages/tools/MagneticFl
 // Radiation Tool
 const RadiationConverter = lazy(() => import("@/pages/tools/RadiationConverter"));
 
+// New Radiation and Data Tools
+const RadiationActivityConverterPage = lazy(() => import("@/pages/tools/RadiationActivityConverterPage"));
+const RadiationExposureConverterPage = lazy(() => import("@/pages/tools/RadiationExposureConverterPage"));
+const RadiationAbsorbedDoseConverterPage = lazy(() => import("@/pages/tools/RadiationAbsorbedDoseConverterPage"));
+const PrefixesConverterPage = lazy(() => import("@/pages/tools/PrefixesConverterPage"));
+const DataTransferConverterPage = lazy(() => import("@/pages/tools/DataTransferConverterPage"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -250,6 +257,13 @@ function Router() {
             
             {/* Radiation Tool */}
             <Route path="/tools/radiation-converter" component={RadiationConverter} />
+            
+            {/* New Radiation and Data Tools */}
+            <Route path="/tools/radiation-activity-converter" component={RadiationActivityConverterPage} />
+            <Route path="/tools/radiation-exposure-converter" component={RadiationExposureConverterPage} />
+            <Route path="/tools/radiation-absorbed-dose-converter" component={RadiationAbsorbedDoseConverterPage} />
+            <Route path="/tools/prefixes-converter" component={PrefixesConverterPage} />
+            <Route path="/tools/data-transfer-rate-converter" component={DataTransferConverterPage} />
             
             <Route component={NotFound} />
           </Switch>
