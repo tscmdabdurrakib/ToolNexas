@@ -135,6 +135,13 @@ const InterestCalculatorPage = lazy(() => import("@/pages/tools/InterestCalculat
 const PaymentCalculatorPage = lazy(() => import("@/pages/tools/PaymentCalculatorPage"));
 const RetirementCalculatorPage = lazy(() => import("@/pages/tools/RetirementCalculatorPage"));
 
+// New Finance Calculator Tools
+const AmortizationCalculatorPage = lazy(() => import("@/pages/tools/AmortizationCalculatorPage"));
+const InvestmentCalculatorPage = lazy(() => import("@/pages/tools/InvestmentCalculatorPage"));
+const CurrencyCalculatorPage = lazy(() => import("@/pages/tools/CurrencyCalculatorPage"));
+const InflationCalculatorPage = lazy(() => import("@/pages/tools/InflationCalculatorPage"));
+const FinanceCalculatorPage = lazy(() => import("@/pages/tools/FinanceCalculatorPage"));
+
 // Loading fallback component
 const PageLoader = () => (
   <div className="min-h-screen bg-background">
@@ -284,6 +291,13 @@ function Router() {
             <Route path="/tools/interest-calculator" component={InterestCalculatorPage} />
             <Route path="/tools/payment-calculator" component={PaymentCalculatorPage} />
             <Route path="/tools/retirement-calculator" component={RetirementCalculatorPage} />
+            
+            {/* New Finance Calculator Tools */}
+            <Route path="/tools/amortization-calculator" component={AmortizationCalculatorPage} />
+            <Route path="/tools/investment-calculator" component={InvestmentCalculatorPage} />
+            <Route path="/tools/currency-calculator" component={CurrencyCalculatorPage} />
+            <Route path="/tools/inflation-calculator" component={InflationCalculatorPage} />
+            <Route path="/tools/finance-calculator" component={FinanceCalculatorPage} />
             
             <Route component={NotFound} />
           </Switch>
