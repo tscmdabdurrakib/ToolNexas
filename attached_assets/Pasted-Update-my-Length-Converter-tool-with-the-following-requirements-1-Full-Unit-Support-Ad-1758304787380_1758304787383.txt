@@ -1,0 +1,35 @@
+Update my Length Converter tool with the following requirements:
+
+1. Full Unit Support:  
+   - Add all units from unitconverters.net (list given below).  
+   - Use meter [m] as the base unit for conversions.  
+   - Dropdowns (From / To) must include all units with search/filter support.  
+
+   Units:  
+   meter [m], kilometer [km], decimeter [dm], centimeter [cm], millimeter [mm], micrometer [µm], nanometer [nm], mile [mi], yard [yd], foot [ft], inch [in], light year [ly], exameter [Em], petameter [Pm], terameter [Tm], gigameter [Gm], megameter [Mm], hectometer [hm], dekameter [dam], micron [µ], picometer [pm], femtometer [fm], attometer [am], megaparsec [Mpc], kiloparsec [kpc], parsec [pc], astronomical unit [AU], league [lea], nautical league (UK), nautical league (international), league (statute), nautical mile (UK), nautical mile (international), mile (statute), mile (US survey), mile (Roman), kiloyard [kyd], furlong [fur], chain [ch], rope, rod [rd], perch, pole, fathom [fath], ell, foot (US survey), link [li], cubit (UK), hand span, finger (cloth), nail (cloth), barleycorn, mil [thou], microinch, angstrom [A], atomic unit of length, X-unit, fermi [F], arpent, pica, point, twip, aln, famn, caliber [cl], centiinch [cin], ken, Russian archin, Roman actus, vara de tarea, vara conuquera, vara castellana, cubit (Greek), long reed, reed, long cubit, handbreadth, fingerbreadth, Planck length, Electron radius (classical), Bohr radius, Earth’s equatorial radius, Earth’s polar radius, Earth’s distance from sun, Sun’s radius.
+
+2. UI Design:  
+   - Card-style layout with rounded corners, soft shadows, and responsive design.  
+   - Clear “Convert” button with hover effect.  
+   - Show results in bold and easy-to-read format.  
+
+3. Extra Informative Section (for SEO & user help):  
+   - Below the tool, add a section that explains the purpose of a length converter in a natural, human style.  
+   - Do NOT call it “blog” or “article.” Just present it as part of the page.  
+   - Content length: ~1200–2000 words.  
+   - Use headings (H2, H3) and small paragraphs.  
+   - Write in a friendly tone, as if explaining to users, not AI-generated.  
+
+   The section should cover:  
+   - What a length converter is and why people use it.  
+   - Everyday examples (cm to ft for height, km to miles for travel).  
+   - Science/astronomy use cases (nm, light years, AU, parsec).  
+   - Explanation of some uncommon units (Planck length, Sun’s radius).  
+   - Step-by-step on how to use the tool.  
+   - FAQs (like: “What’s the difference between miles and nautical miles?” “How to convert meters to feet?” “Why do astronomers use light years?”).  
+   - A short conclusion encouraging users to try more conversions.  
+
+4. SEO Meta:  
+   - Meta title: “Length Converter – Convert Meters, Miles, Inches, Feet, Light Years & More”  
+   - Meta description: “Free online length converter with 90+ units including meter, mile, inch, foot, light year, astronomical unit, parsec, Planck length, and more.”  
+   - Use semantic HTML with headings (<h2>, <h3>), lists, and paragraphs for better search ranking.
