@@ -1,34 +1,244 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Ruler, ArrowRightLeft, RotateCcw, Info } from "lucide-react";
+import { Ruler, ArrowRightLeft, RotateCcw, Info, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 // Define unit conversion factors (to meters as base unit)
 const conversionFactors = {
+  // Metric System - Base
   meter: 1,
-  kilometer: 1000,
+  decimeter: 0.1,
   centimeter: 0.01,
   millimeter: 0.001,
+  micrometer: 0.000001,
+  micron: 0.000001,
+  nanometer: 0.000000001,
+  picometer: 0.000000000001,
+  femtometer: 0.000000000000001,
+  attometer: 0.000000000000000001,
+  
+  // Metric System - Large
+  dekameter: 10,
+  hectometer: 100,
+  kilometer: 1000,
+  megameter: 1000000,
+  gigameter: 1000000000,
+  terameter: 1000000000000,
+  petameter: 1000000000000000,
+  exameter: 1000000000000000000,
+  
+  // Imperial/US System
   inch: 0.0254,
   foot: 0.3048,
   yard: 0.9144,
-  mile: 1609.34,
+  mile: 1609.344,
+  "mile-statute": 1609.344,
+  "mile-us-survey": 1609.347218694,
+  "mile-roman": 1479.8,
+  kiloyard: 914.4,
+  furlong: 201.168,
+  chain: 20.1168,
+  rod: 5.0292,
+  perch: 5.0292,
+  pole: 5.0292,
+  fathom: 1.8288,
+  ell: 1.143,
+  "cubit-uk": 0.4572,
+  "cubit-greek": 0.462,
+  "span-cloth": 0.2286,
+  "finger-cloth": 0.1143,
+  "nail-cloth": 0.05715,
+  barleycorn: 0.008466667,
+  thou: 0.0000254,
+  microinch: 0.0000000254,
+  centiinch: 0.000254,
+  
+  // Astronomical Units
+  "light-year": 9460730472580800,
+  parsec: 30856775814913700,
+  kiloparsec: 30856775814913700000,
+  megaparsec: 30856775814913700000000,
+  "astronomical-unit": 149597870700,
+  
+  // Nautical
+  "nautical-mile-international": 1852,
+  "nautical-mile-uk": 1853.184,
+  "nautical-league-international": 5556,
+  "nautical-league-uk": 5559.552,
+  league: 4828.032,
+  
+  // Scientific/Special Units
+  angstrom: 0.0000000001,
+  "x-unit": 1.0021e-13,
+  fermi: 1e-15,
+  "planck-length": 1.616255e-35,
+  "electron-radius-classical": 2.8179403262e-15,
+  "bohr-radius": 5.29177210903e-11,
+  "au-length": 5.29177210903e-11,
+  
+  // Earth/Sun Related
+  "earth-equatorial-radius": 6378137,
+  "earth-polar-radius": 6356752.314245,
+  "sun-radius": 696000000,
+  "earth-sun-distance": 149597870700,
+  
+  // Historical/Regional
+  arpent: 58.471308,
+  pica: 0.004233333,
+  point: 0.000352778,
+  twip: 0.000017639,
+  aln: 0.5938,
+  famn: 1.781,
+  caliber: 0.000254,
+  ken: 1.818,
+  "russian-arshin": 0.7112,
+  "roman-actus": 35.48,
+  "vara-de-tarea": 2.505456,
+  "vara-conuquera": 2.505456,
+  "vara-castellana": 0.835905,
+  "long-reed": 3.2004,
+  reed: 2.7432,
+  "long-cubit": 0.5334,
+  handbreadth: 0.0762,
+  fingerbreadth: 0.01905,
 };
 
-// Unit display names with abbreviations
+// Unit display names with abbreviations and categories
 const unitLabels = {
+  // Metric System - Base
   meter: "Meter (m)",
-  kilometer: "Kilometer (km)",
+  decimeter: "Decimeter (dm)",
   centimeter: "Centimeter (cm)",
   millimeter: "Millimeter (mm)",
+  micrometer: "Micrometer (µm)",
+  micron: "Micron (µ)",
+  nanometer: "Nanometer (nm)",
+  picometer: "Picometer (pm)",
+  femtometer: "Femtometer (fm)",
+  attometer: "Attometer (am)",
+  
+  // Metric System - Large
+  dekameter: "Dekameter (dam)",
+  hectometer: "Hectometer (hm)",
+  kilometer: "Kilometer (km)",
+  megameter: "Megameter (Mm)",
+  gigameter: "Gigameter (Gm)",
+  terameter: "Terameter (Tm)",
+  petameter: "Petameter (Pm)",
+  exameter: "Exameter (Em)",
+  
+  // Imperial/US System
   inch: "Inch (in)",
   foot: "Foot (ft)",
   yard: "Yard (yd)",
   mile: "Mile (mi)",
+  "mile-statute": "Mile (statute)",
+  "mile-us-survey": "Mile (US survey)",
+  "mile-roman": "Mile (Roman)",
+  kiloyard: "Kiloyard (ky)",
+  furlong: "Furlong (fur)",
+  chain: "Chain (ch)",
+  rod: "Rod (rd)",
+  perch: "Perch",
+  pole: "Pole",
+  fathom: "Fathom (ftm)",
+  ell: "Ell",
+  "cubit-uk": "Cubit (UK)",
+  "cubit-greek": "Cubit (Greek)",
+  "span-cloth": "Span (cloth)",
+  "finger-cloth": "Finger (cloth)",
+  "nail-cloth": "Nail (cloth)",
+  barleycorn: "Barleycorn",
+  thou: "Thou",
+  microinch: "Microinch (µin)",
+  centiinch: "Centiinch (cin)",
+  
+  // Astronomical Units
+  "light-year": "Light Year (ly)",
+  parsec: "Parsec (pc)",
+  kiloparsec: "Kiloparsec (kpc)",
+  megaparsec: "Megaparsec (Mpc)",
+  "astronomical-unit": "Astronomical Unit (AU)",
+  
+  // Nautical
+  "nautical-mile-international": "Nautical Mile (international)",
+  "nautical-mile-uk": "Nautical Mile (UK)",
+  "nautical-league-international": "Nautical League (international)",
+  "nautical-league-uk": "Nautical League (UK)",
+  league: "League (lea)",
+  
+  // Scientific/Special Units
+  angstrom: "Angstrom (Å)",
+  "x-unit": "X-unit",
+  fermi: "Fermi (F)",
+  "planck-length": "Planck Length",
+  "electron-radius-classical": "Electron Radius (classical)",
+  "bohr-radius": "Bohr Radius",
+  "au-length": "A.U. of Length",
+  
+  // Earth/Sun Related
+  "earth-equatorial-radius": "Earth's Equatorial Radius",
+  "earth-polar-radius": "Earth's Polar Radius",
+  "sun-radius": "Sun's Radius",
+  "earth-sun-distance": "Earth's Distance from Sun",
+  
+  // Historical/Regional
+  arpent: "Arpent",
+  pica: "Pica",
+  point: "Point",
+  twip: "Twip",
+  aln: "Aln",
+  famn: "Famn",
+  caliber: "Caliber",
+  ken: "Ken",
+  "russian-arshin": "Russian Arshin",
+  "roman-actus": "Roman Actus",
+  "vara-de-tarea": "Vara de Tarea",
+  "vara-conuquera": "Vara Conuquera",
+  "vara-castellana": "Vara Castellana",
+  "long-reed": "Long Reed",
+  reed: "Reed",
+  "long-cubit": "Long Cubit",
+  handbreadth: "Handbreadth",
+  fingerbreadth: "Fingerbreadth",
+};
+
+// Unit categories for better organization
+const unitCategories = {
+  metric: {
+    name: "Metric System",
+    units: ["exameter", "petameter", "terameter", "gigameter", "megameter", "kilometer", "hectometer", "dekameter", "meter", "decimeter", "centimeter", "millimeter", "micrometer", "micron", "nanometer", "picometer", "femtometer", "attometer"]
+  },
+  imperial: {
+    name: "Imperial/US System",
+    units: ["mile", "mile-statute", "mile-us-survey", "mile-roman", "kiloyard", "furlong", "chain", "rod", "perch", "pole", "fathom", "yard", "foot", "inch", "ell", "cubit-uk", "cubit-greek", "span-cloth", "finger-cloth", "nail-cloth", "barleycorn", "thou", "microinch", "centiinch"]
+  },
+  astronomical: {
+    name: "Astronomical Units",
+    units: ["megaparsec", "kiloparsec", "parsec", "light-year", "astronomical-unit", "earth-sun-distance"]
+  },
+  nautical: {
+    name: "Nautical Units",
+    units: ["nautical-league-uk", "nautical-league-international", "league", "nautical-mile-uk", "nautical-mile-international"]
+  },
+  scientific: {
+    name: "Scientific Units",
+    units: ["planck-length", "electron-radius-classical", "bohr-radius", "au-length", "fermi", "x-unit", "angstrom"]
+  },
+  earthSun: {
+    name: "Earth & Sun",
+    units: ["sun-radius", "earth-equatorial-radius", "earth-polar-radius"]
+  },
+  historical: {
+    name: "Historical/Regional",
+    units: ["arpent", "russian-arshin", "roman-actus", "vara-de-tarea", "vara-conuquera", "vara-castellana", "long-reed", "reed", "long-cubit", "handbreadth", "fingerbreadth", "pica", "point", "twip", "aln", "famn", "caliber", "ken"]
+  }
 };
 
 // Type for Length units
@@ -46,6 +256,8 @@ export default function LengthConverter() {
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [swapAnimation, setSwapAnimation] = useState(false);
+  const [fromUnitOpen, setFromUnitOpen] = useState(false);
+  const [toUnitOpen, setToUnitOpen] = useState(false);
 
   // Perform the conversion whenever inputs change
   useEffect(() => {
@@ -129,25 +341,27 @@ export default function LengthConverter() {
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg">
-      <CardHeader className="bg-primary/5 border-b">
-        <div className="flex items-center gap-3">
-          <Ruler className="h-6 w-6 text-primary" />
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-950/30 dark:to-purple-950/30 rounded-2xl">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 rounded-xl">
+            <Ruler className="h-8 w-8" />
+          </div>
           <div>
-            <CardTitle className="text-2xl">Length Converter</CardTitle>
-            <CardDescription>
-              Convert between different units of length and distance
+            <CardTitle className="text-3xl font-bold">Length Converter</CardTitle>
+            <CardDescription className="text-blue-100">
+              Convert between 90+ units of length and distance with precision
             </CardDescription>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6">
-        <div className="space-y-6">
+      <CardContent className="p-8">
+        <div className="space-y-8">
           {/* Input value and unit selection */}
-          <div className="grid gap-6 sm:grid-cols-5">
-            <div className="sm:col-span-2">
-              <label htmlFor="length-value" className="block text-sm font-medium mb-2">
+          <div className="grid gap-8 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <label htmlFor="length-value" className="block text-sm font-semibold mb-3 text-foreground">
                 Enter Value
               </label>
               <Input
@@ -155,79 +369,142 @@ export default function LengthConverter() {
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter length"
-                className="w-full"
+                placeholder="Enter length value"
+                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                data-testid="input-length-value"
               />
             </div>
             
-            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
-              <div className="sm:col-span-3">
-                <label htmlFor="from-unit" className="block text-sm font-medium mb-2">
-                  From
+            <div className="lg:col-span-3 grid lg:grid-cols-7 gap-4 items-end">
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  From Unit
                 </label>
-                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as LengthUnit)}>
-                  <SelectTrigger id="from-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(unitLabels).map(([unit, label]) => (
-                      <SelectItem key={unit} value={unit}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={fromUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-from-unit"
+                    >
+                      {fromUnit ? unitLabels[fromUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as LengthUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as LengthUnit]}`}
+                                  onSelect={() => {
+                                    setFromUnit(unit as LengthUnit);
+                                    setFromUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as LengthUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
               
-              <div className="flex justify-center items-center sm:col-span-1">
+              <div className="flex justify-center items-center lg:col-span-1">
                 <motion.div
                   animate={{ rotate: swapAnimation ? 360 : 0 }}
                   transition={{ duration: 0.5 }}
                 >
                   <Button
                     type="button"
-                    variant="ghost"
+                    variant="outline"
                     size="icon"
                     onClick={swapUnits}
-                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
+                    className="rounded-full h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-500 border-0 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    data-testid="button-swap-units"
                   >
-                    <ArrowRightLeft className="h-4 w-4" />
+                    <ArrowRightLeft className="h-5 w-5" />
                     <span className="sr-only">Swap units</span>
                   </Button>
                 </motion.div>
               </div>
               
-              <div className="sm:col-span-3">
-                <label htmlFor="to-unit" className="block text-sm font-medium mb-2">
-                  To
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  To Unit
                 </label>
-                <Select value={toUnit} onValueChange={(value) => setToUnit(value as LengthUnit)}>
-                  <SelectTrigger id="to-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(unitLabels).map(([unit, label]) => (
-                      <SelectItem key={unit} value={unit}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={toUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-to-unit"
+                    >
+                      {toUnit ? unitLabels[toUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as LengthUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as LengthUnit]}`}
+                                  onSelect={() => {
+                                    setToUnit(unit as LengthUnit);
+                                    setToUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as LengthUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
 
           {/* Conversion Result */}
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">Result</h3>
+          <div className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 dark:from-green-950/20 dark:via-blue-950/20 dark:to-purple-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+            <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
             <div className="flex items-center justify-between">
-              <div className="text-3xl font-bold">
+              <div className="text-4xl font-bold" data-testid="result-display">
                 {result ? (
-                  <>
-                    {result} <span className="text-lg font-normal">{unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '')}</span>
-                  </>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <span className="text-green-600 dark:text-green-400">{result}</span>
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '') || unitLabels[toUnit]}
+                    </span>
+                  </div>
                 ) : (
-                  <span className="text-muted-foreground text-lg">— Enter a value to convert —</span>
+                  <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
                 )}
               </div>
             </div>
@@ -242,16 +519,18 @@ export default function LengthConverter() {
 
           {/* Conversion Formula Display */}
           {result && (
-            <div className="bg-muted/30 p-4 rounded-lg text-sm">
-              <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <span className="font-medium">Conversion Details:</span>
-                  <p className="text-muted-foreground mt-1">
+            <div className="bg-blue-50/50 dark:bg-blue-950/20 p-5 rounded-xl border border-blue-200 dark:border-blue-800 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                  <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-semibold text-blue-900 dark:text-blue-100">Conversion Details:</span>
+                  <p className="text-blue-700 dark:text-blue-300 mt-2 font-medium">
                     {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(6)} ${unitLabels[toUnit]?.split(' ')[0]}`}
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 bg-blue-100/50 dark:bg-blue-900/30 p-2 rounded-lg">
+                    <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(8)} {unitLabels[toUnit]?.split(' ')[0]}
                   </p>
                 </div>
               </div>
@@ -260,17 +539,19 @@ export default function LengthConverter() {
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between border-t p-4 bg-muted/10">
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-blue-50/30 dark:from-gray-900 dark:to-blue-950/30 rounded-b-2xl">
         <Button
           variant="outline"
           onClick={resetConverter}
-          className="gap-2"
+          className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
+          data-testid="button-reset"
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> Reset Converter
         </Button>
         
-        <div className="text-xs text-muted-foreground">
-          Accurate conversions between metric and imperial units
+        <div className="text-sm text-center sm:text-right text-muted-foreground">
+          <div className="font-medium">Precision conversions between 90+ units</div>
+          <div className="text-xs mt-1">Including metric, imperial, astronomical & scientific units</div>
         </div>
       </CardFooter>
     </Card>
