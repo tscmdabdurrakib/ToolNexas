@@ -135,20 +135,20 @@ export default function LengthConverterPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                    <span className="font-medium">Height: 5'8"</span>
-                    <ArrowRight className="h-4 w-4 text-blue-500" />
-                    <span>172.7 cm</span>
+                  <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-100 dark:border-blue-800">
+                    <span className="font-medium text-foreground">Height: 5'8"</span>
+                    <ArrowRight className="h-4 w-4 text-blue-500 dark:text-blue-400" />
+                    <span className="text-foreground">172.7 cm</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                    <span className="font-medium">Room: 12 feet</span>
-                    <ArrowRight className="h-4 w-4 text-green-500" />
-                    <span>3.66 meters</span>
+                  <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-950/30 rounded-lg border border-green-100 dark:border-green-800">
+                    <span className="font-medium text-foreground">Room: 12 feet</span>
+                    <ArrowRight className="h-4 w-4 text-green-500 dark:text-green-400" />
+                    <span className="text-foreground">3.66 meters</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
-                    <span className="font-medium">TV: 65 inches</span>
-                    <ArrowRight className="h-4 w-4 text-purple-500" />
-                    <span>165 cm</span>
+                  <div className="flex justify-between items-center p-3 bg-purple-50 dark:bg-purple-950/30 rounded-lg border border-purple-100 dark:border-purple-800">
+                    <span className="font-medium text-foreground">TV: 65 inches</span>
+                    <ArrowRight className="h-4 w-4 text-purple-500 dark:text-purple-400" />
+                    <span className="text-foreground">165 cm</span>
                   </div>
                 </CardContent>
               </Card>
@@ -163,20 +163,20 @@ export default function LengthConverterPage() {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-                    <span className="font-medium">100 kilometers</span>
-                    <ArrowRight className="h-4 w-4 text-blue-500" />
-                    <span>62.14 miles</span>
+                  <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-100 dark:border-blue-800">
+                    <span className="font-medium text-foreground">100 kilometers</span>
+                    <ArrowRight className="h-4 w-4 text-blue-500 dark:text-blue-400" />
+                    <span className="text-foreground">62.14 miles</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-green-50 rounded-lg">
-                    <span className="font-medium">Marathon: 26.2 mi</span>
-                    <ArrowRight className="h-4 w-4 text-green-500" />
-                    <span>42.2 km</span>
+                  <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-950/30 rounded-lg border border-green-100 dark:border-green-800">
+                    <span className="font-medium text-foreground">Marathon: 26.2 mi</span>
+                    <ArrowRight className="h-4 w-4 text-green-500 dark:text-green-400" />
+                    <span className="text-foreground">42.2 km</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-purple-50 rounded-lg">
-                    <span className="font-medium">Bridge clearance: 13'6"</span>
-                    <ArrowRight className="h-4 w-4 text-purple-500" />
-                    <span>4.11 meters</span>
+                  <div className="flex justify-between items-center p-3 bg-purple-50 dark:bg-purple-950/30 rounded-lg border border-purple-100 dark:border-purple-800">
+                    <span className="font-medium text-foreground">Bridge clearance: 13'6"</span>
+                    <ArrowRight className="h-4 w-4 text-purple-500 dark:text-purple-400" />
+                    <span className="text-foreground">4.11 meters</span>
                   </div>
                 </CardContent>
               </Card>
@@ -191,44 +191,44 @@ export default function LengthConverterPage() {
             <h2 className="text-2xl font-semibold mb-6">Scientific and Astronomical Applications</h2>
             
             <div className="space-y-6">
-              <div className="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-xl border border-purple-200">
-                <h3 className="text-xl font-semibold mb-4 text-purple-800">Microscopic World</h3>
+              <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/30 dark:to-blue-950/30 p-6 rounded-xl border border-purple-200 dark:border-purple-800">
+                <h3 className="text-xl font-semibold mb-4 text-purple-800 dark:text-purple-200">Microscopic World</h3>
                 <p className="text-muted-foreground mb-4">
                   In the realm of nanotechnology and molecular biology, scientists work with incredibly small measurements. A nanometer (nm) - one billionth of a meter - is crucial for describing DNA width (2.5 nm), virus sizes (20-400 nm), and semiconductor features in computer chips.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
-                  <div className="bg-white p-3 rounded-lg text-center">
-                    <div className="font-semibold text-purple-600">DNA Width</div>
+                  <div className="bg-background dark:bg-card p-3 rounded-lg text-center border border-border">
+                    <div className="font-semibold text-purple-600 dark:text-purple-400">DNA Width</div>
                     <div className="text-sm text-muted-foreground">2.5 nanometers</div>
                   </div>
-                  <div className="bg-white p-3 rounded-lg text-center">
-                    <div className="font-semibold text-blue-600">Red Blood Cell</div>
+                  <div className="bg-background dark:bg-card p-3 rounded-lg text-center border border-border">
+                    <div className="font-semibold text-blue-600 dark:text-blue-400">Red Blood Cell</div>
                     <div className="text-sm text-muted-foreground">7,000 nanometers</div>
                   </div>
-                  <div className="bg-white p-3 rounded-lg text-center">
-                    <div className="font-semibold text-green-600">Transistor (2023)</div>
+                  <div className="bg-background dark:bg-card p-3 rounded-lg text-center border border-border">
+                    <div className="font-semibold text-green-600 dark:text-green-400">Transistor (2023)</div>
                     <div className="text-sm text-muted-foreground">3 nanometers</div>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-xl border border-indigo-200">
-                <h3 className="text-xl font-semibold mb-4 text-indigo-800">Cosmic Distances</h3>
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 p-6 rounded-xl border border-indigo-200 dark:border-indigo-800">
+                <h3 className="text-xl font-semibold mb-4 text-indigo-800 dark:text-indigo-200">Cosmic Distances</h3>
                 <p className="text-muted-foreground mb-4">
                   Astronomers use specialized units to describe the vast scales of the universe. A light-year represents the distance light travels in one year (approximately 9.46 trillion kilometers), while an Astronomical Unit (AU) measures the average distance from Earth to the Sun (about 150 million kilometers).
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white p-4 rounded-lg">
-                    <div className="font-semibold text-indigo-600 mb-2">1 Light Year =</div>
-                    <div className="text-sm space-y-1">
+                  <div className="bg-background dark:bg-card p-4 rounded-lg border border-border">
+                    <div className="font-semibold text-indigo-600 dark:text-indigo-400 mb-2">1 Light Year =</div>
+                    <div className="text-sm space-y-1 text-foreground">
                       <div>9.46 trillion kilometers</div>
                       <div>5.88 trillion miles</div>
                       <div>63,241 Astronomical Units</div>
                     </div>
                   </div>
-                  <div className="bg-white p-4 rounded-lg">
-                    <div className="font-semibold text-purple-600 mb-2">1 Parsec =</div>
-                    <div className="text-sm space-y-1">
+                  <div className="bg-background dark:bg-card p-4 rounded-lg border border-border">
+                    <div className="font-semibold text-purple-600 dark:text-purple-400 mb-2">1 Parsec =</div>
+                    <div className="text-sm space-y-1 text-foreground">
                       <div>3.26 light years</div>
                       <div>30.86 trillion kilometers</div>
                       <div>206,265 Astronomical Units</div>
@@ -247,61 +247,61 @@ export default function LengthConverterPage() {
             <h2 className="text-2xl font-semibold mb-6">Understanding Uncommon but Fascinating Units</h2>
             
             <div className="grid gap-6 md:grid-cols-2">
-              <Card className="border-2 border-orange-200 bg-gradient-to-br from-orange-50 to-yellow-50">
+              <Card className="border-2 border-orange-200 dark:border-orange-800 bg-gradient-to-br from-orange-50 to-yellow-50 dark:from-orange-950/30 dark:to-yellow-950/30">
                 <CardHeader>
-                  <CardTitle className="text-lg text-orange-800">The Extreme Small: Planck Length</CardTitle>
+                  <CardTitle className="text-lg text-orange-800 dark:text-orange-200">The Extreme Small: Planck Length</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">
                     The Planck length (1.616 × 10⁻³⁵ meters) represents the theoretical limit of meaningful measurement in physics. Below this scale, the concept of distance itself breaks down according to quantum mechanics.
                   </p>
-                  <div className="bg-white p-3 rounded-lg">
-                    <div className="text-xs text-orange-600 font-medium">Fun Comparison:</div>
+                  <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
+                    <div className="text-xs text-orange-600 dark:text-orange-400 font-medium">Fun Comparison:</div>
                     <div className="text-xs text-muted-foreground">A proton is larger than a Planck length by the same ratio that a human is larger than a proton!</div>
                   </div>
                 </CardContent>
               </Card>
               
-              <Card className="border-2 border-red-200 bg-gradient-to-br from-red-50 to-orange-50">
+              <Card className="border-2 border-red-200 dark:border-red-800 bg-gradient-to-br from-red-50 to-orange-50 dark:from-red-950/30 dark:to-orange-950/30">
                 <CardHeader>
-                  <CardTitle className="text-lg text-red-800">The Extreme Large: Sun's Radius</CardTitle>
+                  <CardTitle className="text-lg text-red-800 dark:text-red-200">The Extreme Large: Sun's Radius</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">
                     The Sun's radius (696,000 kilometers or 432,000 miles) is so vast that it would take a commercial airplane flying non-stop about 80 days to travel this distance.
                   </p>
-                  <div className="bg-white p-3 rounded-lg">
-                    <div className="text-xs text-red-600 font-medium">Mind-Blowing Scale:</div>
+                  <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
+                    <div className="text-xs text-red-600 dark:text-red-400 font-medium">Mind-Blowing Scale:</div>
                     <div className="text-xs text-muted-foreground">You could fit about 1.3 million Earths inside the Sun!</div>
                   </div>
                 </CardContent>
               </Card>
               
-              <Card className="border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50">
+              <Card className="border-2 border-blue-200 dark:border-blue-800 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30">
                 <CardHeader>
-                  <CardTitle className="text-lg text-blue-800">Historical Units: Cubit & Ell</CardTitle>
+                  <CardTitle className="text-lg text-blue-800 dark:text-blue-200">Historical Units: Cubit & Ell</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">
                     Ancient civilizations used body-based measurements. A cubit (about 45-52 cm) was the length from elbow to fingertip, while an ell (about 114 cm) was roughly the length of an arm.
                   </p>
-                  <div className="bg-white p-3 rounded-lg">
-                    <div className="text-xs text-blue-600 font-medium">Historical Note:</div>
+                  <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
+                    <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">Historical Note:</div>
                     <div className="text-xs text-muted-foreground">Noah's Ark was described as 300 cubits long - about 137-156 meters!</div>
                   </div>
                 </CardContent>
               </Card>
               
-              <Card className="border-2 border-green-200 bg-gradient-to-br from-green-50 to-teal-50">
+              <Card className="border-2 border-green-200 dark:border-green-800 bg-gradient-to-br from-green-50 to-teal-50 dark:from-green-950/30 dark:to-teal-950/30">
                 <CardHeader>
-                  <CardTitle className="text-lg text-green-800">Specialized Units: Fermi & Angstrom</CardTitle>
+                  <CardTitle className="text-lg text-green-800 dark:text-green-200">Specialized Units: Fermi & Angstrom</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-3">
                     Nuclear physicists use the fermi (10⁻¹⁵ meters) to measure atomic nuclei, while crystallographers use the angstrom (10⁻¹⁰ meters) for atomic-scale structures.
                   </p>
-                  <div className="bg-white p-3 rounded-lg">
-                    <div className="text-xs text-green-600 font-medium">Scientific Usage:</div>
+                  <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
+                    <div className="text-xs text-green-600 dark:text-green-400 font-medium">Scientific Usage:</div>
                     <div className="text-xs text-muted-foreground">Diamond's carbon-carbon bond length is about 1.54 angstroms</div>
                   </div>
                 </CardContent>
@@ -312,47 +312,47 @@ export default function LengthConverterPage() {
           <section>
             <h2 className="text-2xl font-semibold mb-6">Step-by-Step Guide: Using the Length Converter</h2>
             
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-8 rounded-2xl border border-blue-200">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/30 dark:to-purple-950/30 p-8 rounded-2xl border border-blue-200 dark:border-blue-800">
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">1</div>
+                  <div className="flex-shrink-0 w-8 h-8 bg-blue-600 dark:bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Enter Your Value</h3>
                     <p className="text-muted-foreground mb-2">Type the numerical value you want to convert in the input field. The converter accepts both whole numbers and decimals (e.g., 5.5, 100, 0.25).</p>
-                    <div className="bg-white p-3 rounded-lg border">
+                    <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
                       <span className="text-sm text-muted-foreground">Example: Enter "6" if you want to convert 6 feet to meters</span>
                     </div>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">2</div>
+                  <div className="flex-shrink-0 w-8 h-8 bg-purple-600 dark:bg-purple-500 text-white rounded-full flex items-center justify-center font-bold">2</div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Select Your Source Unit</h3>
                     <p className="text-muted-foreground mb-2">Click the "From Unit" dropdown and search through our 90+ available units. Units are organized by categories (Metric, Imperial, Astronomical, etc.) for easy browsing.</p>
-                    <div className="bg-white p-3 rounded-lg border">
+                    <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
                       <span className="text-sm text-muted-foreground">Tip: Start typing to quickly find your desired unit (e.g., type "foot" to find foot-related units)</span>
                     </div>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">3</div>
+                  <div className="flex-shrink-0 w-8 h-8 bg-green-600 dark:bg-green-500 text-white rounded-full flex items-center justify-center font-bold">3</div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">Choose Your Target Unit</h3>
                     <p className="text-muted-foreground mb-2">Select the unit you want to convert to using the "To Unit" dropdown. The same search functionality helps you quickly locate any unit.</p>
-                    <div className="bg-white p-3 rounded-lg border">
+                    <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
                       <span className="text-sm text-muted-foreground">Pro tip: Use the swap button (↔) to quickly reverse your conversion</span>
                     </div>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold">4</div>
+                  <div className="flex-shrink-0 w-8 h-8 bg-orange-600 dark:bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">4</div>
                   <div>
                     <h3 className="font-semibold text-lg mb-2">View Instant Results</h3>
                     <p className="text-muted-foreground mb-2">The conversion appears immediately in the results section, along with detailed conversion information showing the exact calculation and conversion factor used.</p>
-                    <div className="bg-white p-3 rounded-lg border">
+                    <div className="bg-background dark:bg-card p-3 rounded-lg border border-border">
                       <span className="text-sm text-muted-foreground">Bonus: The detailed breakdown helps you understand the relationship between units</span>
                     </div>
                   </div>
@@ -367,7 +367,7 @@ export default function LengthConverterPage() {
             <div className="space-y-4">
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-blue-700">What's the difference between miles and nautical miles?</CardTitle>
+                  <CardTitle className="text-lg text-blue-700 dark:text-blue-300">What's the difference between miles and nautical miles?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -378,7 +378,7 @@ export default function LengthConverterPage() {
               
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-green-700">How do I convert meters to feet quickly in my head?</CardTitle>
+                  <CardTitle className="text-lg text-green-700 dark:text-green-300">How do I convert meters to feet quickly in my head?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -389,7 +389,7 @@ export default function LengthConverterPage() {
               
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-purple-700">Why do astronomers use light years instead of kilometers?</CardTitle>
+                  <CardTitle className="text-lg text-purple-700 dark:text-purple-300">Why do astronomers use light years instead of kilometers?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -400,7 +400,7 @@ export default function LengthConverterPage() {
               
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-orange-700">Are there any length units still based on the human body?</CardTitle>
+                  <CardTitle className="text-lg text-orange-700 dark:text-orange-300">Are there any length units still based on the human body?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -411,7 +411,7 @@ export default function LengthConverterPage() {
               
               <Card>
                 <CardHeader className="pb-3">
-                  <CardTitle className="text-lg text-red-700">How accurate are the conversions in this tool?</CardTitle>
+                  <CardTitle className="text-lg text-red-700 dark:text-red-300">How accurate are the conversions in this tool?</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
@@ -422,13 +422,13 @@ export default function LengthConverterPage() {
             </div>
           </section>
 
-          <section className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 rounded-2xl">
+          <section className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-700 dark:to-purple-700 text-white p-8 rounded-2xl">
             <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-2xl font-bold mb-4">Ready to Master Length Conversions?</h2>
-              <p className="text-blue-100 mb-6 text-lg">
+              <h2 className="text-2xl font-bold mb-4 text-white">Ready to Master Length Conversions?</h2>
+              <p className="text-blue-100 dark:text-blue-200 mb-6 text-lg">
                 Whether you're working on a home improvement project, planning international travel, conducting scientific research, or simply satisfying your curiosity about the vast scales of our universe, this comprehensive length converter puts the power of precise measurement conversion at your fingertips.
               </p>
-              <p className="text-blue-100 mb-6">
+              <p className="text-blue-100 dark:text-blue-200 mb-6">
                 From the infinitesimal Planck length to the cosmic scale of megaparsecs, from everyday feet and meters to specialized units like fermis and angstroms, you now have access to accurate conversions across more than 90 different units of length.
               </p>
               <p className="text-white font-medium">

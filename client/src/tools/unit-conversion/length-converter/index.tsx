@@ -107,6 +107,45 @@ const conversionFactors = {
   "long-cubit": 0.5334,
   handbreadth: 0.0762,
   fingerbreadth: 0.01905,
+  
+  // SI Extended Units (extreme)
+  ronnameter: 1e27, // Ronnameter
+  quettameter: 1e30, // Quettameter 
+  rontometer: 1e-27, // Rontometer
+  quectometer: 1e-30, // Quectometer
+  
+  // Additional Survey Units
+  'foot-us-survey': 0.30480061, // US Survey Foot
+  'yard-us-survey': 0.91440183, // US Survey Yard
+  'inch-us-survey': 0.02540005, // US Survey Inch
+  
+  // Maritime/Nautical Extended
+  'cable-international': 185.2, // International Cable
+  'cable-uk': 182.88, // UK Cable
+  'cable-us': 219.456, // US Cable
+  
+  // Traditional/Equine
+  hand: 0.1016, // Hand (equine measurement)
+  palm: 0.0762, // Palm
+  span: 0.2286, // Span (hand spread)
+  
+  // Surveying/Engineering
+  link: 0.201168, // Link (surveyor's)
+  
+  // Additional Planetary
+  'earth-diameter': 1.2742e7, // Earth's diameter
+  'moon-radius': 1.7374e6, // Moon's radius
+  'jupiter-radius': 6.9911e7, // Jupiter's radius
+  
+  // Additional Historical
+  'biblical-cubit': 0.4445, // Biblical Cubit
+  'royal-cubit': 0.525, // Royal Cubit (Egyptian)
+  'roman-foot': 0.296, // Roman Foot
+  
+  // Textile/Cloth Extended
+  'cloth-nail': 0.05715, // Cloth Nail
+  'cloth-quarter': 0.2286, // Cloth Quarter
+  stick: 0.0508, // Stick (printing)
 };
 
 // Unit display names with abbreviations and categories
@@ -207,17 +246,56 @@ const unitLabels = {
   "long-cubit": "Long Cubit",
   handbreadth: "Handbreadth",
   fingerbreadth: "Fingerbreadth",
+  
+  // SI Extended Units (extreme)
+  ronnameter: "Ronnameter (Rm)",
+  quettameter: "Quettameter (Qm)", 
+  rontometer: "Rontometer (rm)",
+  quectometer: "Quectometer (qm)",
+  
+  // Additional Survey Units
+  'foot-us-survey': "Foot (US Survey)",
+  'yard-us-survey': "Yard (US Survey)",
+  'inch-us-survey': "Inch (US Survey)",
+  
+  // Maritime/Nautical Extended
+  'cable-international': "Cable (International)",
+  'cable-uk': "Cable (UK)",
+  'cable-us': "Cable (US)",
+  
+  // Traditional/Equine
+  hand: "Hand (equine)",
+  palm: "Palm",
+  span: "Span",
+  
+  // Surveying/Engineering
+  link: "Link (surveyor's)",
+  
+  // Additional Planetary
+  'earth-diameter': "Earth's Diameter",
+  'moon-radius': "Moon's Radius",
+  'jupiter-radius': "Jupiter's Radius",
+  
+  // Additional Historical
+  'biblical-cubit': "Biblical Cubit",
+  'royal-cubit': "Royal Cubit (Egyptian)",
+  'roman-foot': "Roman Foot",
+  
+  // Textile/Cloth Extended
+  'cloth-nail': "Cloth Nail",
+  'cloth-quarter': "Cloth Quarter",
+  stick: "Stick (printing)",
 };
 
 // Unit categories for better organization
 const unitCategories = {
   metric: {
     name: "Metric System",
-    units: ["exameter", "petameter", "terameter", "gigameter", "megameter", "kilometer", "hectometer", "dekameter", "meter", "decimeter", "centimeter", "millimeter", "micrometer", "micron", "nanometer", "picometer", "femtometer", "attometer"]
+    units: ["quettameter", "ronnameter", "exameter", "petameter", "terameter", "gigameter", "megameter", "kilometer", "hectometer", "dekameter", "meter", "decimeter", "centimeter", "millimeter", "micrometer", "micron", "nanometer", "picometer", "femtometer", "attometer", "rontometer", "quectometer"]
   },
   imperial: {
     name: "Imperial/US System",
-    units: ["mile", "mile-statute", "mile-us-survey", "mile-roman", "kiloyard", "furlong", "chain", "rod", "perch", "pole", "fathom", "yard", "foot", "inch", "ell", "cubit-uk", "cubit-greek", "span-cloth", "finger-cloth", "nail-cloth", "barleycorn", "thou", "microinch", "centiinch"]
+    units: ["mile", "mile-statute", "mile-us-survey", "mile-roman", "kiloyard", "furlong", "chain", "rod", "perch", "pole", "fathom", "yard", "yard-us-survey", "foot", "foot-us-survey", "inch", "inch-us-survey", "ell", "cubit-uk", "cubit-greek", "span-cloth", "finger-cloth", "nail-cloth", "barleycorn", "thou", "microinch", "centiinch", "hand", "palm", "span", "link"]
   },
   astronomical: {
     name: "Astronomical Units",
@@ -225,19 +303,19 @@ const unitCategories = {
   },
   nautical: {
     name: "Nautical Units",
-    units: ["nautical-league-uk", "nautical-league-international", "league", "nautical-mile-uk", "nautical-mile-international"]
+    units: ["nautical-league-uk", "nautical-league-international", "league", "nautical-mile-uk", "nautical-mile-international", "cable-international", "cable-uk", "cable-us"]
   },
   scientific: {
     name: "Scientific Units",
     units: ["planck-length", "electron-radius-classical", "bohr-radius", "au-length", "fermi", "x-unit", "angstrom"]
   },
   earthSun: {
-    name: "Earth & Sun",
-    units: ["sun-radius", "earth-equatorial-radius", "earth-polar-radius"]
+    name: "Planetary",
+    units: ["sun-radius", "earth-equatorial-radius", "earth-polar-radius", "earth-diameter", "moon-radius", "jupiter-radius"]
   },
   historical: {
     name: "Historical/Regional",
-    units: ["arpent", "russian-arshin", "roman-actus", "vara-de-tarea", "vara-conuquera", "vara-castellana", "long-reed", "reed", "long-cubit", "handbreadth", "fingerbreadth", "pica", "point", "twip", "aln", "famn", "caliber", "ken"]
+    units: ["arpent", "russian-arshin", "roman-actus", "vara-de-tarea", "vara-conuquera", "vara-castellana", "long-reed", "reed", "long-cubit", "handbreadth", "fingerbreadth", "pica", "point", "twip", "aln", "famn", "caliber", "ken", "biblical-cubit", "royal-cubit", "roman-foot", "cloth-nail", "cloth-quarter", "stick"]
   }
 };
 
