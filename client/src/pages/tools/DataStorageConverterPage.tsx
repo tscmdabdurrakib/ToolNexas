@@ -1,155 +1,186 @@
-import React, { useEffect } from 'react';
-import { Link } from 'wouter';
-import { ArrowLeft } from 'lucide-react';
-import DataStorageConverter from '@/tools/unit-conversion/data-storage-converter';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
+import { useEffect } from "react";
+import DataStorageConverter from "@/tools/unit-conversion/data-storage-converter";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { Home, HardDrive, ArrowRight } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import { useLocation } from "wouter";
 
 export default function DataStorageConverterPage() {
-  useEffect(() => {
-    // Scroll to top on component mount
-    window.scrollTo(0, 0);
-  }, []);
-
-  // Set document title
-  useEffect(() => {
-    document.title = "Data Storage Converter | Convert Between Bytes, Bits, MB, GB and More";
-  }, []);
+  const [location] = useLocation();
   
+  useEffect(() => {
+    const originalTitle = document.title;
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const originalDescription = metaDescription?.getAttribute('content') || '';
+    
+    document.title = "Data Storage Converter – Convert Bytes, KB, MB, GB, TB & More";
+    
+    if (metaDescription) {
+      metaDescription.setAttribute('content', "Free online data storage converter. Convert between bits, bytes, kilobytes, megabytes, gigabytes, terabytes, petabytes, and various storage media formats.");
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = "Free online data storage converter. Convert between bits, bytes, kilobytes, megabytes, gigabytes, terabytes, petabytes, and various storage media formats.";
+      document.head.appendChild(meta);
+    }
+    
+    const addMetaTag = (property: string, content: string) => {
+      let existingTag = document.querySelector(`meta[property="${property}"]`);
+      if (existingTag) {
+        existingTag.setAttribute('content', content);
+      } else {
+        const metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', property);
+        metaTag.setAttribute('content', content);
+        document.head.appendChild(metaTag);
+      }
+    };
+    
+    addMetaTag('og:title', 'Data Storage Converter – Convert Bytes, KB, MB, GB, TB & More');
+    addMetaTag('og:description', 'Free online data storage converter. Convert between bits, bytes, kilobytes, megabytes, gigabytes, terabytes, petabytes, and various storage media formats.');
+    addMetaTag('og:type', 'website');
+    
+    window.scrollTo(0, 0);
+    
+    return () => {
+      document.title = originalTitle;
+      if (metaDescription && originalDescription) {
+        metaDescription.setAttribute('content', originalDescription);
+      }
+    };
+  }, [location]);
+
   return (
-    <>
-      <div className="container max-w-5xl py-6 md:py-10">
-        <div className="mb-8">
-          <Link href="/">
-            <Button variant="ghost" className="p-0 mb-2 h-auto" asChild>
-              <div className="flex items-center text-muted-foreground text-sm font-normal hover:text-primary">
-                <ArrowLeft className="mr-1 h-3.5 w-3.5" />
-                <span>Back to home</span>
-              </div>
-            </Button>
-          </Link>
-          
-          <div className="flex items-center space-x-2 mb-1">
-            <Link href="/category/unit-conversion">
-              <Badge variant="outline" className="text-xs font-medium">
-                Unit & Conversion Tools
-              </Badge>
-            </Link>
-          </div>
-          
-          <h1 className="text-3xl md:text-4xl font-bold mb-2">Data Storage Converter</h1>
-          <p className="text-lg text-muted-foreground">Convert between different units of digital storage including bits, bytes, MB, GB and more</p>
+    <div className="container mx-auto py-6 px-4 max-w-5xl">
+      <Breadcrumb className="mb-6">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/" className="flex items-center gap-1">
+              <Home className="h-3 w-3" />
+              <span>Home</span>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/category/unit-conversion">Unit Conversion Tools</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink className="font-medium">Data Storage Converter</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
+      <div className="space-y-8">
+        <div className="text-center max-w-3xl mx-auto">
+          <h1 className="text-3xl font-bold flex items-center justify-center gap-2 mb-3">
+            <HardDrive className="h-6 w-6 text-primary" />
+            <span>Data Storage Converter Tool</span>
+          </h1>
+          <p className="text-muted-foreground">
+            Quickly and accurately convert between different units of digital data storage.
+          </p>
         </div>
 
-        <div className="grid gap-8 mb-10">
-          <DataStorageConverter />
-        </div>
+        <DataStorageConverter />
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {/* Features */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl">Features</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-start">
-                  <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Convert between binary and decimal data units</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Support for both bits and bytes based units</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Accurate conversion between KiB, MiB, GiB, and KB, MB, GB</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Real-time calculation and conversion</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary"></div>
-                  <span>Copy results with a single click</span>
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+        <div className="space-y-12 mt-16">
+          <Separator className="bg-gradient-to-r from-blue-500 to-purple-500 h-0.5" />
           
-          {/* Tool Details */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-xl">Tool Details</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div>
-                <h3 className="font-medium mb-1">Description</h3>
-                <p className="text-sm text-muted-foreground">
-                  This data storage converter handles conversions between various digital storage units. 
-                  It supports both decimal (base-10) units like KB, MB, GB and binary (base-2) units like 
-                  KiB, MiB, GiB, which are commonly used in computing and data storage. 
-                  Perfect for IT professionals, developers, and anyone working with digital storage.
-                </p>
-              </div>
+          <section>
+            <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              Understanding Data Storage Conversion
+            </h2>
+            
+            <div className="prose max-w-none text-muted-foreground leading-relaxed">
+              <p className="text-lg mb-6">
+                A data storage converter is a tool that allows you to convert between different units of digital information. From the smallest bit to massive terabytes, this tool helps in understanding and comparing storage capacities.
+              </p>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold mb-6">Common Data Storage Conversions</h2>
+            
+            <div className="grid gap-6 md:grid-cols-2">
+              <Card className="border-l-4 border-l-blue-500">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <span className="p-2 bg-blue-100 rounded-lg">
+                      <ArrowRight className="h-4 w-4 text-blue-600" />
+                    </span>
+                    File Sizes
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-100 dark:border-blue-800">
+                    <span className="font-medium text-foreground">1 Megabyte (MB)</span>
+                    <ArrowRight className="h-4 w-4 text-blue-500 dark:text-blue-400" />
+                    <span className="text-foreground">1,024 Kilobytes (KB)</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-950/30 rounded-lg border border-green-100 dark:border-green-800">
+                    <span className="font-medium text-foreground">1 Gigabyte (GB)</span>
+                    <ArrowRight className="h-4 w-4 text-green-500 dark:text-green-400" />
+                    <span className="text-foreground">1,024 Megabytes (MB)</span>
+                  </div>
+                </CardContent>
+              </Card>
               
-              <Separator />
+              <Card className="border-l-4 border-l-green-500">
+                <CardHeader>
+                  <CardTitle className="text-lg flex items-center gap-2">
+                    <span className="p-2 bg-green-100 rounded-lg">
+                      <ArrowRight className="h-4 w-4 text-green-600" />
+                    </span>
+                    Storage Media
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-950/30 rounded-lg border border-blue-100 dark:border-blue-800">
+                    <span className="font-medium text-foreground">CD (700 MB)</span>
+                    <ArrowRight className="h-4 w-4 text-blue-500 dark:text-blue-400" />
+                    <span className="text-foreground">~0.68 GB</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-green-50 dark:bg-green-950/30 rounded-lg border border-green-100 dark:border-green-800">
+                    <span className="font-medium text-foreground">DVD (4.7 GB)</span>
+                    <ArrowRight className="h-4 w-4 text-green-500 dark:text-green-400" />
+                    <span className="text-foreground">~4,812 MB</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
+            
+            <div className="space-y-4">
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg text-blue-700 dark:text-blue-300">What is the difference between a bit and a byte?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    A bit is the smallest unit of data in a computer. A byte is a group of 8 bits.
+                  </p>
+                </CardContent>
+              </Card>
               
-              <div>
-                <h3 className="font-medium mb-1">Supported Units</h3>
-                <div className="grid grid-cols-2 text-sm text-muted-foreground gap-y-1">
-                  <span>• Bit (b)</span>
-                  <span>• Byte (B)</span>
-                  <span>• Kilobyte (KB)</span>
-                  <span>• Megabyte (MB)</span>
-                  <span>• Gigabyte (GB)</span>
-                  <span>• Terabyte (TB)</span>
-                  <span>• Kibibyte (KiB)</span>
-                  <span>• Mebibyte (MiB)</span>
-                  <span>• Gibibyte (GiB)</span>
-                  <span>• Tebibyte (TiB)</span>
-                </div>
-              </div>
-              
-              <Separator />
-              
-              <div>
-                <h3 className="font-medium mb-1">Common Conversions</h3>
-                <div className="text-sm text-muted-foreground space-y-1">
-                  <p>• 1 Byte = 8 Bits</p>
-                  <p>• 1 Kilobyte = 0.977 Kibibytes</p>
-                  <p>• 1 Megabyte = 0.954 Mebibytes</p>
-                  <p>• 1 Gigabyte = 0.931 Gibibytes</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-        
-        {/* Related Tools */}
-        <div className="mt-12">
-          <h2 className="text-xl font-bold mb-4">Related Tools</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <Link href="/tools/volume-converter">
-              <Button variant="outline" className="w-full justify-start h-auto py-2">
-                Volume Converter
-              </Button>
-            </Link>
-            <Link href="/tools/length-converter">
-              <Button variant="outline" className="w-full justify-start h-auto py-2">
-                Length Converter
-              </Button>
-            </Link>
-            <Link href="/tools/numbers-converter">
-              <Button variant="outline" className="w-full justify-start h-auto py-2">
-                Numbers Converter
-              </Button>
-            </Link>
-          </div>
+              <Card>
+                <CardHeader className="pb-3">
+                  <CardTitle className="text-lg text-green-700 dark:text-green-300">Why are there two standards for kilobytes (1000 vs 1024 bytes)?</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">
+                    The powers-of-10 (1000) definition is used in telecommunications and by storage manufacturers. The powers-of-2 (1024) definition is used by operating systems and for memory capacity.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </section>
         </div>
       </div>
-    </>
+    </div>
   );
 }

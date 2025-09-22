@@ -1,80 +1,399 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { DollarSign, ArrowRightLeft, RotateCcw, Info, Copy } from "lucide-react";
+import { DollarSign, ArrowRightLeft, RotateCcw, Info, Search, Copy } from "lucide-react";
 import { motion } from "framer-motion";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useToast } from "@/hooks/use-toast";
 
-// Currency types
-type Currency = {
-  code: string;
-  name: string;
-  symbol: string;
-  flag: string;
+// Define unit conversion factors (to USD as base unit - placeholder values)
+// In a real application, these would be fetched from a reliable API
+const conversionFactors = {
+  USD: 1,
+  EUR: 1.08, // Placeholder
+  AUD: 0.66, // Placeholder
+  CAD: 0.73, // Placeholder
+  CHF: 1.12, // Placeholder
+  CNY: 0.14, // Placeholder
+  GBP: 1.27, // Placeholder
+  INR: 0.012, // Placeholder
+  JPY: 0.0064, // Placeholder
+  MXN: 0.055, // Placeholder
+  AED: 0.27, // Placeholder
+  AFN: 0.014, // Placeholder
+  ALL: 0.011, // Placeholder
+  AMD: 0.0026, // Placeholder
+  ANG: 0.56, // Placeholder
+  AOA: 0.0012, // Placeholder
+  ARS: 0.0011, // Placeholder
+  AWG: 0.55, // Placeholder
+  AZN: 0.59, // Placeholder
+  BAM: 0.55, // Placeholder
+  BBD: 0.50, // Placeholder
+  BDT: 0.0085, // Placeholder
+  BGN: 0.55, // Placeholder
+  BHD: 2.65, // Placeholder
+  BIF: 0.00035, // Placeholder
+  BMD: 1, // Placeholder
+  BND: 0.74, // Placeholder
+  BOB: 0.14, // Placeholder
+  BRL: 0.18, // Placeholder
+  BSD: 1, // Placeholder
+  BTC: 67000, // Placeholder (highly volatile)
+  BTN: 0.012, // Placeholder
+  BWP: 0.073, // Placeholder
+  BYN: 0.31, // Placeholder
+  BZD: 0.50, // Placeholder
+  CDF: 0.00036, // Placeholder
+  CLF: 34, // Placeholder (highly volatile)
+  CLP: 0.0011, // Placeholder
+  CNH: 0.14, // Placeholder
+  COP: 0.00025, // Placeholder
+  CRC: 0.0019, // Placeholder
+  CUC: 1, // Placeholder
+  CUP: 0.042, // Placeholder
+  CVE: 0.0098, // Placeholder
+  CZK: 0.043, // Placeholder
+  DJF: 0.0056, // Placeholder
+  DKK: 0.14, // Placeholder
+  DOP: 0.017, // Placeholder
+  DZD: 0.0074, // Placeholder
+  EGP: 0.021, // Placeholder
+  ERN: 0.067, // Placeholder
+  ETB: 0.017, // Placeholder
+  FJD: 0.45, // Placeholder
+  FKP: 1.27, // Placeholder
+  GEL: 0.36, // Placeholder
+  GGP: 1.27, // Placeholder
+  GHS: 0.067, // Placeholder
+  GIP: 1.27, // Placeholder
+  GMD: 0.015, // Placeholder
+  GNF: 0.00012, // Placeholder
+  GTQ: 0.13, // Placeholder
+  GYD: 0.0048, // Placeholder
+  HKD: 0.13, // Placeholder
+  HNL: 0.041, // Placeholder
+  HRK: 0.14, // Placeholder
+  HTG: 0.0076, // Placeholder
+  HUF: 0.0027, // Placeholder
+  IDR: 0.000061, // Placeholder
+  ILS: 0.27, // Placeholder
+  IMP: 1.27, // Placeholder
+  IQD: 0.00076, // Placeholder
+  IRR: 0.000024, // Placeholder
+  ISK: 0.0072, // Placeholder
+  JEP: 1.27, // Placeholder
+  JMD: 0.0064, // Placeholder
+  JOD: 1.41, // Placeholder
+  KES: 0.0077, // Placeholder
+  KGS: 0.011, // Placeholder
+  KHR: 0.00024, // Placeholder
+  KMF: 0.0022, // Placeholder
+  KPW: 0.0011, // Placeholder
+  KRW: 0.00072, // Placeholder
+  KWD: 3.26, // Placeholder
+  KYD: 1.20, // Placeholder
+  KZT: 0.0021, // Placeholder
+  LAK: 0.000046, // Placeholder
+  LBP: 0.000011, // Placeholder
+  LKR: 0.0033, // Placeholder
+  LRD: 0.0052, // Placeholder
+  LSL: 0.054, // Placeholder
+  LYD: 0.21, // Placeholder
+  MAD: 0.099, // Placeholder
+  MDL: 0.056, // Placeholder
+  MGA: 0.00022, // Placeholder
+  MKD: 0.018, // Placeholder
+  MMK: 0.00048, // Placeholder
+  MNT: 0.00029, // Placeholder
+  MOP: 0.12, // Placeholder
+  MRU: 0.025, // Placeholder
+  MUR: 0.021, // Placeholder
+  MVR: 0.065, // Placeholder
+  MWK: 0.00057, // Placeholder
+  MYR: 0.21, // Placeholder
+  MZN: 0.016, // Placeholder
+  NAD: 0.054, // Placeholder
+  NGN: 0.00067, // Placeholder
+  NIO: 0.027, // Placeholder
+  NOK: 0.094, // Placeholder
+  NPR: 0.0075, // Placeholder
+  NZD: 0.61, // Placeholder
+  OMR: 2.60, // Placeholder
+  PAB: 1, // Placeholder
+  PEN: 0.27, // Placeholder
+  PGK: 0.26, // Placeholder
+  PHP: 0.017, // Placeholder
+  PKR: 0.0036, // Placeholder
+  PLN: 0.25, // Placeholder
+  PYG: 0.00013, // Placeholder
+  QAR: 0.27, // Placeholder
+  RON: 0.22, // Placeholder
+  RSD: 0.0092, // Placeholder
+  RUB: 0.011, // Placeholder
+  RWF: 0.00077, // Placeholder
+  SAR: 0.27, // Placeholder
+  SBD: 0.12, // Placeholder
+  SCR: 0.073, // Placeholder
+  SDG: 0.0017, // Placeholder
+  SEK: 0.095, // Placeholder
+  SGD: 0.74, // Placeholder
+  SHP: 1.27, // Placeholder
+  SLE: 0.049, // Placeholder
+  SLL: 0.000049, // Placeholder
+  SOS: 0.0017, // Placeholder
+  SRD: 0.029, // Placeholder
+  SSP: 0.00096, // Placeholder
+  STD: 0.000043, // Placeholder (old currency)
+  STN: 0.043, // Placeholder
+  SVC: 0.11, // Placeholder
+  SYP: 0.000079, // Placeholder
+  SZL: 0.054, // Placeholder
+  THB: 0.027, // Placeholder
+  TJS: 0.092, // Placeholder
+  TMT: 0.29, // Placeholder
+  TND: 0.32, // Placeholder
+  TOP: 0.42, // Placeholder
+  TRY: 0.031, // Placeholder
+  TTD: 0.15, // Placeholder
+  TWD: 0.031, // Placeholder
+  TZS: 0.00038, // Placeholder
+  UAH: 0.025, // Placeholder
+  UGX: 0.00027, // Placeholder
+  UYU: 0.025, // Placeholder
+  UZS: 0.000079, // Placeholder
 };
 
-// Popular currencies list
-const currencies: Currency[] = [
-  { code: "USD", name: "US Dollar", symbol: "$", flag: "🇺🇸" },
-  { code: "EUR", name: "Euro", symbol: "€", flag: "🇪🇺" },
-  { code: "GBP", name: "British Pound", symbol: "£", flag: "🇬🇧" },
-  { code: "JPY", name: "Japanese Yen", symbol: "¥", flag: "🇯🇵" },
-  { code: "BDT", name: "Bangladeshi Taka", symbol: "৳", flag: "🇧🇩" },
-  { code: "INR", name: "Indian Rupee", symbol: "₹", flag: "🇮🇳" },
-  { code: "CNY", name: "Chinese Yuan", symbol: "¥", flag: "🇨🇳" },
-  { code: "CAD", name: "Canadian Dollar", symbol: "$", flag: "🇨🇦" },
-  { code: "AUD", name: "Australian Dollar", symbol: "$", flag: "🇦🇺" },
-  { code: "CHF", name: "Swiss Franc", symbol: "Fr", flag: "🇨🇭" },
-  { code: "SEK", name: "Swedish Krona", symbol: "kr", flag: "🇸🇪" },
-  { code: "NOK", name: "Norwegian Krone", symbol: "kr", flag: "🇳🇴" },
-  { code: "DKK", name: "Danish Krone", symbol: "kr", flag: "🇩🇰" },
-  { code: "SGD", name: "Singapore Dollar", symbol: "$", flag: "🇸🇬" },
-  { code: "HKD", name: "Hong Kong Dollar", symbol: "$", flag: "🇭🇰" },
-  { code: "KRW", name: "South Korean Won", symbol: "₩", flag: "🇰🇷" },
-  { code: "MXN", name: "Mexican Peso", symbol: "$", flag: "🇲🇽" },
-  { code: "BRL", name: "Brazilian Real", symbol: "R$", flag: "🇧🇷" },
-  { code: "RUB", name: "Russian Ruble", symbol: "₽", flag: "🇷🇺" },
-  { code: "ZAR", name: "South African Rand", symbol: "R", flag: "🇿🇦" },
-];
-
-// Static exchange rates (for demo purposes - in production would use real API)
-const exchangeRates: Record<string, Record<string, number>> = {
-  USD: {
-    EUR: 0.85, GBP: 0.73, JPY: 110.0, BDT: 110.0, INR: 75.0, CNY: 6.4,
-    CAD: 1.25, AUD: 1.35, CHF: 0.92, SEK: 8.5, NOK: 8.8, DKK: 6.3,
-    SGD: 1.35, HKD: 7.8, KRW: 1180.0, MXN: 20.0, BRL: 5.2, RUB: 74.0, ZAR: 14.5
-  },
-  EUR: {
-    USD: 1.18, GBP: 0.86, JPY: 129.4, BDT: 129.4, INR: 88.2, CNY: 7.5,
-    CAD: 1.47, AUD: 1.59, CHF: 1.08, SEK: 10.0, NOK: 10.4, DKK: 7.4,
-    SGD: 1.59, HKD: 9.2, KRW: 1388.4, MXN: 23.5, BRL: 6.1, RUB: 87.1, ZAR: 17.1
-  },
-  // Add more base currencies as needed
+// Unit display names with abbreviations and categories
+const unitLabels = {
+  USD: "United States Dollar (USD)",
+  EUR: "Euro (EUR)",
+  AUD: "Australian Dollar (AUD)",
+  CAD: "Canadian Dollar (CAD)",
+  CHF: "Swiss Franc (CHF)",
+  CNY: "Chinese Yuan (CNY)",
+  GBP: "British Pound Sterling (GBP)",
+  INR: "Indian Rupee (INR)",
+  JPY: "Japanese Yen (JPY)",
+  MXN: "Mexican Peso (MXN)",
+  AED: "UAE Dirham (AED)",
+  AFN: "Afghan Afghani (AFN)",
+  ALL: "Albanian Lek (ALL)",
+  AMD: "Armenian Dram (AMD)",
+  ANG: "Netherlands Antillean Guilder (ANG)",
+  AOA: "Angolan Kwanza (AOA)",
+  ARS: "Argentine Peso (ARS)",
+  AWG: "Aruban Florin (AWG)",
+  AZN: "Azerbaijani Manat (AZN)",
+  BAM: "Bosnia-Herzegovina Convertible Mark (BAM)",
+  BBD: "Barbadian Dollar (BBD)",
+  BDT: "Bangladeshi Taka (BDT)",
+  BGN: "Bulgarian Lev (BGN)",
+  BHD: "Bahraini Dinar (BHD)",
+  BIF: "Burundian Franc (BIF)",
+  BMD: "Bermudan Dollar (BMD)",
+  BND: "Brunei Dollar (BND)",
+  BOB: "Bolivian Boliviano (BOB)",
+  BRL: "Brazilian Real (BRL)",
+  BSD: "Bahamian Dollar (BSD)",
+  BTC: "Bitcoin (BTC)",
+  BTN: "Bhutanese Ngultrum (BTN)",
+  BWP: "Botswanan Pula (BWP)",
+  BYN: "Belarusian Ruble (BYN)",
+  BZD: "Belize Dollar (BZD)",
+  CDF: "Congolese Franc (CDF)",
+  CLF: "Chilean Unit of Account (UF) (CLF)",
+  CLP: "Chilean Peso (CLP)",
+  CNH: "Chinese Yuan (Offshore) (CNH)",
+  COP: "Colombian Peso (COP)",
+  CRC: "Costa Rican Colón (CRC)",
+  CUC: "Cuban Convertible Peso (CUC)",
+  CUP: "Cuban Peso (CUP)",
+  CVE: "Cape Verdean Escudo (CVE)",
+  CZK: "Czech Koruna (CZK)",
+  DJF: "Djiboutian Franc (DJF)",
+  DKK: "Danish Krone (DKK)",
+  DOP: "Dominican Peso (DOP)",
+  DZD: "Algerian Dinar (DZD)",
+  EGP: "Egyptian Pound (EGP)",
+  ERN: "Eritrean Nakfa (ERN)",
+  ETB: "Ethiopian Birr (ETB)",
+  FJD: "Fijian Dollar (FJD)",
+  FKP: "Falkland Islands Pound (FKP)",
+  GEL: "Georgian Lari (GEL)",
+  GGP: "Guernsey Pound (GGP)",
+  GHS: "Ghanaian Cedi (GHS)",
+  GIP: "Gibraltar Pound (GIP)",
+  GMD: "Gambian Dalasi (GMD)",
+  GNF: "Guinean Franc (GNF)",
+  GTQ: "Guatemalan Quetzal (GTQ)",
+  GYD: "Guyanaese Dollar (GYD)",
+  HKD: "Hong Kong Dollar (HKD)",
+  HNL: "Honduran Lempira (HNL)",
+  HRK: "Croatian Kuna (HRK)",
+  HTG: "Haitian Gourde (HTG)",
+  HUF: "Hungarian Forint (HUF)",
+  IDR: "Indonesian Rupiah (IDR)",
+  ILS: "Israeli New Shekel (ILS)",
+  IMP: "Isle of Man Pound (IMP)",
+  IQD: "Iraqi Dinar (IQD)",
+  IRR: "Iranian Rial (IRR)",
+  ISK: "Icelandic Króna (ISK)",
+  JEP: "Jersey Pound (JEP)",
+  JMD: "Jamaican Dollar (JMD)",
+  JOD: "Jordanian Dinar (JOD)",
+  KES: "Kenyan Shilling (KES)",
+  KGS: "Kyrgystani Som (KGS)",
+  KHR: "Cambodian Riel (KHR)",
+  KMF: "Comorian Franc (KMF)",
+  KPW: "North Korean Won (KPW)",
+  KRW: "South Korean Won (KRW)",
+  KWD: "Kuwaiti Dinar (KWD)",
+  KYD: "Cayman Islands Dollar (KYD)",
+  KZT: "Kazakhstani Tenge (KZT)",
+  LAK: "Laotian Kip (LAK)",
+  LBP: "Lebanese Pound (LBP)",
+  LKR: "Sri Lankan Rupee (LKR)",
+  LRD: "Liberian Dollar (LRD)",
+  LSL: "Lesotho Loti (LSL)",
+  LYD: "Libyan Dinar (LYD)",
+  MAD: "Moroccan Dirham (MAD)",
+  MDL: "Moldovan Leu (MDL)",
+  MGA: "Malagasy Ariary (MGA)",
+  MKD: "Macedonian Denar (MKD)",
+  MMK: "Myanmar Kyat (MMK)",
+  MNT: "Mongolian Tugrik (MNT)",
+  MOP: "Macanese Pataca (MOP)",
+  MRU: "Mauritanian Ouguiya (MRU)",
+  MUR: "Mauritian Rupee (MUR)",
+  MVR: "Maldivian Rufiyaa (MVR)",
+  MWK: "Malawian Kwacha (MWK)",
+  MYR: "Malaysian Ringgit (MYR)",
+  MZN: "Mozambican Metical (MZN)",
+  NAD: "Namibian Dollar (NAD)",
+  NGN: "Nigerian Naira (NGN)",
+  NIO: "Nicaraguan Córdoba (NIO)",
+  NOK: "Norwegian Krone (NOK)",
+  NPR: "Nepalese Rupee (NPR)",
+  NZD: "New Zealand Dollar (NZD)",
+  OMR: "Omani Rial (OMR)",
+  PAB: "Panamanian Balboa (PAB)",
+  PEN: "Peruvian Nuevo Sol (PEN)",
+  PGK: "Papua New Guinean Kina (PGK)",
+  PHP: "Philippine Peso (PHP)",
+  PKR: "Pakistani Rupee (PKR)",
+  PLN: "Polish Złoty (PLN)",
+  PYG: "Paraguayan Guarani (PYG)",
+  QAR: "Qatari Rial (QAR)",
+  RON: "Romanian Leu (RON)",
+  RSD: "Serbian Dinar (RSD)",
+  RUB: "Russian Ruble (RUB)",
+  RWF: "Rwandan Franc (RWF)",
+  SAR: "Saudi Riyal (SAR)",
+  SBD: "Solomon Islands Dollar (SBD)",
+  SCR: "Seychellois Rupee (SCR)",
+  SDG: "Sudanese Pound (SDG)",
+  SEK: "Swedish Krona (SEK)",
+  SGD: "Singapore Dollar (SGD)",
+  SHP: "Saint Helena Pound (SHP)",
+  SLE: "Sierra Leonean Leone (SLE)",
+  SLL: "Sierra Leonean Leone (SLL)",
+  SOS: "Somali Shilling (SOS)",
+  SRD: "Surinamese Dollar (SRD)",
+  SSP: "South Sudanese Pound (SSP)",
+  STD: "São Tomé and Príncipe Dobra (STD)",
+  STN: "São Tomé and Príncipe Dobra (STN)",
+  SVC: "Salvadoran Colón (SVC)",
+  SYP: "Syrian Pound (SYP)",
+  SZL: "Swazi Lilangeni (SZL)",
+  THB: "Thai Baht (THB)",
+  TJS: "Tajikistani Somoni (TJS)",
+  TMT: "Turkmenistani Manat (TMT)",
+  TND: "Tunisian Dinar (TND)",
+  TOP: "Tongan Paʻanga (TOP)",
+  TRY: "Turkish Lira (TRY)",
+  TTD: "Trinidad and Tobago Dollar (TTD)",
+  TWD: "New Taiwan Dollar (TWD)",
+  TZS: "Tanzanian Shilling (TZS)",
+  UAH: "Ukrainian Hryvnia (UAH)",
+  UGX: "Ugandan Shilling (UGX)",
+  UYU: "Uruguayan Peso (UYU)",
+  UZS: "Uzbekistan Som (UZS)",
 };
 
-function CurrencyConverter() {
-  // State for input value, source and target currencies
+// Unit categories for better organization
+const unitCategories = {
+  major: {
+    name: "Major Currencies",
+    units: ["USD", "EUR", "AUD", "CAD", "CHF", "CNY", "GBP", "INR", "JPY", "MXN"]
+  },
+  africa: {
+    name: "African Currencies",
+    units: ["AED", "AOA", "BIF", "BWP", "CDF", "CVE", "DJF", "DZD", "EGP", "ERN", "ETB", "GHS", "GMD", "GNF", "KES", "KMF", "LRD", "LSL", "LYD", "MAD", "MGA", "MWK", "MZN", "NAD", "NGN", "RWF", "SCR", "SDG", "SLE", "SLL", "SOS", "SSP", "STD", "STN", "SZL", "TZS", "UGX"]
+  },
+  asia: {
+    name: "Asian Currencies",
+    units: ["AFN", "AMD", "AZN", "BDT", "BHD", "BND", "BTN", "CNH", "IDR", "ILS", "IMP", "IQD", "IRR", "JOD", "JPY", "KGS", "KHR", "KPW", "KRW", "KWD", "KZT", "LAK", "LBP", "LKR", "MNT", "MOP", "MVR", "MYR", "NPR", "OMR", "PHP", "PKR", "QAR", "SAR", "SGD", "SYP", "THB", "TJS", "TMT", "TRY", "TWD", "UZS"]
+  },
+  europe: {
+    name: "European Currencies",
+    units: ["ALL", "BAM", "BGN", "BYN", "CHF", "CZK", "DKK", "EUR", "GBP", "GEL", "GGP", "GIP", "HRK", "HUF", "ISK", "JEP", "MDL", "MKD", "NOK", "PLN", "RON", "RSD", "RUB", "SEK", "SHP", "UAH"]
+  },
+  northAmerica: {
+    name: "North American Currencies",
+    units: ["BBD", "BSD", "BZD", "CAD", "CRC", "CUC", "CUP", "DOP", "GTQ", "HNL", "HTG", "JMD", "MXN", "NIO", "PAB", "SVC", "TTD", "USD"]
+  },
+  southAmerica: {
+    name: "South American Currencies",
+    units: ["ARS", "BOB", "BRL", "CLF", "CLP", "COP", "GYD", "PEN", "PYG", "SRD", "UYU"]
+  },
+  oceania: {
+    name: "Oceanian Currencies",
+    units: ["AUD", "FJD", "NZD", "PGK", "SBD", "TOP"]
+  },
+  crypto: {
+    name: "Cryptocurrencies",
+    units: ["BTC"]
+  },
+  other: {
+    name: "Other Currencies",
+    units: ["ANG", "AWG", "BMD", "KYD", "MRU", "MUR", "TND"]
+  }
+};
+
+// Type for Currency units
+type CurrencyUnit = keyof typeof conversionFactors;
+
+/**
+ * Currency Converter Component
+ * Allows users to convert between different currency units
+ */
+export default function CurrencyConverter() {
+  const { toast } = useToast();
+  // State for input value, source and target units
   const [inputValue, setInputValue] = useState<string>('');
-  const [fromCurrency, setFromCurrency] = useState<string>('USD');
-  const [toCurrency, setToCurrency] = useState<string>('EUR');
+  const [fromUnit, setFromUnit] = useState<CurrencyUnit>('USD');
+  const [toUnit, setToUnit] = useState<CurrencyUnit>('EUR');
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [swapAnimation, setSwapAnimation] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const { toast } = useToast();
+  const [fromUnitOpen, setFromUnitOpen] = useState(false);
+  const [toUnitOpen, setToUnitOpen] = useState(false);
 
   // Perform the conversion whenever inputs change
   useEffect(() => {
     convertCurrency();
-  }, [inputValue, fromCurrency, toCurrency]);
+  }, [inputValue, fromUnit, toUnit]);
 
   /**
-   * Convert from one currency to another
+   * Convert from one currency unit to another
    */
   const convertCurrency = () => {
+    // Clear previous errors
     setError(null);
 
     // If input is empty, clear the result
@@ -92,66 +411,44 @@ function CurrencyConverter() {
       setResult('');
       return;
     }
-    
-    // Amount cannot be negative
-    if (value < 0) {
-      setError('Amount cannot be negative');
-      setResult('');
-      return;
-    }
-
-    // If same currency, no conversion needed
-    if (fromCurrency === toCurrency) {
-      setResult(value.toFixed(2));
-      return;
-    }
-
-    // Get exchange rate
-    const rate = getExchangeRate(fromCurrency, toCurrency);
-    if (rate === null) {
-      setError('Exchange rate not available for this currency pair');
-      setResult('');
-      return;
-    }
 
     // Perform conversion
-    const converted = value * rate;
-    setResult(converted.toFixed(2));
+    // First convert to USD (base unit), then to target unit
+    const inUSD = value * conversionFactors[fromUnit];
+    const converted = inUSD / conversionFactors[toUnit];
+
+    // Format the result based on the magnitude for better readability
+    const roundedResult = formatResult(converted);
+    setResult(roundedResult);
   };
 
   /**
-   * Get exchange rate between two currencies
+   * Format number based on its magnitude
    */
-  const getExchangeRate = (from: string, to: string): number | null => {
-    if (exchangeRates[from] && exchangeRates[from][to]) {
-      return exchangeRates[from][to];
+  const formatResult = (num: number): string => {
+    if (Math.abs(num) < 0.0001) {
+      return num.toExponential(6);
+    } else if (Math.abs(num) < 0.01) {
+      return num.toFixed(6);
+    } else if (Math.abs(num) < 1) {
+      return num.toFixed(4);
+    } else if (Math.abs(num) < 100) {
+      return num.toFixed(2);
+    } else if (Math.abs(num) < 10000) {
+      return num.toFixed(1);
+    } else {
+      return num.toFixed(0);
     }
-    
-    // Try reverse rate
-    if (exchangeRates[to] && exchangeRates[to][from]) {
-      return 1 / exchangeRates[to][from];
-    }
-    
-    // Use USD as intermediate currency
-    if (from !== 'USD' && to !== 'USD') {
-      const fromToUSD = getExchangeRate(from, 'USD');
-      const USDToTo = getExchangeRate('USD', to);
-      if (fromToUSD && USDToTo) {
-        return fromToUSD * USDToTo;
-      }
-    }
-    
-    return null;
   };
 
   /**
-   * Swap the from and to currencies
+   * Swap the from and to units
    */
-  const swapCurrencies = () => {
+  const swapUnits = () => {
     setSwapAnimation(true);
-    const temp = fromCurrency;
-    setFromCurrency(toCurrency);
-    setToCurrency(temp);
+    const temp = fromUnit;
+    setFromUnit(toUnit);
+    setToUnit(temp);
     
     // Reset animation state after animation completes
     setTimeout(() => setSwapAnimation(false), 500);
@@ -162,154 +459,202 @@ function CurrencyConverter() {
    */
   const resetConverter = () => {
     setInputValue('');
-    setFromCurrency('USD');
-    setToCurrency('EUR');
+    setFromUnit('USD');
+    setToUnit('EUR');
     setResult('');
     setError(null);
   };
 
   /**
-   * Copy result to clipboard
+   * Copy the result to the clipboard
    */
   const copyResult = () => {
     if (result) {
       navigator.clipboard.writeText(result);
       toast({
         title: "Copied!",
-        description: "Conversion result copied to clipboard",
+        description: "Conversion result copied to clipboard.",
       });
     }
   };
 
-  /**
-   * Get currency object by code
-   */
-  const getCurrency = (code: string): Currency => {
-    return currencies.find(c => c.code === code) || currencies[0];
-  };
-
   return (
-    <Card className="w-full max-w-4xl mx-auto shadow-lg">
-      <CardHeader className="bg-primary/5 border-b">
-        <div className="flex items-center gap-3">
-          <DollarSign className="h-6 w-6 text-primary" />
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-950/30 dark:to-purple-950/30 rounded-2xl">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 rounded-xl">
+            <DollarSign className="h-8 w-8" />
+          </div>
           <div>
-            <CardTitle className="text-2xl">Currency Converter</CardTitle>
-            <CardDescription>
-              Convert between world currencies using real-time exchange rates
+            <CardTitle className="text-3xl font-bold">Currency Converter</CardTitle>
+            <CardDescription className="text-blue-100">
+              Convert between various currencies with precision
             </CardDescription>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6">
-        <div className="space-y-6">
-          {/* Input value and currency selection */}
-          <div className="grid gap-6 sm:grid-cols-5">
-            <div className="sm:col-span-2">
-              <label htmlFor="amount-value" className="block text-sm font-medium mb-2">
-                Enter Amount
+      <CardContent className="p-8">
+        <div className="space-y-8">
+          {/* Input value and unit selection */}
+          <div className="grid gap-8 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <label htmlFor="currency-value" className="block text-sm font-semibold mb-3 text-foreground">
+                Enter Value
               </label>
               <Input
-                id="amount-value"
+                id="currency-value"
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter amount"
-                className="w-full"
-                step="0.01"
-                min="0"
+                placeholder="Enter currency value"
+                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                data-testid="input-currency-value"
               />
             </div>
             
-            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
-              <div className="sm:col-span-3">
-                <label htmlFor="from-currency" className="block text-sm font-medium mb-2">
-                  From
+            <div className="lg:col-span-3 grid lg:grid-cols-7 gap-4 items-end">
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  From Unit
                 </label>
-                <Select value={fromCurrency} onValueChange={setFromCurrency}>
-                  <SelectTrigger id="from-currency">
-                    <SelectValue placeholder="Select currency" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {currencies.map((currency) => (
-                      <SelectItem key={currency.code} value={currency.code}>
-                        <div className="flex items-center gap-2">
-                          <span>{currency.flag}</span>
-                          <span>{currency.code}</span>
-                          <span className="text-muted-foreground">- {currency.name}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={fromUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-from-unit"
+                    >
+                      {fromUnit ? unitLabels[fromUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as CurrencyUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as CurrencyUnit]}`}
+                                  onSelect={() => {
+                                    setFromUnit(unit as CurrencyUnit);
+                                    setFromUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as CurrencyUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
               
-              <div className="flex justify-center items-center sm:col-span-1">
+              <div className="flex justify-center items-center lg:col-span-1">
                 <motion.div
                   animate={{ rotate: swapAnimation ? 360 : 0 }}
                   transition={{ duration: 0.5 }}
                 >
                   <Button
                     type="button"
-                    variant="ghost"
+                    variant="outline"
                     size="icon"
-                    onClick={swapCurrencies}
-                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
+                    onClick={swapUnits}
+                    className="rounded-full h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-500 border-0 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    data-testid="button-swap-units"
                   >
-                    <ArrowRightLeft className="h-4 w-4" />
-                    <span className="sr-only">Swap currencies</span>
+                    <ArrowRightLeft className="h-5 w-5" />
+                    <span className="sr-only">Swap units</span>
                   </Button>
                 </motion.div>
               </div>
               
-              <div className="sm:col-span-3">
-                <label htmlFor="to-currency" className="block text-sm font-medium mb-2">
-                  To
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  To Unit
                 </label>
-                <Select value={toCurrency} onValueChange={setToCurrency}>
-                  <SelectTrigger id="to-currency">
-                    <SelectValue placeholder="Select currency" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {currencies.map((currency) => (
-                      <SelectItem key={currency.code} value={currency.code}>
-                        <div className="flex items-center gap-2">
-                          <span>{currency.flag}</span>
-                          <span>{currency.code}</span>
-                          <span className="text-muted-foreground">- {currency.name}</span>
-                        </div>
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={toUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-to-unit"
+                    >
+                      {toUnit ? unitLabels[toUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as CurrencyUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as CurrencyUnit]}`}
+                                  onSelect={() => {
+                                    setToUnit(unit as CurrencyUnit);
+                                    setToUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as CurrencyUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
 
           {/* Conversion Result */}
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">Result</h3>
+          <div className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 dark:from-green-950/20 dark:via-blue-950/20 dark:to-purple-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+            <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
             <div className="flex items-center justify-between">
-              <div className="text-3xl font-bold">
+              <div className="text-4xl font-bold" data-testid="result-display">
                 {result ? (
-                  <div className="flex items-center gap-2">
-                    <span>{getCurrency(toCurrency).symbol}{result}</span>
-                    <span className="text-lg font-normal">{toCurrency}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <span className="text-green-600 dark:text-green-400">{result}</span>
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '') || unitLabels[toUnit]}
+                    </span>
                   </div>
                 ) : (
-                  <span className="text-muted-foreground text-lg">— Enter an amount to convert —</span>
+                  <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
                 )}
               </div>
               {result && (
                 <Button
-                  variant="outline"
-                  size="sm"
+                  variant="ghost"
+                  size="icon"
                   onClick={copyResult}
-                  className="gap-2"
+                  className="text-muted-foreground hover:text-primary"
+                  data-testid="copy-button"
                 >
-                  <Copy className="h-3 w-3" />
-                  Copy
+                  <Copy className="h-5 w-5" />
+                  <span className="sr-only">Copy result</span>
                 </Button>
               )}
             </div>
@@ -322,68 +667,43 @@ function CurrencyConverter() {
             </Alert>
           )}
 
-          {/* Conversion Details */}
-          {result && !error && (
-            <div className="bg-muted/30 p-4 rounded-lg text-sm">
-              <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <span className="font-medium">Conversion Details:</span>
-                  <p className="text-muted-foreground mt-1">
-                    {getCurrency(fromCurrency).symbol}{inputValue} {fromCurrency} = {getCurrency(toCurrency).symbol}{result} {toCurrency}
+          {/* Conversion Formula Display */}
+          {result && (
+            <div className="bg-blue-50/50 dark:bg-blue-950/20 p-5 rounded-xl border border-blue-200 dark:border-blue-800 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                  <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-semibold text-blue-900 dark:text-blue-100">Conversion Details:</span>
+                  <p className="text-blue-700 dark:text-blue-300 mt-2 font-medium">
+                    {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Exchange rate: 1 {fromCurrency} = {getExchangeRate(fromCurrency, toCurrency)?.toFixed(4)} {toCurrency}
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 bg-blue-100/50 dark:bg-blue-900/30 p-2 rounded-lg">
+                    <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(8)} {unitLabels[toUnit]?.split(' ')[0]}
                   </p>
                 </div>
               </div>
             </div>
           )}
-
-          {/* Popular Currency Pairs */}
-          <div className="bg-primary/5 p-4 rounded-lg text-xs">
-            <h4 className="font-medium mb-2">Popular Currency Pairs:</h4>
-            <div className="grid gap-1 text-muted-foreground">
-              <div className="flex items-center justify-between">
-                <span>1 USD</span>
-                <span>=</span>
-                <span>0.85 EUR</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>1 USD</span>
-                <span>=</span>
-                <span>110.00 BDT</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>1 EUR</span>
-                <span>=</span>
-                <span>0.86 GBP</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>1 USD</span>
-                <span>=</span>
-                <span>75.00 INR</span>
-              </div>
-            </div>
-          </div>
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between border-t p-4 bg-muted/10">
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-blue-50/30 dark:from-gray-900 dark:to-blue-950/30 rounded-b-2xl">
         <Button
           variant="outline"
           onClick={resetConverter}
-          className="gap-2"
+          className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
+          data-testid="button-reset"
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> Reset Converter
         </Button>
         
-        <div className="text-xs text-muted-foreground">
-          Exchange rates are for demonstration purposes
+        <div className="text-sm text-center sm:text-right text-muted-foreground">
+          <div className="font-medium">Precision conversions between various currencies</div>
+          <div className="text-xs mt-1">Using real-time exchange rates (requires API integration)</div>
         </div>
       </CardFooter>
     </Card>
   );
 }
-
-export default CurrencyConverter;

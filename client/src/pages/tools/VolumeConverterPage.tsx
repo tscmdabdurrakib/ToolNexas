@@ -43,7 +43,7 @@ export default function VolumeConverterPage() {
           <p className="text-lg text-muted-foreground">Convert between different volume units including metric and imperial systems</p>
         </div>
 
-        <div className="grid gap-8 mb-10">
+        <div className="flex flex-col items-center justify-center w-full mb-10">
           <VolumeConverter />
         </div>
 

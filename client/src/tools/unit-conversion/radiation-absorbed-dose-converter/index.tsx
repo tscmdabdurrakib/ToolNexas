@@ -1,138 +1,136 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import React, { useState, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ArrowRightLeft, RotateCcw, Info, Target } from "lucide-react";
+import { Atom, ArrowRightLeft, RotateCcw, Info, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-// Radiation absorbed dose conversion factors (to gray as base unit)
 const conversionFactors = {
-  gray: 1,
-  milligray: 0.001,
-  microgray: 0.000001,
-  nanogray: 0.000000001,
-  rad: 0.01,
-  millirad: 0.00001,
-  microrad: 0.00000001,
-  centiGray: 0.01,
-  kilogray: 1000
+  'rad': 0.01,
+  'millirad': 0.00001,
+  'joule/kilogram': 1,
+  'joule/gram': 1000,
+  'joule/centigram': 100000,
+  'joule/milligram': 1000000,
+  'gray': 1,
+  'exagray': 1e18,
+  'petagray': 1e15,
+  'teragray': 1e12,
+  'gigagray': 1e9,
+  'megagray': 1e6,
+  'kilogray': 1000,
+  'hectogray': 100,
+  'dekagray': 10,
+  'decigray': 0.1,
+  'centigray': 0.01,
+  'milligray': 0.001,
+  'microgray': 1e-6,
+  'nanogray': 1e-9,
+  'picogray': 1e-12,
+  'femtogray': 1e-15,
+  'attogray': 1e-18,
 };
 
-// Unit display names with abbreviations
 const unitLabels = {
-  gray: "Gray (Gy)",
-  milligray: "Milligray (mGy)",
-  microgray: "Microgray (μGy)",
-  nanogray: "Nanogray (nGy)",
-  rad: "Rad (rad)",
-  millirad: "Millirad (mrad)",
-  microrad: "Microrad (μrad)",
-  centiGray: "Centigray (cGy)",
-  kilogray: "Kilogray (kGy)"
+  'rad': "Rad (rd)",
+  'millirad': "Millirad (mrd)",
+  'joule/kilogram': "Joule/kilogram (J/kg)",
+  'joule/gram': "Joule/gram (J/g)",
+  'joule/centigram': "Joule/centigram (J/cg)",
+  'joule/milligram': "Joule/milligram (J/mg)",
+  'gray': "Gray (Gy)",
+  'exagray': "Exagray (EGy)",
+  'petagray': "Petagray (PGy)",
+  'teragray': "Teragray (TGy)",
+  'gigagray': "Gigagray (GGy)",
+  'megagray': "Megagray (MGy)",
+  'kilogray': "Kilogray (kGy)",
+  'hectogray': "Hectogray (hGy)",
+  'dekagray': "Dekagray (daGy)",
+  'decigray': "Decigray (dGy)",
+  'centigray': "Centigray (cGy)",
+  'milligray': "Milligray (mGy)",
+  'microgray': "Microgray (µGy)",
+  'nanogray': "Nanogray (nGy)",
+  'picogray': "Picogray (pGy)",
+  'femtogray': "Femtogray (fGy)",
+  'attogray': "Attogray (aGy)",
 };
 
-// Type for radiation absorbed dose units
-type RadiationAbsorbedDoseUnit = keyof typeof conversionFactors;
+const unitCategories = {
+  common: {
+    name: "Common Units",
+    units: ["gray", "rad", "millirad", "centigray", "milligray"],
+  },
+  si: {
+    name: "SI Prefixes (Gray)",
+    units: [
+      "exagray", "petagray", "teragray", "gigagray", "megagray", "kilogray",
+      "hectogray", "dekagray", "gray", "decigray", "centigray", "milligray",
+      "microgray", "nanogray", "picogray", "femtogray", "attogray",
+    ],
+  },
+  energy: {
+    name: "Energy-based",
+    units: [
+      "joule/kilogram", "joule/gram", "joule/centigram", "joule/milligram",
+    ],
+  },
+};
 
-/**
- * Radiation Absorbed Dose Converter Component
- * Allows users to convert between different units of absorbed radiation dose
- */
+type RadiationUnit = keyof typeof conversionFactors;
+
 export default function RadiationAbsorbedDoseConverter() {
   const [inputValue, setInputValue] = useState<string>('');
-  const [fromUnit, setFromUnit] = useState<RadiationAbsorbedDoseUnit>('gray');
-  const [toUnit, setToUnit] = useState<RadiationAbsorbedDoseUnit>('rad');
+  const [fromUnit, setFromUnit] = useState<RadiationUnit>('gray');
+  const [toUnit, setToUnit] = useState<RadiationUnit>('rad');
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [swapAnimation, setSwapAnimation] = useState(false);
+  const [fromUnitOpen, setFromUnitOpen] = useState(false);
+  const [toUnitOpen, setToUnitOpen] = useState(false);
 
-  // Perform the conversion whenever inputs change
   useEffect(() => {
-    convertAbsorbedDose();
+    convert();
   }, [inputValue, fromUnit, toUnit]);
 
-  /**
-   * Convert from one absorbed dose unit to another
-   */
-  const convertAbsorbedDose = () => {
-    // Clear previous errors
+  const convert = () => {
     setError(null);
-
-    // If input is empty, clear the result
     if (!inputValue) {
       setResult('');
       return;
     }
-
-    // Parse the input value
     const value = parseFloat(inputValue);
-
-    // Validate the input is a number
     if (isNaN(value)) {
       setError('Please enter a valid number');
       setResult('');
       return;
     }
-
-    // Validate that value is not negative (absorbed dose cannot be negative)
-    if (value < 0) {
-      setError('Absorbed dose cannot be negative');
-      setResult('');
-      return;
-    }
-
-    // Perform conversion
-    // First convert to gray (base unit), then to target unit
-    const inGray = value * conversionFactors[fromUnit];
-    const converted = inGray / conversionFactors[toUnit];
-
-    // Format the result based on the magnitude for better readability
-    const roundedResult = formatResult(converted);
-    setResult(roundedResult);
+    const inBaseUnit = value * conversionFactors[fromUnit];
+    const converted = inBaseUnit / conversionFactors[toUnit];
+    setResult(formatResult(converted));
   };
 
-  /**
-   * Format number based on its magnitude
-   */
   const formatResult = (num: number): string => {
     if (num === 0) return "0";
-    
-    if (Math.abs(num) < 0.000001) {
+    if (Math.abs(num) < 1e-9 || Math.abs(num) > 1e15) {
       return num.toExponential(6);
-    } else if (Math.abs(num) < 0.001) {
-      return num.toFixed(8);
-    } else if (Math.abs(num) < 1) {
-      return num.toFixed(6);
-    } else if (Math.abs(num) < 100) {
-      return num.toFixed(4);
-    } else if (Math.abs(num) < 10000) {
-      return num.toFixed(2);
-    } else if (Math.abs(num) < 1000000) {
-      return num.toFixed(1);
-    } else {
-      return num.toExponential(4);
     }
+    const fixed = num.toFixed(8);
+    return parseFloat(fixed).toString();
   };
 
-  /**
-   * Swap the from and to units
-   */
   const swapUnits = () => {
     setSwapAnimation(true);
-    const temp = fromUnit;
     setFromUnit(toUnit);
-    setToUnit(temp);
-    
-    // Reset animation state after animation completes
+    setToUnit(fromUnit);
     setTimeout(() => setSwapAnimation(false), 500);
   };
 
-  /**
-   * Reset all fields to default
-   */
   const resetConverter = () => {
     setInputValue('');
     setFromUnit('gray');
@@ -142,147 +140,210 @@ export default function RadiationAbsorbedDoseConverter() {
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg">
-      <CardHeader className="bg-primary/5 border-b">
-        <div className="flex items-center gap-3">
-          <Target className="h-6 w-6 text-primary" />
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-950/30 dark:to-purple-950/30 rounded-2xl">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 rounded-xl">
+            <Atom className="h-8 w-8" />
+          </div>
           <div>
-            <CardTitle className="text-2xl">Radiation Absorbed Dose Converter</CardTitle>
-            <CardDescription>
-              Convert between different units of radiation energy absorbed by matter
+            <CardTitle className="text-3xl font-bold">Radiation-Absorbed Dose Converter</CardTitle>
+            <CardDescription className="text-blue-100">
+              Convert between various units of absorbed radiation dose
             </CardDescription>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6">
-        <div className="space-y-6">
-          {/* Input value and unit selection */}
-          <div className="grid gap-6 sm:grid-cols-5">
-            <div className="sm:col-span-2">
-              <Label htmlFor="dose-value" className="block text-sm font-medium mb-2">
+      <CardContent className="p-8">
+        <div className="space-y-8">
+          <div className="grid gap-8 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <label htmlFor="dose-value" className="block text-sm font-semibold mb-3 text-foreground">
                 Enter Value
-              </Label>
+              </label>
               <Input
                 id="dose-value"
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter dose"
-                className="w-full"
-                data-testid="input-dose-value"
+                placeholder="Enter dose value"
+                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
               />
             </div>
             
-            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
-              <div className="sm:col-span-3">
-                <Label htmlFor="from-unit" className="block text-sm font-medium mb-2">
-                  From
-                </Label>
-                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as RadiationAbsorbedDoseUnit)}>
-                  <SelectTrigger id="from-unit" data-testid="select-from-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(unitLabels).map(([unit, label]) => (
-                      <SelectItem key={unit} value={unit}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+            <div className="lg:col-span-3 grid lg:grid-cols-7 gap-4 items-end">
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  From Unit
+                </label>
+                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={fromUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                    >
+                      {fromUnit ? unitLabels[fromUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as RadiationUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as RadiationUnit]}`}
+                                  onSelect={() => {
+                                    setFromUnit(unit as RadiationUnit);
+                                    setFromUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as RadiationUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
-
-              <div className="sm:col-span-1 flex justify-center">
+              
+              <div className="flex justify-center items-center lg:col-span-1">
                 <motion.div
-                  animate={{ rotate: swapAnimation ? 180 : 0 }}
-                  transition={{ duration: 0.3 }}
+                  animate={{ rotate: swapAnimation ? 360 : 0 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <Button 
-                    variant="ghost" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     size="icon"
                     onClick={swapUnits}
-                    className="h-10 w-10 rounded-full"
-                    data-testid="button-swap-units"
+                    className="rounded-full h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-500 border-0 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    <ArrowRightLeft className="h-4 w-4" />
+                    <ArrowRightLeft className="h-5 w-5" />
+                    <span className="sr-only">Swap units</span>
                   </Button>
                 </motion.div>
               </div>
-
-              <div className="sm:col-span-3">
-                <Label htmlFor="to-unit" className="block text-sm font-medium mb-2">
-                  To
-                </Label>
-                <Select value={toUnit} onValueChange={(value) => setToUnit(value as RadiationAbsorbedDoseUnit)}>
-                  <SelectTrigger id="to-unit" data-testid="select-to-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(unitLabels).map(([unit, label]) => (
-                      <SelectItem key={unit} value={unit}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  To Unit
+                </label>
+                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={toUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                    >
+                      {toUnit ? unitLabels[toUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as RadiationUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as RadiationUnit]}`}
+                                  onSelect={() => {
+                                    setToUnit(unit as RadiationUnit);
+                                    setToUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as RadiationUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
 
-          {/* Error message */}
+          <div className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 dark:from-green-950/20 dark:via-blue-950/20 dark:to-purple-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+            <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
+            <div className="flex items-center justify-between">
+              <div className="text-4xl font-bold">
+                {result ? (
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <span className="text-green-600 dark:text-green-400">{result}</span>
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '') || unitLabels[toUnit]}
+                    </span>
+                  </div>
+                ) : (
+                  <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
+                )}
+              </div>
+            </div>
+          </div>
+
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
 
-          {/* Result display */}
           {result && !error && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="p-4 bg-muted rounded-lg"
-            >
-              <Label className="text-sm font-medium text-muted-foreground mb-2 block">
-                Result
-              </Label>
-              <div className="text-2xl font-bold text-primary" data-testid="text-result">
-                {result} {unitLabels[toUnit].split(' ')[1].replace('(', '').replace(')', '')}
+            <div className="bg-blue-50/50 dark:bg-blue-950/20 p-5 rounded-xl border border-blue-200 dark:border-blue-800 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                  <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-semibold text-blue-900 dark:text-blue-100">Conversion Details:</span>
+                  <p className="text-blue-700 dark:text-blue-300 mt-2 font-medium">
+                    {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
+                  </p>
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 bg-blue-100/50 dark:bg-blue-900/30 p-2 rounded-lg">
+                    <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} {unitLabels[toUnit]?.split(' ')[0]}
+                  </p>
+                </div>
               </div>
-              <div className="text-sm text-muted-foreground mt-1">
-                {inputValue} {unitLabels[fromUnit].split(' ')[1].replace('(', '').replace(')', '')} = {result} {unitLabels[toUnit].split(' ')[1].replace('(', '').replace(')', '')}
-              </div>
-            </motion.div>
+            </div>
           )}
-
-          {/* Action buttons */}
-          <div className="flex gap-3">
-            <Button 
-              variant="outline" 
-              onClick={resetConverter}
-              className="flex items-center gap-2"
-              data-testid="button-reset"
-            >
-              <RotateCcw className="h-4 w-4" />
-              Reset
-            </Button>
-          </div>
-
-          {/* Info section */}
-          <Alert>
-            <Info className="h-4 w-4" />
-            <AlertDescription>
-              <strong>About Absorbed Dose:</strong> Absorbed dose measures the energy deposited by ionizing radiation 
-              per unit mass of material. The gray (Gy) is the SI unit, equal to one joule per kilogram. 
-              The older unit rad equals 0.01 Gy. This measurement is crucial for radiation therapy, nuclear safety, 
-              and medical imaging. Unlike exposure, absorbed dose quantifies energy actually absorbed by tissue or matter, 
-              making it essential for biological effect calculations.
-            </AlertDescription>
-          </Alert>
         </div>
       </CardContent>
+
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-blue-50/30 dark:from-gray-900 dark:to-blue-950/30 rounded-b-2xl">
+        <Button
+          variant="outline"
+          onClick={resetConverter}
+          className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
+        >
+          <RotateCcw className="h-4 w-4" /> Reset Converter
+        </Button>
+        
+        <div className="text-sm text-center sm:text-right text-muted-foreground">
+          <div className="font-medium">Accurate dose conversions</div>
+          <div className="text-xs mt-1">Supports SI, common, and energy-based units</div>
+        </div>
+      </CardFooter>
     </Card>
   );
 }

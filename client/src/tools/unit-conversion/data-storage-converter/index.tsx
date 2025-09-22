@@ -1,348 +1,388 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ArrowRightLeft, RotateCcw, Info, Database } from "lucide-react";
+import { HardDrive, ArrowRightLeft, RotateCcw, Info, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-// Data storage conversion factors (to bits)
 const conversionFactors = {
-  bit: 1,
-  kilobit: 1000,
-  megabit: 1000000,
-  gigabit: 1000000000,
-  terabit: 1000000000000,
-  petabit: 1000000000000000,
-  exabit: 1000000000000000000,
-  kibibit: 1024,
-  mebibit: 1048576,
-  gibibit: 1073741824,
-  tebibit: 1099511627776,
-  pebibit: 1125899906842624,
-  exbibit: 1152921504606846976,
-  byte: 8,
-  kilobyte: 8000,
-  megabyte: 8000000,
-  gigabyte: 8000000000,
-  terabyte: 8000000000000,
-  petabyte: 8000000000000000,
-  exabyte: 8000000000000000000,
-  kibibyte: 8192,
-  mebibyte: 8388608,
-  gibibyte: 8589934592,
-  tebibyte: 8796093022208,
-  pebibyte: 9007199254740992,
-  exbibyte: 9223372036854775808
+    bit: 1,
+    nibble: 4,
+    byte: 8,
+    character: 8,
+    word: 16,
+    'mapm-word': 32,
+    'quadruple-word': 64,
+    block: 4096,
+    kilobit: 1000,
+    kilobyte: 8000,
+    'kilobyte-103-bytes': 8000,
+    megabit: 1e6,
+    megabyte: 8e6,
+    'megabyte-106-bytes': 8e6,
+    gigabit: 1e9,
+    gigabyte: 8e9,
+    'gigabyte-109-bytes': 8e9,
+    terabit: 1e12,
+    terabyte: 8e12,
+    'terabyte-1012-bytes': 8e12,
+    petabit: 1e15,
+    petabyte: 8e15,
+    'petabyte-1015-bytes': 8e15,
+    exabit: 1e18,
+    exabyte: 8e18,
+    'exabyte-1018-bytes': 8e18,
+    'floppy-disk-3-5-dd': 5888000,
+    'floppy-disk-3-5-hd': 11776000,
+    'floppy-disk-3-5-ed': 23552000,
+    'floppy-disk-5-25-dd': 2944000,
+    'floppy-disk-5-25-hd': 9824000,
+    'zip-100': 800000000,
+    'zip-250': 2000000000,
+    'jaz-1gb': 8e9,
+    'jaz-2gb': 1.6e10,
+    'cd-74-minute': 5292000000,
+    'cd-80-minute': 5760000000,
+    'dvd-1-layer-1-side': 3.76e10,
+    'dvd-2-layer-1-side': 7.12e10,
+    'dvd-1-layer-2-side': 7.52e10,
+    'dvd-2-layer-2-side': 1.424e11,
 };
 
-// Type for data storage units
+const unitLabels = {
+    bit: "bit [b]",
+    nibble: "nibble",
+    byte: "byte [B]",
+    character: "character",
+    word: "word",
+    'mapm-word': "MAPM-word",
+    'quadruple-word': "quadruple-word",
+    block: "block",
+    kilobit: "kilobit [kb]",
+    kilobyte: "kilobyte [kB]",
+    'kilobyte-103-bytes': "kilobyte (10³ bytes)",
+    megabit: "megabit [Mb]",
+    megabyte: "megabyte [MB]",
+    'megabyte-106-bytes': "megabyte (10⁶ bytes)",
+    gigabit: "gigabit [Gb]",
+    gigabyte: "gigabyte [GB]",
+    'gigabyte-109-bytes': "gigabyte (10⁹ bytes)",
+    terabit: "terabit [Tb]",
+    terabyte: "terabyte [TB]",
+    'terabyte-1012-bytes': "terabyte (10¹² bytes)",
+    petabit: "petabit [Pb]",
+    petabyte: "petabyte [PB]",
+    'petabyte-1015-bytes': "petabyte (10¹⁵ bytes)",
+    exabit: "exabit [Eb]",
+    exabyte: "exabyte [EB]",
+    'exabyte-1018-bytes': "exabyte (10¹⁸ bytes)",
+    'floppy-disk-3-5-dd': "floppy disk (3.5\", DD)",
+    'floppy-disk-3-5-hd': "floppy disk (3.5\", HD)",
+    'floppy-disk-3-5-ed': "floppy disk (3.5\", ED)",
+    'floppy-disk-5-25-dd': "floppy disk (5.25\", DD)",
+    'floppy-disk-5-25-hd': "floppy disk (5.25\", HD)",
+    'zip-100': "Zip 100",
+    'zip-250': "Zip 250",
+    'jaz-1gb': "Jaz 1GB",
+    'jaz-2gb': "Jaz 2GB",
+    'cd-74-minute': "CD (74 minute)",
+    'cd-80-minute': "CD (80 minute)",
+    'dvd-1-layer-1-side': "DVD (1 layer, 1 side)",
+    'dvd-2-layer-1-side': "DVD (2 layer, 1 side)",
+    'dvd-1-layer-2-side': "DVD (1 layer, 2 side)",
+    'dvd-2-layer-2-side': "DVD (2 layer, 2 side)",
+};
+
+const unitCategories = {
+    common: {
+        name: "Common Units",
+        units: ["bit", "byte", "kilobyte", "megabyte", "gigabyte", "terabyte"],
+    },
+    standard: {
+        name: "Standard Units",
+        units: ["bit", "nibble", "byte", "character", "word", "mapm-word", "quadruple-word", "block", "kilobit", "kilobyte", "kilobyte-103-bytes", "megabit", "megabyte", "megabyte-106-bytes", "gigabit", "gigabyte", "gigabyte-109-bytes", "terabit", "terabyte", "terabyte-1012-bytes", "petabit", "petabyte", "petabyte-1015-bytes", "exabit", "exabyte", "exabyte-1018-bytes"],
+    },
+    storage: {
+        name: "Storage Devices",
+        units: ["floppy-disk-3-5-dd", "floppy-disk-3-5-hd", "floppy-disk-3-5-ed", "floppy-disk-5-25-dd", "floppy-disk-5-25-hd", "zip-100", "zip-250", "jaz-1gb", "jaz-2gb", "cd-74-minute", "cd-80-minute", "dvd-1-layer-1-side", "dvd-2-layer-1-side", "dvd-1-layer-2-side", "dvd-2-layer-2-side"],
+    },
+};
+
 type DataStorageUnit = keyof typeof conversionFactors;
 
-// Unit display names with abbreviations
-const unitLabels = {
-  bit: "Bit (b)",
-  kilobit: "Kilobit (kb)",
-  megabit: "Megabit (Mb)",
-  gigabit: "Gigabit (Gb)",
-  terabit: "Terabit (Tb)",
-  petabit: "Petabit (Pb)",
-  exabit: "Exabit (Eb)",
-  kibibit: "Kibibit (Kib)",
-  mebibit: "Mebibit (Mib)",
-  gibibit: "Gibibit (Gib)",
-  tebibit: "Tebibit (Tib)",
-  pebibit: "Pebibit (Pib)",
-  exbibit: "Exbibit (Eib)",
-  byte: "Byte (B)",
-  kilobyte: "Kilobyte (kB)",
-  megabyte: "Megabyte (MB)",
-  gigabyte: "Gigabyte (GB)",
-  terabyte: "Terabyte (TB)",
-  petabyte: "Petabyte (PB)",
-  exabyte: "Exabyte (EB)",
-  kibibyte: "Kibibyte (KiB)",
-  mebibyte: "Mebibyte (MiB)",
-  gibibyte: "Gibibyte (GiB)",
-  tebibyte: "Tebibyte (TiB)",
-  pebibyte: "Pebibyte (PiB)",
-  exbibyte: "Exbibyte (EiB)"
-};
-
-/**
- * Data Storage Converter Component
- * Allows users to convert between different units of digital storage
- */
 export default function DataStorageConverter() {
-  // State for input value, source and target units
-  const [inputValue, setInputValue] = useState<string>('');
-  const [fromUnit, setFromUnit] = useState<DataStorageUnit>('megabyte');
-  const [toUnit, setToUnit] = useState<DataStorageUnit>('gigabyte');
-  const [result, setResult] = useState<string>('');
-  const [error, setError] = useState<string | null>(null);
-  const [swapAnimation, setSwapAnimation] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+    const [fromUnit, setFromUnit] = useState<DataStorageUnit>('megabyte');
+    const [toUnit, setToUnit] = useState<DataStorageUnit>('gigabyte');
+    const [result, setResult] = useState('');
+    const [error, setError] = useState<string | null>(null);
+    const [swapAnimation, setSwapAnimation] = useState(false);
+    const [fromUnitOpen, setFromUnitOpen] = useState(false);
+    const [toUnitOpen, setToUnitOpen] = useState(false);
 
-  // Perform the conversion whenever inputs change
-  useEffect(() => {
-    convertDataStorage();
-  }, [inputValue, fromUnit, toUnit]);
+    useEffect(() => {
+        convertDataStorage();
+    }, [inputValue, fromUnit, toUnit]);
 
-  /**
-   * Convert from one data storage unit to another
-   */
-  const convertDataStorage = () => {
-    // Clear previous errors
-    setError(null);
-
-    // If input is empty, clear the result
-    if (!inputValue) {
-      setResult('');
-      return;
-    }
-
-    // Parse the input value
-    const value = parseFloat(inputValue);
-
-    // Validate the input is a number
-    if (isNaN(value)) {
-      setError('Please enter a valid number');
-      setResult('');
-      return;
-    }
-    
-    // Data storage cannot be negative
-    if (value < 0) {
-      setError('Data storage cannot be negative');
-      setResult('');
-      return;
-    }
-
-    // Perform conversion
-    // First convert to bits (base unit), then to target unit
-    const inBits = value * conversionFactors[fromUnit];
-    const converted = inBits / conversionFactors[toUnit];
-
-    // Format the result based on the magnitude for better readability
-    const roundedResult = formatResult(converted);
-    setResult(roundedResult);
-  };
-
-  /**
-   * Format number based on its magnitude
-   */
-  const formatResult = (num: number): string => {
-    if (num === 0) return "0";
-    
-    const absNum = Math.abs(num);
-    
-    if (absNum < 0.0000001) return num.toExponential(6);
-    if (absNum < 0.00001) return num.toFixed(10);
-    if (absNum < 0.0001) return num.toFixed(8);
-    if (absNum < 0.001) return num.toFixed(6);
-    if (absNum < 0.01) return num.toFixed(5);
-    if (absNum < 1) return num.toFixed(4);
-    if (absNum < 10) return num.toFixed(3);
-    if (absNum < 100) return num.toFixed(2);
-    if (absNum < 1000) return num.toFixed(1);
-    
-    return num.toFixed(0);
-  };
-
-  /**
-   * Swap the from and to units
-   */
-  const swapUnits = () => {
-    setSwapAnimation(true);
-    const temp = fromUnit;
-    setFromUnit(toUnit);
-    setToUnit(temp);
-    
-    // Reset animation state after animation completes
-    setTimeout(() => setSwapAnimation(false), 500);
-  };
-
-  /**
-   * Reset all fields to default
-   */
-  const resetConverter = () => {
-    setInputValue('');
-    setFromUnit('megabyte');
-    setToUnit('gigabyte');
-    setResult('');
-    setError(null);
-  };
-
-  // Generate the Select options grouped by category
-  const renderUnitOptions = () => {
-    const groups = {
-      "Decimal Bits": ["bit", "kilobit", "megabit", "gigabit", "terabit", "petabit", "exabit"],
-      "Binary Bits": ["bit", "kibibit", "mebibit", "gibibit", "tebibit", "pebibit", "exbibit"],
-      "Decimal Bytes": ["byte", "kilobyte", "megabyte", "gigabyte", "terabyte", "petabyte", "exabyte"],
-      "Binary Bytes": ["byte", "kibibyte", "mebibyte", "gibibyte", "tebibyte", "pebibyte", "exbibyte"]
+    const convertDataStorage = () => {
+        setError(null);
+        if (!inputValue) {
+            setResult('');
+            return;
+        }
+        const value = parseFloat(inputValue);
+        if (isNaN(value)) {
+            setError('Please enter a valid number');
+            setResult('');
+            return;
+        }
+        const inBits = value * conversionFactors[fromUnit];
+        const converted = inBits / conversionFactors[toUnit];
+        const roundedResult = formatResult(converted);
+        setResult(roundedResult);
     };
 
-    return Object.entries(groups).map(([groupName, units]) => (
-      <React.Fragment key={groupName}>
-        <SelectItem value={units[0]} disabled className="font-semibold text-primary">
-          {groupName}
-        </SelectItem>
-        {units.map(unit => (
-          <SelectItem key={unit} value={unit}>
-            {unitLabels[unit as DataStorageUnit]}
-          </SelectItem>
-        ))}
-      </React.Fragment>
-    ));
-  };
+    const formatResult = (num: number): string => {
+        if (Math.abs(num) < 0.0001 && num !== 0) {
+            return num.toExponential(6);
+        } else if (Math.abs(num) < 0.01 && num !== 0) {
+            return num.toFixed(6);
+        } else if (Math.abs(num) < 1 && num !== 0) {
+            return num.toFixed(4);
+        } else if (Math.abs(num) < 100) {
+            return num.toFixed(2);
+        } else if (Math.abs(num) < 10000) {
+            return num.toFixed(1);
+        } else {
+            return num.toPrecision(8);
+        }
+    };
 
-  return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg">
-      <CardHeader className="bg-primary/5 border-b">
-        <div className="flex items-center gap-3">
-          <Database className="h-6 w-6 text-primary" />
-          <div>
-            <CardTitle className="text-2xl">Data Storage Converter</CardTitle>
-            <CardDescription>
-              Convert between different units of digital data storage and memory
-            </CardDescription>
-          </div>
-        </div>
-      </CardHeader>
+    const swapUnits = () => {
+        setSwapAnimation(true);
+        const temp = fromUnit;
+        setFromUnit(toUnit);
+        setToUnit(temp);
+        setTimeout(() => setSwapAnimation(false), 500);
+    };
 
-      <CardContent className="pt-6">
-        <div className="space-y-6">
-          {/* Input value and unit selection */}
-          <div className="grid gap-6 sm:grid-cols-5">
-            <div className="sm:col-span-2">
-              <label htmlFor="storage-value" className="block text-sm font-medium mb-2">
-                Enter Value
-              </label>
-              <Input
-                id="storage-value"
-                type="number"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter data size"
-                className="w-full"
-              />
-            </div>
-            
-            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
-              <div className="sm:col-span-3">
-                <label htmlFor="from-unit" className="block text-sm font-medium mb-2">
-                  From
-                </label>
-                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as DataStorageUnit)}>
-                  <SelectTrigger id="from-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {renderUnitOptions()}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div className="flex justify-center items-center sm:col-span-1">
-                <motion.div
-                  animate={{ rotate: swapAnimation ? 360 : 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="icon"
-                    onClick={swapUnits}
-                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
-                  >
-                    <ArrowRightLeft className="h-4 w-4" />
-                    <span className="sr-only">Swap units</span>
-                  </Button>
-                </motion.div>
-              </div>
-              
-              <div className="sm:col-span-3">
-                <label htmlFor="to-unit" className="block text-sm font-medium mb-2">
-                  To
-                </label>
-                <Select value={toUnit} onValueChange={(value) => setToUnit(value as DataStorageUnit)}>
-                  <SelectTrigger id="to-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {renderUnitOptions()}
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </div>
+    const resetConverter = () => {
+        setInputValue('');
+        setFromUnit('megabyte');
+        setToUnit('gigabyte');
+        setResult('');
+        setError(null);
+    };
 
-          {/* Conversion Result */}
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">Result</h3>
-            <div className="flex items-center justify-between">
-              <div className="text-3xl font-bold">
-                {result ? (
-                  <>
-                    {result} <span className="text-lg font-normal">{unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '')}</span>
-                  </>
-                ) : (
-                  <span className="text-muted-foreground text-lg">— Enter a value to convert —</span>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Error Message */}
-          {error && (
-            <Alert variant="destructive">
-              <AlertDescription>{error}</AlertDescription>
-            </Alert>
-          )}
-
-          {/* Conversion Formula Display */}
-          {result && (
-            <div className="bg-muted/30 p-4 rounded-lg text-sm">
-              <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <span className="font-medium">Conversion Details:</span>
-                  <p className="text-muted-foreground mt-1">
-                    {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
-                  </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} ${unitLabels[toUnit]?.split(' ')[0]}`}
-                  </p>
+    return (
+        <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-950/30 dark:to-purple-950/30 rounded-2xl">
+            <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
+                <div className="flex items-center gap-4">
+                    <div className="p-3 bg-white/20 rounded-xl">
+                        <HardDrive className="h-8 w-8" />
+                    </div>
+                    <div>
+                        <CardTitle className="text-3xl font-bold">Data Storage Converter</CardTitle>
+                        <CardDescription className="text-blue-100">
+                            Convert between various units of digital data storage
+                        </CardDescription>
+                    </div>
                 </div>
-              </div>
-            </div>
-          )}
+            </CardHeader>
 
-          {/* Explanation of Decimal vs Binary units */}
-          <div className="bg-primary/5 p-4 rounded-lg text-xs">
-            <h4 className="font-medium mb-1">About Digital Storage Units:</h4>
-            <ul className="space-y-1 text-muted-foreground">
-              <li><strong>Decimal Units (kB, MB, GB):</strong> Base 10 - Powers of 1000 (1 kB = 1000 bytes)</li>
-              <li><strong>Binary Units (KiB, MiB, GiB):</strong> Base 2 - Powers of 1024 (1 KiB = 1024 bytes)</li>
-              <li>Storage manufacturers typically use decimal units, while operating systems often use binary units</li>
-            </ul>
-          </div>
-        </div>
-      </CardContent>
+            <CardContent className="p-8">
+                <div className="space-y-8">
+                    <div className="grid gap-8 lg:grid-cols-5">
+                        <div className="lg:col-span-2">
+                            <label htmlFor="data-value" className="block text-sm font-semibold mb-3 text-foreground">
+                                Enter Value
+                            </label>
+                            <Input
+                                id="data-value"
+                                type="number"
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                placeholder="Enter value"
+                                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                            />
+                        </div>
+                        
+                        <div className="lg:col-span-3 grid lg:grid-cols-7 gap-4 items-end">
+                            <div className="lg:col-span-3">
+                                <label className="block text-sm font-semibold mb-3 text-foreground">
+                                    From Unit
+                                </label>
+                                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                            variant="outline"
+                                            role="combobox"
+                                            aria-expanded={fromUnitOpen}
+                                            className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                                        >
+                                            {fromUnit ? unitLabels[fromUnit] : "Select unit..."}
+                                            <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-80 p-0">
+                                        <Command>
+                                            <CommandInput placeholder="Search units..." />
+                                            <CommandEmpty>No unit found.</CommandEmpty>
+                                            <CommandList className="max-h-80">
+                                                {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                                                    <CommandGroup key={categoryKey} heading={category.name}>
+                                                        {category.units
+                                                            .filter(unit => unitLabels[unit as DataStorageUnit])
+                                                            .map((unit) => (
+                                                                <CommandItem
+                                                                    key={unit}
+                                                                    value={`${unit} ${unitLabels[unit as DataStorageUnit]}`}
+                                                                    onSelect={() => {
+                                                                        setFromUnit(unit as DataStorageUnit);
+                                                                        setFromUnitOpen(false);
+                                                                    }}
+                                                                >
+                                                                    {unitLabels[unit as DataStorageUnit]}
+                                                                </CommandItem>
+                                                            ))
+                                                        }
+                                                    </CommandGroup>
+                                                ))}
+                                            </CommandList>
+                                        </Command>
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+                            
+                            <div className="flex justify-center items-center lg:col-span-1">
+                                <motion.div
+                                    animate={{ rotate: swapAnimation ? 360 : 0 }}
+                                    transition={{ duration: 0.5 }}
+                                >
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="icon"
+                                        onClick={swapUnits}
+                                        className="rounded-full h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-500 border-0 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                                    >
+                                        <ArrowRightLeft className="h-5 w-5" />
+                                        <span className="sr-only">Swap units</span>
+                                    </Button>
+                                </motion.div>
+                            </div>
+                            
+                            <div className="lg:col-span-3">
+                                <label className="block text-sm font-semibold mb-3 text-foreground">
+                                    To Unit
+                                </label>
+                                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                            variant="outline"
+                                            role="combobox"
+                                            aria-expanded={toUnitOpen}
+                                            className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                                        >
+                                            {toUnit ? unitLabels[toUnit] : "Select unit..."}
+                                            <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-80 p-0">
+                                        <Command>
+                                            <CommandInput placeholder="Search units..." />
+                                            <CommandEmpty>No unit found.</CommandEmpty>
+                                            <CommandList className="max-h-80">
+                                                {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                                                    <CommandGroup key={categoryKey} heading={category.name}>
+                                                        {category.units
+                                                            .filter(unit => unitLabels[unit as DataStorageUnit])
+                                                            .map((unit) => (
+                                                                <CommandItem
+                                                                    key={unit}
+                                                                    value={`${unit} ${unitLabels[unit as DataStorageUnit]}`}
+                                                                    onSelect={() => {
+                                                                        setToUnit(unit as DataStorageUnit);
+                                                                        setToUnitOpen(false);
+                                                                    }}
+                                                                >
+                                                                    {unitLabels[unit as DataStorageUnit]}
+                                                                </CommandItem>
+                                                            ))
+                                                        }
+                                                    </CommandGroup>
+                                                ))}
+                                            </CommandList>
+                                        </Command>
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+                        </div>
+                    </div>
 
-      <CardFooter className="flex justify-between border-t p-4 bg-muted/10">
-        <Button
-          variant="outline"
-          onClick={resetConverter}
-          className="gap-2"
-        >
-          <RotateCcw className="h-4 w-4" /> Reset
-        </Button>
-        
-        <div className="text-xs text-muted-foreground">
-          Accurate conversions between decimal and binary storage units
-        </div>
-      </CardFooter>
-    </Card>
-  );
+                    <div className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 dark:from-green-950/20 dark:via-blue-950/20 dark:to-purple-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+                        <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
+                        <div className="flex items-center justify-between">
+                            <div className="text-4xl font-bold">
+                                {result ? (
+                                    <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                                        <span className="text-green-600 dark:text-green-400">{result}</span>
+                                        <span className="text-lg font-normal text-muted-foreground">
+                                            {unitLabels[toUnit]?.split(' ')[1]?.replace(/[\[\]]/g, '') || unitLabels[toUnit]}
+                                        </span>
+                                    </div>
+                                ) : (
+                                    <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+
+                    {error && (
+                        <Alert variant="destructive">
+                            <AlertDescription>{error}</AlertDescription>
+                        </Alert>
+                    )}
+
+                    {result && !error && (
+                        <div className="bg-blue-50/50 dark:bg-blue-950/20 p-5 rounded-xl border border-blue-200 dark:border-blue-800 text-sm">
+                            <div className="flex items-start gap-3">
+                                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                                    <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                                </div>
+                                <div className="flex-1">
+                                    <span className="font-semibold text-blue-900 dark:text-blue-100">Conversion Details:</span>
+                                    <p className="text-blue-700 dark:text-blue-300 mt-2 font-medium">
+                                        {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
+                                    </p>
+                                    <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 bg-blue-100/50 dark:bg-blue-900/30 p-2 rounded-lg">
+                                        <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toPrecision(6)} {unitLabels[toUnit]?.split(' ')[0]}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </CardContent>
+
+            <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-blue-50/30 dark:from-gray-900 dark:to-blue-950/30 rounded-b-2xl">
+                <Button
+                    variant="outline"
+                    onClick={resetConverter}
+                    className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
+                >
+                    <RotateCcw className="h-4 w-4" /> Reset Converter
+                </Button>
+                
+                <div className="text-sm text-center sm:text-right text-muted-foreground">
+                    <div className="font-medium">Convert between 40+ data storage units</div>
+                    <div className="text-xs mt-1">Includes standard units and storage device capacities</div>
+                </div>
+            </CardFooter>
+        </Card>
+    );
 }

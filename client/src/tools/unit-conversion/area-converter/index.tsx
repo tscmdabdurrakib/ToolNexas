@@ -1,54 +1,115 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ArrowRightLeft, RotateCcw, Info, Square } from "lucide-react";
+import { Square, ArrowRightLeft, RotateCcw, Info, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-// Area conversion factors (to square meters)
+// Define unit conversion factors (to square meter as base unit)
 const conversionFactors = {
-  squareMeter: 1,
-  squareKilometer: 1000000,
-  squareCentimeter: 0.0001,
-  squareMillimeter: 0.000001,
-  squareMicrometer: 0.000000000001,
+  'square-meter': 1,
+  'square-kilometer': 1e6,
+  'square-centimeter': 1e-4,
+  'square-millimeter': 1e-6,
+  'square-micrometer': 1e-12,
   hectare: 10000,
-  squareMile: 2589988.11,
-  squareYard: 0.83612736,
-  squareFoot: 0.09290304,
-  squareInch: 0.00064516,
-  acre: 4046.8564224,
-  arpent: 3418.89,
-  circularmil: 0.0000000005067,
-  township: 93239571.972,
-  section: 2589988.11,
-  homestead: 647497.027
+  'square-mile': 2.59e6,
+  'square-yard': 0.836127,
+  'square-foot': 0.092903,
+  'square-inch': 0.00064516,
+  'square-hectometer': 10000,
+  'square-dekameter': 100,
+  'square-decimeter': 0.01,
+  'square-nanometer': 1e-18,
+  are: 100,
+  barn: 1e-28,
+  'square-mile-us-survey': 2.59e6,
+  'square-foot-us-survey': 0.0929034,
+  'circular-inch': 0.000506707,
+  township: 9.324e7,
+  section: 2.59e6,
+  'acre-us-survey': 4046.87,
+  rood: 1011.71,
+  'square-chain': 404.686,
+  'square-rod': 25.2929,
+  'square-rod-us-survey': 25.29295,
+  'square-perch': 25.2929,
+  'square-pole': 25.2929,
+  'square-mil': 6.4516e-10,
+  'circular-mil': 5.06707e-10,
+  homestead: 647500,
+  sabin: 0.092903,
+  arpent: 3439.08,
+  cuerda: 3930.39,
+  plaza: 6400,
+  'varas-castellanas-cuad': 0.698737,
+  'varas-conuqueras-cuad': 6.28863,
+  'electron-cross-section': 6.65246e-29,
+};
+
+// Unit display names with abbreviations and categories
+const unitLabels = {
+  'square-meter': "Square meter [m²]",
+  'square-kilometer': "Square kilometer [km²]",
+  'square-centimeter': "Square centimeter [cm²]",
+  'square-millimeter': "Square millimeter [mm²]",
+  'square-micrometer': "Square micrometer [µm²]",
+  hectare: "Hectare [ha]",
+  'square-mile': "Square mile [mi²]",
+  'square-yard': "Square yard [yd²]",
+  'square-foot': "Square foot [ft²]",
+  'square-inch': "Square inch [in²]",
+  'square-hectometer': "Square hectometer [hm²]",
+  'square-dekameter': "Square dekameter [dam²]",
+  'square-decimeter': "Square decimeter [dm²]",
+  'square-nanometer': "Square nanometer [nm²]",
+  are: "Are [a]",
+  barn: "Barn [b]",
+  'square-mile-us-survey': "Square mile (US survey)",
+  'square-foot-us-survey': "Square foot (US survey)",
+  'circular-inch': "Circular inch",
+  township: "Township",
+  section: "Section",
+  'acre-us-survey': "Acre (US survey)",
+  rood: "Rood",
+  'square-chain': "Square chain [ch²]",
+  'square-rod': "Square rod",
+  'square-rod-us-survey': "Square rod (US survey)",
+  'square-perch': "Square perch",
+  'square-pole': "Square pole",
+  'square-mil': "Square mil [mil²]",
+  'circular-mil': "Circular mil",
+  homestead: "Homestead",
+  sabin: "Sabin",
+  arpent: "Arpent",
+  cuerda: "Cuerda",
+  plaza: "Plaza",
+  'varas-castellanas-cuad': "Varas castellanas cuad",
+  'varas-conuqueras-cuad': "Varas conuqueras cuad",
+  'electron-cross-section': "Electron cross section",
+};
+
+// Unit categories for better organization
+const unitCategories = {
+  metric: {
+    name: "Metric",
+    units: ['square-meter', 'square-kilometer', 'square-centimeter', 'square-millimeter', 'square-micrometer', 'hectare', 'square-hectometer', 'square-dekameter', 'square-decimeter', 'square-nanometer', 'are', 'barn'],
+  },
+  us: {
+    name: "US/Imperial",
+    units: ['square-mile', 'square-yard', 'square-foot', 'square-inch', 'square-mile-us-survey', 'square-foot-us-survey', 'circular-inch', 'township', 'section', 'acre-us-survey', 'rood', 'square-chain', 'square-rod', 'square-rod-us-survey', 'square-perch', 'square-pole', 'square-mil', 'circular-mil', 'homestead'],
+  },
+  other: {
+    name: "Other",
+    units: ['sabin', 'arpent', 'cuerda', 'plaza', 'varas-castellanas-cuad', 'varas-conuqueras-cuad', 'electron-cross-section'],
+  },
 };
 
 // Type for Area units
 type AreaUnit = keyof typeof conversionFactors;
-
-// Unit display names with abbreviations
-const unitLabels = {
-  squareMeter: "Square Meter (m²)",
-  squareKilometer: "Square Kilometer (km²)",
-  squareCentimeter: "Square Centimeter (cm²)",
-  squareMillimeter: "Square Millimeter (mm²)",
-  squareMicrometer: "Square Micrometer (μm²)",
-  hectare: "Hectare (ha)",
-  squareMile: "Square Mile (mi²)",
-  squareYard: "Square Yard (yd²)",
-  squareFoot: "Square Foot (ft²)",
-  squareInch: "Square Inch (in²)",
-  acre: "Acre (ac)",
-  arpent: "Arpent (arpent)",
-  circularmil: "Circular Mil (cmil)",
-  township: "Township (twp)",
-  section: "Section (sec)",
-  homestead: "Homestead (hmsd)"
-};
 
 /**
  * Area Converter Component
@@ -57,11 +118,13 @@ const unitLabels = {
 export default function AreaConverter() {
   // State for input value, source and target units
   const [inputValue, setInputValue] = useState<string>('');
-  const [fromUnit, setFromUnit] = useState<AreaUnit>('squareMeter');
-  const [toUnit, setToUnit] = useState<AreaUnit>('squareFoot');
+  const [fromUnit, setFromUnit] = useState<AreaUnit>('square-meter');
+  const [toUnit, setToUnit] = useState<AreaUnit>('square-foot');
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [swapAnimation, setSwapAnimation] = useState(false);
+  const [fromUnitOpen, setFromUnitOpen] = useState(false);
+  const [toUnitOpen, setToUnitOpen] = useState(false);
 
   // Perform the conversion whenever inputs change
   useEffect(() => {
@@ -90,20 +153,12 @@ export default function AreaConverter() {
       setResult('');
       return;
     }
-    
-    // Area cannot be negative
-    if (value < 0) {
-      setError('Area cannot be negative');
-      setResult('');
-      return;
-    }
 
     // Perform conversion
-    // First convert to square meters (base unit), then to target unit
     const inSquareMeters = value * conversionFactors[fromUnit];
     const converted = inSquareMeters / conversionFactors[toUnit];
 
-    // Format the result based on the magnitude for better readability
+    // Format the result
     const roundedResult = formatResult(converted);
     setResult(roundedResult);
   };
@@ -112,21 +167,19 @@ export default function AreaConverter() {
    * Format number based on its magnitude
    */
   const formatResult = (num: number): string => {
-    if (num === 0) return "0";
-    
-    const absNum = Math.abs(num);
-    
-    if (absNum < 0.0000001) return num.toExponential(6);
-    if (absNum < 0.00001) return num.toFixed(10);
-    if (absNum < 0.0001) return num.toFixed(8);
-    if (absNum < 0.001) return num.toFixed(6);
-    if (absNum < 0.01) return num.toFixed(5);
-    if (absNum < 1) return num.toFixed(4);
-    if (absNum < 10) return num.toFixed(3);
-    if (absNum < 100) return num.toFixed(2);
-    if (absNum < 1000) return num.toFixed(1);
-    
-    return num.toFixed(0);
+    if (Math.abs(num) < 0.0001) {
+      return num.toExponential(6);
+    } else if (Math.abs(num) < 0.01) {
+      return num.toFixed(6);
+    } else if (Math.abs(num) < 1) {
+      return num.toFixed(4);
+    } else if (Math.abs(num) < 100) {
+      return num.toFixed(2);
+    } else if (Math.abs(num) < 10000) {
+      return num.toFixed(1);
+    } else {
+      return num.toFixed(0);
+    }
   };
 
   /**
@@ -138,7 +191,6 @@ export default function AreaConverter() {
     setFromUnit(toUnit);
     setToUnit(temp);
     
-    // Reset animation state after animation completes
     setTimeout(() => setSwapAnimation(false), 500);
   };
 
@@ -147,32 +199,34 @@ export default function AreaConverter() {
    */
   const resetConverter = () => {
     setInputValue('');
-    setFromUnit('squareMeter');
-    setToUnit('squareFoot');
+    setFromUnit('square-meter');
+    setToUnit('square-foot');
     setResult('');
     setError(null);
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg">
-      <CardHeader className="bg-primary/5 border-b">
-        <div className="flex items-center gap-3">
-          <Square className="h-6 w-6 text-primary" />
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-950/30 dark:to-purple-950/30 rounded-2xl">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 rounded-xl">
+            <Square className="h-8 w-8" />
+          </div>
           <div>
-            <CardTitle className="text-2xl">Area Converter</CardTitle>
-            <CardDescription>
-              Convert between different units of area and surface measurements
+            <CardTitle className="text-3xl font-bold">Area Converter</CardTitle>
+            <CardDescription className="text-blue-100">
+              Convert between various units of area with precision
             </CardDescription>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6">
-        <div className="space-y-6">
+      <CardContent className="p-8">
+        <div className="space-y-8">
           {/* Input value and unit selection */}
-          <div className="grid gap-6 sm:grid-cols-5">
-            <div className="sm:col-span-2">
-              <label htmlFor="area-value" className="block text-sm font-medium mb-2">
+          <div className="grid gap-8 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <label htmlFor="area-value" className="block text-sm font-semibold mb-3 text-foreground">
                 Enter Value
               </label>
               <Input
@@ -180,101 +234,142 @@ export default function AreaConverter() {
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter area"
-                className="w-full"
+                placeholder="Enter area value"
+                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                data-testid="input-area-value"
               />
             </div>
             
-            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
-              <div className="sm:col-span-3">
-                <label htmlFor="from-unit" className="block text-sm font-medium mb-2">
-                  From
+            <div className="lg:col-span-3 grid lg:grid-cols-7 gap-4 items-end">
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  From Unit
                 </label>
-                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as AreaUnit)}>
-                  <SelectTrigger id="from-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="squareMeter">Square Meter (m²)</SelectItem>
-                    <SelectItem value="squareKilometer">Square Kilometer (km²)</SelectItem>
-                    <SelectItem value="squareCentimeter">Square Centimeter (cm²)</SelectItem>
-                    <SelectItem value="squareMillimeter">Square Millimeter (mm²)</SelectItem>
-                    <SelectItem value="squareMicrometer">Square Micrometer (μm²)</SelectItem>
-                    <SelectItem value="hectare">Hectare (ha)</SelectItem>
-                    <SelectItem value="squareMile">Square Mile (mi²)</SelectItem>
-                    <SelectItem value="squareYard">Square Yard (yd²)</SelectItem>
-                    <SelectItem value="squareFoot">Square Foot (ft²)</SelectItem>
-                    <SelectItem value="squareInch">Square Inch (in²)</SelectItem>
-                    <SelectItem value="acre">Acre (ac)</SelectItem>
-                    <SelectItem value="arpent">Arpent</SelectItem>
-                    <SelectItem value="circularmil">Circular Mil (cmil)</SelectItem>
-                    <SelectItem value="township">Township (twp)</SelectItem>
-                    <SelectItem value="section">Section (sec)</SelectItem>
-                    <SelectItem value="homestead">Homestead (hmsd)</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={fromUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-from-unit"
+                    >
+                      {fromUnit ? unitLabels[fromUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as AreaUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as AreaUnit]}`}
+                                  onSelect={() => {
+                                    setFromUnit(unit as AreaUnit);
+                                    setFromUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as AreaUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
               
-              <div className="flex justify-center items-center sm:col-span-1">
+              <div className="flex justify-center items-center lg:col-span-1">
                 <motion.div
                   animate={{ rotate: swapAnimation ? 360 : 0 }}
                   transition={{ duration: 0.5 }}
                 >
                   <Button
                     type="button"
-                    variant="ghost"
+                    variant="outline"
                     size="icon"
                     onClick={swapUnits}
-                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
+                    className="rounded-full h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-500 border-0 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    data-testid="button-swap-units"
                   >
-                    <ArrowRightLeft className="h-4 w-4" />
+                    <ArrowRightLeft className="h-5 w-5" />
                     <span className="sr-only">Swap units</span>
                   </Button>
                 </motion.div>
               </div>
               
-              <div className="sm:col-span-3">
-                <label htmlFor="to-unit" className="block text-sm font-medium mb-2">
-                  To
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  To Unit
                 </label>
-                <Select value={toUnit} onValueChange={(value) => setToUnit(value as AreaUnit)}>
-                  <SelectTrigger id="to-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="squareMeter">Square Meter (m²)</SelectItem>
-                    <SelectItem value="squareKilometer">Square Kilometer (km²)</SelectItem>
-                    <SelectItem value="squareCentimeter">Square Centimeter (cm²)</SelectItem>
-                    <SelectItem value="squareMillimeter">Square Millimeter (mm²)</SelectItem>
-                    <SelectItem value="squareMicrometer">Square Micrometer (μm²)</SelectItem>
-                    <SelectItem value="hectare">Hectare (ha)</SelectItem>
-                    <SelectItem value="squareMile">Square Mile (mi²)</SelectItem>
-                    <SelectItem value="squareYard">Square Yard (yd²)</SelectItem>
-                    <SelectItem value="squareFoot">Square Foot (ft²)</SelectItem>
-                    <SelectItem value="squareInch">Square Inch (in²)</SelectItem>
-                    <SelectItem value="acre">Acre (ac)</SelectItem>
-                    <SelectItem value="arpent">Arpent</SelectItem>
-                    <SelectItem value="circularmil">Circular Mil (cmil)</SelectItem>
-                    <SelectItem value="township">Township (twp)</SelectItem>
-                    <SelectItem value="section">Section (sec)</SelectItem>
-                    <SelectItem value="homestead">Homestead (hmsd)</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={toUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-to-unit"
+                    >
+                      {toUnit ? unitLabels[toUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as AreaUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as AreaUnit]}`}
+                                  onSelect={() => {
+                                    setToUnit(unit as AreaUnit);
+                                    setToUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as AreaUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
 
           {/* Conversion Result */}
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">Result</h3>
+          <div className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 dark:from-green-950/20 dark:via-blue-950/20 dark:to-purple-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+            <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
             <div className="flex items-center justify-between">
-              <div className="text-3xl font-bold">
+              <div className="text-4xl font-bold" data-testid="result-display">
                 {result ? (
-                  <>
-                    {result} <span className="text-lg font-normal">{unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '')}</span>
-                  </>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <span className="text-green-600 dark:text-green-400">{result}</span>
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {unitLabels[toUnit]?.split(' ')[1]?.replace(/[\[\]]/g, '') || unitLabels[toUnit]}
+                    </span>
+                  </div>
                 ) : (
-                  <span className="text-muted-foreground text-lg">— Enter a value to convert —</span>
+                  <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
                 )}
               </div>
             </div>
@@ -289,16 +384,18 @@ export default function AreaConverter() {
 
           {/* Conversion Formula Display */}
           {result && (
-            <div className="bg-muted/30 p-4 rounded-lg text-sm">
-              <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <span className="font-medium">Conversion Details:</span>
-                  <p className="text-muted-foreground mt-1">
+            <div className="bg-blue-50/50 dark:bg-blue-950/20 p-5 rounded-xl border border-blue-200 dark:border-blue-800 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                  <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-semibold text-blue-900 dark:text-blue-100">Conversion Details:</span>
+                  <p className="text-blue-700 dark:text-blue-300 mt-2 font-medium">
                     {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(6)} ${unitLabels[toUnit]?.split(' ')[0]}`}
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 bg-blue-100/50 dark:bg-blue-900/30 p-2 rounded-lg">
+                    <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} {unitLabels[toUnit]?.split(' ')[0]}
                   </p>
                 </div>
               </div>
@@ -307,17 +404,19 @@ export default function AreaConverter() {
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between border-t p-4 bg-muted/10">
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-blue-50/30 dark:from-gray-900 dark:to-blue-950/30 rounded-b-2xl">
         <Button
           variant="outline"
           onClick={resetConverter}
-          className="gap-2"
+          className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
+          data-testid="button-reset"
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> Reset Converter
         </Button>
         
-        <div className="text-xs text-muted-foreground">
-          Accurate conversions between metric and imperial area units
+        <div className="text-sm text-center sm:text-right text-muted-foreground">
+          <div className="font-medium">Precision conversions for all area units</div>
+          <div className="text-xs mt-1">Including metric, US/imperial, and other units</div>
         </div>
       </CardFooter>
     </Card>

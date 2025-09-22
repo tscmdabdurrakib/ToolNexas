@@ -54,6 +54,17 @@ export const toolVisits = pgTable("tool_visits", {
 export const insertToolVisitSchema = createInsertSchema(toolVisits);
 export type InsertToolVisit = z.infer<typeof insertToolVisitSchema>;
 export type ToolVisit = typeof toolVisits.$inferSelect;
+// Website visits tracking
+export const websiteVisits = pgTable("website_visits", {
+  id: serial("id").primaryKey(),
+  sessionId: text("session_id"),
+  visitedAt: timestamp("visited_at").defaultNow().notNull(),
+});
+
+export const insertWebsiteVisitSchema = createInsertSchema(websiteVisits);
+export type InsertWebsiteVisit = z.infer<typeof insertWebsiteVisitSchema>;
+export type WebsiteVisit = typeof websiteVisits.$inferSelect;
+
 
 export const toolsData: Tool[] = [
   // Sample tools that would be in the database

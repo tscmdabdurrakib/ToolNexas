@@ -1,71 +1,205 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Scale, RefreshCw, Copy, Check, Info, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Scale, ArrowRightLeft, RotateCcw, Info, Search } from "lucide-react";
+import { motion } from "framer-motion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-// Define conversion factors (to grams as base unit)
+// Define unit conversion factors (to kilogram as base unit)
 const conversionFactors = {
-  gram: 1,
-  kilogram: 1000,
-  milligram: 0.001,
-  metricTon: 1000000,
-  pound: 453.59237,
-  ounce: 28.3495231,
-  stone: 6350.29318,
-  // Additional units for more comprehensive conversion
-  tonne: 1000000, // Metric ton alternative name
-  imperialTon: 1016046.9088,
-  usTon: 907184.74,
-  carat: 0.2,
-  grain: 0.06479891
+  // Metric System
+  kilogram: 1,
+  gram: 0.001,
+  milligram: 1e-6,
+  'ton-metric': 1000,
+  exagram: 1e15,
+  petagram: 1e12,
+  teragram: 1e9,
+  gigagram: 1e6,
+  megagram: 1000,
+  hectogram: 0.1,
+  dekagram: 0.01,
+  decigram: 0.0001,
+  centigram: 1e-5,
+  microgram: 1e-9,
+  nanogram: 1e-12,
+  picogram: 1e-15,
+  femtogram: 1e-18,
+  attogram: 1e-21,
+  
+  // Imperial/US System
+  pound: 0.45359237,
+  ounce: 0.0283495231,
+  'ton-short-us': 907.18474,
+  'ton-long-uk': 1016.0469088,
+  kilopound: 453.59237,
+  slug: 14.5939,
+  'pound-force-square-second-foot': 14.5939,
+  'pound-troy': 0.3732417216,
+  poundal: 0.0140539,
+  'ton-assay-us': 0.0291667,
+  'ton-assay-uk': 0.0326667,
+  'kiloton-metric': 1000000,
+  'quintal-metric': 100,
+  'hundredweight-us': 45.359237,
+  'hundredweight-uk': 50.80234544,
+  'quarter-us': 11.33980925,
+  'quarter-uk': 12.70058636,
+  'stone-us': 5.669904625,
+  'stone-uk': 6.35029318,
+  tonne: 1000,
+  pennyweight: 0.00155517,
+  'scruple-apothecary': 0.00129598,
+  grain: 0.0000647989,
+  
+  // Other
+  carat: 0.0002,
+  'atomic-mass-unit': 1.66054e-27,
+  dalton: 1.66054e-27,
+  'kilogram-force-square-second-meter': 9.80665,
+  gamma: 1e-9,
+  
+  // Biblical
+  'talent-biblical-hebrew': 34.2,
+  'mina-biblical-hebrew': 0.57,
+  'shekel-biblical-hebrew': 0.0114,
+  'bekan-biblical-hebrew': 0.0057,
+  'gerah-biblical-hebrew': 0.00057,
+  'talent-biblical-greek': 20.4,
+  'mina-biblical-greek': 0.34,
+  'tetradrachma-biblical-greek': 0.0136,
+  'didrachma-biblical-greek': 0.0068,
+  'drachma-biblical-greek': 0.0034,
+  'denarius-biblical-roman': 0.00385,
+  'assarion-biblical-roman': 0.00024,
+  'quadrans-biblical-roman': 0.00006,
+  'lepton-biblical-roman': 0.00003,
+  
+  // Scientific
+  'planck-mass': 2.17643e-8,
+  'electron-mass-rest': 9.1093837e-31,
+  'muon-mass': 1.8835316e-28,
+  'proton-mass': 1.6726219e-27,
+  'neutron-mass': 1.6749275e-27,
+  'deuteron-mass': 3.3435838e-27,
+  'earth-mass': 5.972e24,
+  'sun-mass': 1.989e30,
 };
 
-// Type for Weight/Mass units
-type WeightUnit = keyof typeof conversionFactors;
-
-// Unit display names with abbreviations
+// Unit display names with abbreviations and categories
 const unitLabels = {
-  gram: "Gram (g)",
+  // Metric System
   kilogram: "Kilogram (kg)",
+  gram: "Gram (g)",
   milligram: "Milligram (mg)",
-  metricTon: "Metric Ton (t)",
-  pound: "Pound (lb)",
+  'ton-metric': "Ton (metric) (t)",
+  exagram: "Exagram (Eg)",
+  petagram: "Petagram (Pg)",
+  teragram: "Teragram (Tg)",
+  gigagram: "Gigagram (Gg)",
+  megagram: "Megagram (Mg)",
+  hectogram: "Hectogram (hg)",
+  dekagram: "Dekagram (dag)",
+  decigram: "Decigram (dg)",
+  centigram: "Centigram (cg)",
+  microgram: "Microgram (µg)",
+  nanogram: "Nanogram (ng)",
+  picogram: "Picogram (pg)",
+  femtogram: "Femtogram (fg)",
+  attogram: "Attogram (ag)",
+  
+  // Imperial/US System
+  pound: "Pound (lbs)",
   ounce: "Ounce (oz)",
-  stone: "Stone (st)",
-  tonne: "Tonne (t)",
-  imperialTon: "Imperial Ton (long ton)",
-  usTon: "US Ton (short ton)",
-  carat: "Carat (ct)",
-  grain: "Grain (gr)"
+  'ton-short-us': "Ton (short, US)",
+  'ton-long-uk': "Ton (long, UK)",
+  kilopound: "Kilopound (kip)",
+  slug: "Slug",
+  'pound-force-square-second-foot': "Pound-force square second/foot",
+  'pound-troy': "Pound (troy or apothecary)",
+  poundal: "Poundal (pdl)",
+  'ton-assay-us': "Ton (assay) (US) [AT (US)]",
+  'ton-assay-uk': "Ton (assay) (UK) [AT (UK)]",
+  'kiloton-metric': "Kiloton (metric) [kt]",
+  'quintal-metric': "Quintal (metric) [cwt]",
+  'hundredweight-us': "Hundredweight (US)",
+  'hundredweight-uk': "Hundredweight (UK)",
+  'quarter-us': "Quarter (US) [qr (US)]",
+  'quarter-uk': "Quarter (UK) [qr (UK)]",
+  'stone-us': "Stone (US)",
+  'stone-uk': "Stone (UK)",
+  tonne: "Tonne [t]",
+  pennyweight: "Pennyweight [pwt]",
+  'scruple-apothecary': "Scruple (apothecary) [s.ap]",
+  grain: "Grain [gr]",
+  
+  // Other
+  carat: "Carat (car, ct)",
+  'atomic-mass-unit': "Atomic mass unit (u)",
+  dalton: "Dalton",
+  'kilogram-force-square-second-meter': "Kilogram-force-square-second/meter",
+  gamma: "Gamma",
+  
+  // Biblical
+  'talent-biblical-hebrew': "Talent (Biblical Hebrew)",
+  'mina-biblical-hebrew': "Mina (Biblical Hebrew)",
+  'shekel-biblical-hebrew': "Shekel (Biblical Hebrew)",
+  'bekan-biblical-hebrew': "Bekan (Biblical Hebrew)",
+  'gerah-biblical-hebrew': "Gerah (Biblical Hebrew)",
+  'talent-biblical-greek': "Talent (Biblical Greek)",
+  'mina-biblical-greek': "Mina (Biblical Greek)",
+  'tetradrachma-biblical-greek': "Tetradrachma (Biblical Greek)",
+  'didrachma-biblical-greek': "Didrachma (Biblical Greek)",
+  'drachma-biblical-greek': "Drachma (Biblical Greek)",
+  'denarius-biblical-roman': "Denarius (Biblical Roman)",
+  'assarion-biblical-roman': "Assarion (Biblical Roman)",
+  'quadrans-biblical-roman': "Quadrans (Biblical Roman)",
+  'lepton-biblical-roman': "Lepton (Biblical Roman)",
+  
+  // Scientific
+  'planck-mass': "Planck mass",
+  'electron-mass-rest': "Electron mass (rest)",
+  'muon-mass': "Muon mass",
+  'proton-mass': "Proton mass",
+  'neutron-mass': "Neutron mass",
+  'deuteron-mass': "Deuteron mass",
+  'earth-mass': "Earth’s mass",
+  'sun-mass': "Sun’s mass",
 };
 
-// Interface for common conversion examples
-interface CommonConversion {
-  from: WeightUnit;
-  to: WeightUnit;
-  value: number;
-  result: number;
-}
+// Unit categories for better organization
+const unitCategories = {
+  metric: {
+    name: "Metric",
+    units: ["kilogram", "gram", "milligram", "ton-metric", "exagram", "petagram", "teragram", "gigagram", "megagram", "hectogram", "dekagram", "decigram", "centigram", "microgram", "nanogram", "picogram", "femtogram", "attogram"],
+  },
+  imperial: {
+    name: "Imperial/US",
+    units: ["pound", "ounce", "ton-short-us", "ton-long-uk", "kilopound", "slug", "pound-force-square-second-foot", "pound-troy", "poundal", "ton-assay-us", "ton-assay-uk", "kiloton-metric", "quintal-metric", "hundredweight-us", "hundredweight-uk", "quarter-us", "quarter-uk", "stone-us", "stone-uk", "tonne", "pennyweight", "scruple-apothecary", "grain"],
+  },
+  other: {
+    name: "Other",
+    units: ["carat", "atomic-mass-unit", "dalton", "kilogram-force-square-second-meter", "gamma"],
+  },
+  biblical: {
+    name: "Biblical",
+    units: ["talent-biblical-hebrew", "mina-biblical-hebrew", "shekel-biblical-hebrew", "bekan-biblical-hebrew", "gerah-biblical-hebrew", "talent-biblical-greek", "mina-biblical-greek", "tetradrachma-biblical-greek", "didrachma-biblical-greek", "drachma-biblical-greek", "denarius-biblical-roman", "assarion-biblical-roman", "quadrans-biblical-roman", "lepton-biblical-roman"],
+  },
+  scientific: {
+    name: "Scientific",
+    units: ["planck-mass", "electron-mass-rest", "muon-mass", "proton-mass", "neutron-mass", "deuteron-mass", "earth-mass", "sun-mass"],
+  },
+};
 
-// Common conversion references for educational purposes
-const commonConversions: CommonConversion[] = [
-  { from: "kilogram", to: "pound", value: 1, result: 2.20462 },
-  { from: "pound", to: "kilogram", value: 1, result: 0.453592 },
-  { from: "gram", to: "ounce", value: 28, result: 0.987563 },
-  { from: "stone", to: "kilogram", value: 1, result: 6.35029 },
-  { from: "ounce", to: "gram", value: 1, result: 28.3495 }
-];
+// Type for Weight units
+type WeightUnit = keyof typeof conversionFactors;
 
 /**
  * Weight and Mass Converter Component
- * A modern, user-friendly tool for converting between different weight and mass units
+ * Allows users to convert between different weight and mass units
  */
 export default function WeightMassConverter() {
   // State for input value, source and target units
@@ -74,34 +208,21 @@ export default function WeightMassConverter() {
   const [toUnit, setToUnit] = useState<WeightUnit>('pound');
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
-  const [copied, setCopied] = useState(false);
-  const [animateResult, setAnimateResult] = useState(false);
+  const [swapAnimation, setSwapAnimation] = useState(false);
+  const [fromUnitOpen, setFromUnitOpen] = useState(false);
+  const [toUnitOpen, setToUnitOpen] = useState(false);
 
   // Perform the conversion whenever inputs change
   useEffect(() => {
     convertWeight();
   }, [inputValue, fromUnit, toUnit]);
 
-  // Animated hint tooltip for better UX
-  const [showHint, setShowHint] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (!inputValue && !result) {
-        setShowHint(true);
-        setTimeout(() => setShowHint(false), 5000);
-      }
-    }, 3000);
-    
-    return () => clearTimeout(timer);
-  }, [inputValue, result]);
-
   /**
-   * Convert from one weight/mass unit to another
+   * Convert from one weight unit to another
    */
   const convertWeight = () => {
-    // Clear previous errors and animation states
+    // Clear previous errors
     setError(null);
-    setAnimateResult(false);
 
     // If input is empty, clear the result
     if (!inputValue) {
@@ -119,44 +240,31 @@ export default function WeightMassConverter() {
       return;
     }
 
-    // Check for negative values (optional validation)
-    if (value < 0) {
-      setError('Weight/mass cannot be negative');
-      setResult('');
-      return;
-    }
-
     // Perform conversion
-    // First convert to grams (base unit), then to target unit
-    const inGrams = value * conversionFactors[fromUnit];
-    const converted = inGrams / conversionFactors[toUnit];
+    const inKilograms = value * conversionFactors[fromUnit];
+    const converted = inKilograms / conversionFactors[toUnit];
 
-    // Format the result based on the magnitude for better readability
+    // Format the result
     const roundedResult = formatResult(converted);
     setResult(roundedResult);
-    
-    // Trigger animation for the new result
-    setAnimateResult(true);
   };
 
   /**
    * Format number based on its magnitude
    */
   const formatResult = (num: number): string => {
-    if (Math.abs(num) < 0.000001) {
+    if (Math.abs(num) < 0.0001) {
       return num.toExponential(6);
-    } else if (Math.abs(num) < 0.0001) {
-      return num.toFixed(8);
     } else if (Math.abs(num) < 0.01) {
       return num.toFixed(6);
     } else if (Math.abs(num) < 1) {
       return num.toFixed(4);
     } else if (Math.abs(num) < 100) {
-      return num.toFixed(3);
-    } else if (Math.abs(num) < 10000) {
       return num.toFixed(2);
-    } else {
+    } else if (Math.abs(num) < 10000) {
       return num.toFixed(1);
+    } else {
+      return num.toFixed(0);
     }
   };
 
@@ -164,14 +272,12 @@ export default function WeightMassConverter() {
    * Swap the from and to units
    */
   const swapUnits = () => {
+    setSwapAnimation(true);
     const temp = fromUnit;
     setFromUnit(toUnit);
     setToUnit(temp);
     
-    // If we have a result, also swap the input value
-    if (result && !error) {
-      setInputValue(result);
-    }
+    setTimeout(() => setSwapAnimation(false), 500);
   };
 
   /**
@@ -183,50 +289,30 @@ export default function WeightMassConverter() {
     setToUnit('pound');
     setResult('');
     setError(null);
-    setCopied(false);
-  };
-
-  /**
-   * Copy result to clipboard
-   */
-  const copyToClipboard = () => {
-    if (!result) return;
-    
-    // Extract abbreviations from unit labels
-    const fromUnitAbbr = unitLabels[fromUnit as keyof typeof unitLabels].match(/\(([^)]+)\)/)?.[1] || fromUnit;
-    const toUnitAbbr = unitLabels[toUnit as keyof typeof unitLabels].match(/\(([^)]+)\)/)?.[1] || toUnit;
-    
-    // Create text to copy (with units)
-    const textToCopy = `${inputValue} ${fromUnitAbbr} = ${result} ${toUnitAbbr}`;
-    
-    navigator.clipboard.writeText(textToCopy).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg overflow-hidden border border-border/40">
-      <CardHeader className="bg-gradient-to-r from-primary/5 to-primary/10 border-b border-border/20">
-        <div className="flex items-center gap-3">
-          <div className="p-2 rounded-full bg-white/10 backdrop-blur-sm">
-            <Scale className="h-6 w-6 text-primary" />
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-950/30 dark:to-purple-950/30 rounded-2xl">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 rounded-xl">
+            <Scale className="h-8 w-8" />
           </div>
           <div>
-            <CardTitle className="text-2xl">Weight & Mass Converter</CardTitle>
-            <CardDescription>
-              Convert between various weight and mass units with precision
+            <CardTitle className="text-3xl font-bold">Weight & Mass Converter</CardTitle>
+            <CardDescription className="text-blue-100">
+              Convert between various units of weight and mass with precision
             </CardDescription>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6 pb-3">
-        <div className="space-y-6">
+      <CardContent className="p-8">
+        <div className="space-y-8">
           {/* Input value and unit selection */}
-          <div className="grid gap-6 md:grid-cols-5">
-            <div className="md:col-span-2">
-              <label htmlFor="weight-value" className="block text-sm font-medium mb-2">
+          <div className="grid gap-8 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <label htmlFor="weight-value" className="block text-sm font-semibold mb-3 text-foreground">
                 Enter Value
               </label>
               <Input
@@ -234,248 +320,189 @@ export default function WeightMassConverter() {
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter weight or mass"
-                className="w-full"
-                autoFocus
-                aria-label="Weight or mass value"
+                placeholder="Enter weight value"
+                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                data-testid="input-weight-value"
               />
             </div>
             
-            <div className="md:col-span-3 grid grid-cols-7 gap-3 items-end">
-              <div className="col-span-3">
-                <label htmlFor="from-unit" className="block text-sm font-medium mb-2">
-                  From
+            <div className="lg:col-span-3 grid lg:grid-cols-7 gap-4 items-end">
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  From Unit
                 </label>
-                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as WeightUnit)}>
-                  <SelectTrigger id="from-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(unitLabels).map(([unit, label]) => (
-                      <SelectItem key={unit} value={unit}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={fromUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-from-unit"
+                    >
+                      {fromUnit ? unitLabels[fromUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as WeightUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as WeightUnit]}`}
+                                  onSelect={() => {
+                                    setFromUnit(unit as WeightUnit);
+                                    setFromUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as WeightUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
               
-              <div className="flex justify-center items-center col-span-1">
-                <motion.div whileTap={{ scale: 0.9 }}>
+              <div className="flex justify-center items-center lg:col-span-1">
+                <motion.div
+                  animate={{ rotate: swapAnimation ? 360 : 0 }}
+                  transition={{ duration: 0.5 }}
+                >
                   <Button
                     type="button"
                     variant="outline"
                     size="icon"
                     onClick={swapUnits}
-                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
-                    aria-label="Swap units"
+                    className="rounded-full h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-500 border-0 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    data-testid="button-swap-units"
                   >
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRightLeft className="h-5 w-5" />
+                    <span className="sr-only">Swap units</span>
                   </Button>
                 </motion.div>
               </div>
               
-              <div className="col-span-3">
-                <label htmlFor="to-unit" className="block text-sm font-medium mb-2">
-                  To
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  To Unit
                 </label>
-                <Select value={toUnit} onValueChange={(value) => setToUnit(value as WeightUnit)}>
-                  <SelectTrigger id="to-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.entries(unitLabels).map(([unit, label]) => (
-                      <SelectItem key={unit} value={unit}>
-                        {label}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={toUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-to-unit"
+                    >
+                      {toUnit ? unitLabels[toUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as WeightUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as WeightUnit]}`}
+                                  onSelect={() => {
+                                    setToUnit(unit as WeightUnit);
+                                    setToUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as WeightUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
 
           {/* Conversion Result */}
-          <div className="relative bg-gradient-to-r from-muted/30 to-muted/60 p-4 rounded-lg overflow-hidden">
-            {/* Ambient background animation */}
-            <div className="absolute inset-0 overflow-hidden opacity-20">
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute rounded-full bg-primary"
-                  initial={{
-                    x: `${Math.random() * 100}%`,
-                    y: `${Math.random() * 100}%`,
-                    scale: Math.random() * 0.5 + 0.5,
-                    opacity: Math.random() * 0.5 + 0.1,
-                  }}
-                  animate={{
-                    x: [
-                      `${Math.random() * 100}%`,
-                      `${Math.random() * 100}%`,
-                      `${Math.random() * 100}%`,
-                    ],
-                    y: [
-                      `${Math.random() * 100}%`,
-                      `${Math.random() * 100}%`,
-                      `${Math.random() * 100}%`,
-                    ],
-                    opacity: [Math.random() * 0.3 + 0.1, Math.random() * 0.5 + 0.2],
-                  }}
-                  transition={{
-                    duration: Math.random() * 20 + 15,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                  style={{
-                    width: `${Math.random() * 150 + 50}px`,
-                    height: `${Math.random() * 150 + 50}px`,
-                  }}
-                />
-              ))}
-            </div>
-
-            <div className="relative">
-              <div className="flex justify-between items-center mb-2">
-                <h3 className="text-sm font-medium text-muted-foreground">Result</h3>
-                {result && (
-                  <Button 
-                    variant="ghost" 
-                    size="sm" 
-                    onClick={copyToClipboard}
-                    className="h-7 text-xs gap-1"
-                  >
-                    {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
-                    {copied ? "Copied!" : "Copy"}
-                  </Button>
+          <div className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 dark:from-green-950/20 dark:via-blue-950/20 dark:to-purple-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+            <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
+            <div className="flex items-center justify-between">
+              <div className="text-4xl font-bold" data-testid="result-display">
+                {result ? (
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <span className="text-green-600 dark:text-green-400">{result}</span>
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '') || unitLabels[toUnit]}
+                    </span>
+                  </div>
+                ) : (
+                  <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
                 )}
               </div>
-              
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={result}
-                  initial={{ opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -5 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex items-center justify-between"
-                >
-                  <div className="text-3xl font-bold">
-                    {result ? (
-                      <motion.div 
-                        animate={animateResult ? { scale: [1, 1.05, 1] } : {}}
-                        transition={{ duration: 0.5 }}
-                      >
-                        {result} <span className="text-lg font-normal">{unitLabels[toUnit]?.match(/\(([^)]+)\)/)?.[1]}</span>
-                      </motion.div>
-                    ) : (
-                      <span className="text-muted-foreground text-lg">Enter a value to convert</span>
-                    )}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
             </div>
-            
-            {/* Helpful hint tooltip */}
-            <AnimatePresence>
-              {showHint && (
-                <motion.div
-                  initial={{ opacity: 0, x: 10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  className="absolute right-4 top-2"
-                >
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <motion.div
-                          animate={{ scale: [1, 1.1, 1] }}
-                          transition={{ repeat: 2, duration: 1 }}
-                        >
-                          <Info className="h-4 w-4 text-primary animate-pulse" />
-                        </motion.div>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p className="text-xs">Try entering a value to see the conversion result</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
 
           {/* Error Message */}
-          <AnimatePresence>
-            {error && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Alert variant="destructive" className="text-sm py-2">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {error && (
+            <Alert variant="destructive">
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
 
           {/* Conversion Formula Display */}
           {result && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-muted/30 p-4 rounded-lg text-sm"
-            >
-              <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <span className="font-medium">Conversion Details:</span>
-                  <p className="text-muted-foreground mt-1">
-                    {`${inputValue} ${unitLabels[fromUnit as keyof typeof unitLabels]?.split(' ')[0]} = ${result} ${unitLabels[toUnit as keyof typeof unitLabels]?.split(' ')[0]}`}
+            <div className="bg-blue-50/50 dark:bg-blue-950/20 p-5 rounded-xl border border-blue-200 dark:border-blue-800 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                  <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-semibold text-blue-900 dark:text-blue-100">Conversion Details:</span>
+                  <p className="text-blue-700 dark:text-blue-300 mt-2 font-medium">
+                    {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit as keyof typeof unitLabels]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(6)} ${unitLabels[toUnit as keyof typeof unitLabels]?.split(' ')[0]}`}
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 bg-blue-100/50 dark:bg-blue-900/30 p-2 rounded-lg">
+                    <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} {unitLabels[toUnit]?.split(' ')[0]}
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
-        </div>
-        
-        {/* Common Conversions Table */}
-        <Separator className="my-6" />
-        <div className="space-y-3">
-          <h3 className="text-sm font-medium">Common Weight Conversions</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
-            {commonConversions.map((conv, i) => (
-              <div key={i} className="flex items-center gap-1.5">
-                <Badge variant="outline" className="h-6 px-1.5 text-xs whitespace-nowrap">
-                  {conv.value} {unitLabels[conv.from as keyof typeof unitLabels]?.match(/\(([^)]+)\)/)?.[1]}
-                </Badge>
-                <span>=</span>
-                <Badge variant="outline" className="h-6 px-1.5 text-xs bg-primary/5 whitespace-nowrap">
-                  {conv.result} {unitLabels[conv.to as keyof typeof unitLabels]?.match(/\(([^)]+)\)/)?.[1]}
-                </Badge>
-              </div>
-            ))}
-          </div>
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between border-t p-4 bg-muted/5">
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-blue-50/30 dark:from-gray-900 dark:to-blue-950/30 rounded-b-2xl">
         <Button
           variant="outline"
           onClick={resetConverter}
-          className="gap-2"
+          className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
+          data-testid="button-reset"
         >
-          <RefreshCw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> Reset Converter
         </Button>
         
-        <div className="text-xs text-muted-foreground">
-          Accurate conversions with scientific precision
+        <div className="text-sm text-center sm:text-right text-muted-foreground">
+          <div className="font-medium">Precision conversions for all mass units</div>
+          <div className="text-xs mt-1">Including metric, imperial, scientific & biblical units</div>
         </div>
       </CardFooter>
     </Card>

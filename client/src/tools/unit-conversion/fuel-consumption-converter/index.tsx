@@ -82,10 +82,10 @@ const unitLabels: Record<FuelConsumptionUnit, string> = {
   mpgUK: "Miles per Gallon (UK)",
   kmPerLiter: "Kilometers per Liter (km/L)",
   litersPer100km: "Liters per 100 Kilometers (L/100km)",
-  gallonUSPer100miles: "Gallons (US) per 100 Miles",
-  gallonUKPer100miles: "Gallons (UK) per 100 Miles",
-  litersPerkm: "Liters per Kilometer (L/km)",
-  milesPerLiterUS: "Miles per Liter (US)",
+  'liter/100 km': 'liter/100 km [L/100 km]',
+  'gallon (US)/mile': 'gallon (US)/mile',
+  'gallon (US)/100 mi': 'gallon (US)/100 mi',
+  'gallon (UK)/mile': 'gallon (UK)/mile',
   milesPerLiterUK: "Miles per Liter (UK)",
 };
 

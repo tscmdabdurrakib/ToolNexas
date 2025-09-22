@@ -1,207 +1,256 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { ArrowRightLeft, RotateCcw, Info, Zap } from "lucide-react";
+import { Zap, ArrowRightLeft, RotateCcw, Info, Search } from "lucide-react";
 import { motion } from "framer-motion";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-// Energy conversion factors (to Joules)
 const conversionFactors = {
-  // SI units
   joule: 1,
   kilojoule: 1000,
-  megajoule: 1000000,
-  gigajoule: 1000000000,
-  
-  // Mechanical/electrical energy
-  watthour: 3600,
-  kilowatthour: 3600000,
-  megawatthour: 3600000000,
-  electronvolt: 1.602176634e-19,
-  kilocalorie: 4184,
-  calorie: 4.184,
-  
-  // Heat energy
-  btu: 1055.06,
+  'kilowatt-hour': 3600000,
+  'watt-hour': 3600,
+  'calorie-nutritional': 4184,
+  'horsepower-metric-hour': 2647795.5,
+  'btu-it': 1055.05585,
+  'btu-th': 1054.35026,
+  gigajoule: 1e9,
+  megajoule: 1e6,
+  millijoule: 0.001,
+  microjoule: 1e-6,
+  nanojoule: 1e-9,
+  attojoule: 1e-18,
+  'megaelectron-volt': 1.60218e-13,
+  'kiloelectron-volt': 1.60218e-16,
+  'electron-volt': 1.60218e-19,
+  erg: 1e-7,
+  'gigawatt-hour': 3.6e12,
+  'megawatt-hour': 3.6e9,
+  'kilowatt-second': 1000,
+  'watt-second': 1,
+  'newton-meter': 1,
+  'horsepower-hour': 2684519.5,
+  'kilocalorie-it': 4186.8,
+  'kilocalorie-th': 4184,
+  'calorie-it': 4.1868,
+  'calorie-th': 4.184,
+  'mbtu-it': 1055055.85,
+  'ton-hour-refrigeration': 12660670.2,
+  'fuel-oil-equivalent-kiloliter': 3.67e10,
+  'fuel-oil-equivalent-barrel-us': 5.8e9,
+  gigaton: 4.184e18,
+  megaton: 4.184e15,
+  kiloton: 4.184e12,
+  'ton-explosives': 4.184e9,
+  'dyne-centimeter': 1e-7,
+  'gram-force-meter': 0.00980665,
+  'gram-force-centimeter': 0.0000980665,
+  'kilogram-force-centimeter': 0.0980665,
+  'kilogram-force-meter': 9.80665,
+  'kilopond-meter': 9.80665,
+  'pound-force-foot': 1.35581795,
+  'pound-force-inch': 0.112984829,
+  'ounce-force-inch': 0.0070615518,
+  'foot-pound': 1.35581795,
+  'inch-pound': 0.112984829,
+  'inch-ounce': 0.0070615518,
+  'poundal-foot': 0.04214011,
   therm: 105506000,
-  
-  // Explosive/nuclear energy
-  tnt: 4184000000, // 1 ton of TNT in joules
-  
-  // Other
-  footPound: 1.35582,
-  ergon: 1e-7
+  'therm-ec': 105506000,
+  'therm-us': 105480400,
+  'hartree-energy': 4.35974e-18,
+  'rydberg-constant': 2.17987e-18,
 };
 
-// Type for Energy units
+const unitLabels = {
+    joule: "Joule (J)",
+    kilojoule: "Kilojoule (kJ)",
+    'kilowatt-hour': "Kilowatt-hour (kW*h)",
+    'watt-hour': "Watt-hour (W*h)",
+    'calorie-nutritional': "Calorie (nutritional)",
+    'horsepower-metric-hour': "Horsepower (metric) hour",
+    'btu-it': "Btu (IT) (Btu)",
+    'btu-th': "Btu (th)",
+    gigajoule: "Gigajoule (GJ)",
+    megajoule: "Megajoule (MJ)",
+    millijoule: "Millijoule (mJ)",
+    microjoule: "Microjoule (µJ)",
+    nanojoule: "Nanojoule (nJ)",
+    attojoule: "Attojoule (aJ)",
+    'megaelectron-volt': "Megaelectron-volt (MeV)",
+    'kiloelectron-volt': "Kiloelectron-volt (keV)",
+    'electron-volt': "Electron-volt (eV)",
+    erg: "Erg",
+    'gigawatt-hour': "Gigawatt-hour (GW*h)",
+    'megawatt-hour': "Megawatt-hour (MW*h)",
+    'kilowatt-second': "Kilowatt-second (kW*s)",
+    'watt-second': "Watt-second (W*s)",
+    'newton-meter': "Newton meter (N*m)",
+    'horsepower-hour': "Horsepower hour (hp*h)",
+    'kilocalorie-it': "Kilocalorie (IT) (kcal (IT))",
+    'kilocalorie-th': "Kilocalorie (th) (kcal (th))",
+    'calorie-it': "Calorie (IT) (cal (IT), cal)",
+    'calorie-th': "Calorie (th) (cal (th))",
+    'mbtu-it': "MBtu (IT) (MBtu (IT))",
+    'ton-hour-refrigeration': "Ton-hour (refrigeration)",
+    'fuel-oil-equivalent-kiloliter': "Fuel oil equivalent @kiloliter",
+    'fuel-oil-equivalent-barrel-us': "Fuel oil equivalent @barrel (US)",
+    gigaton: "Gigaton (Gton)",
+    megaton: "Megaton (Mton)",
+    kiloton: "Kiloton (kton)",
+    'ton-explosives': "Ton (explosives)",
+    'dyne-centimeter': "Dyne centimeter (dyn*cm)",
+    'gram-force-meter': "Gram-force meter (gf*m)",
+    'gram-force-centimeter': "Gram-force centimeter",
+    'kilogram-force-centimeter': "Kilogram-force centimeter",
+    'kilogram-force-meter': "Kilogram-force meter",
+    'kilopond-meter': "Kilopond meter (kp*m)",
+    'pound-force-foot': "Pound-force foot (lbf*ft)",
+    'pound-force-inch': "Pound-force inch (lbf*in)",
+    'ounce-force-inch': "Ounce-force inch (ozf*in)",
+    'foot-pound': "Foot-pound (ft*lbf)",
+    'inch-pound': "Inch-pound (in*lbf)",
+    'inch-ounce': "Inch-ounce (in*ozf)",
+    'poundal-foot': "Poundal foot (pdl*ft)",
+    therm: "Therm",
+    'therm-ec': "Therm (EC)",
+    'therm-us': "Therm (US)",
+    'hartree-energy': "Hartree energy",
+    'rydberg-constant': "Rydberg constant",
+};
+
+const unitCategories = {
+  common: {
+    name: "Common Units",
+    units: ["joule", "kilojoule", "kilowatt-hour", "watt-hour", "calorie-nutritional", "btu-it", "electron-volt", "newton-meter"],
+  },
+  si: {
+    name: "SI Prefixes",
+    units: ["gigajoule", "megajoule", "millijoule", "microjoule", "nanojoule", "attojoule"],
+  },
+  power: {
+    name: "Power-Time",
+    units: ["gigawatt-hour", "megawatt-hour", "kilowatt-second", "watt-second", "horsepower-hour", "horsepower-metric-hour"],
+  },
+  calories: {
+    name: "Calories",
+    units: ["kilocalorie-it", "kilocalorie-th", "calorie-it", "calorie-th"],
+  },
+  explosives: {
+    name: "Explosives",
+    units: ["gigaton", "megaton", "kiloton", "ton-explosives"],
+  },
+  forceDistance: {
+    name: "Force-Distance",
+    units: ["dyne-centimeter", "gram-force-meter", "gram-force-centimeter", "kilogram-force-centimeter", "kilogram-force-meter", "kilopond-meter", "pound-force-foot", "pound-force-inch", "ounce-force-inch", "foot-pound", "inch-pound", "inch-ounce", "poundal-foot"],
+  },
+  therms: {
+    name: "Therms",
+    units: ["therm", "therm-ec", "therm-us"],
+  },
+  atomic: {
+    name: "Atomic & Fuel",
+    units: ["megaelectron-volt", "kiloelectron-volt", "hartree-energy", "rydberg-constant", "fuel-oil-equivalent-kiloliter", "fuel-oil-equivalent-barrel-us"],
+  },
+  other: {
+    name: "Other",
+    units: ["erg", "mbtu-it", "ton-hour-refrigeration"],
+  }
+};
+
 type EnergyUnit = keyof typeof conversionFactors;
 
-// Unit display names with abbreviations
-const unitLabels = {
-  joule: "Joule (J)",
-  kilojoule: "Kilojoule (kJ)",
-  megajoule: "Megajoule (MJ)",
-  gigajoule: "Gigajoule (GJ)",
-  watthour: "Watt-hour (Wh)",
-  kilowatthour: "Kilowatt-hour (kWh)",
-  megawatthour: "Megawatt-hour (MWh)",
-  electronvolt: "Electronvolt (eV)",
-  kilocalorie: "Kilocalorie (kcal)",
-  calorie: "Calorie (cal)",
-  btu: "British Thermal Unit (BTU)",
-  therm: "Therm",
-  tnt: "Ton of TNT",
-  footPound: "Foot-pound (ft⋅lb)",
-  ergon: "Erg"
-};
-
-/**
- * Energy Converter Component
- * Allows users to convert between different units of energy
- */
 export default function EnergyConverter() {
-  // State for input value, source and target units
   const [inputValue, setInputValue] = useState<string>('');
-  const [fromUnit, setFromUnit] = useState<EnergyUnit>('kilojoule');
-  const [toUnit, setToUnit] = useState<EnergyUnit>('kilocalorie');
+  const [fromUnit, setFromUnit] = useState<EnergyUnit>('joule');
+  const [toUnit, setToUnit] = useState<EnergyUnit>('kilojoule');
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [swapAnimation, setSwapAnimation] = useState(false);
+  const [fromUnitOpen, setFromUnitOpen] = useState(false);
+  const [toUnitOpen, setToUnitOpen] = useState(false);
 
-  // Perform the conversion whenever inputs change
   useEffect(() => {
     convertEnergy();
   }, [inputValue, fromUnit, toUnit]);
 
-  /**
-   * Convert from one energy unit to another
-   */
   const convertEnergy = () => {
-    // Clear previous errors
     setError(null);
-
-    // If input is empty, clear the result
     if (!inputValue) {
       setResult('');
       return;
     }
-
-    // Parse the input value
     const value = parseFloat(inputValue);
-
-    // Validate the input is a number
     if (isNaN(value)) {
       setError('Please enter a valid number');
       setResult('');
       return;
     }
-    
-    // Energy cannot be negative in most practical applications
-    if (value < 0) {
-      setError('Energy values are typically positive');
-      setResult('');
-      return;
-    }
-
-    // Perform conversion
-    // First convert to joules (base unit), then to target unit
     const inJoules = value * conversionFactors[fromUnit];
     const converted = inJoules / conversionFactors[toUnit];
-
-    // Format the result based on the magnitude for better readability
     const roundedResult = formatResult(converted);
     setResult(roundedResult);
   };
 
-  /**
-   * Format number based on its magnitude
-   */
   const formatResult = (num: number): string => {
+    if (Math.abs(num) < 0.000001 && num !== 0) {
+      return num.toExponential(6);
+    }
     if (num === 0) return "0";
-    
-    const absNum = Math.abs(num);
-    
-    if (absNum < 0.0000001) return num.toExponential(6);
-    if (absNum < 0.00001) return num.toFixed(10);
-    if (absNum < 0.0001) return num.toFixed(8);
-    if (absNum < 0.001) return num.toFixed(6);
-    if (absNum < 0.01) return num.toFixed(5);
-    if (absNum < 1) return num.toFixed(4);
-    if (absNum < 10) return num.toFixed(3);
-    if (absNum < 100) return num.toFixed(2);
-    if (absNum < 1000) return num.toFixed(1);
-    
-    return num.toFixed(0);
+    const numStr = num.toString();
+    if (numStr.includes('e')) return numStr;
+    const [integerPart, decimalPart] = numStr.split('.');
+    if (!decimalPart) return integerPart;
+    if (Math.abs(num) >= 10000) {
+        return parseFloat(num.toFixed(2)).toLocaleString();
+    }
+    if (Math.abs(num) >= 1) {
+        return num.toFixed(Math.min(4, decimalPart.length));
+    }
+    return num.toFixed(Math.min(8, decimalPart.length));
   };
 
-  /**
-   * Swap the from and to units
-   */
   const swapUnits = () => {
     setSwapAnimation(true);
     const temp = fromUnit;
     setFromUnit(toUnit);
     setToUnit(temp);
-    
-    // Reset animation state after animation completes
     setTimeout(() => setSwapAnimation(false), 500);
   };
 
-  /**
-   * Reset all fields to default
-   */
   const resetConverter = () => {
     setInputValue('');
-    setFromUnit('kilojoule');
-    setToUnit('kilocalorie');
+    setFromUnit('joule');
+    setToUnit('kilojoule');
     setResult('');
     setError(null);
   };
 
-  // Generate the Select options grouped by category
-  const renderUnitOptions = () => {
-    const groups = {
-      "SI Units": ["joule", "kilojoule", "megajoule", "gigajoule"],
-      "Electrical & Mechanical": ["watthour", "kilowatthour", "megawatthour", "electronvolt", "footPound", "ergon"],
-      "Heat & Energy": ["calorie", "kilocalorie", "btu", "therm", "tnt"]
-    };
-
-    return Object.entries(groups).map(([groupName, units]) => (
-      <React.Fragment key={groupName}>
-        <SelectItem value={units[0]} disabled className="font-semibold text-primary">
-          {groupName}
-        </SelectItem>
-        {units.map(unit => (
-          <SelectItem key={unit} value={unit}>
-            {unitLabels[unit as EnergyUnit]}
-          </SelectItem>
-        ))}
-      </React.Fragment>
-    ));
-  };
-
   return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg">
-      <CardHeader className="bg-primary/5 border-b">
-        <div className="flex items-center gap-3">
-          <Zap className="h-6 w-6 text-primary" />
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-yellow-50/30 to-orange-50/30 dark:from-gray-900 dark:via-yellow-950/30 dark:to-orange-950/30 rounded-2xl">
+      <CardHeader className="bg-gradient-to-r from-yellow-500 to-orange-600 text-white rounded-t-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 rounded-xl">
+            <Zap className="h-8 w-8" />
+          </div>
           <div>
-            <CardTitle className="text-2xl">Energy Converter</CardTitle>
-            <CardDescription>
-              Convert between different units of energy and work
+            <CardTitle className="text-3xl font-bold">Energy Converter</CardTitle>
+            <CardDescription className="text-yellow-100">
+              Convert between various units of energy
             </CardDescription>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6">
-        <div className="space-y-6">
-          {/* Input value and unit selection */}
-          <div className="grid gap-6 sm:grid-cols-5">
-            <div className="sm:col-span-2">
-              <label htmlFor="energy-value" className="block text-sm font-medium mb-2">
+      <CardContent className="p-8">
+        <div className="space-y-8">
+          <div className="grid gap-8 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <label htmlFor="energy-value" className="block text-sm font-semibold mb-3 text-foreground">
                 Enter Value
               </label>
               <Input
@@ -209,136 +258,181 @@ export default function EnergyConverter() {
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter energy amount"
-                className="w-full"
+                placeholder="Enter energy value"
+                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
               />
             </div>
             
-            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
-              <div className="sm:col-span-3">
-                <label htmlFor="from-unit" className="block text-sm font-medium mb-2">
-                  From
+            <div className="lg:col-span-3 grid lg:grid-cols-7 gap-4 items-end">
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  From Unit
                 </label>
-                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as EnergyUnit)}>
-                  <SelectTrigger id="from-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {renderUnitOptions()}
-                  </SelectContent>
-                </Select>
+                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={fromUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                    >
+                      {fromUnit ? unitLabels[fromUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as EnergyUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as EnergyUnit]}`}
+                                  onSelect={() => {
+                                    setFromUnit(unit as EnergyUnit);
+                                    setFromUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as EnergyUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
               
-              <div className="flex justify-center items-center sm:col-span-1">
+              <div className="flex justify-center items-center lg:col-span-1">
                 <motion.div
                   animate={{ rotate: swapAnimation ? 360 : 0 }}
                   transition={{ duration: 0.5 }}
                 >
                   <Button
                     type="button"
-                    variant="ghost"
+                    variant="outline"
                     size="icon"
                     onClick={swapUnits}
-                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
+                    className="rounded-full h-12 w-12 bg-gradient-to-br from-yellow-500 to-orange-500 border-0 text-white hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    <ArrowRightLeft className="h-4 w-4" />
+                    <ArrowRightLeft className="h-5 w-5" />
                     <span className="sr-only">Swap units</span>
                   </Button>
                 </motion.div>
               </div>
               
-              <div className="sm:col-span-3">
-                <label htmlFor="to-unit" className="block text-sm font-medium mb-2">
-                  To
+              <div className="lg:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  To Unit
                 </label>
-                <Select value={toUnit} onValueChange={(value) => setToUnit(value as EnergyUnit)}>
-                  <SelectTrigger id="to-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {renderUnitOptions()}
-                  </SelectContent>
-                </Select>
+                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={toUnitOpen}
+                      className="h-12 w-full justify-between text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                    >
+                      {toUnit ? unitLabels[toUnit] : "Select unit..."}
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-80 p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as EnergyUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as EnergyUnit]}`}
+                                  onSelect={() => {
+                                    setToUnit(unit as EnergyUnit);
+                                    setToUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as EnergyUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
 
-          {/* Conversion Result */}
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">Result</h3>
+          <div className="bg-gradient-to-r from-green-50 via-yellow-50 to-orange-50 dark:from-green-950/20 dark:via-yellow-950/20 dark:to-orange-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+            <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
             <div className="flex items-center justify-between">
-              <div className="text-3xl font-bold">
+              <div className="text-4xl font-bold">
                 {result ? (
-                  <>
-                    {result} <span className="text-lg font-normal">{unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '')}</span>
-                  </>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <span className="text-green-600 dark:text-green-400">{result}</span>
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {unitLabels[toUnit]?.match(/\(([^)]+)\)/)?.[1] || unitLabels[toUnit]}
+                    </span>
+                  </div>
                 ) : (
-                  <span className="text-muted-foreground text-lg">— Enter a value to convert —</span>
+                  <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Error Message */}
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
             </Alert>
           )}
 
-          {/* Conversion Formula Display */}
-          {result && (
-            <div className="bg-muted/30 p-4 rounded-lg text-sm">
-              <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <span className="font-medium">Conversion Details:</span>
-                  <p className="text-muted-foreground mt-1">
+          {result && !error && (
+            <div className="bg-yellow-50/50 dark:bg-yellow-950/20 p-5 rounded-xl border border-yellow-200 dark:border-yellow-800 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-1.5 bg-yellow-100 dark:bg-yellow-900/50 rounded-lg">
+                  <Info className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-semibold text-yellow-900 dark:text-yellow-100">Conversion Details:</span>
+                  <p className="text-yellow-700 dark:text-yellow-300 mt-2 font-medium">
                     {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit]?.split(' ')[0]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} ${unitLabels[toUnit]?.split(' ')[0]}`}
+                  <p className="text-xs text-yellow-600 dark:text-yellow-400 mt-2 bg-yellow-100/50 dark:bg-yellow-900/30 p-2 rounded-lg">
+                    <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toExponential(6)} {unitLabels[toUnit]?.split(' ')[0]}
                   </p>
                 </div>
               </div>
             </div>
           )}
-
-          {/* About Energy Units */}
-          <div className="bg-primary/5 p-4 rounded-lg text-xs">
-            <h4 className="font-medium mb-1">What is Energy?</h4>
-            <p className="text-muted-foreground mb-2">
-              Energy is the capacity to do work or produce heat. It exists in various forms such as kinetic, potential, thermal, electrical, chemical, nuclear, and electromagnetic energy.
-            </p>
-
-            <h4 className="font-medium mb-1">Common Energy Units:</h4>
-            <ul className="space-y-1 text-muted-foreground list-disc list-inside">
-              <li><strong>Joule (J):</strong> The SI unit of energy - the energy required to apply a force of 1 newton through a distance of 1 meter.</li>
-              <li><strong>Kilowatt-hour (kWh):</strong> The amount of energy consumed at a rate of 1000 watts for 1 hour, commonly used for electrical energy on utility bills.</li>
-              <li><strong>Calorie (cal):</strong> The energy needed to raise the temperature of 1 gram of water by 1°C.</li>
-              <li><strong>British Thermal Unit (BTU):</strong> The energy required to raise the temperature of 1 pound of water by 1°F, commonly used in heating and cooling systems.</li>
-              <li><strong>Electronvolt (eV):</strong> A very small unit of energy used in atomic and nuclear physics, equal to the energy gained by an electron moving through a potential difference of 1 volt.</li>
-            </ul>
-
-            <h4 className="font-medium mt-2 mb-1">How Energy Conversion Works:</h4>
-            <p className="text-muted-foreground">
-              Energy conversion uses the principle of energy conservation - energy can neither be created nor destroyed, only transformed. This converter uses a common base unit (joules) and conversion factors to translate between different units of measurement.
-            </p>
-          </div>
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between border-t p-4 bg-muted/10">
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-yellow-50/30 dark:from-gray-900 dark:to-yellow-950/30 rounded-b-2xl">
         <Button
           variant="outline"
           onClick={resetConverter}
-          className="gap-2"
+          className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> Reset Converter
         </Button>
         
-        <div className="text-xs text-muted-foreground">
-          Accurate conversions between different energy measurement units
+        <div className="text-sm text-center sm:text-right text-muted-foreground">
+          <div className="font-medium">Precise energy unit conversions</div>
+          <div className="text-xs mt-1">Supports a wide range of scientific and common units</div>
         </div>
       </CardFooter>
     </Card>
