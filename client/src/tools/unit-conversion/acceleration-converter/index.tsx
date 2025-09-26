@@ -1,50 +1,109 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue, SelectGroup, SelectLabel } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Zap, ArrowRightLeft, RotateCcw, Info } from "lucide-react";
+import { Ruler, ArrowRightLeft, RotateCcw, Info, Search } from "lucide-react";
 import { motion } from "framer-motion";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
-// Acceleration unit types
-type AccelerationUnit = 
-  | "meterPerSecondSquared" | "footPerSecondSquared" | "gal" 
-  | "gravity" | "kilometerPerHourSquared" | "milePerHourSquared" 
-  | "centimeterPerSecondSquared" | "inchPerSecondSquared";
-
-// Conversion factors to m/s² (base unit)
-const conversionFactors: Record<AccelerationUnit, number> = {
-  meterPerSecondSquared: 1,
-  footPerSecondSquared: 0.3048,
-  gal: 0.01, // 1 gal = 1 cm/s² = 0.01 m/s²
-  gravity: 9.80665, // 1g = 9.80665 m/s²
-  kilometerPerHourSquared: 1 / 12960, // km/h² to m/s²
-  milePerHourSquared: 0.44704 / 3600, // mph² to m/s²
-  centimeterPerSecondSquared: 0.01,
-  inchPerSecondSquared: 0.0254,
+// Define unit conversion factors (to meter/square second as base unit)
+const conversionFactors = {
+  "meter/square second": 1,
+  "decimeter/square second": 0.1,
+  "centimeter/square second": 0.01,
+  "millimeter/square second": 0.001,
+  "micrometer/square second": 1e-6,
+  "nanometer/square second": 1e-9,
+  "picometer/square second": 1e-12,
+  "femtometer/square second": 1e-15,
+  "attometer/square second": 1e-18,
+  "kilometer/square second": 1000,
+  "hectometer/square second": 100,
+  "dekameter/square second": 10,
+  "gal [Gal] (galileo)": 0.01, // 1 Gal = 1 cm/s²
+  "mile/square second [mi/s²]": 1609.344,
+  "yard/square second": 0.9144,
+  "foot/square second [ft/s²]": 0.3048,
+  "inch/square second [in/s²]": 0.0254,
+  "acceleration of gravity [g]": 9.80665,
 };
 
-// Unit display labels
-const unitLabels: Record<AccelerationUnit, string> = {
-  meterPerSecondSquared: "Meter per Second Squared (m/s²)",
-  footPerSecondSquared: "Foot per Second Squared (ft/s²)",
-  gal: "Gal (cm/s²)",
-  gravity: "Standard Gravity (g)",
-  kilometerPerHourSquared: "Kilometer per Hour Squared (km/h²)",
-  milePerHourSquared: "Mile per Hour Squared (mph²)",
-  centimeterPerSecondSquared: "Centimeter per Second Squared (cm/s²)",
-  inchPerSecondSquared: "Inch per Second Squared (in/s²)",
+// Unit display names with abbreviations and categories
+const unitLabels = {
+  "meter/square second": "Meter/Square Second (m/s²)",
+  "decimeter/square second": "Decimeter/Square Second (dm/s²)",
+  "centimeter/square second": "Centimeter/Square Second (cm/s²)",
+  "millimeter/square second": "Millimeter/Square Second (mm/s²)",
+  "micrometer/square second": "Micrometer/Square Second (µm/s²)",
+  "nanometer/square second": "Nanometer/Square Second (nm/s²)",
+  "picometer/square second": "Picometer/Square Second (pm/s²)",
+  "femtometer/square second": "Femtometer/Square Second (fm/s²)",
+  "attometer/square second": "Attometer/Square Second (am/s²)",
+  "kilometer/square second": "Kilometer/Square Second (km/s²)",
+  "hectometer/square second": "Hectometer/Square Second (hm/s²)",
+  "dekameter/square second": "Dekameter/Square Second (dam/s²)",
+  "gal [Gal] (galileo)": "Gal (Galileo)",
+  "mile/square second [mi/s²]": "Mile/Square Second (mi/s²)",
+  "yard/square second": "Yard/Square Second (yd/s²)",
+  "foot/square second [ft/s²]": "Foot/Square Second (ft/s²)",
+  "inch/square second [in/s²]": "Inch/Square Second (in/s²)",
+  "acceleration of gravity [g]": "Acceleration of Gravity (g)",
 };
 
-function AccelerationConverter() {
+// Unit categories for better organization
+const unitCategories = {
+  metric: {
+    name: "Metric System",
+    units: [
+      "kilometer/square second",
+      "hectometer/square second",
+      "dekameter/square second",
+      "meter/square second",
+      "decimeter/square second",
+      "centimeter/square second",
+      "millimeter/square second",
+      "micrometer/square second",
+      "nanometer/square second",
+      "picometer/square second",
+      "femtometer/square second",
+      "attometer/square second",
+    ],
+  },
+  imperial: {
+    name: "Imperial/US System",
+    units: [
+      "mile/square second [mi/s²]",
+      "yard/square second",
+      "foot/square second [ft/s²]",
+      "inch/square second [in/s²]",
+    ],
+  },
+  other: {
+    name: "Other Units",
+    units: ["gal [Gal] (galileo)", "acceleration of gravity [g]"],
+  },
+};
+
+// Type for Acceleration units
+type AccelerationUnit = keyof typeof conversionFactors;
+
+/**
+ * Acceleration Converter Component
+ * Allows users to convert between different acceleration units
+ */
+export default function AccelerationConverter() {
   // State for input value, source and target units
   const [inputValue, setInputValue] = useState<string>('');
-  const [fromUnit, setFromUnit] = useState<AccelerationUnit>('gravity');
-  const [toUnit, setToUnit] = useState<AccelerationUnit>('meterPerSecondSquared');
+  const [fromUnit, setFromUnit] = useState<AccelerationUnit>('meter/square second');
+  const [toUnit, setToUnit] = useState<AccelerationUnit>('centimeter/square second');
   const [result, setResult] = useState<string>('');
   const [error, setError] = useState<string | null>(null);
   const [swapAnimation, setSwapAnimation] = useState(false);
+  const [fromUnitOpen, setFromUnitOpen] = useState(false);
+  const [toUnitOpen, setToUnitOpen] = useState(false);
 
   // Perform the conversion whenever inputs change
   useEffect(() => {
@@ -75,9 +134,9 @@ function AccelerationConverter() {
     }
 
     // Perform conversion
-    // First convert to m/s² (base unit), then to target unit
-    const inMeterPerSecondSquared = value * conversionFactors[fromUnit];
-    const converted = inMeterPerSecondSquared / conversionFactors[toUnit];
+    // First convert to meter/square second (base unit), then to target unit
+    const inBaseUnit = value * conversionFactors[fromUnit];
+    const converted = inBaseUnit / conversionFactors[toUnit];
 
     // Format the result based on the magnitude for better readability
     const roundedResult = formatResult(converted);
@@ -88,18 +147,19 @@ function AccelerationConverter() {
    * Format number based on its magnitude
    */
   const formatResult = (num: number): string => {
-    if (num === 0) return "0";
-    
-    const absNum = Math.abs(num);
-    
-    if (absNum < 0.0001) return num.toExponential(4);
-    if (absNum < 0.001) return num.toFixed(6);
-    if (absNum < 0.01) return num.toFixed(4);
-    if (absNum < 1) return num.toFixed(3);
-    if (absNum < 10) return num.toFixed(2);
-    if (absNum < 100) return num.toFixed(1);
-    
-    return num.toFixed(0);
+    if (Math.abs(num) < 0.0001) {
+      return num.toExponential(6);
+    } else if (Math.abs(num) < 0.01) {
+      return num.toFixed(6);
+    } else if (Math.abs(num) < 1) {
+      return num.toFixed(4);
+    } else if (Math.abs(num) < 100) {
+      return num.toFixed(2);
+    } else if (Math.abs(num) < 10000) {
+      return num.toFixed(1);
+    } else {
+      return num.toFixed(0);
+    }
   };
 
   /**
@@ -120,32 +180,34 @@ function AccelerationConverter() {
    */
   const resetConverter = () => {
     setInputValue('');
-    setFromUnit('gravity');
-    setToUnit('meterPerSecondSquared');
+    setFromUnit('meter/square second');
+    setToUnit('centimeter/square second');
     setResult('');
     setError(null);
   };
 
   return (
-    <Card className="w-full max-w-3xl mx-auto shadow-lg">
-      <CardHeader className="bg-primary/5 border-b">
-        <div className="flex items-center gap-3">
-          <Zap className="h-6 w-6 text-primary" />
+    <Card className="w-full max-w-4xl mx-auto shadow-2xl border-0 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-950/30 dark:to-purple-950/30 rounded-2xl">
+      <CardHeader className="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-t-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 rounded-xl">
+            <Ruler className="h-8 w-8" /> {/* Consider changing icon if a more suitable one exists */}
+          </div>
           <div>
-            <CardTitle className="text-2xl">Acceleration Converter</CardTitle>
-            <CardDescription>
-              Convert between different units of acceleration and gravitational force
+            <CardTitle className="text-2xl sm:text-3xl font-bold">Acceleration Converter</CardTitle>
+            <CardDescription className="text-sm sm:text-base text-blue-100">
+              Convert between various units of acceleration with precision
             </CardDescription>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-6">
-        <div className="space-y-6">
+      <CardContent className="p-8">
+        <div className="space-y-8">
           {/* Input value and unit selection */}
-          <div className="grid gap-6 sm:grid-cols-5">
-            <div className="sm:col-span-2">
-              <label htmlFor="acceleration-value" className="block text-sm font-medium mb-2">
+          <div className="grid gap-6 md:gap-8 lg:grid-cols-5">
+            <div className="lg:col-span-2">
+              <label htmlFor="acceleration-value" className="block text-sm font-semibold mb-3 text-foreground">
                 Enter Value
               </label>
               <Input
@@ -153,86 +215,142 @@ function AccelerationConverter() {
                 type="number"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter acceleration"
-                className="w-full"
-                step="0.01"
+                placeholder="Enter acceleration value"
+                className="h-12 text-lg font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                data-testid="input-acceleration-value"
               />
             </div>
             
-            <div className="sm:col-span-3 grid sm:grid-cols-7 gap-3 items-end">
-              <div className="sm:col-span-3">
-                <label htmlFor="from-unit" className="block text-sm font-medium mb-2">
-                  From
+            <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-7 gap-4 items-end">
+              <div className="md:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  From Unit
                 </label>
-                <Select value={fromUnit} onValueChange={(value) => setFromUnit(value as AccelerationUnit)}>
-                  <SelectTrigger id="from-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="meterPerSecondSquared">Meter per Second² (m/s²)</SelectItem>
-                    <SelectItem value="footPerSecondSquared">Foot per Second² (ft/s²)</SelectItem>
-                    <SelectItem value="gravity">Standard Gravity (g)</SelectItem>
-                    <SelectItem value="gal">Gal (cm/s²)</SelectItem>
-                    <SelectItem value="centimeterPerSecondSquared">Centimeter per Second² (cm/s²)</SelectItem>
-                    <SelectItem value="inchPerSecondSquared">Inch per Second² (in/s²)</SelectItem>
-                    <SelectItem value="kilometerPerHourSquared">Kilometer per Hour² (km/h²)</SelectItem>
-                    <SelectItem value="milePerHourSquared">Mile per Hour² (mph²)</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Popover open={fromUnitOpen} onOpenChange={setFromUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={fromUnitOpen}
+                      className="h-12 w-full justify-start gap-2 text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-from-unit"
+                    >
+                      <span className="flex-1 truncate">{fromUnit ? unitLabels[fromUnit] : "Select unit..."}</span>
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as AccelerationUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as AccelerationUnit]}`}
+                                  onSelect={() => {
+                                    setFromUnit(unit as AccelerationUnit);
+                                    setFromUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as AccelerationUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
               
-              <div className="flex justify-center items-center sm:col-span-1">
+              <div className="flex justify-center items-center md:col-span-1">
                 <motion.div
                   animate={{ rotate: swapAnimation ? 360 : 0 }}
                   transition={{ duration: 0.5 }}
                 >
                   <Button
                     type="button"
-                    variant="ghost"
+                    variant="outline"
                     size="icon"
                     onClick={swapUnits}
-                    className="rounded-full h-10 w-10 bg-muted hover:bg-primary/10"
+                    className="rounded-full h-12 w-12 bg-gradient-to-br from-blue-500 to-purple-500 border-0 text-white hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                    data-testid="button-swap-units"
                   >
-                    <ArrowRightLeft className="h-4 w-4" />
+                    <ArrowRightLeft className="h-5 w-5" />
                     <span className="sr-only">Swap units</span>
                   </Button>
                 </motion.div>
               </div>
               
-              <div className="sm:col-span-3">
-                <label htmlFor="to-unit" className="block text-sm font-medium mb-2">
-                  To
+              <div className="md:col-span-3">
+                <label className="block text-sm font-semibold mb-3 text-foreground">
+                  To Unit
                 </label>
-                <Select value={toUnit} onValueChange={(value) => setToUnit(value as AccelerationUnit)}>
-                  <SelectTrigger id="to-unit">
-                    <SelectValue placeholder="Select unit" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="meterPerSecondSquared">Meter per Second² (m/s²)</SelectItem>
-                    <SelectItem value="footPerSecondSquared">Foot per Second² (ft/s²)</SelectItem>
-                    <SelectItem value="gravity">Standard Gravity (g)</SelectItem>
-                    <SelectItem value="gal">Gal (cm/s²)</SelectItem>
-                    <SelectItem value="centimeterPerSecondSquared">Centimeter per Second² (cm/s²)</SelectItem>
-                    <SelectItem value="inchPerSecondSquared">Inch per Second² (in/s²)</SelectItem>
-                    <SelectItem value="kilometerPerHourSquared">Kilometer per Hour² (km/h²)</SelectItem>
-                    <SelectItem value="milePerHourSquared">Mile per Hour² (mph²)</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Popover open={toUnitOpen} onOpenChange={setToUnitOpen}>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      aria-expanded={toUnitOpen}
+                      className="h-12 w-full justify-start gap-2 text-left font-medium border-2 focus:border-primary transition-colors rounded-xl shadow-sm"
+                      data-testid="select-to-unit"
+                    >
+                      <span className="flex-1 truncate">{toUnit ? unitLabels[toUnit] : "Select unit..."}</span>
+                      <Search className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+                    <Command>
+                      <CommandInput placeholder="Search units..." />
+                      <CommandEmpty>No unit found.</CommandEmpty>
+                      <CommandList className="max-h-80">
+                        {Object.entries(unitCategories).map(([categoryKey, category]) => (
+                          <CommandGroup key={categoryKey} heading={category.name}>
+                            {category.units
+                              .filter(unit => unitLabels[unit as AccelerationUnit])
+                              .map((unit) => (
+                                <CommandItem
+                                  key={unit}
+                                  value={`${unit} ${unitLabels[unit as AccelerationUnit]}`}
+                                  onSelect={() => {
+                                    setToUnit(unit as AccelerationUnit);
+                                    setToUnitOpen(false);
+                                  }}
+                                >
+                                  {unitLabels[unit as AccelerationUnit]}
+                                </CommandItem>
+                              ))
+                            }
+                          </CommandGroup>
+                        ))}
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
               </div>
             </div>
           </div>
 
           {/* Conversion Result */}
-          <div className="bg-muted/50 p-4 rounded-lg">
-            <h3 className="text-sm font-medium text-muted-foreground mb-2">Result</h3>
+          <div className="bg-gradient-to-r from-green-50 via-blue-50 to-purple-50 dark:from-green-950/20 dark:via-blue-950/20 dark:to-purple-950/20 p-6 rounded-2xl border-2 border-green-200/50 dark:border-green-800/50 shadow-inner">
+            <h3 className="text-sm font-semibold text-green-700 dark:text-green-300 mb-3 uppercase tracking-wide">Conversion Result</h3>
             <div className="flex items-center justify-between">
-              <div className="text-3xl font-bold">
+              <div className="text-3xl sm:text-4xl font-bold" data-testid="result-display">
                 {result ? (
-                  <>
-                    {result} <span className="text-lg font-normal">{unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '')}</span>
-                  </>
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <span className="text-green-600 dark:text-green-400">{result}</span>
+                    <span className="text-lg font-normal text-muted-foreground">
+                      {unitLabels[toUnit]?.split(' ')[1]?.replace(/[()]/g, '') || unitLabels[toUnit]}
+                    </span>
+                  </div>
                 ) : (
-                  <span className="text-muted-foreground text-lg">— Enter a value to convert —</span>
+                  <span className="text-muted-foreground text-xl italic">Enter a value to see the conversion</span>
                 )}
               </div>
             </div>
@@ -245,68 +363,43 @@ function AccelerationConverter() {
             </Alert>
           )}
 
-          {/* Conversion Details */}
+          {/* Conversion Formula Display */}
           {result && (
-            <div className="bg-muted/30 p-4 rounded-lg text-sm">
-              <div className="flex items-start gap-2">
-                <Info className="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <span className="font-medium">Conversion Details:</span>
-                  <p className="text-muted-foreground mt-1">
-                    {`${inputValue} ${unitLabels[fromUnit]} = ${result} ${unitLabels[toUnit]}`}
+            <div className="bg-blue-50/50 dark:bg-blue-950/20 p-5 rounded-xl border border-blue-200 dark:border-blue-800 text-sm">
+              <div className="flex items-start gap-3">
+                <div className="p-1.5 bg-blue-100 dark:bg-blue-900/50 rounded-lg">
+                  <Info className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="flex-1">
+                  <span className="font-semibold text-blue-900 dark:text-blue-100">Conversion Details:</span>
+                  <p className="text-blue-700 dark:text-blue-300 mt-2 font-medium">
+                    {`${inputValue} ${unitLabels[fromUnit]?.split(' ')[0]} = ${result} ${unitLabels[toUnit]?.split(' ')[0]}`}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {`1 ${unitLabels[fromUnit]} = ${(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(6)} ${unitLabels[toUnit]}`}
+                  <p className="text-xs text-blue-600 dark:text-blue-400 mt-2 bg-blue-100/50 dark:bg-blue-900/30 p-2 rounded-lg">
+                    <strong>Conversion Factor:</strong> 1 {unitLabels[fromUnit]?.split(' ')[0]} = {(conversionFactors[fromUnit] / conversionFactors[toUnit]).toFixed(8)} {unitLabels[toUnit]?.split(' ')[0]}
                   </p>
                 </div>
               </div>
             </div>
           )}
-
-          {/* Common Acceleration Reference */}
-          <div className="bg-primary/5 p-4 rounded-lg text-xs">
-            <h4 className="font-medium mb-2">Common Acceleration References:</h4>
-            <div className="grid gap-1 text-muted-foreground">
-              <div className="flex items-center justify-between">
-                <span>1 g (gravity)</span>
-                <span>=</span>
-                <span>9.81 m/s²</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>1 gal</span>
-                <span>=</span>
-                <span>1 cm/s²</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Car acceleration</span>
-                <span>≈</span>
-                <span>3-5 m/s²</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span>Elevator acceleration</span>
-                <span>≈</span>
-                <span>1-2 m/s²</span>
-              </div>
-            </div>
-          </div>
         </div>
       </CardContent>
 
-      <CardFooter className="flex justify-between border-t p-4 bg-muted/10">
+      <CardFooter className="flex flex-col sm:flex-row justify-between items-center gap-4 border-t-0 p-8 bg-gradient-to-r from-gray-50 to-blue-50/30 dark:from-gray-900 dark:to-blue-950/30 rounded-b-2xl">
         <Button
           variant="outline"
           onClick={resetConverter}
-          className="gap-2"
+          className="gap-2 h-11 px-6 font-medium border-2 hover:border-primary transition-all duration-300 rounded-xl shadow-sm hover:shadow-md"
+          data-testid="button-reset"
         >
-          <RotateCcw className="h-4 w-4" /> Reset
+          <RotateCcw className="h-4 w-4" /> Reset Converter
         </Button>
         
-        <div className="text-xs text-muted-foreground">
-          Accurate acceleration and gravitational force conversions
+        <div className="text-sm text-center sm:text-right text-muted-foreground">
+          <div className="font-medium">Precision conversions between various acceleration units</div>
+          <div className="text-xs mt-1">Including metric, imperial & other units</div>
         </div>
       </CardFooter>
     </Card>
   );
 }
-
-export default AccelerationConverter;

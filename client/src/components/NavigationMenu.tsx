@@ -14,9 +14,12 @@ import { tools } from '@/data/tools';
 import { ChevronUp, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
+import { useFavorites } from '@/context/FavoritesContext';
+import { Heart } from 'lucide-react';
 
 export function MainNavigationMenu() {
   const [_location, setLocation] = useLocation();
+  const { favorites } = useFavorites();
 
   // Group tools by category ID
   const toolsByCategory: Record<string, typeof tools> = {};
@@ -97,12 +100,27 @@ export function MainNavigationMenu() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
               Recent Tools
-            </span>
-          </button>
-        </div>
-      </div>
+           </span>
+         </button>
 
-      {/* Mobile Navigation - Simplified dropdown list with scrolling */}
+         <button
+           onClick={() => setLocation("/favorite-tools")}
+           className="nav-btn px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60 relative"
+         >
+           <span className="flex items-center">
+             <Heart className="w-4 h-4 mr-1.5 text-primary" />
+             Favorites
+             {favorites.length > 0 && (
+               <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-white">
+                 {favorites.length}
+               </span>
+             )}
+           </span>
+         </button>
+       </div>
+     </div>
+
+     {/* Mobile Navigation - Simplified dropdown list with scrolling */}
       <div className="md:hidden">
         <div className="px-4 pb-2 max-h-[70vh] overflow-y-auto custom-scrollbar">
           <MobileNav categories={categories} toolsByCategory={toolsByCategory} />

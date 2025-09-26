@@ -3,6 +3,8 @@ import { Tool } from "@/data/tools";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useFavorites } from "@/context/FavoritesContext";
+import { Heart } from "lucide-react";
 
 interface ToolCardProps {
   tool: Tool;
@@ -11,6 +13,18 @@ interface ToolCardProps {
 export function ToolCard({ tool }: ToolCardProps) {
   const { id, name, description, category, icon, views, gradient } = tool;
   const [currentViews, setCurrentViews] = useState(views);
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+  const isToolFavorite = isFavorite(id);
+
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isToolFavorite) {
+      removeFavorite(id);
+    } else {
+      addFavorite(tool);
+    }
+  };
 
   // Fetch real visit count from backend
   const { data: visitData } = useQuery({
@@ -59,12 +73,23 @@ export function ToolCard({ tool }: ToolCardProps) {
             <div className={`absolute top-2 right-2 sm:top-3 sm:right-3 ${category.color.badge.bg} ${category.color.badge.text} text-xs px-2 py-1 rounded-full font-medium`}>
               {category.name}
             </div>
+            <button
+              onClick={handleFavoriteClick}
+              className="absolute top-2 left-2 sm:top-3 sm:left-3 p-1.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-all duration-200"
+              aria-label={isToolFavorite ? "Remove from favorites" : "Add to favorites"}
+            >
+              <Heart
+                className={`w-4 h-4 sm:w-5 sm:h-5 transition-all duration-200 ${
+                  isToolFavorite ? "text-red-500 fill-red-500" : "text-white"
+                }`}
+              />
+            </button>
           </div>
           <div className="p-3 sm:p-4 lg:p-5 flex-1 flex flex-col">
             <h3 className="font-semibold text-sm sm:text-base mb-2 group-hover:text-primary transition-colors line-clamp-2">{name}</h3>
             <p className="text-muted-foreground text-xs sm:text-sm mb-4 flex-1 line-clamp-3">{description}</p>
             <div className="flex justify-between items-center mt-auto">
-              <motion.span 
+              <motion.span
                 className="text-xs text-muted-foreground flex items-center"
                 key={currentViews}
                 initial={{ scale: 1 }}

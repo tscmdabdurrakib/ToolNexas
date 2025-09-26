@@ -3,11 +3,14 @@ import App from "./App";
 import "./index.css";
 import { ThemeProvider } from "./lib/ThemeProvider";
 import { ToolsProvider } from "./context/ToolsContext";
+import { FavoritesProvider } from "./context/FavoritesContext";
 
 createRoot(document.getElementById("root")!).render(
   <ThemeProvider>
     <ToolsProvider>
-      <App />
+      <FavoritesProvider>
+        <App />
+      </FavoritesProvider>
     </ToolsProvider>
   </ThemeProvider>
 );
