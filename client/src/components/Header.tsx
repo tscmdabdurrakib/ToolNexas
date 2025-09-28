@@ -51,6 +51,10 @@ export function Header() {
           </Link>
         </div>
         
+        <div className="hidden lg:block">
+          <MainNavigationMenu />
+        </div>
+        
         <div className="flex items-center space-x-4">
           <div className="hidden lg:block">
             <SearchBar onSearchSubmit={() => setMobileMenuOpen(false)} />
@@ -62,7 +66,7 @@ export function Header() {
           <Button 
             variant={mobileMenuOpen ? "default" : "outline"}
             size="icon" 
-            className="md:hidden rounded-full transition-all duration-300 ease-in-out hover:scale-105 shadow-sm hover:shadow" 
+            className="lg:hidden rounded-full transition-all duration-300 ease-in-out hover:scale-105 shadow-sm hover:shadow"
             onClick={toggleMobileMenu}
           >
             {mobileMenuOpen ? 
@@ -74,15 +78,10 @@ export function Header() {
       </div>
 
       {/* Navigation Menu below header */}
-      <div className="border-t border-border/40 bg-background/50 py-0.5 hidden md:block">
-        <div className="container mx-auto">
-          <MainNavigationMenu />
-        </div>
-      </div>
 
       {/* Mobile menu - with animation */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-border py-4 bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-5 duration-300">
+        <div className="lg:hidden border-t border-border py-4 bg-background/95 backdrop-blur-sm animate-in slide-in-from-top-5 duration-300">
           <div className="container mx-auto px-4 space-y-4">
             <SearchBar onSearchSubmit={() => setMobileMenuOpen(false)} />
 

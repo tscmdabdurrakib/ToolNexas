@@ -142,6 +142,9 @@ const InvestmentCalculatorPage = lazy(() => import("@/pages/tools/InvestmentCalc
 const CurrencyCalculatorPage = lazy(() => import("@/pages/tools/CurrencyCalculatorPage"));
 const InflationCalculatorPage = lazy(() => import("@/pages/tools/InflationCalculatorPage"));
 const FinanceCalculatorPage = lazy(() => import("@/pages/tools/FinanceCalculatorPage"));
+const MortgagePayoffCalculatorPage = lazy(() => import("@/pages/tools/MortgagePayoffCalculatorPage"));
+const IncomeTaxCalculatorPage = lazy(() => import("@/pages/tools/IncomeTaxCalculatorPage"));
+const CompoundInterestCalculatorPage = lazy(() => import("@/pages/tools/CompoundInterestCalculatorPage"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -300,6 +303,9 @@ function Router() {
             <Route path="/tools/currency-calculator" component={CurrencyCalculatorPage} />
             <Route path="/tools/inflation-calculator" component={InflationCalculatorPage} />
             <Route path="/tools/finance-calculator" component={FinanceCalculatorPage} />
+            <Route path="/tools/mortgage-payoff-calculator" component={MortgagePayoffCalculatorPage} />
+            <Route path="/tools/income-tax-calculator" component={IncomeTaxCalculatorPage} />
+            <Route path="/tools/compound-interest-calculator" component={CompoundInterestCalculatorPage} />
             
             <Route component={NotFound} />
           </Switch>

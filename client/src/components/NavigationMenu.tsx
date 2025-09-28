@@ -35,6 +35,7 @@ export function MainNavigationMenu() {
     <>
       {/* Desktop and Tablet Navigation - Redesigned Modern Menu */}
       <div className="hidden md:block">
+        {/* <div className="flex items-center space-x-4"> */}
         <div className="flex items-center justify-center space-x-4">
           {/* About Us Link */}
           <a 
@@ -69,9 +70,9 @@ export function MainNavigationMenu() {
                       <span className={cn("mr-2 text-lg", category.color.text)}>{category.icon}</span>
                       <span className="font-medium">{category.name}</span>
                     </div>
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-secondary/50 text-foreground/80">
+                    {/* <span className="text-xs px-2 py-0.5 rounded-full bg-secondary/50 text-foreground/80">
                       {toolsByCategory[category.id]?.length || 0} tools
-                    </span>
+                    </span> */}
                   </div>
                 ))}
               </div>
