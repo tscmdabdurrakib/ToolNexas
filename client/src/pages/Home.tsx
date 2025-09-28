@@ -7,17 +7,18 @@ import { RecentToolCard } from "@/components/RecentToolCard";
 import { Newsletter } from "@/components/Newsletter";
 import { WebsiteAnalytics } from "@/components/WebsiteAnalytics";
 import { Button } from "@/components/ui/button";
+import { SearchBar } from "@/components/SearchBar";
 import { categories } from "@/data/categories";
 import { tools } from "@/data/tools";
-import { useWebsiteTracking } from "@/hooks/useWebsiteTracking";
+// import { useWebsiteTracking } from "@/hooks/useWebsiteTracking";
 
 export default function Home() {
   // Track website visit
-  useWebsiteTracking();
+  // useWebsiteTracking();
   
   // Use direct imports for now
-  const popularTools = tools.slice(0, 4);
-  const recentTools = tools.slice(4, 7);
+  // const popularTools = tools.slice(0, 4);
+  // const recentTools = tools.slice(4, 7);
   const isLoading = false;
 
   const container = {
@@ -56,6 +57,10 @@ export default function Home() {
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Your comprehensive collection of 70+ professional tools across 35 categories. Convert, calculate, edit and optimize with ease.
         </p>
+
+        <div className="mt-8 max-w-xl mx-auto">
+          <SearchBar variant="input" />
+        </div>
         
         <div className="flex justify-center mt-8 gap-4 flex-wrap">
           <Button 
@@ -107,7 +112,7 @@ export default function Home() {
       </motion.section>
 
       {/* Popular Tools Section */}
-      <motion.section 
+      {/* <motion.section 
         className="mb-16"
         variants={container}
         initial="hidden"
@@ -137,20 +142,20 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-      </motion.section>
+      </motion.section> */}
 
       {/* Featured Tool Section */}
-      <motion.section 
+      {/* <motion.section 
         className="mb-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <FeaturedTool tool={popularTools[0]} />
-      </motion.section>
+      </motion.section> */}
       
       {/* Recent Tools Section */}
-      <motion.section 
+      {/* <motion.section 
         className="mb-16"
         variants={container}
         initial="hidden"
@@ -180,17 +185,17 @@ export default function Home() {
             </motion.div>
           ))}
         </div>
-      </motion.section>
+      </motion.section> */}
       
       {/* Website Analytics Section */}
-      <motion.section 
+      {/* <motion.section 
         className="mb-16"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
         <WebsiteAnalytics />
-      </motion.section>
+      </motion.section> */}
 
       {/* Newsletter Section */}
       <motion.section 

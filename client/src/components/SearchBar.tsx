@@ -15,9 +15,10 @@ interface Suggestion {
 interface SearchBarProps {
   onSearchSubmit?: () => void;
   className?: string;
+  variant?: 'button' | 'input';
 }
 
-export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
+export function SearchBar({ onSearchSubmit, className, variant = 'button' }: SearchBarProps = {}) {
   // Try to get data from context, or use the imported data as fallback
   const contextData = useTools() || { tools: tools, categories: categories };
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +45,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
     );
     
     // Add top 2 tool matches
-    matchedTools.slice(0, 2).forEach(tool => {
+    matchedTools.slice(0, 5).forEach(tool => {
       newSuggestions.push({
         text: tool.name,
         type: "tool",
@@ -59,7 +60,7 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
     );
     
     // Add top 2 category matches
-    matchedCategories.slice(0, 2).forEach(category => {
+    matchedCategories.slice(0, 3).forEach(category => {
       newSuggestions.push({
         text: category.name,
         type: "category",
@@ -169,17 +170,33 @@ export function SearchBar({ onSearchSubmit, className }: SearchBarProps = {}) {
   }
 
   return (
-    <div className="relative" ref={searchRef}>
-      <button
-        onClick={() => setIsOpen(true)}
-        className="flex items-center text-muted-foreground hover:text-foreground bg-muted/50 hover:bg-muted px-3 py-2 rounded-md transition-colors"
-      >
-        <SearchIcon className="h-4 w-4 mr-2" />
-        <span>Search tools...</span>
-      </button>
+    <div className={`relative ${className}`} ref={searchRef}>
+      {variant === 'button' ? (
+        <button
+          onClick={() => setIsOpen(true)}
+          className="flex items-center text-muted-foreground hover:text-foreground bg-muted/50 hover:bg-muted px-3 py-2 rounded-md transition-colors"
+        >
+          <SearchIcon className="h-4 w-4 mr-2" />
+          <span>Search Tools</span>
+        </button>
+      ) : (
+        <div className="relative">
+          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search for tools and categories..."
+            className="w-full pl-10 pr-4 py-3 rounded-full border border-border bg-background focus:ring-2 focus:ring-primary focus:outline-none shadow-sm"
+            onClick={() => setIsOpen(true)}
+            onFocus={() => setIsOpen(true)}
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+        </div>
+      )}
 
       {isOpen && (
-        <div className="absolute top-0 left-0 w-72 sm:w-96 bg-card shadow-xl rounded-lg border border-border z-50 overflow-hidden">
+        <div className={`absolute top-full mt-2 left-0 w-full sm:w-96 bg-card shadow-xl rounded-lg border border-border z-50 overflow-hidden ${variant === 'input' ? 'sm:w-full' : 'w-72'}`}>
           <div className="flex items-center p-3 border-b border-border bg-muted/30">
             <SearchIcon className="h-4 w-4 mr-2 text-primary" />
             <input
