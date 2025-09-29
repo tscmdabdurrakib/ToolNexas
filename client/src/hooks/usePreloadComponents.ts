@@ -1,69 +1,80 @@
 import { useEffect } from 'react';
 
 // Preload strategy: Load popular components after idle time
-const preloadComponents = () => {
-  // Preload most popular tools after 2 seconds of idle time
-  setTimeout(() => {
-    // PDF Editor (most popular)
-    import('@/pages/tools/PDFEditorPage');
-    // Length Converter (high traffic)
-    import('@/pages/tools/LengthConverterPage');
-    // Weight Mass Converter (high traffic)
-    import('@/pages/tools/WeightMassConverterPage');
-  }, 2000);
-
-  // Preload navigation pages after 4 seconds
-  setTimeout(() => {
-    import('@/pages/SearchPage');
-    import('@/pages/CategoryPage');
-    import('@/pages/AboutPage');
-  }, 4000);
-
-  // Preload other converters after 6 seconds
-  setTimeout(() => {
-    import('@/pages/tools/VolumeConverterPage');
-    import('@/pages/tools/TemperatureConverterPage');
-    import('@/pages/tools/CurrencyConverterPage');
-    import('@/pages/tools/ImageResizerPage');
-  }, 6000);
+const preloadComponent = (path: string) => {
+  // Dynamically import the component
+  import(path).catch(err => console.error(`Failed to preload ${path}:`, err));
 };
 
-// Smart preloader based on user interaction
+// Smart preloader based on user interaction and idle time
 export const usePreloadComponents = () => {
   useEffect(() => {
-    // Start preloading after initial page load
-    const timer = setTimeout(() => {
-      preloadComponents();
-    }, 1000);
+    // Preload critical components after initial page load during idle time
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(() => {
+        // Preload most popular tools
+        preloadComponent('@/pages/tools/PDFEditorPage');
+        preloadComponent('@/pages/tools/LengthConverterPage');
+        preloadComponent('@/pages/tools/WeightMassConverterPage');
+      }, { timeout: 2000 }); // Prioritize within 2 seconds
 
-    return () => clearTimeout(timer);
+      (window as any).requestIdleCallback(() => {
+        // Preload navigation pages
+        preloadComponent('@/pages/SearchPage');
+        preloadComponent('@/pages/CategoryPage');
+        preloadComponent('@/pages/AboutPage');
+      }, { timeout: 4000 }); // Prioritize within 4 seconds
+
+      (window as any).requestIdleCallback(() => {
+        // Preload other converters
+        preloadComponent('@/pages/tools/VolumeConverterPage');
+        preloadComponent('@/pages/tools/TemperatureConverterPage');
+        preloadComponent('@/pages/tools/CurrencyConverterPage');
+        preloadComponent('@/pages/tools/ImageResizerPage');
+      }, { timeout: 6000 }); // Prioritize within 6 seconds
+
+    } else {
+      // Fallback for browsers that don't support requestIdleCallback
+      setTimeout(() => {
+        preloadComponent('@/pages/tools/PDFEditorPage');
+        preloadComponent('@/pages/tools/LengthConverterPage');
+        preloadComponent('@/pages/tools/WeightMassConverterPage');
+        preloadComponent('@/pages/SearchPage');
+        preloadComponent('@/pages/CategoryPage');
+        preloadComponent('@/pages/AboutPage');
+        preloadComponent('@/pages/tools/VolumeConverterPage');
+        preloadComponent('@/pages/tools/TemperatureConverterPage');
+        preloadComponent('@/pages/tools/CurrencyConverterPage');
+        preloadComponent('@/pages/tools/ImageResizerPage');
+      }, 3000); // A single timeout for all preloads
+    }
+
+    return () => {
+      // Cleanup if necessary
+    };
   }, []);
 
   // Preload on hover - for instant navigation
   const preloadOnHover = (componentPath: string) => {
     return {
       onMouseEnter: () => {
-        switch (componentPath) {
-          case 'pdf-editor':
-            import('@/pages/tools/PDFEditorPage');
-            break;
-          case 'length-converter':
-            import('@/pages/tools/LengthConverterPage');
-            break;
-          case 'weight-mass-converter':
-            import('@/pages/tools/WeightMassConverterPage');
-            break;
-          case 'volume-converter':
-            import('@/pages/tools/VolumeConverterPage');
-            break;
-          case 'search':
-            import('@/pages/SearchPage');
-            break;
-          case 'about':
-            import('@/pages/AboutPage');
-            break;
-          default:
-            break;
+        // Construct the full path based on common patterns
+        let fullPath = '';
+        if (componentPath.startsWith('/tools/')) {
+          // For tool pages, convert to the lazy load path format
+          const toolName = componentPath.split('/tools/')[1];
+          // Assuming toolName will be like 'length-converter' and page is 'LengthConverterPage'
+          const pageName = toolName.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('') + 'Page';
+          fullPath = `@/pages/tools/${pageName}`;
+        } else if (componentPath.startsWith('/')) {
+          // For other main pages
+          const pageName = componentPath.split('/')[1];
+          if (pageName === '') fullPath = `@/pages/Home`; // Handle root path
+          else fullPath = `@/pages/${pageName.charAt(0).toUpperCase() + pageName.slice(1)}Page`;
+        }
+
+        if (fullPath) {
+          preloadComponent(fullPath);
         }
       }
     };

@@ -937,7 +937,8 @@ export default function PDFEditor() {
                               >
                                 <img
                                   src={element.src}
-                                  alt="PDF Element"
+                                  alt="PDF element"
+                                  loading="lazy"
                                   className="w-full h-full object-contain"
                                 />
                               </div>
@@ -1003,7 +1004,8 @@ export default function PDFEditor() {
                                 ) : (
                                   <img
                                     src={element.data}
-                                    alt="Signature"
+                                    alt="PDF element"
+                                    loading="lazy"
                                     className="w-full h-full object-contain"
                                   />
                                 )}

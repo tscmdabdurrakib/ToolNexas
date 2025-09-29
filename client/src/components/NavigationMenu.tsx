@@ -80,7 +80,7 @@ export function MainNavigationMenu() {
           </div>
           
           {/* Enhanced regular menu items */}
-          <button 
+          {/* <button 
             onClick={() => setLocation("/popular")}
             className="nav-btn px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60"
           >
@@ -90,7 +90,7 @@ export function MainNavigationMenu() {
               </svg>
               Popular Tools
             </span>
-          </button>
+          </button> */}
           
           <button
             onClick={() => setLocation("/recent")}

@@ -3,12 +3,19 @@ import react from "@vitejs/plugin-react";
 import themePlugin from "@replit/vite-plugin-shadcn-theme-json";
 import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   plugins: [
     react(),
     runtimeErrorOverlay(),
     themePlugin(),
+    visualizer({
+      open: true, // Opens the report in your browser
+      filename: "bundle-analysis.html", // Name of the report file
+      gzipSize: true, // Show gzip sizes
+      brotliSize: true, // Show brotli sizes
+    }),
     ...(process.env.NODE_ENV !== "production" &&
     process.env.REPL_ID !== undefined
       ? [
@@ -29,5 +36,20 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (id.includes("react") || id.includes("react-dom")) {
+              return "react-vendor";
+            }
+            return "vendor";
+          }
+          if (id.includes("client/src/pages/tools")) {
+            return "tools";
+          }
+        },
+      },
+    },
   },
 });

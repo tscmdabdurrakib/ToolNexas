@@ -287,9 +287,10 @@ function ImageResizer() {
                 <div>
                   <h3 className="font-medium mb-3">Original Image</h3>
                   <div className="border rounded-lg overflow-hidden bg-muted/50">
-                    <img 
-                      src={originalImage.url} 
-                      alt="Original" 
+                    <img
+                      src={originalImage.url}
+                      alt="Original"
+                      loading="lazy"
                       className="w-full h-48 object-contain"
                     />
                     <div className="p-3 text-xs text-muted-foreground">
@@ -304,9 +305,10 @@ function ImageResizer() {
                   <div className="border rounded-lg overflow-hidden bg-muted/50 min-h-[12rem]">
                     {resizedImageUrl ? (
                       <>
-                        <img 
-                          src={resizedImageUrl} 
-                          alt="Resized" 
+                        <img
+                          src={resizedImageUrl}
+                          alt="Resized"
+                          loading="lazy"
                           className="w-full h-48 object-contain"
                         />
                         <div className="p-3 text-xs text-muted-foreground">
