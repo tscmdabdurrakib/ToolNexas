@@ -1,8 +1,6 @@
 import { Link } from "wouter";
 import { Tool } from "@/data/tools";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useFavorites } from "@/context/FavoritesContext";
 import { Heart } from "lucide-react";
 
@@ -11,8 +9,7 @@ interface ToolCardProps {
 }
 
 export function ToolCard({ tool }: ToolCardProps) {
-  const { id, name, description, category, icon, views, gradient } = tool;
-  const [currentViews, setCurrentViews] = useState(views);
+  const { id, name, description, category, icon } = tool;
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const isToolFavorite = isFavorite(id);
 
@@ -25,93 +22,41 @@ export function ToolCard({ tool }: ToolCardProps) {
       addFavorite(tool);
     }
   };
-
-  // Fetch real visit count from backend
-  const { data: visitData } = useQuery({
-    queryKey: ['tool-visits', id],
-    queryFn: async () => {
-      const response = await fetch(`/api/tool/${id}/visits`);
-      if (!response.ok) throw new Error('Failed to fetch visit count');
-      return response.json();
-    },
-    refetchInterval: 30000, // Refetch every 30 seconds
-    staleTime: 20000,
-  });
-
-  // Update current views: base views + actual visit count
-  useEffect(() => {
-    if (visitData?.count !== undefined) {
-      // Add actual visits to base views count
-      setCurrentViews(views + visitData.count);
-    } else {
-      setCurrentViews(views); // Use original views as fallback
-    }
-  }, [visitData, views]);
-
-  // Format views count for display
-  const formatViews = (count: number) => {
-    if (count >= 1000000) {
-      return `${(count / 1000000).toFixed(1)}M`;
-    } else if (count >= 1000) {
-      return `${Math.floor(count / 1000)}K`;
-    }
-    return count.toString();
-  };
   
   return (
-    <Link to={`/tools/${id}`}>
-      <motion.div 
+    <Link to={`/tools/${id}`} className="group">
+      <motion.div
         whileHover={{ y: -4, scale: 1.02 }}
         transition={{ duration: 0.2 }}
-        className="block w-full h-full"
+        className="relative w-full h-full p-3 bg-transparent rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-400 hover:shadow-lg transition-all duration-300 flex flex-col"
       >
-        <div className="tool-card h-full w-full rounded-xl overflow-hidden bg-card border border-border hover:border-primary shadow-sm hover:shadow-lg transition-all duration-300 group flex flex-col">
-          <div className={`h-32 sm:h-36 ${gradient} relative flex items-center justify-center flex-shrink-0`}>
-            <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center rounded-lg bg-card shadow-sm text-primary">
-              {icon}
-            </div>
-            <div className={`absolute top-2 right-2 sm:top-3 sm:right-3 ${category.color.badge.bg} ${category.color.badge.text} text-xs px-2 py-1 rounded-full font-medium`}>
-              {category.name}
-            </div>
-            <button
-              onClick={handleFavoriteClick}
-              className="absolute top-2 left-2 sm:top-3 sm:left-3 p-1.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-all duration-200"
-              aria-label={isToolFavorite ? "Remove from favorites" : "Add to favorites"}
-            >
-              <Heart
-                className={`w-4 h-4 sm:w-5 sm:h-5 transition-all duration-200 ${
-                  isToolFavorite ? "text-red-500 fill-red-500" : "text-white"
-                }`}
-              />
-            </button>
+        <div className="flex justify-between items-start">
+          <div className="w-12 h-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-lg">
+            {icon && <div className="w-6 h-6">{icon}</div>}
           </div>
-          <div className="p-3 sm:p-4 lg:p-5 flex-1 flex flex-col">
-            <h3 className="font-semibold text-sm sm:text-base mb-2 group-hover:text-primary transition-colors line-clamp-2">{name}</h3>
-            <p className="text-muted-foreground text-xs sm:text-sm mb-4 flex-1 line-clamp-3">{description}</p>
-            <div className="flex justify-between items-center mt-auto">
-              <motion.span
-                className="text-xs text-muted-foreground flex items-center"
-                key={currentViews}
-                initial={{ scale: 1 }}
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 0.3 }}
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-4 sm:w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                </svg>
-                {formatViews(currentViews)}
-              </motion.span>
-              <button 
-                className="text-xs bg-primary/10 hover:bg-primary hover:text-white text-primary px-2 sm:px-3 py-1.5 rounded-lg transition-all duration-200 flex items-center font-medium"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 sm:h-4 sm:w-4 mr-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
-                </svg>
-                Use
-              </button>
-            </div>
-          </div>
+          <span className={`text-xs font-semibold px-2 py-1 rounded-full ${category.color.badge.bg} ${category.color.badge.text}`}>
+            {category.name}
+          </span>
+        </div>
+        <div className="flex-grow mt-4">
+          <h3 className="font-bold text-sm text-gray-800 dark:text-white">{name}</h3>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">{description}</p>
+        </div>
+        <div className="flex justify-between items-center mt-3">
+          <button
+            onClick={handleFavoriteClick}
+            className="p-1.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+            aria-label={isToolFavorite ? "Remove from favorites" : "Add to favorites"}
+          >
+            <Heart
+              className={`w-5 h-5 transition-all duration-200 ${
+                isToolFavorite ? "text-red-500 fill-current" : "text-gray-400 dark:text-gray-500"
+              }`}
+            />
+          </button>
+          <button className="text-xs font-semibold text-white bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 px-3 py-1.5 rounded-md transition-colors duration-300">
+            Use
+          </button>
         </div>
       </motion.div>
     </Link>

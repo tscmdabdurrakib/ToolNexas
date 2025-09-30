@@ -87,7 +87,9 @@ export default function CategoryPage({ params }: { params?: { id?: string } }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 justify-items-center">
           {categoryTools.length > 0 ? (
             categoryTools.map((tool: any) => (
-              <div key={tool.id} className="w-full max-w-sm">
+              //  <div key={tool.id} className="w-full max-w-sm">
+              //   <ToolCard tool={tool} />
+              <div key={tool.id} className="w-full">
                 <ToolCard tool={tool} />
               </div>
             ))

@@ -93,14 +93,15 @@ export function MainNavigationMenu() {
           </button> */}
           
           <button
-            onClick={() => setLocation("/recent")}
+            onClick={() => setLocation("/blog")}
             className="nav-btn px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60"
           >
             <span className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-1.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 mr-1.5 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
               </svg>
-              Recent Tools
+              Blog
            </span>
          </button>
 

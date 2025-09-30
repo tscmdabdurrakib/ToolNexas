@@ -21,6 +21,8 @@ const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const AuthorPage = lazy(() => import("@/pages/AuthorPage"));
 const ContactPage = lazy(() => import("@/pages/ContactPage"));
 const FavoriteToolsPage = lazy(() => import("@/pages/FavoriteToolsPage"));
+const BlogPage = lazy(() => import("@/pages/BlogPage"));
+const BlogSinglePage = lazy(() => import("@/pages/BlogSinglePage"));
 
 // Legal pages
 const PrivacyPolicyPage = lazy(() => import("@/pages/PrivacyPolicyPage"));
@@ -187,6 +189,8 @@ function Router() {
             <Route path="/author" component={AuthorPage} />
             <Route path="/contact" component={ContactPage} />
             <Route path="/favorite-tools" component={FavoriteToolsPage} />
+            <Route path="/blog" component={BlogPage} />
+            <Route path="/blog/:id" component={BlogSinglePage} />
             <Route path="/privacy" component={PrivacyPolicyPage} />
             <Route path="/terms" component={TermsOfServicePage} />
             <Route path="/disclaimer" component={DisclaimerPage} />
