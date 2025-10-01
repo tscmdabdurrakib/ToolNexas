@@ -55,7 +55,7 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to ToolShaala</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to <span className="scribble-underline">ToolShaala</span></h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Your comprehensive collection of 70+ professional tools across 35 categories. Convert, calculate, edit and optimize with ease.
         </p>
@@ -105,11 +105,25 @@ export default function Home() {
         </h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 justify-items-center">
-          {categories.map((category) => (
-            <motion.div key={category.id} variants={item} className="w-full max-w-sm">
-              <CategoryCard category={category} />
-            </motion.div>
-          ))}
+          {categories
+            .map((category) => {
+              const toolCount = tools.filter((tool) => tool.category.id === category.id).length;
+              return { ...category, toolCount };
+            })
+            .sort((a, b) => {
+              // Categories with tools first (descending order of toolCount)
+              if (a.toolCount > 0 && b.toolCount === 0) return -1;
+              if (a.toolCount === 0 && b.toolCount > 0) return 1;
+              // For categories with tools, sort by name alphabetically
+              if (a.toolCount > 0 && b.toolCount > 0) return a.name.localeCompare(b.name);
+              // For categories with no tools, sort by name alphabetically
+              return a.name.localeCompare(b.name);
+            })
+            .map((category) => (
+              <motion.div key={category.id} variants={item} className="w-full max-w-sm">
+                <CategoryCard category={category} />
+              </motion.div>
+            ))}
         </div>
       </motion.section>
 

@@ -22,7 +22,14 @@ export function CategoryCard({ category }: CategoryCardProps) {
         window.location.href = `/category/${id}`;
       }}
     >
-      <div className="category-card h-full w-full rounded-xl overflow-hidden bg-card border border-border hover:shadow-xl hover:border-primary transition-all duration-300 cursor-pointer flex flex-col">
+      <div className={`category-card h-full w-full rounded-xl overflow-hidden bg-card border border-border transition-all duration-300 flex flex-col relative ${toolCount === 0 ? 'opacity-50 grayscale cursor-not-allowed' : 'hover:shadow-xl hover:border-primary cursor-pointer'}`}>
+        {toolCount === 0 && (
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <span className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+              Coming Soon
+            </span>
+          </div>
+        )}
         <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col">
           <div className="flex items-center space-x-3 sm:space-x-4 mb-4 sm:mb-5">
             <div
@@ -34,14 +41,16 @@ export function CategoryCard({ category }: CategoryCardProps) {
           </div>
           <p className="text-muted-foreground text-xs sm:text-sm mb-4 flex-1 line-clamp-3">{description}</p>
           <div className="flex justify-between items-center mt-auto">
-            <span
-              className={`text-xs font-medium px-2 py-1 rounded-full ${color.badge.bg} ${color.badge.text}`}
-            >
-              {toolCount} Tools
-            </span>
+            {toolCount > 0 && (
+              <span
+                className={`text-xs font-medium px-2 py-1 rounded-full ${color.badge.bg} ${color.badge.text}`}
+              >
+                {toolCount} Tools
+              </span>
+            )}
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 sm:h-5 sm:w-5 text-primary"
+              className={`h-4 w-4 sm:h-5 sm:w-5 ${toolCount === 0 ? 'text-muted-foreground' : 'text-primary'}`}
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

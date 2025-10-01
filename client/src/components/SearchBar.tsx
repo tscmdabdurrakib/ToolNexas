@@ -45,7 +45,7 @@ export function SearchBar({ onSearchSubmit, className, variant = 'button' }: Sea
     );
     
     // Add top 2 tool matches
-    matchedTools.slice(0, 5).forEach(tool => {
+    matchedTools.slice(0, 100).forEach(tool => {
       newSuggestions.push({
         text: tool.name,
         type: "tool",
@@ -60,7 +60,7 @@ export function SearchBar({ onSearchSubmit, className, variant = 'button' }: Sea
     );
     
     // Add top 2 category matches
-    matchedCategories.slice(0, 3).forEach(category => {
+    matchedCategories.slice(0, 5).forEach(category => {
       newSuggestions.push({
         text: category.name,
         type: "category",
@@ -174,10 +174,9 @@ export function SearchBar({ onSearchSubmit, className, variant = 'button' }: Sea
       {variant === 'button' ? (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center text-muted-foreground hover:text-foreground bg-muted/50 hover:bg-muted px-3 py-2 rounded-md transition-colors"
+          className="flex items-center text-muted-foreground hover:text-foreground p-2 transition-colors"
         >
-          <SearchIcon className="h-4 w-4 mr-2" />
-          <span>Search Tools</span>
+          <SearchIcon className="h-5 w-5" />
         </button>
       ) : (
         <div className="relative">
@@ -196,12 +195,12 @@ export function SearchBar({ onSearchSubmit, className, variant = 'button' }: Sea
       )}
 
       {isOpen && (
-        <div className={`absolute top-full mt-2 left-0 w-full sm:w-96 bg-card shadow-xl rounded-lg border border-border z-50 overflow-hidden ${variant === 'input' ? 'sm:w-full' : 'w-72'}`}>
+        <div className={`absolute top-full mt-2 right-0 w-full max-w-full min-w-max bg-card shadow-xl rounded-lg border border-border z-50 overflow-hidden ${variant === 'input' ? 'sm:w-full' : 'sm:w-72'}`}>
           <div className="flex items-center p-3 border-b border-border bg-muted/30">
             <SearchIcon className="h-4 w-4 mr-2 text-primary" />
             <input
               ref={inputRef}
-              type="text"
+              type="search"
               placeholder="Search for tools and categories..."
               className="flex-1 bg-transparent border-none outline-none placeholder:text-muted-foreground/70"
               value={query}
@@ -219,17 +218,17 @@ export function SearchBar({ onSearchSubmit, className, variant = 'button' }: Sea
                 <XIcon className="h-3.5 w-3.5" />
               </button>
             )}
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-muted-foreground hover:text-foreground"
-              title="Close search"
-            >
-              <XIcon className="h-4 w-4" />
-            </button>
+            {/* <button */}
+              {/* onClick={() => setIsOpen(false)} */}
+              {/* className="text-muted-foreground hover:text-foreground" */}
+              {/* title="Close search" */}
+            {/* > */}
+              {/* <XIcon className="h-4 w-4" /> */}
+            {/* </button> */}
           </div>
 
           {suggestions.length > 0 && (
-            <div className="p-2">
+            <div className="p-2 search-suggestions-container">
               <div className="text-xs text-muted-foreground px-2 py-1">Suggestions</div>
               <ul>
                 {suggestions.map((suggestion, index) => (
