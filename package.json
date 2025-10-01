@@ -1,4 +1,5 @@
 {
+  "homepage" : "https://tscmdabdurrakib.github.io/ToolNexas",
   "name": "rest-express",
   "version": "1.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "start": "vite preview",
-    "check": "tsc"
+    "check": "tsc",
+    "predeploy":"npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
