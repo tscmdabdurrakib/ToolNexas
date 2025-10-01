@@ -20,8 +20,8 @@ export default function VolumeConverterPage() {
   
   return (
     <>
-      <div className="container max-w-5xl py-6 md:py-10">
-        <div className="mb-8">
+      <div className="container max-w-3xl mx-auto py-6 md:py-10 px-4 sm:px-6 lg:px-8">
+        <div className="mb-6">
           <Link href="/">
             <Button variant="ghost" className="p-0 mb-2 h-auto" asChild>
               <div className="flex items-center text-muted-foreground text-sm font-normal hover:text-primary">
@@ -31,7 +31,7 @@ export default function VolumeConverterPage() {
             </Button>
           </Link>
           
-          <div className="flex items-center space-x-2 mb-1">
+          <div className="container flex items-center space-x-2 mb-1">
             <Link href="/category/unit-conversion">
               <Badge variant="outline" className="text-xs font-medium">
                 Unit & Conversion Tools
@@ -43,7 +43,7 @@ export default function VolumeConverterPage() {
           <p className="text-lg text-muted-foreground">Convert between different volume units including metric and imperial systems</p>
         </div>
 
-        <div className="flex flex-col items-center justify-center w-full mb-10">
+        <div className="max-w-3xl mx-auto mb-10">
           <VolumeConverter />
         </div>
 

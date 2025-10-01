@@ -20,7 +20,7 @@ export default function AreaConverterPage() {
   
   return (
     <>
-      <div className="container max-w-5xl py-6 md:py-10">
+      <div className="container max-w-3xl mx-auto py-6 md:py-10 px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link href="/">
             <Button variant="ghost" className="p-0 mb-2 h-auto" asChild>

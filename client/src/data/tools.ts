@@ -1817,7 +1817,7 @@ export const tools: Tool[] = [
     ],
   },
   {
-    id: "salary-calculator",
+    id: "advanced-salary-calculator",
     name: "Salary Calculator",
     description: "Calculate take-home salary after tax and deductions",
     category: getCategoryById("calculation"),

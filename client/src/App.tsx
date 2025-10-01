@@ -147,6 +147,11 @@ const FinanceCalculatorPage = lazy(() => import("@/pages/tools/FinanceCalculator
 const MortgagePayoffCalculatorPage = lazy(() => import("@/pages/tools/MortgagePayoffCalculatorPage"));
 const IncomeTaxCalculatorPage = lazy(() => import("@/pages/tools/IncomeTaxCalculatorPage"));
 const CompoundInterestCalculatorPage = lazy(() => import("@/pages/tools/CompoundInterestCalculatorPage"));
+const Professional401KCalculatorPage = lazy(() => import("@/pages/tools/Professional401KCalculatorPage"));
+const AdvancedSalaryCalculatorPage = lazy(() => import("@/pages/tools/AdvancedSalaryCalculatorPage"));
+const InterestRateCalculatorPage = lazy(() => import("@/pages/tools/InterestRateCalculatorPage"));
+const SalesTaxCalculatorPage = lazy(() => import("@/pages/tools/SalesTaxCalculatorPage"));
+const HouseAffordabilityCalculatorPage = lazy(() => import("@/pages/tools/HouseAffordabilityCalculatorPage"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -310,6 +315,11 @@ function Router() {
             <Route path="/tools/mortgage-payoff-calculator" component={MortgagePayoffCalculatorPage} />
             <Route path="/tools/income-tax-calculator" component={IncomeTaxCalculatorPage} />
             <Route path="/tools/compound-interest-calculator" component={CompoundInterestCalculatorPage} />
+            <Route path="/tools/401k-calculator" component={Professional401KCalculatorPage} />
+            <Route path="/tools/advanced-salary-calculator" component={AdvancedSalaryCalculatorPage} />
+            <Route path="/tools/interest-rate-calculator" component={InterestRateCalculatorPage} />
+            <Route path="/tools/sales-tax-calculator" component={SalesTaxCalculatorPage} />
+            <Route path="/tools/house-affordability-calculator" component={HouseAffordabilityCalculatorPage} />
             
             <Route component={NotFound} />
           </Switch>

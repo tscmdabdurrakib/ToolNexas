@@ -104,7 +104,7 @@ export default function Home() {
           Categories
         </h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 justify-items-center">
           {categories
             .map((category) => {
               const toolCount = tools.filter((tool) => tool.category.id === category.id).length;
@@ -151,14 +151,48 @@ export default function Home() {
          </Link>
        </div>
        
-       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 justify-items-center">
-         {tools.slice(0, 4).map((tool) => (
+       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+         {tools.slice(0, 8).map((tool) => (
            <motion.div key={tool.id} variants={item} className="w-full max-w-sm">
              <ToolCard tool={tool} />
            </motion.div>
          ))}
        </div>
      </motion.section>
+
+     {/* Recently Used Tools Section */}
+     <motion.section
+      className="mb-16"
+      variants={container}
+      initial="hidden"
+      animate="show"
+    >
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-2xl font-bold flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 22a10 10 0 100-20 10 10 0 000 20z" />
+          </svg>
+          Recently Used Tools
+        </h2>
+        <Link to="/recent">
+          <div className="text-primary hover:text-primary/90 text-sm font-medium flex items-center cursor-pointer">
+            View all
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+            </svg>
+          </div>
+        </Link>
+      </div>
+      
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-items-center">
+        {tools.slice(4, 7).map((tool) => (
+          <motion.div key={tool.id} variants={item} className="w-full max-w-sm">
+            <ToolCard tool={tool} />
+          </motion.div>
+        ))}
+      </div>
+    </motion.section>
 
      {/* Social Proof / Trust-Building Section */}
      <motion.section
