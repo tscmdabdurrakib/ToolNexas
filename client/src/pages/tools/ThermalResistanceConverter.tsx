@@ -13,7 +13,7 @@ export default function ThermalResistanceConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Thermal Resistance Converter | ToolShaala";
+    document.title = "Thermal Resistance Converter | Solvezyo";
   }, []);
 
   return (

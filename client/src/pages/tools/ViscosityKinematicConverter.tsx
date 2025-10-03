@@ -10,7 +10,7 @@ export default function ViscosityKinematicConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Viscosity - Kinematic Converter | Convert Kinematic Viscosity Units - ToolShaala";
+    document.title = "Viscosity - Kinematic Converter | Convert Kinematic Viscosity Units - Solvezyo";
   }, [location]);
 
   return (

@@ -12,7 +12,7 @@ export default function LoanCalculatorPage() {
   // Scroll to top when component mounts and set page title
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Loan Calculator | Calculate Monthly Payments - ToolShaala";
+    document.title = "Loan Calculator | Calculate Monthly Payments - Solvezyo";
   }, [location]);
 
   return (

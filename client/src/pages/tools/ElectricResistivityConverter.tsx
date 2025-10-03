@@ -10,7 +10,7 @@ export default function ElectricResistivityConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Electric Resistivity Converter | Convert Resistivity Units - ToolShaala";
+    document.title = "Electric Resistivity Converter | Convert Resistivity Units - Solvezyo";
   }, [location]);
 
   return (

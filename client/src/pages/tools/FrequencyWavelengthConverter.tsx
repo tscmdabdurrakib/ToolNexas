@@ -10,7 +10,7 @@ export default function FrequencyWavelengthConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Frequency Wavelength Converter | Convert Frequency & Wavelength - ToolShaala";
+    document.title = "Frequency Wavelength Converter | Convert Frequency & Wavelength - Solvezyo";
   }, [location]);
 
   return (

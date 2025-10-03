@@ -13,7 +13,7 @@ export default function MomentOfForceConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Moment of Force Converter | ToolShaala";
+    document.title = "Moment of Force Converter | Solvezyo";
   }, []);
 
   return (

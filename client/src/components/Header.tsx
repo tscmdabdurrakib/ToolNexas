@@ -27,27 +27,9 @@ export function Header() {
     <header className="sticky top-0 z-50 backdrop-blur-md bg-background/90 border-b border-border">
       <div className="container mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          <div className="relative">
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              className="h-8 w-8 text-primary" 
-              viewBox="0 0 32 32" 
-              fill="none"
-            >
-              {/* Unique ToolShaala Logo Design */}
-              <rect x="2" y="6" width="28" height="20" rx="4" stroke="currentColor" strokeWidth="2" fill="none"/>
-              <circle cx="8" cy="12" r="2" fill="currentColor"/>
-              <circle cx="16" cy="12" r="2" fill="currentColor"/>
-              <circle cx="24" cy="12" r="2" fill="currentColor"/>
-              <rect x="6" y="18" width="4" height="4" rx="1" fill="currentColor"/>
-              <rect x="14" y="18" width="4" height="4" rx="1" fill="currentColor"/>
-              <rect x="22" y="18" width="4" height="4" rx="1" fill="currentColor"/>
-              <path d="M10 2 L22 2 L24 6 L8 6 Z" fill="currentColor" opacity="0.8"/>
-            </svg>
-            <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full animate-pulse"></div>
-          </div>
+          <img src="/logo.png" alt="Solvezyo logo" className="h-8 w-8" />
           <Link href="/" className="text-xl font-bold cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            ToolShaala
+            Solvezyo
           </Link>
         </div>
         

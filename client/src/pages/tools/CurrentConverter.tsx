@@ -10,7 +10,7 @@ export default function CurrentConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Current Converter | Convert Electric Current Units - ToolShaala";
+    document.title = "Current Converter | Convert Electric Current Units - Solvezyo";
   }, [location]);
 
   return (

@@ -10,7 +10,7 @@ export default function LinearChargeDensityConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Linear Charge Density Converter | Convert Linear Charge Density - ToolShaala";
+    document.title = "Linear Charge Density Converter | Convert Linear Charge Density - Solvezyo";
   }, [location]);
 
   return (

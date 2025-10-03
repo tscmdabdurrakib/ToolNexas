@@ -10,7 +10,7 @@ export default function VolumeChargeDensityConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Volume Charge Density Converter | Convert Volume Charge Density - ToolShaala";
+    document.title = "Volume Charge Density Converter | Convert Volume Charge Density - Solvezyo";
   }, [location]);
 
   return (

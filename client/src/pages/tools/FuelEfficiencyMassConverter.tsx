@@ -13,7 +13,7 @@ export default function FuelEfficiencyMassConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Fuel Efficiency - Mass Converter | ToolShaala";
+    document.title = "Fuel Efficiency - Mass Converter | Solvezyo";
   }, []);
 
   return (

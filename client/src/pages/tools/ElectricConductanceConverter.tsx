@@ -10,7 +10,7 @@ export default function ElectricConductanceConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Electric Conductance Converter | Convert Conductance Units - ToolShaala";
+    document.title = "Electric Conductance Converter | Convert Conductance Units - Solvezyo";
   }, [location]);
 
   return (

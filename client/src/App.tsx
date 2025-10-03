@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -6,12 +6,24 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
 import { ThemeProvider } from "@/lib/ThemeProvider";
-import { Suspense, lazy } from "react";
+import { ContextMenuProvider, ContextMenuContext } from "@/context/ContextMenuProvider";
+import { Suspense, lazy, useContext } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePreloadComponents } from "@/hooks/usePreloadComponents";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
-
-// Lazy load components for better performance
+import {
+  ArrowLeft,
+  ArrowRight,
+  Home as HomeIcon,
+  RefreshCw,
+  Star,
+  Printer,
+  Code2,
+  Rss,
+  Info,
+  User,
+  Mail,
+} from "lucide-react";
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
@@ -152,6 +164,11 @@ const AdvancedSalaryCalculatorPage = lazy(() => import("@/pages/tools/AdvancedSa
 const InterestRateCalculatorPage = lazy(() => import("@/pages/tools/InterestRateCalculatorPage"));
 const SalesTaxCalculatorPage = lazy(() => import("@/pages/tools/SalesTaxCalculatorPage"));
 const HouseAffordabilityCalculatorPage = lazy(() => import("@/pages/tools/HouseAffordabilityCalculatorPage"));
+const SavingsCalculatorPage = lazy(() => import("@/pages/tools/SavingsCalculatorPage"));
+const RentCalculatorPage = lazy(() => import("@/pages/tools/RentCalculatorPage"));
+const MarriageTaxCalculatorPage = lazy(() => import("@/pages/tools/MarriageTaxCalculatorPage"));
+const EstateTaxCalculatorPage = lazy(() => import("@/pages/tools/EstateTaxCalculatorPage"));
+const RetirementSavingsPensionCalculatorPage = lazy(() => import("@/pages/tools/RetirementSavingsPensionCalculatorPage"));
 
 // Loading fallback component
 const PageLoader = () => (
@@ -179,9 +196,71 @@ function Router() {
   usePreloadComponents();
   const { useMemoryOptimization } = usePerformanceOptimization();
   useMemoryOptimization();
+  const { showContextMenu } = useContext(ContextMenuContext);
+  const [, setLocation] = useLocation();
+
+  const handleContextMenu = (event: React.MouseEvent) => {
+    showContextMenu(event, [
+      {
+        label: "Back",
+        icon: <ArrowLeft size={16} />,
+        action: () => window.history.back(),
+      },
+      {
+        label: "Forward",
+        icon: <ArrowRight size={16} />,
+        action: () => window.history.forward(),
+      },
+      {
+        label: "Reload",
+        icon: <RefreshCw size={16} />,
+        action: () => window.location.reload(),
+        divider: true,
+      },
+      {
+        label: "Home",
+        icon: <HomeIcon size={16} />,
+        action: () => setLocation("/"),
+      },
+      {
+        label: "Favorite Tools",
+        icon: <Star size={16} />,
+        action: () => setLocation("/favorite-tools"),
+        divider: true,
+      },
+      {
+        label: "Blog",
+        icon: <Rss size={16} />,
+        action: () => setLocation("/blog"),
+      },
+      {
+        label: "About Us",
+        icon: <Info size={16} />,
+        action: () => setLocation("/about"),
+      },
+      {
+        label: "About the Author",
+        icon: <User size={16} />,
+        action: () => setLocation("/author"),
+      },
+      {
+        label: "Contact Us",
+        icon: <Mail size={16} />,
+        action: () => setLocation("/contact"),
+        divider: true,
+      },
+      {
+        label: "Inspect",
+        icon: <Code2 size={16} />,
+        action: () => {
+          console.log("To inspect elements, please use your browser's built-in developer tools (e.g., F12 or Ctrl+Shift+I).");
+        },
+      },
+    ]);
+  };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen" onContextMenu={handleContextMenu}>
       <Header />
       <div className="flex-grow">
         <Suspense fallback={<PageLoader />}>
@@ -320,6 +399,11 @@ function Router() {
             <Route path="/tools/interest-rate-calculator" component={InterestRateCalculatorPage} />
             <Route path="/tools/sales-tax-calculator" component={SalesTaxCalculatorPage} />
             <Route path="/tools/house-affordability-calculator" component={HouseAffordabilityCalculatorPage} />
+            <Route path="/tools/savings-calculator" component={SavingsCalculatorPage} />
+            <Route path="/tools/rent-calculator" component={RentCalculatorPage} />
+            <Route path="/tools/marriage-tax-calculator" component={MarriageTaxCalculatorPage} />
+            <Route path="/tools/estate-tax-calculator" component={EstateTaxCalculatorPage} />
+            <Route path="/tools/retirement-savings-pension-calculator" component={RetirementSavingsPensionCalculatorPage} />
             
             <Route component={NotFound} />
           </Switch>
@@ -335,8 +419,10 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="system">
         <ToolsProvider>
-          <Router />
-          <Toaster />
+          <ContextMenuProvider>
+            <Router />
+            <Toaster />
+          </ContextMenuProvider>
         </ToolsProvider>
       </ThemeProvider>
     </QueryClientProvider>

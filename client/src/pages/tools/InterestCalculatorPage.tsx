@@ -12,7 +12,7 @@ export default function InterestCalculatorPage() {
   // Scroll to top when component mounts and set page title
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Interest Calculator | Simple & Compound Interest - ToolShaala";
+    document.title = "Interest Calculator | Simple & Compound Interest - Solvezyo";
   }, [location]);
 
   return (

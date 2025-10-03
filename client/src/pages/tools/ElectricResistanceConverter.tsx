@@ -10,7 +10,7 @@ export default function ElectricResistanceConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Electric Resistance Converter | Convert Resistance Units - ToolShaala";
+    document.title = "Electric Resistance Converter | Convert Resistance Units - Solvezyo";
   }, [location]);
 
   return (

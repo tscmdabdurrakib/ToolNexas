@@ -13,7 +13,7 @@ export default function FlowMassConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Flow - Mass Converter | ToolShaala";
+    document.title = "Flow - Mass Converter | Solvezyo";
   }, []);
 
   return (

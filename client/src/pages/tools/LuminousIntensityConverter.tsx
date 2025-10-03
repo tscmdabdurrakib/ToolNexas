@@ -10,7 +10,7 @@ export default function LuminousIntensityConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Luminous Intensity Converter | Convert Luminous Intensity Units - ToolShaala";
+    document.title = "Luminous Intensity Converter | Convert Luminous Intensity Units - Solvezyo";
   }, [location]);
 
   return (

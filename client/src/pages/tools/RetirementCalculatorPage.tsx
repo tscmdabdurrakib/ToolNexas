@@ -12,7 +12,7 @@ export default function RetirementCalculatorPage() {
   // Scroll to top when component mounts and set page title
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Retirement Calculator | Plan Your Retirement Savings - ToolShaala";
+    document.title = "Retirement Calculator | Plan Your Retirement Savings - Solvezyo";
   }, [location]);
 
   return (

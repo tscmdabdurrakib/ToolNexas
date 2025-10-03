@@ -10,7 +10,7 @@ export default function SurfaceChargeDensityConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Surface Charge Density Converter | Convert Surface Charge Density - ToolShaala";
+    document.title = "Surface Charge Density Converter | Convert Surface Charge Density - Solvezyo";
   }, [location]);
 
   return (

@@ -12,7 +12,7 @@ export default function MassFluxDensityConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Mass Flux Density Converter | Convert Mass Flux Units - ToolShaala";
+    document.title = "Mass Flux Density Converter | Convert Mass Flux Units - Solvezyo";
   }, [location]);
 
   return (

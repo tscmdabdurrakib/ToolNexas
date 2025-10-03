@@ -12,7 +12,7 @@ export default function ViscosityDynamicConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Viscosity - Dynamic Converter | Convert Dynamic Viscosity Units - ToolShaala";
+    document.title = "Viscosity - Dynamic Converter | Convert Dynamic Viscosity Units - Solvezyo";
   }, [location]);
 
   return (

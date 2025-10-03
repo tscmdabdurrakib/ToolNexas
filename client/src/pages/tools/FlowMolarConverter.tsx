@@ -12,7 +12,7 @@ export default function FlowMolarConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Flow - Molar Converter | Convert Molar Flow Rate Units - ToolShaala";
+    document.title = "Flow - Molar Converter | Convert Molar Flow Rate Units - Solvezyo";
   }, [location]);
 
   return (

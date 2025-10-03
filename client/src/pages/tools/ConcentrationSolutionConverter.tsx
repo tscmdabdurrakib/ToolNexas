@@ -12,7 +12,7 @@ export default function ConcentrationSolutionConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Concentration - Solution Converter | Convert Solution Concentration Units - ToolShaala";
+    document.title = "Concentration - Solution Converter | Convert Solution Concentration Units - Solvezyo";
   }, [location]);
 
   return (

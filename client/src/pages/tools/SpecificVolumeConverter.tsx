@@ -13,7 +13,7 @@ export default function SpecificVolumeConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Specific Volume Converter | ToolShaala";
+    document.title = "Specific Volume Converter | Solvezyo";
   }, []);
 
   return (

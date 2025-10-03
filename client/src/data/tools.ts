@@ -1604,22 +1604,6 @@ export const tools: Tool[] = [
   
   // 2. Calculation Tools
   {
-    id: "mortgage-calculator",
-    name: "Mortgage Calculator",
-    description: "Calculate monthly mortgage payments and interest over time",
-    category: getCategoryById("calculation"),
-    icon: createIcon("M4 6H20M4 10H20M4 14H16M4 18H12"),
-    views: 10123,
-    gradient: "from-purple-500 to-indigo-500",
-    features: [
-      "Monthly and total payment calculation",
-      "Amortization schedule",
-      "Support for fixed and variable rates",
-      "Loan comparison tool",
-      "Early payoff impact analysis",
-    ],
-  },
-  {
     id: "loan-calculator",
     name: "Loan Calculator",
     description: "Estimate payments for personal and business loans",
@@ -1681,8 +1665,8 @@ export const tools: Tool[] = [
     ],
   },
   {
-    id: "retirement-calculator",
-    name: "Retirement Calculator",
+    id: "basic-retirement-calculator",
+    name: "Basic Retirement Calculator",
     description: "Plan for retirement by estimating savings growth over time",
     category: getCategoryById("calculation"),
     icon: createIcon("M5 12h14M7 16h10M9 20h6"),
@@ -1963,19 +1947,20 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "pension-calculator",
-    name: "Pension Calculator",
-    description:
-      "Estimate pension payouts based on retirement savings and annuity rates",
+    id: "retirement-savings-pension-calculator",
+    name: "Retirement Savings & Pension Calculator",
+    description: "Calculate your retirement savings and pension needs with this comprehensive calculator.",
     category: getCategoryById("calculation"),
-    icon: createIcon("M4 8l8-8 8 8z"),
-    views: 2300,
-    gradient: "from-blue-600 to-green-600",
+    icon: createIcon("M9.5 2C8.4 2 7.5 2.9 7.5 4S8.4 6 9.5 6 11.5 5.1 11.5 4 10.6 2 9.5 2ZM9.75 22V16.5L7.91 10.09C7.66 9.22 8.13 8.31 8.97 8.06C9.8 7.81 10.69 8.28 10.94 9.11L12 13H15V15H12.6L12.2 13.65L13.5 19.8C13.81 21 13.09 22.22 11.89 22.53C11.26 22.71 10.62 22.53 10.16 22.12L9.75 22ZM1 22H4L6 16L4.5 10.5C4.31 9.85 4.66 9.16 5.31 8.97C5.97 8.78 6.66 9.13 6.85 9.78L8.5 15.5H11V17.5H7.65L6.5 14.26L5.92 18.48L4 22H1Z"),
+    views: 200,
+    gradient: "from-blue-600 to-indigo-600",
     features: [
-      "Estimate retirement income from pension",
-      "Track pension growth over time",
-      "Calculate annuity payouts for retirement",
-      "Plan pension contributions based on goals",
+      "Calculate required retirement corpus",
+      "Project future savings growth",
+      "Analyze shortfall or surplus",
+      "Provide recommendations for additional savings",
+      "Visualize projections with an interactive graph",
+      "Support for inflation and investment returns",
     ],
   },
 

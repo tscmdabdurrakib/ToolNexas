@@ -13,7 +13,7 @@ export default function FuelEfficiencyVolumeConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Fuel Efficiency - Volume Converter | ToolShaala";
+    document.title = "Fuel Efficiency - Volume Converter | Solvezyo";
   }, []);
 
   return (

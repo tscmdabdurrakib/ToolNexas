@@ -10,7 +10,7 @@ export default function DigitalImageResolutionConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Digital Image Resolution Converter | Convert Resolution Units - ToolShaala";
+    document.title = "Digital Image Resolution Converter | Convert Resolution Units - Solvezyo";
   }, [location]);
 
   return (

@@ -10,7 +10,7 @@ export default function SurfaceTensionConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Surface Tension Converter | Convert Surface Tension Units - ToolShaala";
+    document.title = "Surface Tension Converter | Convert Surface Tension Units - Solvezyo";
   }, [location]);
 
   return (

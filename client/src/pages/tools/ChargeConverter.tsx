@@ -10,7 +10,7 @@ export default function ChargeConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Charge Converter | Convert Electric Charge Units - ToolShaala";
+    document.title = "Charge Converter | Convert Electric Charge Units - Solvezyo";
   }, [location]);
 
   return (

@@ -7,7 +7,7 @@ import { Home, ArrowLeft, Clock } from "lucide-react";
 // Creative and interactive 404 Not Found page
 export default function NotFound() {
   // State for countdown timer
-  const [countdown, setCountdown] = useState(10);
+  const [countdown, setCountdown] = useState(20);
   const [, navigate] = useLocation();
 
   // Handle home navigation

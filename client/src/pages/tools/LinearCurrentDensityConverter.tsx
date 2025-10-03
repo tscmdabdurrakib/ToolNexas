@@ -10,7 +10,7 @@ export default function LinearCurrentDensityConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Linear Current Density Converter | Convert Linear Current Density - ToolShaala";
+    document.title = "Linear Current Density Converter | Convert Linear Current Density - Solvezyo";
   }, [location]);
 
   return (

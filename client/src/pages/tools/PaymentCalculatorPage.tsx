@@ -12,7 +12,7 @@ export default function PaymentCalculatorPage() {
   // Scroll to top when component mounts and set page title
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Payment Calculator | Calculate Payment Schedules - ToolShaala";
+    document.title = "Payment Calculator | Calculate Payment Schedules - Solvezyo";
   }, [location]);
 
   return (

@@ -13,7 +13,7 @@ export default function FlowConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Flow Converter | ToolShaala";
+    document.title = "Flow Converter | Solvezyo";
   }, []);
 
   return (

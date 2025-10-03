@@ -13,7 +13,7 @@ export default function ThermalExpansionConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Thermal Expansion Converter | ToolShaala";
+    document.title = "Thermal Expansion Converter | Solvezyo";
   }, []);
 
   return (

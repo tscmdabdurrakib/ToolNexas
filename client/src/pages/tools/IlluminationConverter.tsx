@@ -10,7 +10,7 @@ export default function IlluminationConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Illumination Converter | Convert Illumination Units - ToolShaala";
+    document.title = "Illumination Converter | Convert Illumination Units - Solvezyo";
   }, [location]);
 
   return (

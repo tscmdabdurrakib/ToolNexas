@@ -13,7 +13,7 @@ export default function HeatTransferCoefficientConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Heat Transfer Coefficient Converter | ToolShaala";
+    document.title = "Heat Transfer Coefficient Converter | Solvezyo";
   }, []);
 
   return (

@@ -10,7 +10,7 @@ export default function LuminanceConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Luminance Converter | Convert Luminance Units - ToolShaala";
+    document.title = "Luminance Converter | Convert Luminance Units - Solvezyo";
   }, [location]);
 
   return (

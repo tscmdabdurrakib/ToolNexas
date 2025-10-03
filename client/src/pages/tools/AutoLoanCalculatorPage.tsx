@@ -12,7 +12,7 @@ export default function AutoLoanCalculatorPage() {
   // Scroll to top when component mounts and set page title
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Auto Loan Calculator | Calculate Car Payments - ToolShaala";
+    document.title = "Auto Loan Calculator | Calculate Car Payments - Solvezyo";
   }, [location]);
 
   return (

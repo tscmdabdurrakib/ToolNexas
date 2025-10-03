@@ -25,7 +25,7 @@ export function Footer() {
                 </svg>
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
               </div>
-              <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ToolShaala</h2>
+              <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">ToolNexas</h2>
             </div>
             <p className="text-muted-foreground text-sm mb-6">
               Your comprehensive collection of 70+ professional tools across 35 categories. Convert, calculate, edit and optimize with ease.
@@ -90,7 +90,7 @@ export function Footer() {
         
         <div className="border-t border-border mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground mb-4 md:mb-0">
-            © {new Date().getFullYear()} ToolShaala. All rights reserved.
+            © {new Date().getFullYear()} ToolNexas. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm">
             <Link href="/privacy" className="text-muted-foreground hover:text-primary transition">Privacy</Link>

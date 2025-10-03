@@ -13,7 +13,7 @@ export default function SpecificHeatCapacityConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Specific Heat Capacity Converter | ToolShaala";
+    document.title = "Specific Heat Capacity Converter | Solvezyo";
   }, []);
 
   return (

@@ -13,7 +13,7 @@ export default function AccelerationAngularConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Acceleration to Angular Velocity Converter | ToolShaala";
+    document.title = "Acceleration to Angular Velocity Converter | Solvezyo";
   }, []);
 
   return (

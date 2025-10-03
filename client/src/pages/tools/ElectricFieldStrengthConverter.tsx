@@ -10,7 +10,7 @@ export default function ElectricFieldStrengthConverterPage() {
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Electric Field Strength Converter | Convert Field Strength Units - ToolShaala";
+    document.title = "Electric Field Strength Converter | Convert Field Strength Units - Solvezyo";
   }, [location]);
 
   return (

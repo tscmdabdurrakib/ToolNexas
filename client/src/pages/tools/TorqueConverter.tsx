@@ -13,7 +13,7 @@ export default function TorqueConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Torque Converter | ToolShaala";
+    document.title = "Torque Converter | Solvezyo";
   }, []);
 
   return (

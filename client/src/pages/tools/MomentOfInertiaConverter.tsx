@@ -13,7 +13,7 @@ export default function MomentOfInertiaConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Moment of Inertia Converter | ToolShaala";
+    document.title = "Moment of Inertia Converter | Solvezyo";
   }, []);
 
   return (

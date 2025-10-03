@@ -13,7 +13,7 @@ export default function HeatDensityConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Heat Density Converter | ToolShaala";
+    document.title = "Heat Density Converter | Solvezyo";
   }, []);
 
   return (

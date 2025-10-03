@@ -13,7 +13,7 @@ export default function TemperatureIntervalConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Temperature Interval Converter | ToolShaala";
+    document.title = "Temperature Interval Converter | Solvezyo";
   }, []);
 
   return (

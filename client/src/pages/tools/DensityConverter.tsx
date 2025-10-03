@@ -13,7 +13,7 @@ export default function DensityConverter() {
   }, []);
 
   useEffect(() => {
-    document.title = "Density Converter | ToolShaala";
+    document.title = "Density Converter | Solvezyo";
   }, []);
 
   return (
