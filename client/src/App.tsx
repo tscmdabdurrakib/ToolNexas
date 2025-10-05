@@ -26,8 +26,8 @@ import {
 } from "lucide-react";
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
-const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
 const ToolPage = lazy(() => import("@/pages/ToolPage"));
+const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
 const SearchPage = lazy(() => import("@/pages/SearchPage"));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const AuthorPage = lazy(() => import("@/pages/AuthorPage"));
@@ -35,6 +35,7 @@ const ContactPage = lazy(() => import("@/pages/ContactPage"));
 const FavoriteToolsPage = lazy(() => import("@/pages/FavoriteToolsPage"));
 const BlogPage = lazy(() => import("@/pages/BlogPage"));
 const BlogSinglePage = lazy(() => import("@/pages/BlogSinglePage"));
+const ChangelogPage = lazy(() => import("@/pages/ChangelogPage"));
 
 // Legal pages
 const PrivacyPolicyPage = lazy(() => import("@/pages/PrivacyPolicyPage"));
@@ -191,11 +192,14 @@ const PageLoader = () => (
   </div>
 );
 
-function Router() {
+import { useCopyPasteContextMenu } from "@/hooks/useCopyPasteContextMenu";
+
+function AppRouter() {
   // Enable preloading and performance optimization
   usePreloadComponents();
   const { useMemoryOptimization } = usePerformanceOptimization();
   useMemoryOptimization();
+  useCopyPasteContextMenu();
   const { showContextMenu } = useContext(ContextMenuContext);
   const [, setLocation] = useLocation();
 
@@ -260,7 +264,7 @@ function Router() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen" onContextMenu={handleContextMenu}>
+    <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex-grow">
         <Suspense fallback={<PageLoader />}>
@@ -275,6 +279,7 @@ function Router() {
             <Route path="/favorite-tools" component={FavoriteToolsPage} />
             <Route path="/blog" component={BlogPage} />
             <Route path="/blog/:id" component={BlogSinglePage} />
+            <Route path="/changelog" component={ChangelogPage} />
             <Route path="/privacy" component={PrivacyPolicyPage} />
             <Route path="/terms" component={TermsOfServicePage} />
             <Route path="/disclaimer" component={DisclaimerPage} />
@@ -420,7 +425,7 @@ function App() {
       <ThemeProvider defaultTheme="system">
         <ToolsProvider>
           <ContextMenuProvider>
-            <Router />
+            <AppRouter />
             <Toaster />
           </ContextMenuProvider>
         </ToolsProvider>

@@ -5,6 +5,7 @@ interface MenuItem {
   label: string;
   icon?: React.ReactNode;
   action: () => void;
+  disabled?: boolean;
   divider?: boolean;
 }
 

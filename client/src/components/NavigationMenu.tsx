@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 import { categories } from '@/data/categories';
 import { tools } from '@/data/tools';
-import { ChevronUp, ChevronRight } from 'lucide-react';
+import { ChevronUp, ChevronRight, Info, LayoutGrid } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
 import { useFavorites } from '@/context/FavoritesContext';
@@ -39,16 +39,19 @@ export function MainNavigationMenu() {
         <div className="flex items-center justify-center space-x-4">
           {/* About Us Link */}
           <a 
-            href="/about" 
+            href="/about"
             className="flex items-center px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60"
           >
+            <Info className="w-4 h-4 mr-1.5 text-primary" />
             About Us
           </a>
-          
+        
+
           {/* Dropdown menu with smooth animation */}
           <div className="relative">
             <button className="nav-dropdown-trigger nav-btn flex items-center px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60">
-              Browse Categories
+              <LayoutGrid className="w-4 h-4 mr-1.5 text-primary" />
+              Categories
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m6 9 6 6 6-6"/>
               </svg>
@@ -58,7 +61,7 @@ export function MainNavigationMenu() {
             <div className="nav-dropdown absolute left-0 z-50 w-[800px] p-4 mt-1 -translate-x-1/4 bg-popover shadow-lg rounded-xl border border-border">
               <div className="grid grid-cols-3 gap-3 max-h-[500px] overflow-y-auto custom-scrollbar">
                 {categories.map((category) => (
-                  <div 
+                  <div
                     key={category.id}
                     onClick={() => setLocation(`/category/${category.id}`)}
                     className={cn(
@@ -80,7 +83,7 @@ export function MainNavigationMenu() {
           </div>
           
           {/* Enhanced regular menu items */}
-          {/* <button 
+          {/* <button
             onClick={() => setLocation("/popular")}
             className="nav-btn px-4 py-2 text-sm font-medium transition-colors rounded-md hover:bg-secondary/60"
           >

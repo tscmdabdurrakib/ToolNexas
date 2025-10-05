@@ -5,6 +5,7 @@ interface MenuItem {
   label: string;
   icon?: React.ReactNode;
   action: () => void;
+  disabled?: boolean;
   divider?: boolean;
 }
 
@@ -34,7 +35,15 @@ const ContextMenu: React.FC<ContextMenuProps> = ({ x, y, visible, items, onClose
       <ul>
         {items.map((item, index) => (
           <React.Fragment key={index}>
-            <li onClick={() => { item.action(); onClose(); }}>
+            <li
+              className={item.disabled ? 'disabled' : ''}
+              onClick={() => {
+                if (!item.disabled) {
+                  item.action();
+                  onClose();
+                }
+              }}
+            >
               {item.icon && <span className="icon">{item.icon}</span>}
               <span>{item.label}</span>
             </li>

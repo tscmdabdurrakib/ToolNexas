@@ -108,10 +108,11 @@ export function Header() {
                 About Us
               </Button>
             </div>
+        
             
             <div className="pt-2 pb-1">
-              <Button 
-                variant="default" 
+              <Button
+                variant="default"
                 className="w-full justify-center shadow-sm bg-primary/90 hover:bg-primary"
                 onClick={() => {
                   setLocation("/");
