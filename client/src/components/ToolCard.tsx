@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "wouter";
 import { Tool } from "@/data/tools";
 import { motion } from "framer-motion";
@@ -8,7 +9,7 @@ interface ToolCardProps {
   tool: Tool;
 }
 
-export function ToolCard({ tool }: ToolCardProps) {
+const ToolCardComponent = ({ tool }: ToolCardProps) => {
   const { id, name, description, category, icon } = tool;
   const { addFavorite, removeFavorite, isFavorite } = useFavorites();
   const isToolFavorite = isFavorite(id);
@@ -61,4 +62,6 @@ export function ToolCard({ tool }: ToolCardProps) {
       </motion.div>
     </Link>
   );
-}
+};
+
+export const ToolCard = React.memo(ToolCardComponent);

@@ -7,7 +7,6 @@ import { Copy, Check } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { useVisitTracking } from "@/hooks/useVisitTracking";
 
 export default function ToolPage({ params }: { params?: { id?: string } }) {
   // If params is not provided via props, try to get from useRoute
@@ -20,8 +19,7 @@ export default function ToolPage({ params }: { params?: { id?: string } }) {
   const toolId = effectiveParams?.id;
   const tool = tools.find((t: any) => t.id === toolId);
   
-  // Track visit for this tool
-  const { visitCount } = useVisitTracking(toolId || '');
+
   
   // Common state
   const [inputValue, setInputValue] = useState("");

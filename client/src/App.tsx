@@ -6,8 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
 import { ThemeProvider } from "@/lib/ThemeProvider";
-import { ContextMenuProvider, ContextMenuContext } from "@/context/ContextMenuProvider";
-import { Suspense, lazy, useContext } from "react";
+import { Suspense, lazy } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePreloadComponents } from "@/hooks/usePreloadComponents";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
@@ -192,76 +191,13 @@ const PageLoader = () => (
   </div>
 );
 
-import { useCopyPasteContextMenu } from "@/hooks/useCopyPasteContextMenu";
 
 function AppRouter() {
   // Enable preloading and performance optimization
   usePreloadComponents();
   const { useMemoryOptimization } = usePerformanceOptimization();
   useMemoryOptimization();
-  useCopyPasteContextMenu();
-  const { showContextMenu } = useContext(ContextMenuContext);
   const [, setLocation] = useLocation();
-
-  const handleContextMenu = (event: React.MouseEvent) => {
-    showContextMenu(event, [
-      {
-        label: "Back",
-        icon: <ArrowLeft size={16} />,
-        action: () => window.history.back(),
-      },
-      {
-        label: "Forward",
-        icon: <ArrowRight size={16} />,
-        action: () => window.history.forward(),
-      },
-      {
-        label: "Reload",
-        icon: <RefreshCw size={16} />,
-        action: () => window.location.reload(),
-        divider: true,
-      },
-      {
-        label: "Home",
-        icon: <HomeIcon size={16} />,
-        action: () => setLocation("/"),
-      },
-      {
-        label: "Favorite Tools",
-        icon: <Star size={16} />,
-        action: () => setLocation("/favorite-tools"),
-        divider: true,
-      },
-      {
-        label: "Blog",
-        icon: <Rss size={16} />,
-        action: () => setLocation("/blog"),
-      },
-      {
-        label: "About Us",
-        icon: <Info size={16} />,
-        action: () => setLocation("/about"),
-      },
-      {
-        label: "About the Author",
-        icon: <User size={16} />,
-        action: () => setLocation("/author"),
-      },
-      {
-        label: "Contact Us",
-        icon: <Mail size={16} />,
-        action: () => setLocation("/contact"),
-        divider: true,
-      },
-      {
-        label: "Inspect",
-        icon: <Code2 size={16} />,
-        action: () => {
-          console.log("To inspect elements, please use your browser's built-in developer tools (e.g., F12 or Ctrl+Shift+I).");
-        },
-      },
-    ]);
-  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -424,10 +360,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="system">
         <ToolsProvider>
-          <ContextMenuProvider>
             <AppRouter />
             <Toaster />
-          </ContextMenuProvider>
         </ToolsProvider>
       </ThemeProvider>
     </QueryClientProvider>

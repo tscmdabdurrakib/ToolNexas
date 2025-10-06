@@ -1,7 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { ContextMenuContext } from '@/context/ContextMenuProvider';
-import { FileDown, Link, Copy, Trash2, FileText, Moon, Settings, Code } from 'lucide-react';
 
 type FilingStatus = 'single' | 'mfj' | 'mfs';
 
@@ -15,7 +13,6 @@ interface Results {
 }
 
 const MarriageTaxCalculator: React.FC = () => {
-  const { showContextMenu } = useContext(ContextMenuContext);
   const [taxYear, setTaxYear] = useState<keyof typeof taxBrackets>(2024);
   const [spouseAIncome, setSpouseAIncome] = useState('');
   const [spouseBIncome, setSpouseBIncome] = useState('');
@@ -171,49 +168,6 @@ const MarriageTaxCalculator: React.FC = () => {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
   };
 
-  const handleInputContextMenu = (e: React.MouseEvent) => {
-    showContextMenu(e, [
-      { label: 'Clear All Inputs', icon: <Trash2 size={16} />, action: () => {
-          setSpouseAIncome('');
-          setSpouseBIncome('');
-          setAdjustmentsA('');
-          setAdjustmentsB('');
-          setItemizedDeductions('');
-          setStateTaxRate('');
-      }, divider: true },
-      { label: 'Load Sample Data', icon: <FileText size={16} />, action: () => {
-          setSpouseAIncome('60000');
-          setSpouseBIncome('80000');
-          setAdjustmentsA('2000');
-          setAdjustmentsB('1500');
-          setStateTaxRate('5');
-      }, divider: true },
-      { label: 'Toggle Dark Mode', icon: <Moon size={16} />, action: () => {
-        const theme = localStorage.getItem('vite-ui-theme');
-        document.documentElement.classList.toggle('dark', theme === 'light');
-        localStorage.setItem('vite-ui-theme', theme === 'light' ? 'dark' : 'light');
-      } },
-      { label: 'User Preferences', icon: <Settings size={16} />, action: () => alert('Preferences clicked') },
-    ]);
-  };
-
-  const handleResultContextMenu = (e: React.MouseEvent) => {
-    if (!results) return;
-    showContextMenu(e, [
-        { label: 'Copy Summary', icon: <Copy size={16} />, action: () => navigator.clipboard.writeText(
-          `Optimal: ${results.optimalStatus}, Savings: ${formatCurrency(results.savings)}`
-        ) },
-        { label: 'Download as CSV', icon: <FileDown size={16} />, action: handleExport },
-        { label: 'Copy Page Link', icon: <Link size={16} />, action: () => navigator.clipboard.writeText(window.location.href), divider: true },
-        { label: 'View Documentation', icon: <Code size={16} />, action: () => alert('Docs clicked'), divider: true },
-        { label: 'Toggle Dark Mode', icon: <Moon size={16} />, action: () => {
-          const theme = localStorage.getItem('vite-ui-theme');
-          document.documentElement.classList.toggle('dark', theme === 'light');
-          localStorage.setItem('vite-ui-theme', theme === 'light' ? 'dark' : 'light');
-        } },
-        { label: 'User Preferences', icon: <Settings size={16} />, action: () => alert('Preferences clicked') },
-    ]);
-  };
 
   return (
     <div className="max-w-4xl mx-auto p-4">
@@ -221,7 +175,7 @@ const MarriageTaxCalculator: React.FC = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Inputs Column */}
-        <div onContextMenu={handleInputContextMenu} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-4 dark:text-white">Inputs</h2>
           
           <div className="space-y-4">
@@ -277,7 +231,7 @@ const MarriageTaxCalculator: React.FC = () => {
         </div>
 
         {/* Results Column */}
-        <div onContextMenu={handleResultContextMenu} className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-4 dark:text-white">Results</h2>
           {results ? (
             <div className="space-y-4">

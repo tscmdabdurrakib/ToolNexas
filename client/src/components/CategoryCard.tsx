@@ -1,17 +1,19 @@
+import React from "react";
 import { Link } from "wouter";
 import { CategoryWithIcon } from "@/data/categories";
 import { motion } from "framer-motion";
 import { tools } from "@/data/tools";
 
 interface CategoryCardProps {
-  category: CategoryWithIcon;
+  category: CategoryWithIcon & { toolCount: number };
 }
 
-export function CategoryCard({ category }: CategoryCardProps) {
+const CategoryCardComponent = ({ category }: CategoryCardProps) => {
   const { id, name, description, icon, color } = category;
   
   // Count the number of tools in this category dynamically
   const toolCount = tools.filter(tool => tool.category.id === id).length;
+
 
   return (
     <motion.div
@@ -67,4 +69,6 @@ export function CategoryCard({ category }: CategoryCardProps) {
       </div>
     </motion.div>
   );
-}
+};
+
+export const CategoryCard = React.memo(CategoryCardComponent);
