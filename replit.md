@@ -1,7 +1,7 @@
 # ToolShaala - Comprehensive Online Utility Platform
 
 ## Project Overview
-A high-performance web platform offering 92+ professional tools across 35 categories with super-fast SPA architecture and PWA capabilities.
+A high-performance web platform offering 97+ professional tools across 35 categories with super-fast SPA architecture and PWA capabilities.
 
 ## Project Status: PRODUCTION READY ✅
 
@@ -14,7 +14,21 @@ A high-performance web platform offering 92+ professional tools across 35 catego
 - **Design**: Responsive blue-purple gradient theme
 - **Database**: PostgreSQL integration with Drizzle ORM
 
-## Recent Changes (September 12, 2025)
+## Recent Changes (October 7, 2025)
+✓ Added 5 professional text encoding/decoding tools with UTF-8/Unicode support
+✓ Created Base64 Decode tool with proper UTF-8 handling using TextDecoder API
+✓ Built String to Netstring converter for length-prefixed string encoding
+✓ Implemented Netstring to String decoder with byte-accurate UTF-8 parsing
+✓ Added Slash Escape tool for escaping special characters in text
+✓ Created Slash Unescape tool for removing escape sequences
+✓ All tools feature real-time conversion with instant output updates
+✓ Professional centered UI with shadcn/ui Card components
+✓ Complete emoji and multi-byte character support (CJK, Unicode)
+✓ All tools integrated with App.tsx routing and Changelog
+✓ Platform performance maintained with 39-61ms page load times
+✓ Total platform now offers 97+ professional tools
+
+## Earlier Changes (September 12, 2025)
 ✓ Added 5 additional professional converter tools: Viscosity-Kinematic, Surface Tension, Permeability, Luminance, and Luminous Intensity Converters
 ✓ Created Viscosity - Kinematic Converter for fluid mechanics applications with m²/s, stokes, centistokes units
 ✓ Built Surface Tension Converter for material science with N/m, dyn/cm, J/m² units
@@ -70,7 +84,7 @@ A high-performance web platform offering 92+ professional tools across 35 catego
 - **API**: RESTful endpoints for tools and analytics
 
 ### Key Features
-1. **92+ Tools** across 35 categories (22 new advanced converters total)
+1. **97+ Tools** across 35 categories (27 new advanced tools total)
 2. **Real-time Analytics** with lifetime counters
 3. **PWA Support** with service worker
 4. **Mobile Responsive** design
@@ -114,4 +128,4 @@ A high-performance web platform offering 92+ professional tools across 35 catego
 - ⏳ Git deployment pending (manual upload required)
 - 🎯 Ready for production deployment
 
-Last Updated: August 11, 2025
+Last Updated: October 7, 2025
