@@ -70,6 +70,11 @@ const UrlDecodePage = lazy(() => import("@/pages/tools/UrlDecodePage"));
 const HtmlEncodePage = lazy(() => import("@/pages/tools/HtmlEncodePage"));
 const HtmlDecodePage = lazy(() => import("@/pages/tools/HtmlDecodePage"));
 const Base64EncodePage = lazy(() => import("@/pages/tools/Base64EncodePage"));
+const Base64DecodePage = lazy(() => import("@/pages/tools/Base64DecodePage"));
+const StringToNetstringPage = lazy(() => import("@/pages/tools/StringToNetstringPage"));
+const NetstringToStringPage = lazy(() => import("@/pages/tools/NetstringToStringPage"));
+const SlashEscapePage = lazy(() => import("@/pages/tools/SlashEscapePage"));
+const SlashUnescapePage = lazy(() => import("@/pages/tools/SlashUnescapePage"));
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -232,6 +237,11 @@ function AppRouter() {
             <Route path="/tools/html-encode" component={HtmlEncodePage} />
             <Route path="/tools/html-decode" component={HtmlDecodePage} />
             <Route path="/tools/base64-encode" component={Base64EncodePage} />
+            <Route path="/tools/base64-decode" component={Base64DecodePage} />
+            <Route path="/tools/string-to-netstring" component={StringToNetstringPage} />
+            <Route path="/tools/netstring-to-string" component={NetstringToStringPage} />
+            <Route path="/tools/slash-escape" component={SlashEscapePage} />
+            <Route path="/tools/slash-unescape" component={SlashUnescapePage} />
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
