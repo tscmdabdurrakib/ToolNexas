@@ -63,6 +63,13 @@ const VolumeDryConverterPage = lazy(() => import("@/pages/tools/VolumeDryConvert
 const CurrencyConverterPage = lazy(() => import("@/pages/tools/CurrencyConverterPage"));
 const CaseConverterPage = lazy(() => import("@/pages/tools/CaseConverterPage"));
 const AngularVelocityConverterPage = lazy(() => import("@/pages/tools/AngularVelocityConverterPage"));
+
+// Text & String Tools
+const UrlEncodePage = lazy(() => import("@/pages/tools/UrlEncodePage"));
+const UrlDecodePage = lazy(() => import("@/pages/tools/UrlDecodePage"));
+const HtmlEncodePage = lazy(() => import("@/pages/tools/HtmlEncodePage"));
+const HtmlDecodePage = lazy(() => import("@/pages/tools/HtmlDecodePage"));
+const Base64EncodePage = lazy(() => import("@/pages/tools/Base64EncodePage"));
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -218,6 +225,13 @@ function AppRouter() {
             <Route path="/tools/case-converter" component={CaseConverterPage} />
             <Route path="/tools/angular-velocity-converter" component={AngularVelocityConverterPage} />
             <Route path="/tools/acceleration-converter" component={AccelerationConverterPage} />
+            
+            {/* Text & String Tools */}
+            <Route path="/tools/url-encode" component={UrlEncodePage} />
+            <Route path="/tools/url-decode" component={UrlDecodePage} />
+            <Route path="/tools/html-encode" component={HtmlEncodePage} />
+            <Route path="/tools/html-decode" component={HtmlDecodePage} />
+            <Route path="/tools/base64-encode" component={Base64EncodePage} />
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
