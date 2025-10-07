@@ -142,7 +142,10 @@ export default function CategoriesPage() {
                     transition={{ delay: index * 0.1 }}
                   >
                     <Link href={`/category/${category.id}`}>
-                      <Card className="group cursor-pointer h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-blue-500 dark:hover:border-blue-400 bg-white dark:bg-gray-800">
+                      <Card 
+                        className="group cursor-pointer h-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border-2 border-transparent hover:border-blue-500 dark:hover:border-blue-400 bg-white dark:bg-gray-800"
+                        data-testid={`card-popular-category-${category.id}`}
+                      >
                         <CardHeader>
                           <div className="flex items-start justify-between">
                             <div className={`p-3 rounded-xl ${category.color.bg} ${category.color.text} transition-transform group-hover:scale-110`}>
