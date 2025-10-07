@@ -9,7 +9,7 @@ import { Copy, Search } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 function ExtractRegexMatches() {
-  const [inputText, setInputText] = useState<string>('');
+  const [inputText, setInputText] = useState<string>('Contact us at support@example.com or sales@company.org for help');
   const [regexPattern, setRegexPattern] = useState<string>('\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}\\b');
   const [caseInsensitive, setCaseInsensitive] = useState<boolean>(true);
   const [output, setOutput] = useState<string>('');
@@ -17,11 +17,17 @@ function ExtractRegexMatches() {
 
   useEffect(() => {
     extractMatches();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputText, regexPattern, caseInsensitive]);
 
   const extractMatches = () => {
-    if (!inputText || !regexPattern) {
+    if (!inputText) {
       setOutput('');
+      return;
+    }
+    
+    if (!regexPattern) {
+      setOutput('Please enter a regex pattern');
       return;
     }
 

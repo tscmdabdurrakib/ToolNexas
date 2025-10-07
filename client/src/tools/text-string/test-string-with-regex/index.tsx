@@ -8,7 +8,7 @@ import { CheckCircle2, XCircle, TestTube2 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 function TestStringWithRegex() {
-  const [inputText, setInputText] = useState<string>('');
+  const [inputText, setInputText] = useState<string>('user@example.com');
   const [regexPattern, setRegexPattern] = useState<string>('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$');
   const [caseInsensitive, setCaseInsensitive] = useState<boolean>(false);
   const [multiline, setMultiline] = useState<boolean>(false);
@@ -16,11 +16,17 @@ function TestStringWithRegex() {
 
   useEffect(() => {
     testRegex();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputText, regexPattern, caseInsensitive, multiline]);
 
   const testRegex = () => {
-    if (!inputText || !regexPattern) {
+    if (!inputText) {
       setResult(null);
+      return;
+    }
+    
+    if (!regexPattern) {
+      setResult({ matches: false, details: 'Please enter a regex pattern' });
       return;
     }
 

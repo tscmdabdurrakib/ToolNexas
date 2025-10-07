@@ -8,14 +8,15 @@ import { Copy, Scissors } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 function ExtractSubstring() {
-  const [inputText, setInputText] = useState<string>('');
+  const [inputText, setInputText] = useState<string>('Hello World! This is a sample text for substring extraction.');
   const [startIndex, setStartIndex] = useState<number>(0);
-  const [endIndex, setEndIndex] = useState<number>(10);
+  const [endIndex, setEndIndex] = useState<number>(11);
   const [output, setOutput] = useState<string>('');
   const { toast } = useToast();
 
   useEffect(() => {
     extractSubstring();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputText, startIndex, endIndex]);
 
   const extractSubstring = () => {
