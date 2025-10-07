@@ -2,26 +2,24 @@ import { useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Link2, RotateCcw, Copy } from "lucide-react";
+import { Code2, RotateCcw, Copy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-function UrlEncode() {
+function HtmlEncode() {
   const [inputText, setInputText] = useState<string>('');
   const { toast } = useToast();
 
-  const encodeUrl = (text: string): string => {
-    try {
-      return encodeURIComponent(text);
-    } catch (error) {
-      return text;
-    }
+  const encodeHtml = (text: string): string => {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
   };
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
     toast({
       title: "Copied!",
-      description: "Encoded URL copied to clipboard",
+      description: "Encoded HTML copied to clipboard",
     });
   };
 
@@ -29,17 +27,17 @@ function UrlEncode() {
     setInputText('');
   };
 
-  const encodedOutput = encodeUrl(inputText);
+  const encodedOutput = encodeHtml(inputText);
 
   return (
     <Card className="w-full max-w-4xl mx-auto shadow-lg">
       <CardHeader className="bg-primary/5 border-b">
         <div className="flex items-center gap-3">
-          <Link2 className="h-6 w-6 text-primary" />
+          <Code2 className="h-6 w-6 text-primary" />
           <div>
-            <CardTitle className="text-2xl">URL Encoder</CardTitle>
+            <CardTitle className="text-2xl">HTML Encoder</CardTitle>
             <CardDescription>
-              Convert text to URL-safe encoded format
+              Convert text to HTML-safe encoded format
             </CardDescription>
           </div>
         </div>
@@ -49,7 +47,7 @@ function UrlEncode() {
         <div className="space-y-6">
           <div className="space-y-2">
             <label htmlFor="text-input" className="block text-sm font-medium">
-              Enter text to encode
+              Enter text to HTML encode
             </label>
             <Textarea
               id="text-input"
@@ -58,9 +56,10 @@ function UrlEncode() {
               placeholder="Type or paste your text here..."
               className="min-h-32 w-full font-mono"
               rows={6}
+              data-testid="input-text"
             />
             <p className="text-xs text-muted-foreground">
-              Enter any text to see it encoded for use in URLs
+              Enter any text with special characters to encode for HTML
             </p>
           </div>
 
@@ -90,12 +89,13 @@ function UrlEncode() {
           )}
 
           <div className="bg-primary/5 p-4 rounded-lg text-sm">
-            <h4 className="font-medium mb-2">How URL Encoding Works:</h4>
+            <h4 className="font-medium mb-2">How HTML Encoding Works:</h4>
             <div className="space-y-1 text-muted-foreground">
-              <p>• Spaces are converted to %20</p>
-              <p>• Special characters are converted to % followed by hex codes</p>
-              <p>• Safe characters (A-Z, a-z, 0-9, -, _, ., ~) remain unchanged</p>
-              <p>• Perfect for encoding query parameters and URL paths</p>
+              <p>• Converts &lt; to &amp;lt;</p>
+              <p>• Converts &gt; to &amp;gt;</p>
+              <p>• Converts &amp; to &amp;amp;</p>
+              <p>• Converts &quot; to &amp;quot;</p>
+              <p>• Perfect for displaying code or special characters in HTML</p>
             </div>
           </div>
         </div>
@@ -112,11 +112,11 @@ function UrlEncode() {
         </Button>
         
         <div className="text-xs text-muted-foreground">
-          Instant URL encoding
+          Instant HTML encoding
         </div>
       </CardFooter>
     </Card>
   );
 }
 
-export default UrlEncode;
+export default HtmlEncode;

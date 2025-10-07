@@ -1,0 +1,42 @@
+{act as a professional React + TypeScript developer with Tailwind & shadcn/ui expertise}
+
+I want you to create a tool component for my website under the **Text & String Tools** category.
+
+🔹 Tool Name: "{create this 5 differnent tools
+URL Encode,
+URL Decode,
+HTML Encode,
+HTML Decode,
+Base64 Encode,}"  
+🔹 Tech Stack: React (with Vite), TypeScript, TailwindCSS, shadcn/ui  
+🔹 Requirements:
+1. The tool should have a professional UI using **Card** and **Textarea** from shadcn/ui.  
+2. User input should be handled instantly — as soon as the user types, the output updates in real-time.  
+3. Show the **processed output** in a separate box/card below the input (no Process button).  
+4. Add a **"Copy Result" button** inside the output card to copy the result to clipboard.  
+5. If the tool requires extra options (like dropdown, toggle, number input), they should also update the result instantly.  
+6. The design should be clean, responsive, and production-ready.  
+7. Write strongly-typed React code with TypeScript.  
+8. The tool **must be fully responsive** and properly support both **light and dark mode**.  
+9. Do **not access or request tools.ts file** under any circumstances.  
+10. The tool must follow the **exact same file structure and coding style** as other tools already created in the project.  
+11. You must also add this tool to the **Changelog page**.  
+12. use lazy load for faster loading,
+13. make it fully responsive and light and dark mode support
+14. Route this app in App.tsx page
+15. Also, below the main tool interface, add a **"Description" section** inside a Card component.  
+This section should include a short and clear explanation about what the "{
+URL Encode,
+URL Decode,
+HTML Encode,
+HTML Decode,
+Base64 Encode,}" tool does,  
+how it works, and when it can be useful.  
+Keep the description styled neatly, responsive, and consistent with the rest of the page design.
+
+🔹 Example Workflow:
+- User types or pastes text.  
+- Output instantly updates in real-time without clicking anything.  
+- User can copy the result using the copy button.  
+
+Now, generate a **React TypeScript code** for the "{URL Encode}" tool using this exact format.
