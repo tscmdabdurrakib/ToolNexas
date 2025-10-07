@@ -26,6 +26,7 @@ const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const ToolPage = lazy(() => import("@/pages/ToolPage"));
 const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
+const CategoriesPage = lazy(() => import("@/pages/CategoriesPage"));
 const SearchPage = lazy(() => import("@/pages/SearchPage"));
 const AboutPage = lazy(() => import("@/pages/AboutPage"));
 const AuthorPage = lazy(() => import("@/pages/AuthorPage"));
@@ -195,6 +196,7 @@ function AppRouter() {
         <Suspense fallback={null}>
           <Switch>
             <Route path="/" component={Home} />
+            <Route path="/categories" component={CategoriesPage} />
             <Route path="/category/:id" component={CategoryPage} />
             <Route path="/tool/:id" component={ToolPage} />
             <Route path="/search" component={SearchPage} />
