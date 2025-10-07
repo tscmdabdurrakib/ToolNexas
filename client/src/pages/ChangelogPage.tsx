@@ -12,6 +12,55 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 7, 2025',
+    version: 'v1.5.0',
+    category: 'Added',
+    title: 'New String Generation & Regex Tools',
+    description:
+      'Added 5 powerful string manipulation tools: Generate Random String, Generate String from Regex, Extract Regex Matches, Test String with Regex, and Extract Substring. All tools feature real-time processing, professional UI, and comprehensive functionality.',
+    link: '/tools/generate-random-string',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Generate Random String Tool',
+    description:
+      'Create secure random strings with customizable length and character types. Choose from uppercase, lowercase, numbers, and symbols. Perfect for passwords, API keys, and unique identifiers.',
+    link: '/tools/generate-random-string',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Generate String from Regex Tool',
+    description:
+      'Generate sample strings matching regex patterns. Perfect for testing regex patterns and creating test data. Supports character classes, quantifiers, and special sequences.',
+    link: '/tools/generate-string-from-regex',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Extract Regex Matches Tool',
+    description:
+      'Find and extract all regex pattern matches from text. Supports case-insensitive matching and displays all found matches. Great for data extraction and validation.',
+    link: '/tools/extract-regex-matches',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Test String with Regex Tool',
+    description:
+      'Validate if text matches a regex pattern with instant results. Shows detailed match information including all matches found. Supports multiple regex flags.',
+    link: '/tools/test-string-with-regex',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Extract Substring Tool',
+    description:
+      'Extract portions of text using start and end indices with visual preview. Shows highlighted range and automatically adjusts indices if out of range.',
+    link: '/tools/extract-substring',
+  },
+  {
+    date: 'October 7, 2025',
     version: 'v1.4.0',
     category: 'Added',
     title: 'New Advanced Text & String Tools',
