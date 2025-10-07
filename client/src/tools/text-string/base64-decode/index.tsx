@@ -11,7 +11,12 @@ function Base64Decode() {
 
   const decodeBase64 = (text: string): string => {
     try {
-      return decodeURIComponent(escape(atob(text)));
+      const binaryString = atob(text);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      return new TextDecoder().decode(bytes);
     } catch (error) {
       return "Error: Invalid Base64 string";
     }

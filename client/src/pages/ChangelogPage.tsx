@@ -12,6 +12,55 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 7, 2025',
+    version: 'v1.4.0',
+    category: 'Added',
+    title: 'New Advanced Text & String Tools',
+    description:
+      'Added 5 new text processing tools: Base64 Decode, String to Netstring, Netstring to String, Slash Escape, and Slash Unescape. All tools feature instant real-time conversion, professional UI, and full responsive design.',
+    link: '/tools/base64-decode',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Base64 Decode Tool',
+    description:
+      'Convert Base64 encoded text back to readable format. Perfect for decoding JWT tokens, email attachments, and Base64 strings.',
+    link: '/tools/base64-decode',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'String to Netstring Tool',
+    description:
+      'Convert plain text to netstring format (length:data,). A simple and efficient encoding method for network protocols.',
+    link: '/tools/string-to-netstring',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Netstring to String Tool',
+    description:
+      'Decode netstring format back to plain text. Parse and extract data from netstring encoded messages.',
+    link: '/tools/netstring-to-string',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Slash Escape Tool',
+    description:
+      'Add escape slashes to special characters. Convert newlines to \\n, tabs to \\t, and quotes for safe string literals.',
+    link: '/tools/slash-escape',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Slash Unescape Tool',
+    description:
+      'Remove escape slashes and convert to normal text. Transform \\n to actual newlines, \\t to tabs, and more.',
+    link: '/tools/slash-unescape',
+  },
+  {
+    date: 'October 7, 2025',
     version: 'v1.3.0',
     category: 'Added',
     title: 'New Text & String Encoding Tools',

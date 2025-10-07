@@ -21,14 +21,34 @@ function NetstringToString() {
         return "Error: Invalid length in netstring";
       }
       
-      const startIndex = colonIndex + 1;
-      const endIndex = startIndex + length;
+      const dataStart = colonIndex + 1;
+      const encoder = new TextEncoder();
+      let accumulated = '';
+      let byteCount = 0;
       
-      if (netstring[endIndex] !== ',') {
+      // Iterate over code points and accumulate until we reach the byte length
+      for (const char of netstring.slice(dataStart)) {
+        const testString = accumulated + char;
+        const testBytes = encoder.encode(testString).length;
+        
+        if (testBytes > length) {
+          break;
+        }
+        
+        accumulated += char;
+        byteCount = testBytes;
+      }
+      
+      if (byteCount !== length) {
+        return "Error: Byte length mismatch";
+      }
+      
+      const commaIndex = dataStart + accumulated.length;
+      if (netstring[commaIndex] !== ',') {
         return "Error: Invalid netstring format (missing comma)";
       }
       
-      return netstring.substring(startIndex, endIndex);
+      return accumulated;
     } catch (error) {
       return "Error: Could not decode netstring";
     }
