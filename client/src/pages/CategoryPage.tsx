@@ -3,7 +3,7 @@ import { useRoute, Link } from "wouter";
 import { useTools } from "@/context/ToolsContext";
 import { Button } from "@/components/ui/button";
 
-// ⚡ ToolCard lazy load করা হলো
+// ⚡ ToolCard lazy load
 const ToolCard = lazy(() => import('@/components/ToolCard').then(module => ({ default: module.ToolCard })));
 
 export default function CategoryPage({ params }: { params?: { id?: string } }) {
@@ -16,14 +16,6 @@ export default function CategoryPage({ params }: { params?: { id?: string } }) {
   const categoryId = effectiveParams?.id;
   const category = categories.find((c: any) => c.id === categoryId);
   const categoryTools = tools.filter((tool: any) => tool.category.id === categoryId);
-
-  if (contextLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-      </div>
-    );
-  }
 
   if (!category) {
     return (

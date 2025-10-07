@@ -7,7 +7,6 @@ import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import { Suspense, lazy } from "react";
-import { Skeleton } from "@/components/ui/skeleton";
 import { usePreloadComponents } from "@/hooks/usePreloadComponents";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
 import {
@@ -170,28 +169,6 @@ const MarriageTaxCalculatorPage = lazy(() => import("@/pages/tools/MarriageTaxCa
 const EstateTaxCalculatorPage = lazy(() => import("@/pages/tools/EstateTaxCalculatorPage"));
 const RetirementSavingsPensionCalculatorPage = lazy(() => import("@/pages/tools/RetirementSavingsPensionCalculatorPage"));
 
-// Loading fallback component
-const PageLoader = () => (
-  <div className="min-h-screen bg-background">
-    <div className="container mx-auto px-4 py-8">
-      <div className="space-y-6">
-        <Skeleton className="h-12 w-1/3" />
-        <Skeleton className="h-4 w-2/3" />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[...Array(6)].map((_, i) => (
-            <div key={i} className="space-y-3">
-              <Skeleton className="h-48 w-full" />
-              <Skeleton className="h-4 w-full" />
-              <Skeleton className="h-4 w-2/3" />
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-
 function AppRouter() {
   // Enable preloading and performance optimization
   usePreloadComponents();
@@ -203,7 +180,7 @@ function AppRouter() {
     <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex-grow">
-        <Suspense fallback={<PageLoader />}>
+        <Suspense fallback={null}>
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/category/:id" component={CategoryPage} />

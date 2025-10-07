@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 // Preload strategy: Load popular components after idle time
 const preloadComponent = (path: string) => {
   // Dynamically import the component
-  import(path).catch(err => console.error(`Failed to preload ${path}:`, err));
+  import(/* @vite-ignore */ path).catch(err => console.error(`Failed to preload ${path}:`, err));
 };
 
 // Smart preloader based on user interaction and idle time
