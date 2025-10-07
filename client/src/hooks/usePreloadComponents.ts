@@ -9,46 +9,8 @@ const preloadComponent = (path: string) => {
 // Smart preloader based on user interaction and idle time
 export const usePreloadComponents = () => {
   useEffect(() => {
-    // Preload critical components after initial page load during idle time
-    if ('requestIdleCallback' in window) {
-      (window as any).requestIdleCallback(() => {
-        // Preload most popular tools
-        preloadComponent('@/pages/tools/PDFEditorPage');
-        preloadComponent('@/pages/tools/LengthConverterPage');
-        preloadComponent('@/pages/tools/WeightMassConverterPage');
-      }, { timeout: 2000 }); // Prioritize within 2 seconds
-
-      (window as any).requestIdleCallback(() => {
-        // Preload navigation pages
-        preloadComponent('@/pages/SearchPage');
-        preloadComponent('@/pages/CategoryPage');
-        preloadComponent('@/pages/AboutPage');
-      }, { timeout: 4000 }); // Prioritize within 4 seconds
-
-      (window as any).requestIdleCallback(() => {
-        // Preload other converters
-        preloadComponent('@/pages/tools/VolumeConverterPage');
-        preloadComponent('@/pages/tools/TemperatureConverterPage');
-        preloadComponent('@/pages/tools/CurrencyConverterPage');
-        preloadComponent('@/pages/tools/ImageResizerPage');
-      }, { timeout: 6000 }); // Prioritize within 6 seconds
-
-    } else {
-      // Fallback for browsers that don't support requestIdleCallback
-      setTimeout(() => {
-        preloadComponent('@/pages/tools/PDFEditorPage');
-        preloadComponent('@/pages/tools/LengthConverterPage');
-        preloadComponent('@/pages/tools/WeightMassConverterPage');
-        preloadComponent('@/pages/SearchPage');
-        preloadComponent('@/pages/CategoryPage');
-        preloadComponent('@/pages/AboutPage');
-        preloadComponent('@/pages/tools/VolumeConverterPage');
-        preloadComponent('@/pages/tools/TemperatureConverterPage');
-        preloadComponent('@/pages/tools/CurrencyConverterPage');
-        preloadComponent('@/pages/tools/ImageResizerPage');
-      }, 3000); // A single timeout for all preloads
-    }
-
+    // Preloading disabled due to runtime alias resolution issues
+    // Components will be loaded on-demand which still provides good performance
     return () => {
       // Cleanup if necessary
     };
