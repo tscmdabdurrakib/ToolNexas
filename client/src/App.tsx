@@ -76,6 +76,11 @@ const StringToNetstringPage = lazy(() => import("@/pages/tools/StringToNetstring
 const NetstringToStringPage = lazy(() => import("@/pages/tools/NetstringToStringPage"));
 const SlashEscapePage = lazy(() => import("@/pages/tools/SlashEscapePage"));
 const SlashUnescapePage = lazy(() => import("@/pages/tools/SlashUnescapePage"));
+const GenerateRandomStringPage = lazy(() => import("@/pages/tools/GenerateRandomStringPage"));
+const GenerateStringFromRegexPage = lazy(() => import("@/pages/tools/GenerateStringFromRegexPage"));
+const ExtractRegexMatchesPage = lazy(() => import("@/pages/tools/ExtractRegexMatchesPage"));
+const TestStringWithRegexPage = lazy(() => import("@/pages/tools/TestStringWithRegexPage"));
+const ExtractSubstringPage = lazy(() => import("@/pages/tools/ExtractSubstringPage"));
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -244,6 +249,11 @@ function AppRouter() {
             <Route path="/tools/netstring-to-string" component={NetstringToStringPage} />
             <Route path="/tools/slash-escape" component={SlashEscapePage} />
             <Route path="/tools/slash-unescape" component={SlashUnescapePage} />
+            <Route path="/tools/generate-random-string" component={GenerateRandomStringPage} />
+            <Route path="/tools/generate-string-from-regex" component={GenerateStringFromRegexPage} />
+            <Route path="/tools/extract-regex-matches" component={ExtractRegexMatchesPage} />
+            <Route path="/tools/test-string-with-regex" component={TestStringWithRegexPage} />
+            <Route path="/tools/extract-substring" component={ExtractSubstringPage} />
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
