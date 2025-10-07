@@ -58,6 +58,7 @@ function UrlEncode() {
               placeholder="Type or paste your text here..."
               className="min-h-32 w-full font-mono"
               rows={6}
+              data-testid="input-text"
             />
             <p className="text-xs text-muted-foreground">
               Enter any text to see it encoded for use in URLs

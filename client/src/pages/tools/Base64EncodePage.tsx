@@ -15,7 +15,7 @@ export default function Base64EncodePage() {
     <>
       <div className="container max-w-5xl py-6 md:py-10">
         <div className="mb-8">
-          <Link href="/">
+          <Link href="/" data-testid="link-back-home">
             <Button variant="ghost" className="p-0 mb-2 h-auto" asChild>
               <div className="flex items-center text-muted-foreground text-sm font-normal hover:text-primary">
                 <ArrowLeft className="mr-1 h-3.5 w-3.5" />
@@ -25,7 +25,7 @@ export default function Base64EncodePage() {
           </Link>
           
           <div className="flex items-center space-x-2 mb-1">
-            <Link href="/category/text-string">
+            <Link href="/category/text-string" data-testid="link-category">
               <Badge variant="outline" className="text-xs font-medium">
                 Text & String Tools
               </Badge>
@@ -76,17 +76,17 @@ export default function Base64EncodePage() {
         <div className="mt-12">
           <h2 className="text-xl font-bold mb-4">Related Tools</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <Link href="/tools/url-encode">
+            <Link href="/tools/url-encode" data-testid="link-related-url-encode">
               <Button variant="outline" className="w-full justify-start h-auto py-2">
                 URL Encode
               </Button>
             </Link>
-            <Link href="/tools/html-encode">
+            <Link href="/tools/html-encode" data-testid="link-related-html-encode">
               <Button variant="outline" className="w-full justify-start h-auto py-2">
                 HTML Encode
               </Button>
             </Link>
-            <Link href="/tools/case-converter">
+            <Link href="/tools/case-converter" data-testid="link-related-case-converter">
               <Button variant="outline" className="w-full justify-start h-auto py-2">
                 Case Converter
               </Button>

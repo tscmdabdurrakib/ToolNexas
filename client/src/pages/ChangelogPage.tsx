@@ -11,6 +11,55 @@ interface ChangelogEntry {
 
 const changelogData: ChangelogEntry[] = [
   {
+    date: 'October 7, 2025',
+    version: 'v1.3.0',
+    category: 'Added',
+    title: 'New Text & String Encoding Tools',
+    description:
+      'Added 5 powerful text encoding/decoding tools: URL Encode, URL Decode, HTML Encode, HTML Decode, and Base64 Encode. All tools feature real-time conversion, copy-to-clipboard functionality, and responsive design with dark mode support.',
+    link: '/tools/url-encode',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'URL Encode Tool',
+    description:
+      'Convert text to URL-safe encoded format. Perfect for encoding query parameters and URL paths with instant real-time conversion.',
+    link: '/tools/url-encode',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'URL Decode Tool',
+    description:
+      'Convert URL-encoded text back to readable format. Decode %20 and other escape sequences instantly.',
+    link: '/tools/url-decode',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'HTML Encode Tool',
+    description:
+      'Convert text to HTML-safe format. Protect against XSS attacks and safely display user content by encoding special HTML characters.',
+    link: '/tools/html-encode',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'HTML Decode Tool',
+    description:
+      'Convert HTML entities back to readable text. Decode &amp;lt;, &amp;gt;, &amp;amp;, and other HTML entities instantly.',
+    link: '/tools/html-decode',
+  },
+  {
+    date: 'October 7, 2025',
+    category: 'Added',
+    title: 'Base64 Encode Tool',
+    description:
+      'Convert text to Base64 encoded format. Perfect for embedding data in JSON, creating data URIs, and encoding authentication tokens.',
+    link: '/tools/base64-encode',
+  },
+  {
     date: 'October 3, 2025',
     version: 'v1.2.0',
     category: 'Improved',
