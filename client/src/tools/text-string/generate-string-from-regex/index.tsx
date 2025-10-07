@@ -131,7 +131,7 @@ function GenerateStringFromRegex() {
               data-testid="input-regex-pattern"
             />
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              Examples: [A-Z]{3}-[0-9]{4}, \d{3}-\d{4}, [a-z]+@[a-z]+\.[a-z]{2,3}
+              Examples: [A-Z]{`{3}`}-[0-9]{`{4}`}, \d{`{3}`}-\d{`{4}`}, [a-z]+@[a-z]+\.[a-z]{`{2,3}`}
             </p>
           </div>
 
