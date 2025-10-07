@@ -13,10 +13,10 @@ export default function HtmlDecodePage() {
   
   return (
     <>
-      <div className="container max-w-5xl py-6 md:py-10">
-        <div className="mb-8">
+      <div className="container max-w-5xl mx-auto py-6 md:py-10">
+        <div className="mb-8 text-center">
           <Link href="/" data-testid="link-back-home">
-            <Button variant="ghost" className="p-0 mb-2 h-auto" asChild>
+            <Button variant="ghost" className="p-0 mb-2 h-auto mx-auto" asChild>
               <div className="flex items-center text-muted-foreground text-sm font-normal hover:text-primary">
                 <ArrowLeft className="mr-1 h-3.5 w-3.5" />
                 <span>Back to home</span>
@@ -24,7 +24,7 @@ export default function HtmlDecodePage() {
             </Button>
           </Link>
           
-          <div className="flex items-center space-x-2 mb-1">
+          <div className="flex items-center justify-center space-x-2 mb-1">
             <Link href="/category/text-string" data-testid="link-category">
               <Badge variant="outline" className="text-xs font-medium">
                 Text & String Tools
@@ -36,11 +36,11 @@ export default function HtmlDecodePage() {
           <p className="text-lg text-muted-foreground">Convert HTML entities back to readable text</p>
         </div>
 
-        <div className="grid gap-8 mb-10">
+        <div className="flex justify-center mb-10">
           <HtmlDecode />
         </div>
 
-        <div className="grid gap-8 mb-10">
+        <div className="max-w-4xl mx-auto mb-10">
           <Card>
             <CardHeader>
               <CardTitle className="text-xl">What is HTML Decoding?</CardTitle>
@@ -73,8 +73,8 @@ export default function HtmlDecodePage() {
           </Card>
         </div>
         
-        <div className="mt-12">
-          <h2 className="text-xl font-bold mb-4">Related Tools</h2>
+        <div className="mt-12 max-w-4xl mx-auto">
+          <h2 className="text-xl font-bold mb-4 text-center">Related Tools</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             <Link href="/tools/html-encode" data-testid="link-related-html-encode">
               <Button variant="outline" className="w-full justify-start h-auto py-2">
