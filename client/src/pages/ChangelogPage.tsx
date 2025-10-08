@@ -12,6 +12,15 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 8, 2025',
+    version: 'v2.0.1',
+    category: 'Improved',
+    title: 'Tool Cards Redesign - Category Card Style',
+    description:
+      'Complete redesign of Tool Cards to match Category Card style with professional SVG icons in colored boxes, improved layout with icon-title pairing, clean description display, category badge at bottom, and arrow navigation icon. Favorite heart icon repositioned to top-right corner with backdrop blur effect. Enhanced hover animations and visual consistency across the platform.',
+    link: '/category/text-string',
+  },
+  {
+    date: 'October 8, 2025',
     version: 'v2.0.0',
     category: 'Added',
     title: 'Keyword Research Tool - SEO & Content Strategy',
