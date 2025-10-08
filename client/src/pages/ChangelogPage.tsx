@@ -12,6 +12,55 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 8, 2025',
+    version: 'v1.9.0',
+    category: 'Added',
+    title: 'New Advanced String Manipulation and Cipher Tools',
+    description:
+      'Added 5 advanced string manipulation tools: Rotate a String, ROT13 a String, ROT47 a String, Transpose a String, and Slice a String. All tools feature real-time processing, professional UI with gradient color theming, and comprehensive functionality.',
+    link: '/tools/rotate-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Rotate a String Tool',
+    description:
+      'Shift characters in your text by specified positions. Supports positive (right) and negative (left) rotation with circular shift. Perfect for string manipulation and text transformations.',
+    link: '/tools/rotate-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'ROT13 a String Tool',
+    description:
+      'Apply ROT13 cipher encryption and decryption to your text. Classic letter substitution cipher that shifts letters by 13 positions. Self-inverse encoding with instant results.',
+    link: '/tools/rot13-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'ROT47 a String Tool',
+    description:
+      'Apply ROT47 cipher to encode/decode ASCII printable characters including numbers and symbols. Extended version of ROT13 covering 94 printable characters with instant conversion.',
+    link: '/tools/rot47-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Transpose a String Tool',
+    description:
+      'Transpose text by swapping rows and columns. Convert vertical text to horizontal and vice versa. Perfect for text matrix manipulation and data transformation with real-time preview.',
+    link: '/tools/transpose-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Slice a String Tool',
+    description:
+      'Extract a portion of text using start and end indices. Supports negative indices for counting from the end. Perfect for substring extraction and text manipulation with instant results.',
+    link: '/tools/slice-string',
+  },
+  {
+    date: 'October 8, 2025',
     version: 'v1.8.0',
     category: 'Added',
     title: 'New String Formatting and Alignment Tools',
