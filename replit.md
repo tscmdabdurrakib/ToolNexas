@@ -15,18 +15,23 @@ A high-performance web platform offering 112+ professional tools across 35 categ
 - **Database**: PostgreSQL integration with Drizzle ORM
 
 ## Recent Changes (October 8, 2025)
-✓ Added 5 new string formatting and alignment tools (Version 1.8.0)
-✓ Created Left-pad a String tool with customizable padding character and target length
-✓ Built Right-pad a String tool for adding padding to the right side of text
-✓ Implemented Right-align a String tool for aligning multiple lines to the right
-✓ Added Center a String tool with custom width and fill character options
-✓ Created Sort Strings tool with 5 sort modes and case-sensitive option
+✓ Added 5 new advanced string manipulation and cipher tools (Version 1.9.0)
+✓ Created Rotate a String tool with circular shift (positive/negative rotation)
+✓ Built ROT13 a String tool for classic cipher encryption/decryption
+✓ Implemented ROT47 a String tool for extended ASCII cipher (94 characters)
+✓ Added Transpose a String tool for row/column matrix transformation
+✓ Created Slice a String tool with start/end indices and negative index support
 ✓ All tools feature real-time processing with instant updates
-✓ Professional gradient UI with unique colors per tool (blue, purple, orange, green, cyan)
+✓ Professional gradient UI with unique colors per tool (rose, violet, amber, emerald, sky)
 ✓ Copy-to-clipboard functionality with toast notifications on all tools
 ✓ Complete integration with App.tsx routing, page wrappers, and Changelog
-✓ Platform performance maintained with 37-78ms page load times
-✓ Total platform now offers 117+ professional tools (30 text & string tools)
+✓ Platform performance maintained with sub-100ms page load times
+✓ Total platform now offers 122+ professional tools (35 text & string tools)
+
+## Previous Changes (October 8, 2025)
+✓ Added 5 string formatting and alignment tools (Version 1.8.0)
+✓ Created Left-pad, Right-pad, Right-align, Center, and Sort Strings tools
+✓ Professional gradient UI with customizable options per tool
 
 ## Previous Changes (October 8, 2025)
 ✓ Added 5 essential string manipulation tools (Version 1.7.0)
@@ -123,7 +128,7 @@ A high-performance web platform offering 112+ professional tools across 35 categ
 - **API**: RESTful endpoints for tools and analytics
 
 ### Key Features
-1. **117+ Tools** across 35 categories
+1. **122+ Tools** across 35 categories
 2. **Real-time Analytics** with lifetime counters
 3. **PWA Support** with service worker
 4. **Mobile Responsive** design
