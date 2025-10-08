@@ -96,6 +96,11 @@ const RightPadStringPage = lazy(() => import("@/pages/tools/RightPadStringPage")
 const RightAlignStringPage = lazy(() => import("@/pages/tools/RightAlignStringPage"));
 const CenterStringPage = lazy(() => import("@/pages/tools/CenterStringPage"));
 const SortStringsPage = lazy(() => import("@/pages/tools/SortStringsPage"));
+const RotateStringPage = lazy(() => import("@/pages/tools/RotateStringPage"));
+const ROT13StringPage = lazy(() => import("@/pages/tools/ROT13StringPage"));
+const ROT47StringPage = lazy(() => import("@/pages/tools/ROT47StringPage"));
+const TransposeStringPage = lazy(() => import("@/pages/tools/TransposeStringPage"));
+const SliceStringPage = lazy(() => import("@/pages/tools/SliceStringPage"));
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -284,6 +289,11 @@ function AppRouter() {
             <Route path="/tools/right-align-string" component={RightAlignStringPage} />
             <Route path="/tools/center-string" component={CenterStringPage} />
             <Route path="/tools/sort-strings" component={SortStringsPage} />
+            <Route path="/tools/rotate-string" component={RotateStringPage} />
+            <Route path="/tools/rot13-string" component={ROT13StringPage} />
+            <Route path="/tools/rot47-string" component={ROT47StringPage} />
+            <Route path="/tools/transpose-string" component={TransposeStringPage} />
+            <Route path="/tools/slice-string" component={SliceStringPage} />
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
