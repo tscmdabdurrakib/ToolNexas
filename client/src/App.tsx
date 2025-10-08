@@ -101,6 +101,10 @@ const ROT13StringPage = lazy(() => import("@/pages/tools/ROT13StringPage"));
 const ROT47StringPage = lazy(() => import("@/pages/tools/ROT47StringPage"));
 const TransposeStringPage = lazy(() => import("@/pages/tools/TransposeStringPage"));
 const SliceStringPage = lazy(() => import("@/pages/tools/SliceStringPage"));
+
+// SEO Tools
+const KeywordResearchPage = lazy(() => import("@/pages/tools/KeywordResearchPage"));
+
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -294,6 +298,10 @@ function AppRouter() {
             <Route path="/tools/rot47-string" component={ROT47StringPage} />
             <Route path="/tools/transpose-string" component={TransposeStringPage} />
             <Route path="/tools/slice-string" component={SliceStringPage} />
+            
+            {/* SEO Tools */}
+            <Route path="/tools/keyword-research" component={KeywordResearchPage} />
+            
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />

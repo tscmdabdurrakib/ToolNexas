@@ -1,0 +1,84 @@
+{act as a senior full-stack developer specialized in React, TypeScript, TailwindCSS, and shadcn/ui with experience building SEO & keyword analysis tools. You are building this project for a real production website. Code must be clean, efficient, responsive, and user-friendly.}
+
+I want you to create a **Keyword Research Tool** using React (Vite + TypeScript) with TailwindCSS and shadcn/ui components.
+
+🔹 **Project Goal:**
+The tool will help users research SEO keywords by analyzing keyword ideas, showing related keywords, estimated search volume, CPC, and competition data. It should also generate long-tail keyword suggestions based on the user’s input.
+
+---
+
+### 🧩 **Core Functionalities:**
+
+1. **Input Field:**
+   - A large input box (Textarea or Input) where the user can type or paste a keyword.
+   - The tool should start analyzing instantly (no Process button) — live result updates as the user types.
+
+2. **Result Display:**
+   - Display a beautiful results section in a Card layout.
+   - Show columns like:
+     - **Keyword**
+     - **Search Volume (estimated)**
+     - **CPC (Cost Per Click)**
+     - **Competition (%)**
+     - **Trend Indicator (optional, mock chart using small bar or icon)**
+   - Allow sorting (ascending/descending) by each column.
+
+3. **Keyword Suggestions:**
+   - Generate a list of **related and long-tail keywords** automatically based on the entered keyword.
+   - Display them in a grid or list format below the main results.
+
+4. **Copy & Export:**
+   - Add buttons to:
+     - Copy all results to clipboard
+     - Download as CSV file
+
+5. **Instant Mode:**
+   - Everything updates instantly when the user types — no “Process” button.
+   - Use a small loading spinner while generating results (simulated with timeout if no API is connected).
+
+6. **UI/UX Requirements:**
+   - Use **Card**, **Table**, **Input**, **Button**, and **ScrollArea** components from shadcn/ui.
+   - The layout must be **fully responsive** for both desktop and mobile.
+   - Must properly support **light and dark mode**.
+   - Keep it **clean, modern, and SEO-tool-like**, similar to Ahrefs / Ubersuggest UI feel.
+   - Use proper padding, spacing, and minimalistic design.
+   - Include subtle hover and focus effects for interactivity.
+
+7. **Data Handling:**
+   - For now, you can simulate the results with mock data generated based on the input keyword.
+   - Example mock output (auto-generate randomly):
+     - Keyword variations
+     - Randomized search volume (100–10000)
+     - Randomized CPC ($0.1–$5)
+     - Randomized competition (0–100%)
+   - Use TypeScript interfaces for keyword data typing.
+
+8. **Description Section:**
+   - Below the tool, add a **“Description” card section** explaining:
+     - What the Keyword Research Tool does.
+     - How it helps with SEO and marketing.
+     - How to interpret the data shown above.
+   - Keep it clean, concise, and responsive.
+
+9. **Additional Requirements:**
+   - Must not request or import from `tools.ts`.
+   - Must follow the **exact file structure and code organization** used by other tools in the same project.
+   - Add this tool to the **Changelog page** automatically.
+   - Must include modern coding practices and readable comments.
+   - Must be production-ready and easy to integrate into an existing React tool collection.
+
+---
+
+### 🧠 Example User Flow:
+- User types “digital marketing” in the input.
+- Instantly below, a table appears with 10–20 related keyword suggestions like:
+  - “digital marketing strategy”
+  - “digital marketing course”
+  - “digital marketing agency near me”
+- Each keyword shows search volume, CPC, and competition.
+- User can copy results or download CSV.
+- At the bottom, the description section explains what the data means.
+
+---
+
+Now, generate a **complete React TypeScript code** for this **Keyword Research Tool** following all the rules and structure mentioned above.

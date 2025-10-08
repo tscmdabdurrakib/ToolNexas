@@ -12,6 +12,15 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 8, 2025',
+    version: 'v2.0.0',
+    category: 'Added',
+    title: 'Keyword Research Tool - SEO & Content Strategy',
+    description:
+      'Launch of professional Keyword Research Tool for SEO analysis. Discover high-value keywords with instant search volume, CPC, competition analysis, and trend indicators. Features include 20+ keyword variations, sortable data table, CSV export, and comprehensive SEO metrics dashboard. Perfect for content marketers and SEO professionals.',
+    link: '/tools/keyword-research',
+  },
+  {
+    date: 'October 8, 2025',
     version: 'v1.9.0',
     category: 'Added',
     title: 'New Advanced String Manipulation and Cipher Tools',
