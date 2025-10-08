@@ -15,18 +15,26 @@ A high-performance web platform offering 112+ professional tools across 35 categ
 - **Database**: PostgreSQL integration with Drizzle ORM
 
 ## Recent Changes (October 8, 2025)
-✓ Added 5 new essential string manipulation tools with professional UI
+✓ Added 5 new string formatting and alignment tools (Version 1.8.0)
+✓ Created Left-pad a String tool with customizable padding character and target length
+✓ Built Right-pad a String tool for adding padding to the right side of text
+✓ Implemented Right-align a String tool for aligning multiple lines to the right
+✓ Added Center a String tool with custom width and fill character options
+✓ Created Sort Strings tool with 5 sort modes and case-sensitive option
+✓ All tools feature real-time processing with instant updates
+✓ Professional gradient UI with unique colors per tool (blue, purple, orange, green, cyan)
+✓ Copy-to-clipboard functionality with toast notifications on all tools
+✓ Complete integration with App.tsx routing, page wrappers, and Changelog
+✓ Platform performance maintained with 37-78ms page load times
+✓ Total platform now offers 117+ professional tools (30 text & string tools)
+
+## Previous Changes (October 8, 2025)
+✓ Added 5 essential string manipulation tools (Version 1.7.0)
 ✓ Created Repeat a String tool with customizable repeat count up to 1000 times
 ✓ Built Reverse a String tool with instant character reversal and Unicode support
 ✓ Implemented Find and Replace a String tool with case-sensitive/insensitive options
 ✓ Added Truncate a String tool with length limit and optional ellipsis
 ✓ Created Trim a String tool with multiple trim modes (both, start, end, all, extra spaces)
-✓ All tools feature real-time processing with instant updates
-✓ Professional gradient UI with shadcn/ui Card components and color theming
-✓ Copy-to-clipboard functionality with toast notifications on all tools
-✓ Complete integration with App.tsx routing, page wrappers, and Changelog
-✓ Platform performance maintained with 38-70ms page load times
-✓ Total platform now offers 112+ professional tools (25 text & string tools)
 
 ## Previous Changes (October 8, 2025)
 ✓ Added 5 advanced string manipulation tools: Convert String to Image, Printf String, Split String, Join Strings, and Filter String Lines
@@ -115,7 +123,7 @@ A high-performance web platform offering 112+ professional tools across 35 categ
 - **API**: RESTful endpoints for tools and analytics
 
 ### Key Features
-1. **102+ Tools** across 35 categories
+1. **117+ Tools** across 35 categories
 2. **Real-time Analytics** with lifetime counters
 3. **PWA Support** with service worker
 4. **Mobile Responsive** design
