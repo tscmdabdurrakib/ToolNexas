@@ -12,6 +12,55 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 8, 2025',
+    version: 'v1.7.0',
+    category: 'Added',
+    title: 'New Essential String Manipulation Tools',
+    description:
+      'Added 5 essential string manipulation tools: Repeat a String, Reverse a String, Find and Replace a String, Truncate a String, and Trim a String. All tools feature real-time processing, professional UI with shadcn/ui components, and comprehensive functionality.',
+    link: '/tools/repeat-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Repeat a String Tool',
+    description:
+      'Repeat your text multiple times instantly with customizable repeat count up to 1000 times. Perfect for creating test data, patterns, and repeated text.',
+    link: '/tools/repeat-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Reverse a String Tool',
+    description:
+      'Reverse your text character by character instantly. Supports Unicode characters including emojis. Great for text manipulation and palindrome testing.',
+    link: '/tools/reverse-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Find and Replace a String Tool',
+    description:
+      'Search and replace text with custom options including case-sensitive and case-insensitive matching. Perfect for bulk text replacements and content editing.',
+    link: '/tools/find-replace-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Truncate a String Tool',
+    description:
+      'Shorten text to a specified length with optional ellipsis (...). Ideal for creating previews, summaries, and limiting text display with character count tracking.',
+    link: '/tools/truncate-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Trim a String Tool',
+    description:
+      'Remove whitespace from text with various trim options: trim both ends, start only, end only, remove all whitespace, or remove extra spaces. Perfect for data cleanup.',
+    link: '/tools/trim-string',
+  },
+  {
+    date: 'October 8, 2025',
     version: 'v1.6.0',
     category: 'Added',
     title: 'New Advanced String Manipulation Tools',
