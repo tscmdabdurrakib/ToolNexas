@@ -91,6 +91,11 @@ const ReverseStringPage = lazy(() => import("@/pages/tools/ReverseStringPage"));
 const FindReplaceStringPage = lazy(() => import("@/pages/tools/FindReplaceStringPage"));
 const TruncateStringPage = lazy(() => import("@/pages/tools/TruncateStringPage"));
 const TrimStringPage = lazy(() => import("@/pages/tools/TrimStringPage"));
+const LeftPadStringPage = lazy(() => import("@/pages/tools/LeftPadStringPage"));
+const RightPadStringPage = lazy(() => import("@/pages/tools/RightPadStringPage"));
+const RightAlignStringPage = lazy(() => import("@/pages/tools/RightAlignStringPage"));
+const CenterStringPage = lazy(() => import("@/pages/tools/CenterStringPage"));
+const SortStringsPage = lazy(() => import("@/pages/tools/SortStringsPage"));
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -274,6 +279,11 @@ function AppRouter() {
             <Route path="/tools/find-replace-string" component={FindReplaceStringPage} />
             <Route path="/tools/truncate-string" component={TruncateStringPage} />
             <Route path="/tools/trim-string" component={TrimStringPage} />
+            <Route path="/tools/left-pad-string" component={LeftPadStringPage} />
+            <Route path="/tools/right-pad-string" component={RightPadStringPage} />
+            <Route path="/tools/right-align-string" component={RightAlignStringPage} />
+            <Route path="/tools/center-string" component={CenterStringPage} />
+            <Route path="/tools/sort-strings" component={SortStringsPage} />
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
