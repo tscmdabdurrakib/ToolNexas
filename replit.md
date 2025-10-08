@@ -15,6 +15,28 @@ A high-performance web platform offering 112+ professional tools across 35 categ
 - **Database**: PostgreSQL integration with Drizzle ORM
 
 ## Recent Changes (October 8, 2025)
+✓ Implemented major UX enhancement: Text & String Tools category redesign with sub-category navigation
+✓ Created 8 sub-categories for better tool organization:
+  - All Tools (default view showing all 35 tools)
+  - Encoding & Decoding (10 tools: URL, HTML, Base64, Netstring, Slash Escape/Unescape)
+  - Generators (2 tools: Random String, String from Regex)
+  - Regex & Pattern (3 tools: Extract Matches, Test Regex, Extract Substring)
+  - Converters (2 tools: String to Image, Printf)
+  - Manipulation (8 tools: Split, Join, Filter, Repeat, Reverse, Find/Replace, Truncate, Trim)
+  - Formatting (5 tools: Left-pad, Right-pad, Right-align, Center, Sort)
+  - Ciphers & Transform (5 tools: Rotate, ROT13, ROT47, Transpose, Slice)
+✓ Special category header with "Our Most Popular Tools" design (inspired by modern tool platforms)
+✓ Clickable sub-category tabs with icons for intuitive navigation
+✓ Real-time filtering - clicking sub-category instantly shows relevant tools
+✓ Fully responsive design with mobile, tablet, desktop support
+✓ Complete dark/light mode support with gradient backgrounds
+✓ Sub-category tabs use lucide-react icons for visual clarity
+✓ Smooth transitions and active state highlighting (primary color)
+✓ All sub-category buttons include data-testid for automated testing
+✓ CategoryPage component enhanced with special layout for text-string category only
+✓ Other categories remain unchanged with standard grid layout
+
+## Previous Changes (October 8, 2025)
 ✓ Added 5 new advanced string manipulation and cipher tools (Version 1.9.0)
 ✓ Created Rotate a String tool with circular shift (positive/negative rotation)
 ✓ Built ROT13 a String tool for classic cipher encryption/decryption
