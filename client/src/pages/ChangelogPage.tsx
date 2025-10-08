@@ -12,11 +12,20 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 8, 2025',
+    version: 'v2.0.2',
+    category: 'Improved',
+    title: 'Professional Hero Text Design - Brush Stroke Effect',
+    description:
+      'Enhanced homepage hero section with professional "Solvezyo" branding featuring gradient text (purple to blue) and artistic brush stroke underline effect. The new design creates an eye-catching, premium visual identity that makes the brand name stand out beautifully while maintaining readability and professionalism.',
+    link: '/',
+  },
+  {
+    date: 'October 8, 2025',
     version: 'v2.0.1',
     category: 'Improved',
-    title: 'Tool Cards Redesign - Category Card Style',
+    title: 'Tool Cards Redesign - Unique Colors & Category Style',
     description:
-      'Complete redesign of Tool Cards to match Category Card style with professional SVG icons in colored boxes, improved layout with icon-title pairing, clean description display, category badge at bottom, and arrow navigation icon. Favorite heart icon repositioned to top-right corner with backdrop blur effect. Enhanced hover animations and visual consistency across the platform.',
+      'Complete redesign of Tool Cards with unique color palette system - each tool displays a different color from 16 vibrant options (blue, purple, pink, rose, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, indigo, violet, fuchsia). Matches Category Card style with professional SVG icons in colored boxes, improved layout, category badge at bottom, and arrow navigation. Favorite heart icon repositioned to top-right with backdrop blur. Enhanced visual diversity and consistency.',
     link: '/category/text-string',
   },
   {
