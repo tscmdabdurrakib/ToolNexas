@@ -12,6 +12,55 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 8, 2025',
+    version: 'v1.8.0',
+    category: 'Added',
+    title: 'New String Formatting and Alignment Tools',
+    description:
+      'Added 5 professional string formatting tools: Left-pad a String, Right-pad a String, Right-align a String, Center a String, and Sort Strings. All tools feature real-time processing, customizable options, and professional UI with gradient color theming.',
+    link: '/tools/left-pad-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Left-pad a String Tool',
+    description:
+      'Add padding characters to the left of your text until it reaches target length. Perfect for formatting numbers with leading zeros and creating aligned text. Supports custom padding characters.',
+    link: '/tools/left-pad-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Right-pad a String Tool',
+    description:
+      'Add padding characters to the right of your text until it reaches target length. Ideal for creating tables, lists, and aligned content. Supports custom padding characters like dots or spaces.',
+    link: '/tools/right-pad-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Right-align a String Tool',
+    description:
+      'Align multiple lines of text to the right side with specified width. Perfect for creating right-aligned text blocks and professional document formatting with instant preview.',
+    link: '/tools/right-align-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Center a String Tool',
+    description:
+      'Center text within specified width with custom fill characters. Great for creating headers, titles, and centered text blocks. Supports multiple lines with real-time preview.',
+    link: '/tools/center-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Sort Strings Tool',
+    description:
+      'Sort multiple lines of text with various options: ascending, descending, by length, or reverse order. Supports case-sensitive and case-insensitive sorting with instant results.',
+    link: '/tools/sort-strings',
+  },
+  {
+    date: 'October 8, 2025',
     version: 'v1.7.0',
     category: 'Added',
     title: 'New Essential String Manipulation Tools',
