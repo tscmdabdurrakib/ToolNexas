@@ -81,6 +81,11 @@ const GenerateStringFromRegexPage = lazy(() => import("@/pages/tools/GenerateStr
 const ExtractRegexMatchesPage = lazy(() => import("@/pages/tools/ExtractRegexMatchesPage"));
 const TestStringWithRegexPage = lazy(() => import("@/pages/tools/TestStringWithRegexPage"));
 const ExtractSubstringPage = lazy(() => import("@/pages/tools/ExtractSubstringPage"));
+const ConvertStringToImagePage = lazy(() => import("@/pages/tools/ConvertStringToImagePage"));
+const PrintfStringPage = lazy(() => import("@/pages/tools/PrintfStringPage"));
+const SplitStringPage = lazy(() => import("@/pages/tools/SplitStringPage"));
+const JoinStringsPage = lazy(() => import("@/pages/tools/JoinStringsPage"));
+const FilterStringLinesPage = lazy(() => import("@/pages/tools/FilterStringLinesPage"));
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -254,6 +259,11 @@ function AppRouter() {
             <Route path="/tools/extract-regex-matches" component={ExtractRegexMatchesPage} />
             <Route path="/tools/test-string-with-regex" component={TestStringWithRegexPage} />
             <Route path="/tools/extract-substring" component={ExtractSubstringPage} />
+            <Route path="/tools/convert-string-to-image" component={ConvertStringToImagePage} />
+            <Route path="/tools/printf-string" component={PrintfStringPage} />
+            <Route path="/tools/split-string" component={SplitStringPage} />
+            <Route path="/tools/join-strings" component={JoinStringsPage} />
+            <Route path="/tools/filter-string-lines" component={FilterStringLinesPage} />
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
