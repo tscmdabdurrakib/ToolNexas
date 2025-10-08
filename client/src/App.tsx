@@ -86,6 +86,11 @@ const PrintfStringPage = lazy(() => import("@/pages/tools/PrintfStringPage"));
 const SplitStringPage = lazy(() => import("@/pages/tools/SplitStringPage"));
 const JoinStringsPage = lazy(() => import("@/pages/tools/JoinStringsPage"));
 const FilterStringLinesPage = lazy(() => import("@/pages/tools/FilterStringLinesPage"));
+const RepeatStringPage = lazy(() => import("@/pages/tools/RepeatStringPage"));
+const ReverseStringPage = lazy(() => import("@/pages/tools/ReverseStringPage"));
+const FindReplaceStringPage = lazy(() => import("@/pages/tools/FindReplaceStringPage"));
+const TruncateStringPage = lazy(() => import("@/pages/tools/TruncateStringPage"));
+const TrimStringPage = lazy(() => import("@/pages/tools/TrimStringPage"));
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
 const ImageCropperPage = lazy(() => import("@/pages/tools/ImageCropperPage"));
@@ -264,6 +269,11 @@ function AppRouter() {
             <Route path="/tools/split-string" component={SplitStringPage} />
             <Route path="/tools/join-strings" component={JoinStringsPage} />
             <Route path="/tools/filter-string-lines" component={FilterStringLinesPage} />
+            <Route path="/tools/repeat-string" component={RepeatStringPage} />
+            <Route path="/tools/reverse-string" component={ReverseStringPage} />
+            <Route path="/tools/find-replace-string" component={FindReplaceStringPage} />
+            <Route path="/tools/truncate-string" component={TruncateStringPage} />
+            <Route path="/tools/trim-string" component={TrimStringPage} />
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
