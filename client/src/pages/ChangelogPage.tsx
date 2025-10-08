@@ -11,6 +11,55 @@ interface ChangelogEntry {
 
 const changelogData: ChangelogEntry[] = [
   {
+    date: 'October 8, 2025',
+    version: 'v1.6.0',
+    category: 'Added',
+    title: 'New Advanced String Manipulation Tools',
+    description:
+      'Added 5 professional string manipulation tools: Convert String to Image, Printf String, Split String, Join Strings, and Filter String Lines. All tools feature real-time processing, professional UI with shadcn/ui components, and comprehensive functionality.',
+    link: '/tools/convert-string-to-image',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Convert String to Image Tool',
+    description:
+      'Transform text into downloadable images with customizable fonts, colors, and styles. Perfect for creating social media graphics, memes, and text-based visuals.',
+    link: '/tools/convert-string-to-image',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Printf String Tool',
+    description:
+      'Format strings with printf-style placeholders like %s, %d, and %f. Perfect for template strings and formatted output with real-time preview.',
+    link: '/tools/printf-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Split String Tool',
+    description:
+      'Split text into parts using custom delimiters like commas, pipes, or any character. Shows numbered results with instant updates.',
+    link: '/tools/split-string',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Join Strings Tool',
+    description:
+      'Join multiple lines of text with custom separators. Perfect for creating CSV lists, comma-separated values, and formatted text.',
+    link: '/tools/join-strings',
+  },
+  {
+    date: 'October 8, 2025',
+    category: 'Added',
+    title: 'Filter String Lines Tool',
+    description:
+      'Filter text lines based on criteria like contains, starts with, ends with, equals, or not contains. Supports case-sensitive/insensitive filtering with real-time results.',
+    link: '/tools/filter-string-lines',
+  },
+  {
     date: 'October 7, 2025',
     version: 'v1.5.0',
     category: 'Added',
