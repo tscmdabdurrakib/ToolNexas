@@ -34,6 +34,7 @@ ToolShaala is a high-performance web platform designed to offer 122+ professiona
 - Professional Keyword Research Tool with real-time SEO metrics (search volume, CPC, competition) and data export.
 - All form interactions trigger specific mechanical animations in the authentication process.
 - Error handling with animation reset on authentication failure; success states navigate to the homepage.
+- Header menu includes Login/Sign Up buttons (desktop & mobile) with conditional UI showing user profile + logout when authenticated.
 - Full responsive design across mobile, tablet, and desktop.
 - SEO Optimized with proper meta tags.
 

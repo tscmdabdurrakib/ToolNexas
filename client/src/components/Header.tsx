@@ -2,15 +2,22 @@ import { Link, useLocation } from "wouter";
 import { ThemeToggle } from "./ui/theme-toggle";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, Search, X, LogIn, UserPlus, LogOut, User } from "lucide-react";
 import { useState } from "react";
 import { MainNavigationMenu } from "./NavigationMenu";
 import { SearchBar } from "./SearchBar";
+import { useAuth } from "@/context/AuthContext";
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [_location, setLocation] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
+  
+  const handleLogout = async () => {
+    await logout();
+    setMobileMenuOpen(false);
+  };
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,6 +47,58 @@ export function Header() {
         <div className="flex items-center space-x-4">
           <div className="hidden lg:block">
             <SearchBar onSearchSubmit={() => setMobileMenuOpen(false)} />
+          </div>
+          
+          {/* Desktop Auth Buttons */}
+          <div className="hidden lg:flex items-center space-x-2">
+            {user ? (
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="gap-2"
+                  data-testid="button-user-profile"
+                >
+                  <User className="h-4 w-4" />
+                  {user.displayName || user.email}
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="gap-2"
+                  onClick={handleLogout}
+                  data-testid="button-logout"
+                >
+                  <LogOut className="h-4 w-4" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link href="/login">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="gap-2"
+                    data-testid="button-login"
+                  >
+                    <LogIn className="h-4 w-4" />
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="gap-2"
+                    data-testid="button-signup"
+                  >
+                    <UserPlus className="h-4 w-4" />
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
           </div>
           
           <ThemeToggle />
@@ -126,6 +185,53 @@ export function Header() {
               </Button>
             </div>
             
+            {/* Mobile Auth Buttons */}
+            <div className="pt-3 border-t border-border">
+              {user ? (
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 px-3 py-2 bg-primary/5 rounded-md">
+                    <User className="h-4 w-4 text-primary" />
+                    <span className="text-sm font-medium">{user.displayName || user.email}</span>
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="w-full justify-center gap-2"
+                    onClick={handleLogout}
+                    data-testid="button-mobile-logout"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-2">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-center gap-2"
+                    onClick={() => {
+                      setLocation("/login");
+                      setMobileMenuOpen(false);
+                    }}
+                    data-testid="button-mobile-login"
+                  >
+                    <LogIn className="h-4 w-4" />
+                    Login
+                  </Button>
+                  <Button
+                    variant="default"
+                    className="w-full justify-center gap-2"
+                    onClick={() => {
+                      setLocation("/signup");
+                      setMobileMenuOpen(false);
+                    }}
+                    data-testid="button-mobile-signup"
+                  >
+                    <UserPlus className="h-4 w-4" />
+                    Sign Up
+                  </Button>
+                </div>
+              )}
+            </div>
 
             
             {/* Mobile Category Navigation */}
