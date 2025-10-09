@@ -6,17 +6,6 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import gsap from 'gsap';
-import {
-  Gear,
-  Pulley,
-  Weight,
-  Lever,
-  Chain,
-  Funnel,
-  Button as MechButton,
-  Bottle,
-  Spring
-} from '@/components/MechanicalAnimations';
 
 export default function LoginPage() {
   const [, setLocation] = useLocation();
@@ -28,90 +17,75 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   // Animation refs
-  const gear1Ref = useRef<HTMLDivElement>(null);
-  const gear2Ref = useRef<HTMLDivElement>(null);
-  const pulleyRef = useRef<HTMLDivElement>(null);
-  const weightRef = useRef<HTMLDivElement>(null);
-  const chainRef = useRef<HTMLDivElement>(null);
-  const leverRef = useRef<HTMLDivElement>(null);
-  const springRef = useRef<HTMLDivElement>(null);
-  const funnelRef = useRef<HTMLDivElement>(null);
-  const bottleRef = useRef<HTMLDivElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const gear1Ref = useRef<SVGGElement>(null);
+  const gear2Ref = useRef<SVGGElement>(null);
+  const pulleyRef = useRef<SVGGElement>(null);
+  const weightRef = useRef<SVGGElement>(null);
+  const leverRef = useRef<SVGGElement>(null);
+  const bottleRef = useRef<SVGGElement>(null);
+  const liquidRef = useRef<SVGPathElement>(null);
+  const dropRef = useRef<SVGCircleElement>(null);
+  const buttonTopRef = useRef<SVGRectElement>(null);
 
-  const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  // Animation state tracking
+  const emailAnimationActive = useRef(false);
+  const passwordAnimationActive = useRef(false);
 
-  // Initialize GSAP timeline on mount
+  // Stage 1: Email input animation - Gears rotate
   useEffect(() => {
-    timelineRef.current = gsap.timeline({ paused: true });
-  }, []);
-
-  // Step 1: Email input animation
-  const handleEmailFocus = () => {
-    if (timelineRef.current) {
+    if (email && !emailAnimationActive.current) {
+      emailAnimationActive.current = true;
       gsap.to(gear1Ref.current, {
         rotation: 360,
-        duration: 1.5,
-        ease: 'power2.inOut',
+        duration: 2,
+        ease: 'linear',
         repeat: -1,
       });
       gsap.to(gear2Ref.current, {
         rotation: -360,
-        duration: 1.5,
-        ease: 'power2.inOut',
+        duration: 2,
+        ease: 'linear',
         repeat: -1,
       });
-    }
-  };
-
-  const handleEmailBlur = () => {
-    if (email) {
+    } else if (!email && emailAnimationActive.current) {
+      emailAnimationActive.current = false;
+      gsap.killTweensOf([gear1Ref.current, gear2Ref.current]);
       gsap.to([gear1Ref.current, gear2Ref.current], {
         rotation: 0,
         duration: 0.5,
       });
     }
-  };
+  }, [email]);
 
-  // Step 2: Password input animation
-  const handlePasswordFocus = () => {
-    if (email) {
+  // Stage 2: Password input animation - Pulley system activates
+  useEffect(() => {
+    if (password && email && !passwordAnimationActive.current) {
+      passwordAnimationActive.current = true;
       gsap.to(pulleyRef.current, {
         rotation: 360,
         duration: 2,
-        ease: 'power1.inOut',
+        ease: 'linear',
         repeat: -1,
       });
       gsap.to(weightRef.current, {
         y: -60,
-        duration: 2,
+        duration: 1.5,
         ease: 'power1.inOut',
         yoyo: true,
         repeat: -1,
       });
-      gsap.to(chainRef.current, {
-        scaleY: 0.7,
-        transformOrigin: 'top',
-        duration: 2,
-        ease: 'power1.inOut',
-        yoyo: true,
-        repeat: -1,
-      });
-    }
-  };
-
-  const handlePasswordBlur = () => {
-    if (password) {
-      gsap.to([pulleyRef.current, weightRef.current, chainRef.current], {
+    } else if (!password && passwordAnimationActive.current) {
+      passwordAnimationActive.current = false;
+      gsap.killTweensOf([pulleyRef.current, weightRef.current]);
+      gsap.to([pulleyRef.current, weightRef.current], {
         rotation: 0,
         y: 0,
-        scaleY: 1,
         duration: 0.5,
       });
     }
-  };
+  }, [password, email]);
 
-  // Step 3: Submit button - Final complex animation
+  // Stage 3: Submit - Final animation sequence
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -124,84 +98,66 @@ export default function LoginPage() {
       return;
     }
 
-    // Complex final animation sequence
+    // Kill existing animations
+    gsap.killTweensOf([gear1Ref.current, gear2Ref.current, pulleyRef.current, weightRef.current]);
+
+    // Final animation sequence
     const finalTimeline = gsap.timeline();
 
-    // Step 1: Weight drops and triggers lever
-    finalTimeline.to(weightRef.current, {
-      y: 50,
-      duration: 0.8,
-      ease: 'bounce.out',
+    // Lever activates
+    finalTimeline.to(leverRef.current, {
+      rotation: -35,
+      transformOrigin: 'center',
+      duration: 0.6,
+      ease: 'power2.out',
     });
 
-    // Step 2: Lever activates
+    // Bottle tips
     finalTimeline.to(
-      leverRef.current,
+      bottleRef.current,
       {
-        rotation: -25,
-        transformOrigin: 'center center',
-        duration: 0.6,
-        ease: 'power2.out',
-      },
-      '-=0.3'
-    );
-
-    // Step 3: Spring compresses
-    finalTimeline.to(
-      springRef.current,
-      {
-        scaleY: 0.5,
-        transformOrigin: 'bottom',
-        duration: 0.4,
+        rotation: 60,
+        transformOrigin: 'bottom right',
+        duration: 0.7,
       },
       '-=0.2'
     );
 
-    // Step 4: Bottle tips and liquid flows
+    // Liquid flows
     finalTimeline.to(
-      bottleRef.current,
-      {
-        rotation: 45,
-        transformOrigin: 'bottom right',
-        duration: 0.5,
-      },
-      '-=0.1'
-    );
-
-    finalTimeline.to(
-      '#bottle1-liquid',
+      liquidRef.current,
       {
         opacity: 0.1,
-        y: 20,
-        duration: 0.6,
+        y: 30,
+        duration: 0.8,
       },
-      '-=0.3'
+      '-=0.4'
     );
 
-    // Step 5: Funnel receives liquid with drops
+    // Drops fall
     finalTimeline.to(
-      '#funnel1-drop',
+      dropRef.current,
       {
         opacity: 1,
-        y: 10,
-        duration: 0.3,
-        repeat: 3,
+        y: 25,
+        duration: 0.25,
+        repeat: 4,
         yoyo: true,
       },
-      '-=0.3'
+      '-=0.5'
     );
 
-    // Step 6: Button press
+    // Button press
     finalTimeline.to(
-      '#button1-top',
+      buttonTopRef.current,
       {
-        y: 5,
-        duration: 0.2,
+        y: 8,
+        duration: 0.3,
       },
-      '-=0.1'
+      '-=0.2'
     );
 
-    // Step 7: All elements celebrate
+    // Celebration - gears spin fast
     finalTimeline.to(
       [gear1Ref.current, gear2Ref.current, pulleyRef.current],
       {
@@ -228,10 +184,10 @@ export default function LoginPage() {
         variant: 'destructive',
       });
       // Reset animations on error
-      gsap.to([weightRef.current, leverRef.current, springRef.current, bottleRef.current], {
+      gsap.to([leverRef.current, bottleRef.current, liquidRef.current, dropRef.current, buttonTopRef.current], {
         rotation: 0,
         y: 0,
-        scaleY: 1,
+        opacity: 1,
         duration: 0.5,
       });
     } finally {
@@ -240,162 +196,187 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4 overflow-hidden">
-      <div className="w-full max-w-6xl grid lg:grid-cols-2 gap-8 items-center">
-        {/* Left side - Mechanical Animation */}
-        <div className="hidden lg:block relative h-[600px] border-2 border-black dark:border-white rounded-lg p-8">
-          <div className="absolute inset-0 flex items-center justify-center opacity-10 dark:opacity-5">
-            <svg className="w-full h-full" viewBox="0 0 400 600">
+    <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl">
+        <div className="text-center mb-6">
+          <h1 className="text-4xl font-bold mb-2 text-black dark:text-white">Welcome Back</h1>
+          <p className="text-gray-600 dark:text-gray-400">Fill the form to activate the machine</p>
+        </div>
+
+        {/* Integrated Animation + Form Container */}
+        <div className="relative border-2 border-black dark:border-white rounded-lg p-8 bg-white dark:bg-gray-900">
+          {/* Grid Background */}
+          <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
+            <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <pattern id="grid-login" width="20" height="20" patternUnits="userSpaceOnUse">
                   <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5" />
                 </pattern>
               </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
+              <rect width="100%" height="100%" fill="url(#grid-login)" />
             </svg>
           </div>
 
-          {/* Top section - Gears (Email trigger) */}
-          <div ref={gear1Ref} className="absolute top-16 left-20">
-            <Gear size={80} id="gear1" />
-          </div>
-          <div ref={gear2Ref} className="absolute top-24 left-36">
-            <Gear size={60} id="gear2" />
-          </div>
-
-          {/* Middle section - Pulley system (Password trigger) */}
-          <div ref={pulleyRef} className="absolute top-40 right-24">
-            <Pulley size={70} id="pulley1" />
-          </div>
-          <div ref={chainRef} className="absolute top-52 right-36">
-            <Chain length={120} id="chain1" />
-          </div>
-          <div ref={weightRef} className="absolute top-80 right-28">
-            <Weight size={50} id="weight1" />
-          </div>
-
-          {/* Bottom section - Final mechanism (Submit trigger) */}
-          <div ref={leverRef} className="absolute bottom-48 left-16">
-            <Lever width={140} id="lever1" />
-          </div>
-          <div ref={springRef} className="absolute bottom-32 left-44">
-            <Spring height={80} id="spring1" />
-          </div>
-          <div ref={bottleRef} className="absolute bottom-40 right-32">
-            <Bottle id="bottle1" />
-          </div>
-          <div ref={funnelRef} className="absolute bottom-20 right-16">
-            <Funnel size={70} id="funnel1" />
-          </div>
-          <div ref={buttonRef} className="absolute bottom-12 left-32">
-            <MechButton id="button1" />
-          </div>
-
-          {/* Connection lines */}
-          <svg className="absolute inset-0 pointer-events-none" viewBox="0 0 400 600">
-            <path
-              d="M 100 90 Q 150 90, 170 110"
-              stroke="black"
-              strokeWidth="2"
-              fill="none"
-              strokeDasharray="5,5"
-              className="dark:stroke-white"
-            />
-            <path
-              d="M 330 150 L 330 200"
-              stroke="black"
-              strokeWidth="2"
-              fill="none"
-              strokeDasharray="5,5"
-              className="dark:stroke-white"
-            />
-          </svg>
-        </div>
-
-        {/* Right side - Login Form */}
-        <div className="w-full max-w-md mx-auto">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold mb-2 text-black dark:text-white">Welcome Back</h1>
-            <p className="text-gray-600 dark:text-gray-400">Log in to access Solvezyo Tools</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium text-black dark:text-white">
-                Email
-              </label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onFocus={handleEmailFocus}
-                onBlur={handleEmailBlur}
-                className="h-12 border-2 border-black dark:border-white bg-white dark:bg-gray-800"
-                data-testid="input-email"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <label htmlFor="password" className="text-sm font-medium text-black dark:text-white">
-                Password
-              </label>
-              <div className="relative">
-                <Input
-                  id="password"
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  onFocus={handlePasswordFocus}
-                  onBlur={handlePasswordBlur}
-                  className="h-12 pr-12 border-2 border-black dark:border-white bg-white dark:bg-gray-800"
-                  data-testid="input-password"
+          {/* Mechanical Diagram with Integrated Form */}
+          <svg className="w-full h-[600px]" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+            {/* Top Section - Gears (Email Trigger) */}
+            <g ref={gear1Ref} transform="translate(150, 80)">
+              <circle cx="0" cy="0" r="40" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+                <rect
+                  key={i}
+                  x="-3"
+                  y="-50"
+                  width="6"
+                  height="20"
+                  fill="black"
+                  className="dark:fill-white"
+                  transform={`rotate(${angle})`}
                 />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors"
-                  data-testid="button-toggle-password"
-                >
-                  {showPassword ? (
-                    <EyeOff className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  ) : (
-                    <Eye className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                  )}
-                </button>
+              ))}
+              <circle cx="0" cy="0" r="15" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-900 dark:stroke-white" />
+            </g>
+
+            <g ref={gear2Ref} transform="translate(250, 90)">
+              <circle cx="0" cy="0" r="30" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
+              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+                <rect
+                  key={i}
+                  x="-2"
+                  y="-38"
+                  width="4"
+                  height="15"
+                  fill="black"
+                  className="dark:fill-white"
+                  transform={`rotate(${angle})`}
+                />
+              ))}
+              <circle cx="0" cy="0" r="10" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-900 dark:stroke-white" />
+            </g>
+
+            {/* Email Input Field - Positioned in the diagram */}
+            <foreignObject x="350" y="40" width="400" height="100">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-black dark:text-white block">Email</label>
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full h-12 px-4 border-2 border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                  data-testid="input-email"
+                />
               </div>
-            </div>
+            </foreignObject>
 
-            <Button
-              type="submit"
-              className="w-full h-12 text-lg font-semibold bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"
-              disabled={loading}
-              data-testid="button-login"
-            >
-              {loading ? (
-                <div className="flex items-center gap-2">
-                  <div className="w-5 h-5 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin" />
-                  Logging in...
-                </div>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <LogIn className="w-5 h-5" />
-                  Login
-                </div>
-              )}
-            </Button>
+            {/* Middle Section - Pulley System (Password Trigger) */}
+            <g ref={pulleyRef} transform="translate(650, 200)">
+              <circle cx="0" cy="0" r="35" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
+              <circle cx="0" cy="0" r="8" fill="black" className="dark:fill-white" />
+              <line x1="0" y1="-35" x2="0" y2="-60" stroke="black" strokeWidth="2" className="dark:stroke-white" />
+            </g>
 
-            <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+            <g ref={weightRef} transform="translate(650, 280)">
+              <rect x="-25" y="0" width="50" height="60" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-800 dark:stroke-white" />
+              <line x1="-15" y1="20" x2="15" y2="20" stroke="black" strokeWidth="2" className="dark:stroke-white" />
+              <line x1="-15" y1="40" x2="15" y2="40" stroke="black" strokeWidth="2" className="dark:stroke-white" />
+            </g>
+
+            <line x1="650" y1="235" x2="650" y2="280" stroke="black" strokeWidth="3" strokeDasharray="5,5" className="dark:stroke-white" />
+
+            {/* Password Input Field */}
+            <foreignObject x="350" y="180" width="250" height="100">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-black dark:text-white block">Password</label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full h-12 px-4 pr-12 border-2 border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    data-testid="input-password"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2"
+                    data-testid="button-toggle-password"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                    ) : (
+                      <Eye className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </foreignObject>
+
+            {/* Bottom Section - Final Mechanism (Submit Trigger) */}
+            <g ref={leverRef} transform="translate(120, 400)">
+              <line x1="0" y1="0" x2="140" y2="0" stroke="black" strokeWidth="4" className="dark:stroke-white" />
+              <circle cx="70" cy="0" r="8" fill="black" className="dark:fill-white" />
+              <polygon points="-10,-15 -10,15 10,0" fill="black" className="dark:fill-white" />
+            </g>
+
+            <g ref={bottleRef} transform="translate(500, 380)">
+              <rect x="0" y="0" width="50" height="80" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-800 dark:stroke-white" />
+              <rect x="15" y="-15" width="20" height="20" fill="white" stroke="black" strokeWidth="2" className="dark:fill-gray-800 dark:stroke-white" />
+              <path
+                ref={liquidRef}
+                d="M 5 20 L 5 70 L 45 70 L 45 20 Z"
+                fill="black"
+                opacity="0.3"
+                className="dark:fill-white"
+              />
+            </g>
+
+            <circle ref={dropRef} cx="575" cy="480" r="6" fill="black" opacity="0" className="dark:fill-white" />
+
+            <g transform="translate(600, 500)">
+              <rect x="0" y="10" width="80" height="15" fill="black" className="dark:fill-white" />
+              <rect ref={buttonTopRef} x="5" y="0" width="70" height="15" fill="white" stroke="black" strokeWidth="2" className="dark:fill-gray-700 dark:stroke-white" />
+            </g>
+
+            {/* Login Button - Positioned in the diagram */}
+            <foreignObject x="280" y="480" width="220" height="80">
+              <Button
+                onClick={handleSubmit}
+                className="w-full h-14 text-lg font-semibold bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"
+                disabled={loading}
+                data-testid="button-login"
+              >
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin" />
+                    Logging in...
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <LogIn className="w-5 h-5" />
+                    Activate Machine & Login
+                  </div>
+                )}
+              </Button>
+            </foreignObject>
+
+            {/* Connection lines */}
+            <path d="M 180 110 Q 250 140, 350 120" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
+            <path d="M 260 420 Q 350 430, 500 400" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
+          </svg>
+
+          {/* Sign up link below the integrated machine */}
+          <div className="text-center mt-6">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Don't have an account?{' '}
               <Link href="/signup">
                 <span className="font-semibold text-black dark:text-white hover:underline cursor-pointer" data-testid="link-signup">
                   Sign up
                 </span>
               </Link>
-            </div>
-          </form>
+            </p>
+          </div>
         </div>
       </div>
     </div>

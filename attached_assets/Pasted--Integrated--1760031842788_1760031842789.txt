@@ -1,0 +1,49 @@
+বিষয়: বর্তমান ডিজাইনকে একটি ইন্টারেক্টিভ এবং সমন্বিত (Integrated) অ্যানিমেটেড ফর্মে রূপান্তর করা।
+
+বর্তমান ডিজাইনের সমস্যা:
+বর্তমান ডিজাইনের প্রধান ভুলটি হলো, অ্যানিমেশন এবং ফর্ম দুটি সম্পূর্ণ আলাদা জিনিস হিসেবে রয়েছে। অ্যানিমেশনটি একটি স্থির ছবি মাত্র এবং ব্যবহারকারীর ফর্ম পূরণের সাথে এর কোনো সম্পর্ক নেই। আমাদের লক্ষ্য হলো এই দুটিকে একত্রিত করে একটি ইন্টারেক্টিভ অংশে পরিণত করা, যেখানে ফর্মের প্রতিটি ইনপুট অ্যানিমেশনকে সচল করবে।
+
+কী কী পরিবর্তন করতে হবে (Specific Instructions for Correction):
+
+লেআউট পরিবর্তন করুন (Change the Layout):
+
+দুই-কলামের ডিজাইনটি বাদ দিন। অ্যানিমেশন এবং ফর্ম ফিল্ডগুলো একই কন্টেইনার বা div-এর ভেতরে থাকবে।
+
+ফর্মের ইনপুট ফিল্ডগুলোকে (Email, Password) অ্যানিমেশনের ডায়াগ্রামের উপরে বা ভেতরে এমনভাবে স্থাপন করুন যেন মনে হয় ওগুলো মেশিনেরই অংশ।
+
+অ্যানিমেশনকে ইন্টারেক্টিভ করুন (Make the Animation Interactive):
+
+এটিই সবচেয়ে গুরুত্বপূর্ণ পরিবর্তন। অ্যানিমেশনটি কোনো স্থির ছবি হবে না। এটি JavaScript ব্যবহার করে সচল করতে হবে।
+
+ধাপ ১ (ইমেইল ইনপুট): যখন ব্যবহারকারী "Email" ফিল্ডে টাইপ করা শুরু করবে (onkeyup বা oninput event ব্যবহার করে), তখন ছবির উপরের গিয়ারগুলো ঘুরতে শুরু করবে।
+
+ধাপ ২ (পাসওয়ার্ড ইনপুট): যখন ব্যবহারকারী "Password" ফিল্ডে টাইপ করা শুরু করবে, তখন অ্যানিমেশনের পরবর্তী অংশটি (যেমন, পুলি সিস্টেম বা লিভার) সক্রিয় হবে।
+
+ধাপ ৩ (লগইন বাটন): যখন ব্যবহারকারী "Login" বাটনে ক্লিক করবে, তখন অ্যানিমেশনের শেষ ধাপটি সম্পন্ন হবে (যেমন, ফানেলে কিছু একটা পড়া) এবং ফর্মটি সাবমিট হবে।
+
+ধাপে ধাপে অ্যানিমেশন (Sequential Animation):
+
+অ্যানিমেশনটি অবশ্যই ধাপে ধাপে হতে হবে। অর্থাৎ, পাসওয়ার্ড ফিল্ডের অ্যানিমেশনটি তখনই শুরু হবে যখন ব্যবহারকারী ইমেইল ফিল্ডে কিছু লিখবে। একটির সাথে আরেকটির সংযোগ থাকতে হবে, যেন এটি একটি চেইন রিঅ্যাকশন মনে হয়।
+
+প্রযুক্তিগত নির্দেশনা (Technical Guidance):
+
+অ্যানিমেশন নিয়ন্ত্রণের জন্য অবশ্যই JavaScript ব্যবহার করতে হবে। প্রতিটি ইনপুট ফিল্ড এবং বাটনের জন্য Event Listener (addEventListener) যুক্ত করতে হবে।
+
+মসৃণ অ্যানিমেশনের জন্য CSS Transitions/Animations অথবা GSAP (GreenSock) / Anime.js-এর মতো জাভাস্ক্রিপ্ট লাইব্রেরি ব্যবহার করার নির্দেশ দিন।
+
+চূড়ান্ত সংশোধিত প্রম্পট (Final Revised Prompt to give your Agent):
+"Please rebuild the login page with the following corrections. The main goal is to make the mechanical animation interactive and integrated with the form fields, not a separate static image.
+
+Layout: Remove the two-column layout. Place the form fields (Email, Password) and the Login button inside the animation canvas, making them appear as part of the machine diagram.
+
+Core Interactivity (Use JavaScript): The animation must react to user input in real-time.
+
+On typing in the "Email" field: Trigger the first part of the animation. For example, make the gears at the top start rotating.
+
+On typing in the "Password" field: Trigger the next sequential part of the animation. For instance, activate the pulley system below the gears.
+
+On clicking the "Login" button: Trigger the final part of the animation sequence, which should conclude with the form submitting or showing a success message.
+
+Animation Style: The animation should be a smooth, 2D, black-and-white schematic drawing that comes to life as the user fills the form.
+
+The key is that the form fields control the animation. They are not separate elements."
