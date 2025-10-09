@@ -273,8 +273,8 @@ export default function SignupPage() {
         </div>
 
         {/* Integrated Animation + Form Container */}
-        <form onSubmit={handleSubmit}>
         <div className="relative border-2 border-black dark:border-white rounded-lg p-8 bg-white dark:bg-gray-900">
+        <form onSubmit={handleSubmit}>
           {/* Grid Background */}
           <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -483,6 +483,8 @@ export default function SignupPage() {
             <path d="M 300 510 Q 400 520, 550 500" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
           </svg>
 
+          </form>
+          
           {/* Login link */}
           <div className="text-center mt-6">
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -495,7 +497,6 @@ export default function SignupPage() {
             </p>
           </div>
         </div>
-        </form>
       </div>
     </div>
   );
