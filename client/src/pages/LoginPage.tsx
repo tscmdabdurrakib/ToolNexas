@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import gsap from 'gsap';
+import AnimatedLogo from '@/components/AnimatedLogo';
 
 export default function LoginPage() {
   const [, setLocation] = useLocation();
@@ -245,7 +246,8 @@ export default function LoginPage() {
     <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4">
       <div className="w-full max-w-4xl">
         <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold mb-2 text-black dark:text-white">Welcome Back</h1>
+          <AnimatedLogo />
+          <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">Welcome Back</h2>
           <p className="text-gray-600 dark:text-gray-400">Fill the form to activate the machine</p>
         </div>
 
