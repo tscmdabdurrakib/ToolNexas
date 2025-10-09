@@ -16,6 +16,7 @@ ToolShaala is a high-performance web platform designed to offer 122+ professiona
 - **Design Theme**: Responsive blue-purple gradient theme with full dark/light mode support.
 - **Component Library**: shadcn/ui components for a consistent and professional look.
 - **Animations**: Framer Motion and GSAP for smooth interactions, including complex Rube Goldberg machine animations for authentication.
+- **Authentication Design**: Fully integrated design where form fields are embedded inside the mechanical animation canvas. Form inputs directly trigger sequential mechanical animations in real-time (Email → Gears rotate, Password → Pulley activates, Submit → Final sequence).
 - **Tool Cards**: Unique color palette system for tool cards, with each tool displaying a distinct color from 16 vibrant options, ensuring visual diversity and consistency. Professional SVG icons are used.
 - **Category Navigation**: Intuitive sub-category navigation with clickable tabs and icons for specific categories (e.g., Text & String Tools).
 
