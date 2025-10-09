@@ -27,6 +27,7 @@ const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const LoginPage = lazy(() => import("@/pages/LoginPage"));
 const SignupPage = lazy(() => import("@/pages/SignupPage"));
+const EnhancedLoginPage = lazy(() => import("@/pages/EnhancedLoginPage"));
 const ToolPage = lazy(() => import("@/pages/ToolPage"));
 const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
 const CategoriesPage = lazy(() => import("@/pages/CategoriesPage"));
@@ -413,6 +414,7 @@ function AppRouter() {
             {/* Authentication Pages */}
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
+            <Route path="/enhanced-login" component={EnhancedLoginPage} />
             
             <Route component={NotFound} />
           </Switch>
