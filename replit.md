@@ -89,3 +89,16 @@ ToolShaala is a high-performance web platform designed to offer 122+ professiona
 - **GSAP (GreenSock Animation Platform)**: For complex, high-performance animations, especially in authentication.
 - **TanStack Query**: For server state management and data fetching.
 - **lucide-react**: Icon library for visual clarity in UI elements.
+
+## Development Notes
+
+### Firebase Configuration
+To connect the application to Firebase, you must create a `.env` file in the `client` directory. This file should contain the following environment variables with your Firebase project credentials:
+
+```
+VITE_FIREBASE_API_KEY="YOUR_API_KEY"
+VITE_FIREBASE_PROJECT_ID="YOUR_PROJECT_ID"
+VITE_FIREBASE_APP_ID="YOUR_APP_ID"
+```
+
+This file is included in the `.gitignore` to prevent sensitive credentials from being committed to version control.
