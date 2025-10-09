@@ -5,7 +5,7 @@ export default function AsciiToStringPage() {
   return (
     <>
       <Helmet>
-        <title>Convert ASCII to a String - Text & String Tools | ToolNexas</title>
+        <title>Convert ASCII to a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert ASCII code values back to readable text instantly. Online tool for decoding ASCII to text format." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

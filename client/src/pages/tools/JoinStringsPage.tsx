@@ -7,7 +7,7 @@ export default function JoinStringsPage() {
   return (
     <>
       <Helmet>
-        <title>Join Strings - ToolShaala</title>
+        <title>Join Strings - Solvezyo</title>
         <meta name="description" content="Join multiple lines of text with custom separators for easy list formatting." />
       </Helmet>
 

@@ -5,7 +5,7 @@ export default function RemoveEmptyLinesPage() {
   return (
     <>
       <Helmet>
-        <title>Remove All Empty Lines - Text & String Tools | ToolNexas</title>
+        <title>Remove All Empty Lines - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Remove all empty lines from your text instantly. Online tool for cleaning up text and removing unnecessary line breaks." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

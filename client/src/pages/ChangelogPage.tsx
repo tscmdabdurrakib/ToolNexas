@@ -12,6 +12,184 @@ interface ChangelogEntry {
 const changelogData: ChangelogEntry[] = [
   {
     date: 'October 10, 2025',
+    version: 'v2.7.0',
+    category: 'Added',
+    title: 'Advanced Text Processing and Analysis Tools Suite',
+    description:
+      'Added 10 comprehensive text processing tools: Convert String to CSV, Convert BBCode to String, Convert String to Morse Code, Convert Morse Code to String, Create Palindrome, Check Palindrome, Generate String Unigrams, Generate String Bigrams, Split Text, and Join Text. All tools feature real-time processing, professional UI design with unique gradient themes, customizable options, and comprehensive functionality for advanced text manipulation and analysis.',
+    link: '/tools/convert-string-to-csv',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert String to CSV Tool',
+    description:
+      'Convert structured text data to CSV format with proper escaping. Features customizable input delimiters (space, tab, pipe, semicolon) and quote style options (minimal, all, none) for flexible data transformation.',
+    link: '/tools/convert-string-to-csv',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert BBCode to String Tool',
+    description:
+      'Convert BBCode markup to plain text by removing formatting tags. Supports all common BBCode elements including bold, italic, URLs, images, quotes, and lists with clean text output.',
+    link: '/tools/convert-bbcode-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert String to Morse Code Tool',
+    description:
+      'Convert text to International Morse Code using dots and dashes. Supports letters, numbers, and common punctuation marks with visual dot-dash representation.',
+    link: '/tools/convert-string-to-morse-code',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Morse Code to String Tool',
+    description:
+      'Decode Morse code back to readable text with error validation. Supports word separation and provides real-time decoding feedback for invalid codes.',
+    link: '/tools/convert-morse-code-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Create Palindrome Tool',
+    description:
+      'Generate palindromes from text using multiple methods: append reverse, prepend reverse, mirror exactly, and center text. Perfect for creating symmetric text patterns.',
+    link: '/tools/create-palindrome',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Check Palindrome Tool',
+    description:
+      'Verify if text is a palindrome with customizable options. Features ignore case, spaces, and punctuation settings with detailed analysis and visual feedback.',
+    link: '/tools/check-palindrome',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Generate String Unigrams Tool',
+    description:
+      'Extract individual words (unigrams) from text with frequency analysis. Perfect for text analysis, NLP tasks, and word frequency studies with sorting options.',
+    link: '/tools/generate-string-unigrams',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Generate String Bigrams Tool',
+    description:
+      'Extract consecutive word pairs (bigrams) from text with frequency analysis. Ideal for NLP applications, text analysis, and linguistic pattern recognition.',
+    link: '/tools/generate-string-bigrams',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Split Text Tool',
+    description:
+      'Split text into separate lines using various delimiters (comma, space, tab, newline, etc.). Features custom delimiter support and numbered line output.',
+    link: '/tools/split-text',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Join Text Tool',
+    description:
+      'Join multiple lines of text using customizable delimiters. Supports various separator options (comma, space, pipe, dash, etc.) with automatic empty line filtering.',
+    link: '/tools/join-text',
+  },
+  {
+    date: 'October 10, 2025',
+    version: 'v2.6.0',
+    category: 'Added',
+    title: 'Advanced String Manipulation and Format Conversion Tools',
+    description:
+      'Added 10 comprehensive string manipulation tools: Convert String to Uppercase, Convert String to Lowercase, Randomize Letter Case, Invert Letter Case, Convert JSON to String, JSON Stringify String, JSON Parse String, Convert HTML to String, Convert XML to String, and Convert CSV to String. All tools feature real-time conversion, professional UI design with gradient themes, error handling, and instant copy functionality.',
+    link: '/tools/convert-string-to-uppercase',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert String to Uppercase Tool',
+    description:
+      'Transform any text to uppercase format instantly. Features real-time conversion as you type with clean, professional interface design.',
+    link: '/tools/convert-string-to-uppercase',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert String to Lowercase Tool',
+    description:
+      'Transform any text to lowercase format instantly. Perfect for text normalization and data processing with intuitive user interface.',
+    link: '/tools/convert-string-to-lowercase',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Randomize Letter Case Tool',
+    description:
+      'Randomly convert letters to uppercase or lowercase for unique text variations. Includes regenerate functionality for multiple random patterns.',
+    link: '/tools/randomize-letter-case',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Invert Letter Case Tool',
+    description:
+      'Flip uppercase letters to lowercase and lowercase to uppercase. Perfect for case inversion with instant processing and clean output.',
+    link: '/tools/invert-letter-case',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert JSON to String Tool',
+    description:
+      'Convert JSON objects or arrays to compact string format with validation. Features error handling for invalid JSON and professional formatting.',
+    link: '/tools/convert-json-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'JSON Stringify String Tool',
+    description:
+      'Convert strings to JSON-safe format with proper character escaping. Essential for code generation and JSON data preparation.',
+    link: '/tools/json-stringify-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'JSON Parse String Tool',
+    description:
+      'Parse JSON-escaped strings back to readable format with error validation. Handles escaped characters and provides clean, formatted output.',
+    link: '/tools/json-parse-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert HTML to String Tool',
+    description:
+      'Convert HTML markup to escaped string format for safe storage. Properly escapes HTML entities while preserving document structure.',
+    link: '/tools/convert-html-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert XML to String Tool',
+    description:
+      'Convert XML markup to escaped string format with entity handling. Perfect for XML data processing and safe string representation.',
+    link: '/tools/convert-xml-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert CSV to String Tool',
+    description:
+      'Convert CSV data to properly escaped string format. Handles commas, quotes, and special characters for safe data representation.',
+    link: '/tools/convert-csv-to-string',
+  },
+  {
+    date: 'October 10, 2025',
     version: 'v2.5.0',
     category: 'Added',
     title: 'String Conversion & Formats Tool',

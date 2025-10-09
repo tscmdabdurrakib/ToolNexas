@@ -8,7 +8,7 @@ import { Copy, AlignCenter } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 function CenterString() {
-  const [inputText, setInputText] = useState<string>('Welcome\nToolShaala\nCenter Text');
+  const [inputText, setInputText] = useState<string>('Welcome\nSolvezyo\nCenter Text');
   const [width, setWidth] = useState<number>(30);
   const [fillChar, setFillChar] = useState<string>(' ');
   const [output, setOutput] = useState<string>('');

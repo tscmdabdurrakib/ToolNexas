@@ -18,7 +18,7 @@ export default function BlogPage() {
       <div className="container mx-auto px-4 py-12">
         {/* Header */}
         <header className="text-center mb-12">
-          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white">ToolNexas Blog</h1>
+          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white">Solvezyo Blog</h1>
           <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
             Your source for the latest in tech, tools, and development.
           </p>

@@ -5,7 +5,7 @@ export default function TabsToSpacesPage() {
   return (
     <>
       <Helmet>
-        <title>Convert Tabs to Spaces - Text & String Tools | ToolNexas</title>
+        <title>Convert Tabs to Spaces - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Replace all tab characters with spaces instantly. Online tool for consistent text formatting and code style." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

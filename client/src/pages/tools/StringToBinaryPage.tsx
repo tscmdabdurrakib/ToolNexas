@@ -5,7 +5,7 @@ export default function StringToBinaryPage() {
   return (
     <>
       <Helmet>
-        <title>Convert a String to Binary - Text & String Tools | ToolNexas</title>
+        <title>Convert a String to Binary - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert text to binary representation (UTF-8 encoded) instantly. Online tool for encoding text to binary format." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

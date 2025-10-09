@@ -5,7 +5,7 @@ export default function StringToBytesPage() {
   return (
     <>
       <Helmet>
-        <title>Convert a String to Bytes - Text & String Tools | ToolNexas</title>
+        <title>Convert a String to Bytes - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert text to byte representation in UTF-8, ASCII, hexadecimal, and binary formats instantly. Online string to bytes converter." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

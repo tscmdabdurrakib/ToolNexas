@@ -39,10 +39,10 @@ export default function CategoriesPage() {
   return (
     <>
       <Helmet>
-        <title>All Categories - ToolShaala</title>
+        <title>All Categories - Solvezyo</title>
         <meta
           name="description"
-          content="Browse all tool categories on ToolShaala. Find the perfect tool from our collection of 35+ categories and 97+ professional tools."
+          content="Browse all tool categories on Solvezyo. Find the perfect tool from our collection of 35+ categories and 97+ professional tools."
         />
       </Helmet>
 

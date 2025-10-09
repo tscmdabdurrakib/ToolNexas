@@ -7,7 +7,7 @@ export default function FilterStringLinesPage() {
   return (
     <>
       <Helmet>
-        <title>Filter String Lines - ToolShaala</title>
+        <title>Filter String Lines - Solvezyo</title>
         <meta name="description" content="Filter text lines based on custom criteria like contains, starts with, ends with, and more." />
       </Helmet>
 

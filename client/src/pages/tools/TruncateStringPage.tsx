@@ -5,7 +5,7 @@ export default function TruncateStringPage() {
   return (
     <>
       <Helmet>
-        <title>Truncate a String - Text & String Tools | ToolShaala</title>
+        <title>Truncate a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Shorten text to a specified length with optional ellipsis. Online tool to truncate strings with customizable character limits." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

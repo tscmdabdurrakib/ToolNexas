@@ -1,6 +1,6 @@
-# ToolShaala - GitHub Upload Checklist
+# Solvezyo - GitHub Upload Checklist
 
-## Repository: https://github.com/tscmdabdurrakib/ToolNexas.git
+## Repository: https://github.com/tscmdabdurrakib/Solvezyo.git
 
 ## Manual Upload Method (Recommended)
 
@@ -46,16 +46,16 @@ Copy these exact file paths from your Replit workspace:
 - ✅ `public/sw.js`
 
 ### Step 2: Upload to GitHub
-1. Go to https://github.com/tscmdabdurrakib/ToolNexas
+1. Go to https://github.com/tscmdabdurrakib/Solvezyo
 2. Click "Upload files" or "Add file" → "Upload files"
 3. Drag and drop all the above files maintaining folder structure
-4. Commit message: "Initial commit: ToolShaala - Professional Tool Platform"
+4. Commit message: "Initial commit: Solvezyo - Professional Tool Platform"
 
 ### Step 3: Create README.md
 Create a new file called `README.md` with this content:
 
 ```markdown
-# ToolShaala - Professional Online Utility Platform
+# Solvezyo - Professional Online Utility Platform
 
 🚀 **70+ Tools | 35 Categories | Super-Fast Performance**
 

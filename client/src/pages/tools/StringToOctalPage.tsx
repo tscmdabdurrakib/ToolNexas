@@ -5,7 +5,7 @@ export default function StringToOctalPage() {
   return (
     <>
       <Helmet>
-        <title>Convert a String to Octal - Text & String Tools | ToolNexas</title>
+        <title>Convert a String to Octal - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert text to octal representation (base-8) instantly. Online tool for encoding text to octal format." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

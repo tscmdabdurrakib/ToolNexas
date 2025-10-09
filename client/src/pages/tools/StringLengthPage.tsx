@@ -5,7 +5,7 @@ export default function StringLengthPage() {
   return (
     <>
       <Helmet>
-        <title>Find the Length of a String - Text & String Tools | ToolNexas</title>
+        <title>Find the Length of a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Calculate character count, word count, and byte size of text instantly. Online string length calculator with detailed metrics." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

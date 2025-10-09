@@ -7,7 +7,7 @@ export default function ExtractSubstringPage() {
   return (
     <>
       <Helmet>
-        <title>Extract Substring - ToolShaala</title>
+        <title>Extract Substring - Solvezyo</title>
         <meta name="description" content="Extract a portion of text using start and end indices with visual preview." />
       </Helmet>
 

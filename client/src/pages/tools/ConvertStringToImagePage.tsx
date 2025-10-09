@@ -7,7 +7,7 @@ export default function ConvertStringToImagePage() {
   return (
     <>
       <Helmet>
-        <title>Convert String to Image - ToolShaala</title>
+        <title>Convert String to Image - Solvezyo</title>
         <meta name="description" content="Convert your text into a downloadable image with customizable fonts, colors, and styles." />
       </Helmet>
 

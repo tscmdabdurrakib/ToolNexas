@@ -7,7 +7,7 @@ export default function GenerateStringFromRegexPage() {
   return (
     <>
       <Helmet>
-        <title>Generate String from Regex - ToolShaala</title>
+        <title>Generate String from Regex - Solvezyo</title>
         <meta name="description" content="Generate sample strings that match your regex patterns. Perfect for testing and validation." />
       </Helmet>
 

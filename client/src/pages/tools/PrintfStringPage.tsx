@@ -7,7 +7,7 @@ export default function PrintfStringPage() {
   return (
     <>
       <Helmet>
-        <title>Printf String - ToolShaala</title>
+        <title>Printf String - Solvezyo</title>
         <meta name="description" content="Format strings with printf-style placeholders like %s, %d, and %f for easy text formatting." />
       </Helmet>
 

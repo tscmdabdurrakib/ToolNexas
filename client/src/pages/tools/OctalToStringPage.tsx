@@ -5,7 +5,7 @@ export default function OctalToStringPage() {
   return (
     <>
       <Helmet>
-        <title>Convert Octal to a String - Text & String Tools | ToolNexas</title>
+        <title>Convert Octal to a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert octal representation back to readable text instantly. Online tool for decoding octal to text format." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

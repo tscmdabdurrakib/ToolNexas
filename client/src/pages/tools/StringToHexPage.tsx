@@ -5,7 +5,7 @@ export default function StringToHexPage() {
   return (
     <>
       <Helmet>
-        <title>Convert a String to Hex - Text & String Tools | ToolNexas</title>
+        <title>Convert a String to Hex - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert text to hexadecimal representation (base-16) instantly. Online tool for encoding text to hex format." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

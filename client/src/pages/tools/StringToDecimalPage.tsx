@@ -5,7 +5,7 @@ export default function StringToDecimalPage() {
   return (
     <>
       <Helmet>
-        <title>Convert a String to Decimal - Text & String Tools | ToolNexas</title>
+        <title>Convert a String to Decimal - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert text to decimal representation (base-10) instantly. Online tool for encoding text to decimal format." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

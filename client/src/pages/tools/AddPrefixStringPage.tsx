@@ -5,7 +5,7 @@ export default function AddPrefixStringPage() {
   return (
     <>
       <Helmet>
-        <title>Add a Prefix to a String - Text & String Tools | ToolNexas</title>
+        <title>Add a Prefix to a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Add a prefix to the beginning of each line of your text instantly. Online tool for adding prefixes to multi-line text with real-time preview." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

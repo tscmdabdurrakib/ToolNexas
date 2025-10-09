@@ -9447,6 +9447,158 @@ export const tools: Tool[] = [
       "Instant preview of the Base64-encoded text",
     ],
   },
+  
+  // New Sorting and Randomization Text Tools
+  {
+    id: "filter-text-paragraphs",
+    name: "Filter Text Paragraphs",
+    description: "Filter paragraphs from your text based on keywords and conditions",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 5200,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Filter paragraphs by keyword matching",
+      "Case-sensitive and case-insensitive options",
+      "Real-time filtering as you type",
+      "Copy filtered results to clipboard",
+    ],
+  },
+  {
+    id: "sort-text-lines",
+    name: "Sort Text Lines",
+    description: "Sort text lines alphabetically in ascending or descending order",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M3 7l6 6-6 6M21 7l-6 6 6 6"),
+    views: 5100,
+    gradient: "from-green-500 to-emerald-500",
+    features: [
+      "Sort lines alphabetically",
+      "Ascending and descending order options",
+      "Case-sensitive sorting available",
+      "Remove empty lines option",
+    ],
+  },
+  {
+    id: "sort-sentences-in-text",
+    name: "Sort Sentences in Text",
+    description: "Sort sentences within your text alphabetically",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M3 4h18M3 8h18M3 12h18M3 16h12"),
+    views: 4900,
+    gradient: "from-purple-500 to-violet-500",
+    features: [
+      "Sort sentences alphabetically",
+      "Preserve sentence punctuation",
+      "Maintain text readability",
+      "Instant preview of sorted sentences",
+    ],
+  },
+  {
+    id: "sort-paragraphs-in-text",
+    name: "Sort Paragraphs in Text",
+    description: "Sort paragraphs alphabetically based on their first line",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 10h16M4 14h16M4 18h10"),
+    views: 4800,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Sort paragraphs by first line content",
+      "Maintain paragraph structure",
+      "Remove empty paragraphs option",
+      "Case-sensitive sorting available",
+    ],
+  },
+  {
+    id: "sort-words-in-text",
+    name: "Sort Words in Text",
+    description: "Sort all words in your text alphabetically",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12h16M12 4l4 4-4 4M12 20l-4-4 4-4"),
+    views: 4700,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Sort words alphabetically",
+      "Remove duplicate words option",
+      "Preserve or normalize spacing",
+      "Case-sensitive sorting available",
+    ],
+  },
+  {
+    id: "sort-letters-in-words",
+    name: "Sort Letters in Words",
+    description: "Sort letters alphabetically within each word",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h8M4 18h16"),
+    views: 4600,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Sort letters within each word",
+      "Preserve word boundaries",
+      "Case preservation options",
+      "Maintain original spacing",
+    ],
+  },
+  {
+    id: "sort-symbols-in-text",
+    name: "Sort Symbols in Text",
+    description: "Sort special characters and symbols in your text",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 4500,
+    gradient: "from-pink-500 to-rose-500",
+    features: [
+      "Sort symbols and special characters",
+      "Preserve letters and numbers",
+      "Ascending and descending order",
+      "Maintain text structure",
+    ],
+  },
+  {
+    id: "randomize-letters-in-text",
+    name: "Randomize Letters in Text",
+    description: "Randomly shuffle letters in your text with various options",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 4l4 4-4 4M20 4l-4 4 4 4M12 12l8 8M4 20l8-8"),
+    views: 4400,
+    gradient: "from-amber-500 to-yellow-500",
+    features: [
+      "Randomize letters within words",
+      "Preserve word boundaries option",
+      "Case distribution preservation",
+      "Punctuation preservation option",
+    ],
+  },
+  {
+    id: "scramble-words",
+    name: "Scramble Words",
+    description: "Scramble letters within each word while keeping words readable",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M3 7l6 6-6 6M21 7l-6 6 6 6M12 2v20"),
+    views: 4300,
+    gradient: "from-violet-500 to-purple-500",
+    features: [
+      "Scramble letters within words",
+      "Preserve first and last letters option",
+      "Minimum word length settings",
+      "Maintain readability while scrambling",
+    ],
+  },
+  {
+    id: "randomize-words-in-text",
+    name: "Randomize Words in Text",
+    description: "Randomly shuffle the order of words in your text",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12h16M8 8l4-4 4 4M8 16l4 4 4-4"),
+    views: 4200,
+    gradient: "from-emerald-500 to-teal-500",
+    features: [
+      "Randomize word order",
+      "Preserve sentence boundaries option",
+      "Punctuation preservation",
+      "Capitalization fixing option",
+    ],
+  },
   {
     id: "base64-decode-text",
     name: "Base64-decode Text",
@@ -9597,6 +9749,328 @@ export const tools: Tool[] = [
       "Decodes hex representations back to readable text",
       "Ideal for converting hex-encoded text back to normal",
       "Instant preview of the decoded text",
+    ],
+  },
+
+  // New String Conversion Tools
+  {
+    id: "convert-string-to-uppercase",
+    name: "Convert a String to Uppercase",
+    description: "Transform your text to uppercase format instantly",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M7 4h10l2 3v13l-2 3H7l-2-3V7l2-3z"),
+    views: 9500,
+    gradient: "from-blue-500 to-cyan-500",
+    features: [
+      "Convert any text to uppercase format",
+      "Real-time conversion as you type",
+      "Copy result to clipboard",
+      "Professional UI design"
+    ],
+  },
+
+  {
+    id: "convert-string-to-lowercase",
+    name: "Convert a String to Lowercase",
+    description: "Transform your text to lowercase format instantly",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M7 20h10l2-3V4l-2-3H7l-2 3v13l2 3z"),
+    views: 9400,
+    gradient: "from-green-500 to-emerald-500",
+    features: [
+      "Convert any text to lowercase format",
+      "Real-time conversion as you type",
+      "Copy result to clipboard",
+      "Clean and intuitive interface"
+    ],
+  },
+
+  {
+    id: "randomize-letter-case",
+    name: "Randomize Letter Case in a String",
+    description: "Randomly convert letters to uppercase or lowercase",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8900,
+    gradient: "from-purple-500 to-indigo-500",
+    features: [
+      "Random case conversion for each letter",
+      "Regenerate random patterns",
+      "Real-time processing",
+      "Copy randomized text to clipboard"
+    ],
+  },
+
+  {
+    id: "invert-letter-case",
+    name: "Invert Letter Case in a String",
+    description: "Flip uppercase to lowercase and lowercase to uppercase",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l4 4-4 4M12 16l-4-4 4-4"),
+    views: 8800,
+    gradient: "from-orange-500 to-red-500",
+    features: [
+      "Invert case of all letters",
+      "Uppercase becomes lowercase and vice versa",
+      "Instant conversion",
+      "One-click copy functionality"
+    ],
+  },
+
+  {
+    id: "convert-json-to-string",
+    name: "Convert JSON to a String",
+    description: "Convert JSON object or array to a compact string format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 4h16M4 12h16M4 20h16"),
+    views: 9200,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Convert JSON to string representation",
+      "JSON validation and error handling",
+      "Compact string output",
+      "Professional JSON processing"
+    ],
+  },
+
+  {
+    id: "json-stringify-string",
+    name: "JSON Stringify a String",
+    description: "Convert string to JSON-safe format with proper escaping",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l4 4-4 4M12 16l-4-4 4-4"),
+    views: 9100,
+    gradient: "from-emerald-500 to-teal-500",
+    features: [
+      "JSON stringify text with escaping",
+      "Handle special characters safely",
+      "Perfect for code generation",
+      "Real-time string processing"
+    ],
+  },
+
+  {
+    id: "json-parse-string",
+    name: "JSON Parse a String",
+    description: "Parse JSON-escaped string back to readable format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12l6 6 6-6"),
+    views: 9000,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Parse JSON strings back to text",
+      "Handle escaped characters",
+      "Error validation and feedback",
+      "Clean output formatting"
+    ],
+  },
+
+  {
+    id: "convert-html-to-string",
+    name: "Convert HTML to a String",
+    description: "Convert HTML markup to escaped string format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 8700,
+    gradient: "from-amber-500 to-orange-500",
+    features: [
+      "Convert HTML to safe string format",
+      "Escape HTML entities properly",
+      "Preserve markup structure",
+      "Safe for string storage"
+    ],
+  },
+
+  {
+    id: "convert-xml-to-string",
+    name: "Convert XML to a String",
+    description: "Convert XML markup to escaped string format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M5 4h14M5 12h14M5 20h14"),
+    views: 8600,
+    gradient: "from-violet-500 to-purple-500",
+    features: [
+      "Convert XML to safe string format",
+      "Handle XML entities and tags",
+      "Maintain document structure",
+      "Professional XML processing"
+    ],
+  },
+
+  {
+    id: "convert-csv-to-string",
+    name: "Convert CSV to a String",
+    description: "Convert CSV data to escaped string format",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 8500,
+    gradient: "from-teal-500 to-green-500",
+    features: [
+      "Convert CSV data to string format",
+      "Handle commas and quotes properly",
+      "Escape special characters",
+      "Preserve data structure"
+    ],
+  },
+
+  // Additional Advanced String Manipulation Tools
+  {
+    id: "convert-string-to-csv",
+    name: "Convert a String to CSV",
+    description: "Convert structured text data to CSV format with proper escaping",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 8400,
+    gradient: "from-emerald-500 to-green-500",
+    features: [
+      "Convert structured text to CSV format",
+      "Customizable input delimiters",
+      "Quote style options (minimal, all, none)",
+      "Real-time conversion with error handling"
+    ],
+  },
+
+  {
+    id: "convert-bbcode-to-string",
+    name: "Convert BBCode to a String",
+    description: "Convert BBCode markup to plain text by removing formatting tags",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l4 4-4 4M12 16l-4-4 4-4"),
+    views: 8300,
+    gradient: "from-blue-500 to-indigo-500",
+    features: [
+      "Remove BBCode formatting tags",
+      "Support for all common BBCode elements",
+      "Convert URLs and images to text",
+      "Clean plain text output"
+    ],
+  },
+
+  {
+    id: "convert-string-to-morse-code",
+    name: "Convert a String to Morse Code",
+    description: "Convert text to Morse code using dots and dashes",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 8200,
+    gradient: "from-amber-500 to-yellow-500",
+    features: [
+      "Convert text to Morse code",
+      "Support for letters, numbers, and punctuation",
+      "Standard International Morse Code",
+      "Visual dot and dash representation"
+    ],
+  },
+
+  {
+    id: "convert-morse-code-to-string",
+    name: "Convert Morse Code to a String",
+    description: "Decode Morse code back to readable text",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 12l6 6 6-6"),
+    views: 8100,
+    gradient: "from-cyan-500 to-blue-500",
+    features: [
+      "Decode Morse code to text",
+      "Error validation for invalid codes",
+      "Support for word separation",
+      "Real-time decoding feedback"
+    ],
+  },
+
+  {
+    id: "create-palindrome",
+    name: "Create a Palindrome",
+    description: "Generate palindromes from your text using different methods",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l4 4-4 4M12 16l-4-4 4-4"),
+    views: 8000,
+    gradient: "from-purple-500 to-violet-500",
+    features: [
+      "Multiple palindrome creation methods",
+      "Append, prepend, mirror, and center options",
+      "Real-time palindrome generation",
+      "Copy generated palindromes"
+    ],
+  },
+
+  {
+    id: "check-palindrome",
+    name: "Check a Palindrome",
+    description: "Verify if your text is a palindrome with customizable options",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M9 12l2 2 4-4"),
+    views: 7900,
+    gradient: "from-teal-500 to-cyan-500",
+    features: [
+      "Palindrome verification with visual feedback",
+      "Ignore case, spaces, and punctuation options",
+      "Show cleaned and reversed text",
+      "Detailed analysis results"
+    ],
+  },
+
+  {
+    id: "generate-string-unigrams",
+    name: "Generate String Unigrams",
+    description: "Extract individual words (unigrams) from text with frequency analysis",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M4 6h16M4 12h16M4 18h16"),
+    views: 7800,
+    gradient: "from-indigo-500 to-purple-500",
+    features: [
+      "Extract individual words from text",
+      "Frequency analysis and counting",
+      "Case and punctuation options",
+      "Sorted output by frequency or alphabetically"
+    ],
+  },
+
+  {
+    id: "generate-string-bigrams",
+    name: "Generate String Bigrams",
+    description: "Extract word pairs (bigrams) from text with frequency analysis",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 4l8 8-8 8-8-8 8-8"),
+    views: 7700,
+    gradient: "from-pink-500 to-rose-500",
+    features: [
+      "Extract consecutive word pairs",
+      "Bigram frequency analysis",
+      "Customizable text processing options",
+      "NLP and text analysis applications"
+    ],
+  },
+
+  {
+    id: "split-text",
+    name: "Split Text",
+    description: "Split text into separate lines using various delimiters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 5l7 7-7 7"),
+    views: 7600,
+    gradient: "from-orange-500 to-amber-500",
+    features: [
+      "Split text by multiple delimiter types",
+      "Custom delimiter support",
+      "Numbered line output",
+      "Real-time splitting preview"
+    ],
+  },
+
+  {
+    id: "join-text",
+    name: "Join Text",
+    description: "Join multiple lines of text using various delimiters",
+    category: getCategoryById("text-string"),
+    icon: createIcon("M12 19l-7-7 7-7"),
+    views: 7500,
+    gradient: "from-green-500 to-teal-500",
+    features: [
+      "Join text lines with custom delimiters",
+      "Multiple separator options",
+      "Filter empty lines automatically",
+      "Flexible text combination"
     ],
   },
 

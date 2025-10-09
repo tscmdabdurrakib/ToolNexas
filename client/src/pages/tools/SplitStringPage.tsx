@@ -7,7 +7,7 @@ export default function SplitStringPage() {
   return (
     <>
       <Helmet>
-        <title>Split String - ToolShaala</title>
+        <title>Split String - Solvezyo</title>
         <meta name="description" content="Split text into parts using custom delimiters like commas, pipes, or any character." />
       </Helmet>
 

@@ -8,7 +8,7 @@ import { Copy, AlignJustify } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 function TrimString() {
-  const [inputText, setInputText] = useState<string>('   Hello World!   \n   Welcome to ToolShaala   ');
+  const [inputText, setInputText] = useState<string>('   Hello World!   \n   Welcome to Solvezyo   ');
   const [trimMode, setTrimMode] = useState<string>('both');
   const [output, setOutput] = useState<string>('');
   const { toast } = useToast();

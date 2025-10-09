@@ -7,7 +7,7 @@ export default function ExtractRegexMatchesPage() {
   return (
     <>
       <Helmet>
-        <title>Extract Regex Matches - ToolShaala</title>
+        <title>Extract Regex Matches - Solvezyo</title>
         <meta name="description" content="Find and extract all regex pattern matches from text. Perfect for data extraction and validation." />
       </Helmet>
 

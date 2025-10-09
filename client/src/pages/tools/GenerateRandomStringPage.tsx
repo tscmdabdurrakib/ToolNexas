@@ -7,7 +7,7 @@ export default function GenerateRandomStringPage() {
   return (
     <>
       <Helmet>
-        <title>Generate Random String - ToolShaala</title>
+        <title>Generate Random String - Solvezyo</title>
         <meta name="description" content="Generate secure random strings with customizable options including uppercase, lowercase, numbers, and symbols." />
       </Helmet>
 

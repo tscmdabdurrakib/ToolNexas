@@ -5,7 +5,7 @@ export default function ChangeStringCasePage() {
   return (
     <>
       <Helmet>
-        <title>Change String Case - Text & String Tools | ToolNexas</title>
+        <title>Change String Case - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Convert text to different case formats with multiple options: uppercase, lowercase, title case, camel case, and more instantly." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

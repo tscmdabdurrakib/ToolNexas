@@ -7,7 +7,7 @@ export default function TestStringWithRegexPage() {
   return (
     <>
       <Helmet>
-        <title>Test String with Regex - ToolShaala</title>
+        <title>Test String with Regex - Solvezyo</title>
         <meta name="description" content="Validate if text matches a regex pattern with instant results and detailed match information." />
       </Helmet>
 

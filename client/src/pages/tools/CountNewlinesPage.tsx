@@ -5,7 +5,7 @@ export default function CountNewlinesPage() {
   return (
     <>
       <Helmet>
-        <title>Count Newlines in a String - Text & String Tools | ToolNexas</title>
+        <title>Count Newlines in a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Count the number of newline characters and total lines in text instantly. Online tool for text analysis and formatting." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

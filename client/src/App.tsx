@@ -132,6 +132,101 @@ const StringToAsciiPage = lazy(() => import("@/pages/tools/StringToAsciiPage"));
 const AsciiToStringPage = lazy(() => import("@/pages/tools/AsciiToStringPage"));
 const ChangeStringCasePage = lazy(() => import("@/pages/tools/ChangeStringCasePage"));
 
+// New String Conversion Tools
+const ConvertStringToUppercasePage = lazy(() => import("@/pages/tools/ConvertStringToUppercasePage"));
+const ConvertStringToLowercasePage = lazy(() => import("@/pages/tools/ConvertStringToLowercasePage"));
+const RandomizeLetterCasePage = lazy(() => import("@/pages/tools/RandomizeLetterCasePage"));
+const InvertLetterCasePage = lazy(() => import("@/pages/tools/InvertLetterCasePage"));
+const ConvertJsonToStringPage = lazy(() => import("@/pages/tools/ConvertJsonToStringPage"));
+const JsonStringifyStringPage = lazy(() => import("@/pages/tools/JsonStringifyStringPage"));
+const JsonParseStringPage = lazy(() => import("@/pages/tools/JsonParseStringPage"));
+const ConvertHtmlToStringPage = lazy(() => import("@/pages/tools/ConvertHtmlToStringPage"));
+const ConvertXmlToStringPage = lazy(() => import("@/pages/tools/ConvertXmlToStringPage"));
+const ConvertCsvToStringPage = lazy(() => import("@/pages/tools/ConvertCsvToStringPage"));
+
+// Additional Advanced String Manipulation Tools
+const ConvertStringToCsvPage = lazy(() => import("@/pages/tools/ConvertStringToCsvPage"));
+const ConvertBbcodeToStringPage = lazy(() => import("@/pages/tools/ConvertBbcodeToStringPage"));
+const ConvertStringToMorseCodePage = lazy(() => import("@/pages/tools/ConvertStringToMorseCodePage"));
+const ConvertMorseCodeToStringPage = lazy(() => import("@/pages/tools/ConvertMorseCodeToStringPage"));
+const CreatePalindromePage = lazy(() => import("@/pages/tools/CreatePalindromePage"));
+const CheckPalindromePage = lazy(() => import("@/pages/tools/CheckPalindromePage"));
+const GenerateStringUnigramsPage = lazy(() => import("@/pages/tools/GenerateStringUnigramsPage"));
+const GenerateStringBigramsPage = lazy(() => import("@/pages/tools/GenerateStringBigramsPage"));
+const SplitTextPage = lazy(() => import("@/pages/tools/SplitTextPage"));
+const JoinTextPage = lazy(() => import("@/pages/tools/JoinTextPage"));
+
+// New Text Tools
+const RepeatTextPage = lazy(() => import("@/pages/tools/RepeatTextPage"));
+const ReverseTextPage = lazy(() => import("@/pages/tools/ReverseTextPage"));
+const TruncateTextPage = lazy(() => import("@/pages/tools/TruncateTextPage"));
+const SliceTextPage = lazy(() => import("@/pages/tools/SliceTextPage"));
+const TrimTextPage = lazy(() => import("@/pages/tools/TrimTextPage"));
+const LeftPadTextPage = lazy(() => import("@/pages/tools/LeftPadTextPage"));
+const RightPadTextPage = lazy(() => import("@/pages/tools/RightPadTextPage"));
+const LeftAlignTextPage = lazy(() => import("@/pages/tools/LeftAlignTextPage"));
+const RightAlignTextPage = lazy(() => import("@/pages/tools/RightAlignTextPage"));
+const CenterTextPage = lazy(() => import("@/pages/tools/CenterTextPage"));
+
+// Additional Advanced Text Tools
+const IndentTextPage = lazy(() => import("@/pages/tools/IndentTextPage"));
+const UnindentTextPage = lazy(() => import("@/pages/tools/UnindentTextPage"));
+const JustifyTextPage = lazy(() => import("@/pages/tools/JustifyTextPage"));
+const WrapWordsInTextPage = lazy(() => import("@/pages/tools/WrapWordsInTextPage"));
+const ReverseWordsInTextPage = lazy(() => import("@/pages/tools/ReverseWordsInTextPage"));
+const ReverseSentencesInTextPage = lazy(() => import("@/pages/tools/ReverseSentencesInTextPage"));
+const ReverseParagraphsInTextPage = lazy(() => import("@/pages/tools/ReverseParagraphsInTextPage"));
+const SwapLettersInWordsPage = lazy(() => import("@/pages/tools/SwapLettersInWordsPage"));
+const SwapWordsInTextPage = lazy(() => import("@/pages/tools/SwapWordsInTextPage"));
+const DuplicateWordsInTextPage = lazy(() => import("@/pages/tools/DuplicateWordsInTextPage"));
+
+// New Advanced Text Manipulation Tools
+const RemoveWordsFromTextPage = lazy(() => import("@/pages/tools/RemoveWordsFromTextPage"));
+const DuplicateSentencesInTextPage = lazy(() => import("@/pages/tools/DuplicateSentencesInTextPage"));
+const RemoveSentencesFromTextPage = lazy(() => import("@/pages/tools/RemoveSentencesFromTextPage"));
+const ReplaceWordsInTextPage = lazy(() => import("@/pages/tools/ReplaceWordsInTextPage"));
+const AddRandomWordsToTextPage = lazy(() => import("@/pages/tools/AddRandomWordsToTextPage"));
+const AddRandomLettersToWordsPage = lazy(() => import("@/pages/tools/AddRandomLettersToWordsPage"));
+const IntroduceErrorsInTextPage = lazy(() => import("@/pages/tools/IntroduceErrorsInTextPage"));
+const GenerateFakeTextPage = lazy(() => import("@/pages/tools/GenerateFakeTextPage"));
+const UnfakeTextPage = lazy(() => import("@/pages/tools/UnfakeTextPage"));
+const CheckIfTextIsFakePage = lazy(() => import("@/pages/tools/CheckIfTextIsFakePage"));
+
+// Additional Text Symbol and Prefix/Suffix Tools
+const RemoveRandomLettersFromWordsPage = lazy(() => import("@/pages/tools/RemoveRandomLettersFromWordsPage"));
+const RemoveRandomSymbolsFromTextPage = lazy(() => import("@/pages/tools/RemoveRandomSymbolsFromTextPage"));
+const AddSymbolsAroundWordsPage = lazy(() => import("@/pages/tools/AddSymbolsAroundWordsPage"));
+const RemoveSymbolsFromAroundWordsPage = lazy(() => import("@/pages/tools/RemoveSymbolsFromAroundWordsPage"));
+const AddPrefixToTextLinesPage = lazy(() => import("@/pages/tools/AddPrefixToTextLinesPage"));
+const AddSuffixToTextLinesPage = lazy(() => import("@/pages/tools/AddSuffixToTextLinesPage"));
+const RemovePrefixFromTextPage = lazy(() => import("@/pages/tools/RemovePrefixFromTextPage"));
+const RemoveSuffixFromTextLinesPage = lazy(() => import("@/pages/tools/RemoveSuffixFromTextLinesPage"));
+const AddPrefixToWordsPage = lazy(() => import("@/pages/tools/AddPrefixToWordsPage"));
+const AddSuffixToWordsPage = lazy(() => import("@/pages/tools/AddSuffixToWordsPage"));
+
+// New Text & String Tools
+const RemovePrefixFromWordsPage = lazy(() => import("@/pages/tools/RemovePrefixFromWordsPage"));
+const RemoveSuffixFromWordsPage = lazy(() => import("@/pages/tools/RemoveSuffixFromWordsPage"));
+const InsertSymbolsBetweenLettersPage = lazy(() => import("@/pages/tools/InsertSymbolsBetweenLettersPage"));
+const AddSymbolsAroundLettersPage = lazy(() => import("@/pages/tools/AddSymbolsAroundLettersPage"));
+const RemoveAllEmptyLinesPage = lazy(() => import("@/pages/tools/RemoveAllEmptyLinesPage"));
+const RemoveAllDuplicateLinesPage = lazy(() => import("@/pages/tools/RemoveAllDuplicateLinesPage"));
+const FilterTextLinesPage = lazy(() => import("@/pages/tools/FilterTextLinesPage"));
+const FilterWordsInTextPage = lazy(() => import("@/pages/tools/FilterWordsInTextPage"));
+const FilterTextSentencesPage = lazy(() => import("@/pages/tools/FilterTextSentencesPage"));
+
+// New Sorting and Randomization Tools
+const FilterTextParagraphsPage = lazy(() => import("@/pages/tools/FilterTextParagraphsPage"));
+const SortTextLinesPage = lazy(() => import("@/pages/tools/SortTextLinesPage"));
+const SortSentencesInTextPage = lazy(() => import("@/pages/tools/SortSentencesInTextPage"));
+const SortParagraphsInTextPage = lazy(() => import("@/pages/tools/SortParagraphsInTextPage"));
+const SortWordsInTextPage = lazy(() => import("@/pages/tools/SortWordsInTextPage"));
+const SortLettersInWordsPage = lazy(() => import("@/pages/tools/SortLettersInWordsPage"));
+const SortSymbolsInTextPage = lazy(() => import("@/pages/tools/SortSymbolsInTextPage"));
+const RandomizeLettersInTextPage = lazy(() => import("@/pages/tools/RandomizeLettersInTextPage"));
+const ScrambleWordsPage = lazy(() => import("@/pages/tools/ScrambleWordsPage"));
+const RandomizeWordsInTextPage = lazy(() => import("@/pages/tools/RandomizeWordsInTextPage"));
+
 // SEO Tools
 const KeywordResearchPage = lazy(() => import("@/pages/tools/KeywordResearchPage"));
 
@@ -356,6 +451,101 @@ function AppRouter() {
             <Route path="/tools/string-to-ascii" component={StringToAsciiPage} />
             <Route path="/tools/ascii-to-string" component={AsciiToStringPage} />
             <Route path="/tools/change-string-case" component={ChangeStringCasePage} />
+            
+            {/* New String Conversion Tools */}
+            <Route path="/tools/convert-string-to-uppercase" component={ConvertStringToUppercasePage} />
+            <Route path="/tools/convert-string-to-lowercase" component={ConvertStringToLowercasePage} />
+            <Route path="/tools/randomize-letter-case" component={RandomizeLetterCasePage} />
+            <Route path="/tools/invert-letter-case" component={InvertLetterCasePage} />
+            <Route path="/tools/convert-json-to-string" component={ConvertJsonToStringPage} />
+            <Route path="/tools/json-stringify-string" component={JsonStringifyStringPage} />
+            <Route path="/tools/json-parse-string" component={JsonParseStringPage} />
+            <Route path="/tools/convert-html-to-string" component={ConvertHtmlToStringPage} />
+            <Route path="/tools/convert-xml-to-string" component={ConvertXmlToStringPage} />
+            <Route path="/tools/convert-csv-to-string" component={ConvertCsvToStringPage} />
+            
+            {/* Additional Advanced String Manipulation Tools */}
+            <Route path="/tools/convert-string-to-csv" component={ConvertStringToCsvPage} />
+            <Route path="/tools/convert-bbcode-to-string" component={ConvertBbcodeToStringPage} />
+            <Route path="/tools/convert-string-to-morse-code" component={ConvertStringToMorseCodePage} />
+            <Route path="/tools/convert-morse-code-to-string" component={ConvertMorseCodeToStringPage} />
+            <Route path="/tools/create-palindrome" component={CreatePalindromePage} />
+            <Route path="/tools/check-palindrome" component={CheckPalindromePage} />
+            <Route path="/tools/generate-string-unigrams" component={GenerateStringUnigramsPage} />
+            <Route path="/tools/generate-string-bigrams" component={GenerateStringBigramsPage} />
+            <Route path="/tools/split-text" component={SplitTextPage} />
+            <Route path="/tools/join-text" component={JoinTextPage} />
+            
+            {/* New Text Tools */}
+            <Route path="/tools/repeat-text" component={RepeatTextPage} />
+            <Route path="/tools/reverse-text" component={ReverseTextPage} />
+            <Route path="/tools/truncate-text" component={TruncateTextPage} />
+            <Route path="/tools/slice-text" component={SliceTextPage} />
+            <Route path="/tools/trim-text" component={TrimTextPage} />
+            <Route path="/tools/left-pad-text" component={LeftPadTextPage} />
+            <Route path="/tools/right-pad-text" component={RightPadTextPage} />
+            <Route path="/tools/left-align-text" component={LeftAlignTextPage} />
+            <Route path="/tools/right-align-text" component={RightAlignTextPage} />
+            <Route path="/tools/center-text" component={CenterTextPage} />
+            
+            {/* Additional Advanced Text Tools */}
+            <Route path="/tools/indent-text" component={IndentTextPage} />
+            <Route path="/tools/unindent-text" component={UnindentTextPage} />
+            <Route path="/tools/justify-text" component={JustifyTextPage} />
+            <Route path="/tools/wrap-words-in-text" component={WrapWordsInTextPage} />
+            <Route path="/tools/reverse-words-in-text" component={ReverseWordsInTextPage} />
+            <Route path="/tools/reverse-sentences-in-text" component={ReverseSentencesInTextPage} />
+            <Route path="/tools/reverse-paragraphs-in-text" component={ReverseParagraphsInTextPage} />
+            <Route path="/tools/swap-letters-in-words" component={SwapLettersInWordsPage} />
+            <Route path="/tools/swap-words-in-text" component={SwapWordsInTextPage} />
+            <Route path="/tools/duplicate-words-in-text" component={DuplicateWordsInTextPage} />
+            
+            {/* New Advanced Text Manipulation Tools */}
+            <Route path="/tools/remove-words-from-text" component={RemoveWordsFromTextPage} />
+            <Route path="/tools/duplicate-sentences-in-text" component={DuplicateSentencesInTextPage} />
+            <Route path="/tools/remove-sentences-from-text" component={RemoveSentencesFromTextPage} />
+            <Route path="/tools/replace-words-in-text" component={ReplaceWordsInTextPage} />
+            <Route path="/tools/add-random-words-to-text" component={AddRandomWordsToTextPage} />
+            <Route path="/tools/add-random-letters-to-words" component={AddRandomLettersToWordsPage} />
+            <Route path="/tools/introduce-errors-in-text" component={IntroduceErrorsInTextPage} />
+            <Route path="/tools/generate-fake-text" component={GenerateFakeTextPage} />
+            <Route path="/tools/unfake-text" component={UnfakeTextPage} />
+            <Route path="/tools/check-if-text-is-fake" component={CheckIfTextIsFakePage} />
+            
+            {/* Additional Text Symbol and Prefix/Suffix Tools */}
+            <Route path="/tools/remove-random-letters-from-words" component={RemoveRandomLettersFromWordsPage} />
+            <Route path="/tools/remove-random-symbols-from-text" component={RemoveRandomSymbolsFromTextPage} />
+            <Route path="/tools/add-symbols-around-words" component={AddSymbolsAroundWordsPage} />
+            <Route path="/tools/remove-symbols-from-around-words" component={RemoveSymbolsFromAroundWordsPage} />
+            <Route path="/tools/add-prefix-to-text-lines" component={AddPrefixToTextLinesPage} />
+            <Route path="/tools/add-suffix-to-text-lines" component={AddSuffixToTextLinesPage} />
+            <Route path="/tools/remove-prefix-from-text" component={RemovePrefixFromTextPage} />
+            <Route path="/tools/remove-suffix-from-text-lines" component={RemoveSuffixFromTextLinesPage} />
+            <Route path="/tools/add-prefix-to-words" component={AddPrefixToWordsPage} />
+            <Route path="/tools/add-suffix-to-words" component={AddSuffixToWordsPage} />
+            
+            {/* New Text & String Tools */}
+            <Route path="/tools/remove-prefix-from-words" component={RemovePrefixFromWordsPage} />
+            <Route path="/tools/remove-suffix-from-words" component={RemoveSuffixFromWordsPage} />
+            <Route path="/tools/insert-symbols-between-letters" component={InsertSymbolsBetweenLettersPage} />
+            <Route path="/tools/add-symbols-around-letters" component={AddSymbolsAroundLettersPage} />
+            <Route path="/tools/remove-all-empty-lines" component={RemoveAllEmptyLinesPage} />
+            <Route path="/tools/remove-all-duplicate-lines" component={RemoveAllDuplicateLinesPage} />
+            <Route path="/tools/filter-text-lines" component={FilterTextLinesPage} />
+            <Route path="/tools/filter-words-in-text" component={FilterWordsInTextPage} />
+            <Route path="/tools/filter-text-sentences" component={FilterTextSentencesPage} />
+            
+            {/* New Sorting and Randomization Tools */}
+            <Route path="/tools/filter-text-paragraphs" component={FilterTextParagraphsPage} />
+            <Route path="/tools/sort-text-lines" component={SortTextLinesPage} />
+            <Route path="/tools/sort-sentences-in-text" component={SortSentencesInTextPage} />
+            <Route path="/tools/sort-paragraphs-in-text" component={SortParagraphsInTextPage} />
+            <Route path="/tools/sort-words-in-text" component={SortWordsInTextPage} />
+            <Route path="/tools/sort-letters-in-words" component={SortLettersInWordsPage} />
+            <Route path="/tools/sort-symbols-in-text" component={SortSymbolsInTextPage} />
+            <Route path="/tools/randomize-letters-in-text" component={RandomizeLettersInTextPage} />
+            <Route path="/tools/scramble-words" component={ScrambleWordsPage} />
+            <Route path="/tools/randomize-words-in-text" component={RandomizeWordsInTextPage} />
             
             {/* SEO Tools */}
             <Route path="/tools/keyword-research" component={KeywordResearchPage} />

@@ -5,12 +5,12 @@ export default function RightAlignStringPage() {
   return (
     <>
       <Helmet>
-        <title>Right-align a String - Align Text to Right | ToolShaala</title>
+        <title>Right-align a String - Align Text to Right | Solvezyo</title>
         <meta
           name="description"
           content="Right-align your text with specified width. Align multiple lines to the right side for professional formatting. Perfect for creating aligned text blocks and documents."
         />
-        <meta property="og:title" content="Right-align a String - Align Text to Right | ToolShaala" />
+        <meta property="og:title" content="Right-align a String - Align Text to Right | Solvezyo" />
         <meta
           property="og:description"
           content="Right-align your text with specified width. Align multiple lines to the right side for professional formatting."

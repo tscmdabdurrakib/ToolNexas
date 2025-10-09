@@ -5,7 +5,7 @@ export default function QuoteStringPage() {
   return (
     <>
       <Helmet>
-        <title>Quote a String - Text & String Tools | ToolNexas</title>
+        <title>Quote a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Add quotes or brackets around each line of your text instantly. Online tool for wrapping text with various quote types and brackets." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

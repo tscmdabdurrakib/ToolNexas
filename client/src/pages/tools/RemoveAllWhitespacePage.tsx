@@ -5,7 +5,7 @@ export default function RemoveAllWhitespacePage() {
   return (
     <>
       <Helmet>
-        <title>Remove All Whitespace - Text & String Tools | ToolNexas</title>
+        <title>Remove All Whitespace - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Remove all spaces, tabs, newlines, and whitespace characters from text instantly. Online tool for text compression and cleanup." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

@@ -5,7 +5,7 @@ export default function TrimStringPage() {
   return (
     <>
       <Helmet>
-        <title>Trim a String - Text & String Tools | ToolShaala</title>
+        <title>Trim a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Remove whitespace from text with various trim options. Online tool to trim strings from start, end, or remove all extra spaces." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

@@ -5,7 +5,7 @@ export default function RepeatStringPage() {
   return (
     <>
       <Helmet>
-        <title>Repeat a String - Text & String Tools | ToolShaala</title>
+        <title>Repeat a String - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Repeat your text multiple times instantly. Online tool to duplicate strings with customizable repeat count up to 1000 times." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

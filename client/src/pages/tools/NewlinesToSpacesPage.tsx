@@ -5,7 +5,7 @@ export default function NewlinesToSpacesPage() {
   return (
     <>
       <Helmet>
-        <title>Convert Newlines to Spaces - Text & String Tools | ToolNexas</title>
+        <title>Convert Newlines to Spaces - Text & String Tools | Solvezyo</title>
         <meta name="description" content="Replace all newline characters with spaces instantly. Online tool for converting multiline text to single line format." />
       </Helmet>
       <div className="container mx-auto px-4 py-8">

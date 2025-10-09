@@ -1,6 +1,6 @@
-# ToolShaala - GitHub Setup Guide
+# Solvezyo - GitHub Setup Guide
 
-## GitHub Repository: https://github.com/tscmdabdurrakib/ToolNexas.git
+## GitHub Repository: https://github.com/tscmdabdurrakib/Solvezyo.git
 
 ### Manual Setup Instructions (Since Replit Git is Restricted)
 
@@ -10,21 +10,21 @@
 3. Initialize git locally:
 ```bash
 git init
-git remote add origin https://github.com/tscmdabdurrakib/ToolNexas.git
+git remote add origin https://github.com/tscmdabdurrakib/Solvezyo.git
 git add .
-git commit -m "Initial commit: ToolShaala - 70+ Tools Platform"
+git commit -m "Initial commit: Solvezyo - 70+ Tools Platform"
 git branch -M main
 git push -u origin main
 ```
 
 #### Option 2: GitHub Web Interface
-1. Go to https://github.com/tscmdabdurrakib/ToolNexas
+1. Go to https://github.com/tscmdabdurrakib/Solvezyo
 2. Use "Upload files" option
 3. Drag and drop all project files
 
 ## Project Structure
 ```
-ToolShaala/
+Solvezyo/
 ├── client/           # Frontend React app
 │   ├── src/
 │   │   ├── components/
@@ -54,7 +54,7 @@ ToolShaala/
 - ✅ PWA capabilities with service worker
 - ✅ Lazy loading and code splitting
 - ✅ Real-time analytics (15,600+ visits)
-- ✅ Custom ToolShaala branding
+- ✅ Custom Solvezyo branding
 - ✅ Responsive design
 - ✅ Database integration ready
 
@@ -81,7 +81,7 @@ npm start
 - theme.json (custom branding)
 
 ## Project Status
-- ✅ Complete branding update to "ToolShaala"
+- ✅ Complete branding update to "Solvezyo"
 - ✅ Performance optimized SPA
 - ✅ PWA ready
 - ✅ Database schema defined
