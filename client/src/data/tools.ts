@@ -5446,7 +5446,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-spaces-newlines",
+    id: "spaces-to-newlines",
     name: "Convert Spaces to Newlines",
     description:
       "Convert all spaces in a string to newline characters, making it more readable",
@@ -5462,7 +5462,7 @@ export const tools: Tool[] = [
     ],
   },
   {
-    id: "convert-newlines-spaces",
+    id: "newlines-to-spaces",
     name: "Convert Newlines to Spaces",
     description: "Convert all newline characters in a string to spaces",
     category: getCategoryById("text-string"),
@@ -5478,7 +5478,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-spaces-tabs",
+    id: "spaces-to-tabs",
     name: "Convert Spaces to Tabs",
     description:
       "Convert all spaces in a string to tab characters for better formatting",
@@ -5495,7 +5495,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-tabs-spaces",
+    id: "tabs-to-spaces",
     name: "Convert Tabs to Spaces",
     description:
       "Convert all tab characters in a string to spaces, for consistent spacing",
@@ -5529,7 +5529,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "remove-whitespace",
+    id: "remove-all-whitespace",
     name: "Remove All Whitespace",
     description:
       "Remove all whitespace characters from a string, including spaces, tabs, and newlines",
@@ -5546,7 +5546,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "remove-punctuation",
+    id: "remove-all-punctuation",
     name: "Remove All Punctuation",
     description:
       "Remove all punctuation marks from a string, leaving only alphanumeric characters",
@@ -5563,7 +5563,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "find-string-length",
+    id: "string-length",
     name: "Find the Length of a String",
     description:
       "Calculate and return the length of a string (number of characters)",
@@ -5580,7 +5580,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "count-newlines-string",
+    id: "count-newlines",
     name: "Count Newlines in a String",
     description: "Count the number of newline characters in a string",
     category: getCategoryById("text-string"),
@@ -5596,7 +5596,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-to-bytes",
+    id: "string-to-bytes",
     name: "Convert a String to Bytes",
     description:
       "Convert a string into a byte array (encoding string as bytes)",
@@ -5613,7 +5613,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-bytes-string",
+    id: "bytes-to-string",
     name: "Convert Bytes to a String",
     description:
       "Convert a byte array back to a string (decoding bytes to a string)",
@@ -5630,7 +5630,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-to-binary",
+    id: "string-to-binary",
     name: "Convert a String to Binary",
     description:
       "Convert a string into its binary representation (ASCII codes in binary)",
@@ -5647,7 +5647,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-binary-string",
+    id: "binary-to-string",
     name: "Convert Binary to a String",
     description:
       "Convert a binary string back to its original text representation",
@@ -5664,7 +5664,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-to-octal",
+    id: "string-to-octal",
     name: "Convert a String to Octal",
     description:
       "Convert a string into its octal representation (ASCII codes in octal)",
@@ -5681,7 +5681,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-octal-string",
+    id: "octal-to-string",
     name: "Convert Octal to a String",
     description: "Convert an octal representation back to a string",
     category: getCategoryById("text-string"),
@@ -5696,7 +5696,7 @@ export const tools: Tool[] = [
     ],
   },
   {
-    id: "convert-to-decimal",
+    id: "string-to-decimal",
     name: "Convert a String to Decimal",
     description:
       "Convert a string into its decimal representation (ASCII codes in decimal)",
@@ -5713,7 +5713,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-decimal-string",
+    id: "decimal-to-string",
     name: "Convert Decimal to a String",
     description: "Convert a decimal representation back to its original text",
     category: getCategoryById("text-string"),
@@ -5729,7 +5729,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-to-hex",
+    id: "string-to-hex",
     name: "Convert a String to Hex",
     description:
       "Convert a string into its hexadecimal representation (ASCII codes in hex)",
@@ -5746,7 +5746,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-hex-string",
+    id: "hex-to-string",
     name: "Convert Hex to a String",
     description: "Convert a hexadecimal representation back to a string",
     category: getCategoryById("text-string"),
@@ -5762,7 +5762,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-to-ascii",
+    id: "string-to-ascii",
     name: "Convert a String to ASCII",
     description:
       "Convert a string into its ASCII representation (character codes in ASCII)",
@@ -5779,7 +5779,7 @@ export const tools: Tool[] = [
   },
 
   {
-    id: "convert-ascii-string",
+    id: "ascii-to-string",
     name: "Convert ASCII to a String",
     description: "Convert an ASCII representation back into a string",
     category: getCategoryById("text-string"),

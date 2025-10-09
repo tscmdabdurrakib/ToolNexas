@@ -105,6 +105,32 @@ const ROT13StringPage = lazy(() => import("@/pages/tools/ROT13StringPage"));
 const ROT47StringPage = lazy(() => import("@/pages/tools/ROT47StringPage"));
 const TransposeStringPage = lazy(() => import("@/pages/tools/TransposeStringPage"));
 const SliceStringPage = lazy(() => import("@/pages/tools/SliceStringPage"));
+const AddPrefixStringPage = lazy(() => import("@/pages/tools/AddPrefixStringPage"));
+const AddSuffixStringPage = lazy(() => import("@/pages/tools/AddSuffixStringPage"));
+const QuoteStringPage = lazy(() => import("@/pages/tools/QuoteStringPage"));
+const UnquoteStringPage = lazy(() => import("@/pages/tools/UnquoteStringPage"));
+const SpacesToNewlinesPage = lazy(() => import("@/pages/tools/SpacesToNewlinesPage"));
+const NewlinesToSpacesPage = lazy(() => import("@/pages/tools/NewlinesToSpacesPage"));
+const SpacesToTabsPage = lazy(() => import("@/pages/tools/SpacesToTabsPage"));
+const TabsToSpacesPage = lazy(() => import("@/pages/tools/TabsToSpacesPage"));
+const RemoveEmptyLinesPage = lazy(() => import("@/pages/tools/RemoveEmptyLinesPage"));
+const RemoveAllWhitespacePage = lazy(() => import("@/pages/tools/RemoveAllWhitespacePage"));
+const RemoveAllPunctuationPage = lazy(() => import("@/pages/tools/RemoveAllPunctuationPage"));
+const StringLengthPage = lazy(() => import("@/pages/tools/StringLengthPage"));
+const CountNewlinesPage = lazy(() => import("@/pages/tools/CountNewlinesPage"));
+const StringToBytesPage = lazy(() => import("@/pages/tools/StringToBytesPage"));
+const BytesToStringPage = lazy(() => import("@/pages/tools/BytesToStringPage"));
+const StringToBinaryPage = lazy(() => import("@/pages/tools/StringToBinaryPage"));
+const BinaryToStringPage = lazy(() => import("@/pages/tools/BinaryToStringPage"));
+const StringToOctalPage = lazy(() => import("@/pages/tools/StringToOctalPage"));
+const OctalToStringPage = lazy(() => import("@/pages/tools/OctalToStringPage"));
+const StringToDecimalPage = lazy(() => import("@/pages/tools/StringToDecimalPage"));
+const DecimalToStringPage = lazy(() => import("@/pages/tools/DecimalToStringPage"));
+const StringToHexPage = lazy(() => import("@/pages/tools/StringToHexPage"));
+const HexToStringPage = lazy(() => import("@/pages/tools/HexToStringPage"));
+const StringToAsciiPage = lazy(() => import("@/pages/tools/StringToAsciiPage"));
+const AsciiToStringPage = lazy(() => import("@/pages/tools/AsciiToStringPage"));
+const ChangeStringCasePage = lazy(() => import("@/pages/tools/ChangeStringCasePage"));
 
 // SEO Tools
 const KeywordResearchPage = lazy(() => import("@/pages/tools/KeywordResearchPage"));
@@ -302,6 +328,34 @@ function AppRouter() {
             <Route path="/tools/rot47-string" component={ROT47StringPage} />
             <Route path="/tools/transpose-string" component={TransposeStringPage} />
             <Route path="/tools/slice-string" component={SliceStringPage} />
+            <Route path="/tools/add-prefix-string" component={AddPrefixStringPage} />
+            <Route path="/tools/add-suffix-string" component={AddSuffixStringPage} />
+            <Route path="/tools/quote-string" component={QuoteStringPage} />
+            <Route path="/tools/unquote-string" component={UnquoteStringPage} />
+            <Route path="/tools/spaces-to-newlines" component={SpacesToNewlinesPage} />
+            <Route path="/tools/newlines-to-spaces" component={NewlinesToSpacesPage} />
+            <Route path="/tools/spaces-to-tabs" component={SpacesToTabsPage} />
+            <Route path="/tools/tabs-to-spaces" component={TabsToSpacesPage} />
+            <Route path="/tools/remove-empty-lines" component={RemoveEmptyLinesPage} />
+            <Route path="/tools/remove-all-whitespace" component={RemoveAllWhitespacePage} />
+            <Route path="/tools/remove-all-punctuation" component={RemoveAllPunctuationPage} />
+            <Route path="/tools/string-length" component={StringLengthPage} />
+            <Route path="/tools/count-newlines" component={CountNewlinesPage} />
+            <Route path="/tools/string-to-bytes" component={StringToBytesPage} />
+            <Route path="/tools/bytes-to-string" component={BytesToStringPage} />
+            
+            {/* New Text & String Tools - Conversion Tools */}
+            <Route path="/tools/string-to-binary" component={StringToBinaryPage} />
+            <Route path="/tools/binary-to-string" component={BinaryToStringPage} />
+            <Route path="/tools/string-to-octal" component={StringToOctalPage} />
+            <Route path="/tools/octal-to-string" component={OctalToStringPage} />
+            <Route path="/tools/string-to-decimal" component={StringToDecimalPage} />
+            <Route path="/tools/decimal-to-string" component={DecimalToStringPage} />
+            <Route path="/tools/string-to-hex" component={StringToHexPage} />
+            <Route path="/tools/hex-to-string" component={HexToStringPage} />
+            <Route path="/tools/string-to-ascii" component={StringToAsciiPage} />
+            <Route path="/tools/ascii-to-string" component={AsciiToStringPage} />
+            <Route path="/tools/change-string-case" component={ChangeStringCasePage} />
             
             {/* SEO Tools */}
             <Route path="/tools/keyword-research" component={KeywordResearchPage} />

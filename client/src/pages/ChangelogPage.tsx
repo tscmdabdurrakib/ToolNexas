@@ -11,6 +11,250 @@ interface ChangelogEntry {
 
 const changelogData: ChangelogEntry[] = [
   {
+    date: 'October 10, 2025',
+    version: 'v2.5.0',
+    category: 'Added',
+    title: 'String Conversion & Formats Tool',
+    description:
+      'Added comprehensive string conversion tool with 10 powerful conversion methods: Convert a String to Uppercase, Convert a String to Lowercase, Randomize Letter Case in a String, Invert Letter Case in a String, Convert JSON to a String, JSON Stringify a String, JSON Parse a String, Convert HTML to a String, Convert XML to a String, and Convert CSV to a String. Features real-time conversion and professional UI design.',
+    link: '/tools/string-conversion-formats',
+  },
+  {
+    date: 'October 10, 2025',
+    version: 'v2.4.0',
+    category: 'Added',
+    title: 'New Comprehensive Text Conversion and Manipulation Tools',
+    description:
+      'Added 11 powerful text conversion tools: Convert a String to Binary, Convert Binary to a String, Convert a String to Octal, Convert Octal to a String, Convert a String to Decimal, Convert Decimal to a String, Convert a String to Hex, Convert Hex to a String, Convert a String to ASCII, Convert ASCII to a String, and Change String Case with 10 different case formats. All tools feature real-time processing, professional UI with gradient color theming, and comprehensive functionality.',
+    link: '/tools/string-to-binary',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert a String to Binary Tool',
+    description:
+      'Convert text to binary representation (UTF-8 encoded) with real-time conversion. Perfect for encoding text to binary format for data analysis and debugging.',
+    link: '/tools/string-to-binary',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Binary to a String Tool',
+    description:
+      'Convert binary representation back to readable text instantly. Supports space-separated binary values for data recovery and text decoding.',
+    link: '/tools/binary-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert a String to Octal Tool',
+    description:
+      'Convert text to octal representation (base-8) with instant conversion. Ideal for legacy system compatibility and octal encoding requirements.',
+    link: '/tools/string-to-octal',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Octal to a String Tool',
+    description:
+      'Convert octal representation back to readable text. Perfect for decoding octal-encoded data and system recovery operations.',
+    link: '/tools/octal-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert a String to Decimal Tool',
+    description:
+      'Convert text to decimal representation (base-10) for numerical analysis. Shows byte values in decimal format with instant conversion.',
+    link: '/tools/string-to-decimal',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Decimal to a String Tool',
+    description:
+      'Convert decimal representation back to readable text. Supports space-separated decimal values for data reconstruction.',
+    link: '/tools/decimal-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert a String to Hex Tool',
+    description:
+      'Convert text to hexadecimal representation (base-16) with uppercase formatting. Perfect for debugging, data analysis, and hex encoding needs.',
+    link: '/tools/string-to-hex',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Hex to a String Tool',
+    description:
+      'Convert hexadecimal representation back to readable text. Supports both space-separated and continuous hex values for flexible data decoding.',
+    link: '/tools/hex-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert a String to ASCII Tool',
+    description:
+      'Convert text characters to ASCII code values with character count display. Essential for character encoding analysis and ASCII value lookup.',
+    link: '/tools/string-to-ascii',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert ASCII to a String Tool',
+    description:
+      'Convert ASCII code values back to readable text characters. Supports Unicode ranges for comprehensive character reconstruction.',
+    link: '/tools/ascii-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Change String Case Tool',
+    description:
+      'Convert text to 10 different case formats: UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, aLtErNaTiNg, and iNVERSE cASE. Complete case conversion solution with instant preview.',
+    link: '/tools/change-string-case',
+  },
+  {
+    date: 'October 10, 2025',
+    version: 'v2.3.0',
+    category: 'Added',
+    title: 'New Advanced Text Manipulation and Conversion Tools',
+    description:
+      'Added 10 powerful text manipulation tools: Convert Newlines to Spaces, Convert Spaces to Tabs, Convert Tabs to Spaces, Remove All Empty Lines, Remove All Whitespace, Remove All Punctuation, Find the Length of a String, Count Newlines in a String, Convert a String to Bytes, and Convert Bytes to a String. All tools feature real-time processing, professional UI with gradient color theming, and comprehensive functionality.',
+    link: '/tools/newlines-to-spaces',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Newlines to Spaces Tool',
+    description:
+      'Replace all newline characters with spaces for inline text formatting. Perfect for converting multiline text to single line format with instant conversion.',
+    link: '/tools/newlines-to-spaces',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Spaces to Tabs Tool',
+    description:
+      'Replace consecutive spaces with tab characters for better formatting. Configurable spaces-per-tab setting with real-time conversion for code indentation.',
+    link: '/tools/spaces-to-tabs',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Tabs to Spaces Tool',
+    description:
+      'Replace all tab characters with spaces for consistent formatting. Customizable tab width setting perfect for code standardization and text normalization.',
+    link: '/tools/tabs-to-spaces',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Remove All Empty Lines Tool',
+    description:
+      'Remove all empty lines from text while preserving content. Ideal for cleaning up text files, removing unnecessary line breaks, and compacting text.',
+    link: '/tools/remove-empty-lines',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Remove All Whitespace Tool',
+    description:
+      'Remove all spaces, tabs, newlines, and other whitespace characters from text. Perfect for text compression and creating compact strings.',
+    link: '/tools/remove-all-whitespace',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Remove All Punctuation Tool',
+    description:
+      'Remove all punctuation marks while preserving letters, numbers, and spaces. Great for text processing, data cleaning, and natural language processing.',
+    link: '/tools/remove-all-punctuation',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Find the Length of a String Tool',
+    description:
+      'Calculate character count, word count, and byte size of text with detailed metrics. Shows characters with/without spaces, word count, and UTF-8 byte size.',
+    link: '/tools/string-length',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Count Newlines in a String Tool',
+    description:
+      'Count the number of newline characters and total lines in text. Perfect for text analysis, file statistics, and content formatting validation.',
+    link: '/tools/count-newlines',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert a String to Bytes Tool',
+    description:
+      'Convert text to byte representation in UTF-8, ASCII, hexadecimal, and binary formats. Perfect for encoding analysis, data conversion, and debugging.',
+    link: '/tools/string-to-bytes',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Bytes to a String Tool',
+    description:
+      'Convert byte representation back to readable text from various formats including UTF-8, ASCII, hexadecimal, and binary. Essential for data decoding and recovery.',
+    link: '/tools/bytes-to-string',
+  },
+  {
+    date: 'October 10, 2025',
+    version: 'v2.2.0',
+    category: 'Added',
+    title: 'New Advanced String Formatting and Manipulation Tools',
+    description:
+      'Added 6 professional string formatting tools: Add a Prefix to a String, Add a Suffix to a String, Quote a String, Unquote a String, and Convert Spaces to Newlines. All tools feature real-time processing, professional UI with gradient color theming, and comprehensive functionality.',
+    link: '/tools/add-prefix-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Add a Prefix to a String Tool',
+    description:
+      'Add custom prefixes to the beginning of each line of your text. Perfect for creating bullet points, line numbers, or custom formatting. Supports any prefix text with real-time preview.',
+    link: '/tools/add-prefix-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Add a Suffix to a String Tool',
+    description:
+      'Add custom suffixes to the end of each line of your text. Ideal for adding line endings, file extensions, or custom formatting. Supports any suffix text with instant results.',
+    link: '/tools/add-suffix-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Quote a String Tool',
+    description:
+      'Wrap each line of text with quotes or brackets. Supports double quotes, single quotes, backticks, square brackets, parentheses, and curly braces. Perfect for code formatting and data preparation.',
+    link: '/tools/quote-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Unquote a String Tool',
+    description:
+      'Remove quotes and brackets from each line of your text. Automatically detects and removes double quotes, single quotes, backticks, square brackets, parentheses, and curly braces.',
+    link: '/tools/unquote-string',
+  },
+  {
+    date: 'October 10, 2025',
+    category: 'Added',
+    title: 'Convert Spaces to Newlines Tool',
+    description:
+      'Replace all spaces in your text with newline characters. Perfect for converting horizontal lists to vertical format and creating line-separated data with instant conversion.',
+    link: '/tools/spaces-to-newlines',
+  },
+  {
     date: 'October 9, 2025',
     version: 'v2.1.0',
     category: 'Added',
