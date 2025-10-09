@@ -204,6 +204,7 @@ export default function LoginPage() {
         </div>
 
         {/* Integrated Animation + Form Container */}
+        <form onSubmit={handleSubmit}>
         <div className="relative border-2 border-black dark:border-white rounded-lg p-8 bg-white dark:bg-gray-900">
           {/* Grid Background */}
           <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
@@ -342,7 +343,7 @@ export default function LoginPage() {
             {/* Login Button - Positioned in the diagram */}
             <foreignObject x="280" y="480" width="220" height="80">
               <Button
-                onClick={handleSubmit}
+                type="submit"
                 className="w-full h-14 text-lg font-semibold bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"
                 disabled={loading}
                 data-testid="button-login"
@@ -378,6 +379,7 @@ export default function LoginPage() {
             </p>
           </div>
         </div>
+        </form>
       </div>
     </div>
   );

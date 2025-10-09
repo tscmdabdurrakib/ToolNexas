@@ -273,6 +273,7 @@ export default function SignupPage() {
         </div>
 
         {/* Integrated Animation + Form Container */}
+        <form onSubmit={handleSubmit}>
         <div className="relative border-2 border-black dark:border-white rounded-lg p-8 bg-white dark:bg-gray-900">
           {/* Grid Background */}
           <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
@@ -457,7 +458,7 @@ export default function SignupPage() {
             {/* Sign Up Button */}
             <foreignObject x="250" y="540" width="300" height="80">
               <Button
-                onClick={handleSubmit}
+                type="submit"
                 className="w-full h-14 text-lg font-semibold bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"
                 disabled={loading || !agreeTerms}
                 data-testid="button-signup"
@@ -494,6 +495,7 @@ export default function SignupPage() {
             </p>
           </div>
         </div>
+        </form>
       </div>
     </div>
   );
