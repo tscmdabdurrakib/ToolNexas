@@ -6,6 +6,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
 import { ThemeProvider } from "@/lib/ThemeProvider";
+import { AuthProvider } from "@/context/AuthContext";
 import { Suspense, lazy } from "react";
 import { usePreloadComponents } from "@/hooks/usePreloadComponents";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
@@ -24,6 +25,8 @@ import {
 } from "lucide-react";
 const Home = lazy(() => import("@/pages/Home"));
 const NotFound = lazy(() => import("@/pages/not-found"));
+const LoginPage = lazy(() => import("@/pages/LoginPage"));
+const SignupPage = lazy(() => import("@/pages/SignupPage"));
 const ToolPage = lazy(() => import("@/pages/ToolPage"));
 const CategoryPage = lazy(() => import("@/pages/CategoryPage"));
 const CategoriesPage = lazy(() => import("@/pages/CategoriesPage"));
@@ -407,6 +410,10 @@ function AppRouter() {
             <Route path="/tools/estate-tax-calculator" component={EstateTaxCalculatorPage} />
             <Route path="/tools/retirement-savings-pension-calculator" component={RetirementSavingsPensionCalculatorPage} />
             
+            {/* Authentication Pages */}
+            <Route path="/login" component={LoginPage} />
+            <Route path="/signup" component={SignupPage} />
+            
             <Route component={NotFound} />
           </Switch>
         </Suspense>
@@ -420,10 +427,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="system">
-        <ToolsProvider>
-            <AppRouter />
-            <Toaster />
-        </ToolsProvider>
+        <AuthProvider>
+          <ToolsProvider>
+              <AppRouter />
+              <Toaster />
+          </ToolsProvider>
+        </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );
