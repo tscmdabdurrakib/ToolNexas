@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
-import { Eye, EyeOff, UserPlus, Sparkles } from 'lucide-react';
+import { Eye, EyeOff, UserPlus } from 'lucide-react';
 import gsap from 'gsap';
 
 export default function SignupPage() {
@@ -235,170 +235,145 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500 via-blue-500 to-indigo-600 dark:from-cyan-900 dark:via-blue-900 dark:to-indigo-950">
-        <div className="absolute inset-0 opacity-30" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 10 0 L 0 0 0 10' fill='none' stroke='white' stroke-opacity='0.1' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`
-        }}></div>
-      </div>
-
-      <div className="w-full max-w-6xl relative z-10">
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Sparkles className="w-8 h-8 text-cyan-300 animate-pulse" />
-            <h1 className="text-5xl font-bold text-white drop-shadow-lg">Create Account</h1>
-            <Sparkles className="w-8 h-8 text-cyan-300 animate-pulse" />
-          </div>
-          <p className="text-xl text-white/90 drop-shadow">Build and activate your Rube Goldberg machine</p>
+    <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4 overflow-hidden">
+      <div className="w-full max-w-5xl">
+        <div className="text-center mb-6">
+          <h1 className="text-4xl font-bold mb-2 text-black dark:text-white">Create Account</h1>
+          <p className="text-gray-600 dark:text-gray-400">Build and activate your machine step by step</p>
         </div>
 
-        <div className="relative backdrop-blur-xl bg-white/10 dark:bg-black/20 border border-white/20 rounded-3xl p-8 shadow-2xl">
+        {/* Integrated Animation + Form Container */}
+        <div className="relative border-2 border-black dark:border-white rounded-lg p-8 bg-white dark:bg-gray-900">
         <form onSubmit={handleSubmit}>
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none rounded-3xl overflow-hidden">
+          {/* Grid Background */}
+          <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="grid-signup" width="30" height="30" patternUnits="userSpaceOnUse">
-                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="1" />
+                <pattern id="grid-signup" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid-signup)" />
             </svg>
           </div>
 
+          {/* Mechanical Diagram with Integrated Form */}
           <svg className="w-full h-[700px]" viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+            {/* Top - Mechanical arm (Name Trigger) */}
             <g transform="translate(80, 80)">
-              <rect ref={armSegment1Ref} x="-5" y="0" width="10" height="60" fill="url(#arm1-gradient)" transformOrigin="bottom center" />
-              <defs>
-                <linearGradient id="arm1-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#10b981', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#059669', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-              <rect ref={armSegment2Ref} x="-4" y="-50" width="8" height="50" fill="#34d399" transformOrigin="top center" />
-              <circle cx="0" cy="60" r="8" fill="white" stroke="rgba(255,255,255,0.5)" strokeWidth="2" />
+              <rect ref={armSegment1Ref} x="-5" y="0" width="10" height="60" fill="black" className="dark:fill-white" style={{ transformOrigin: 'bottom center' }} />
+              <rect ref={armSegment2Ref} x="-4" y="-50" width="8" height="50" fill="black" className="dark:fill-white" style={{ transformOrigin: 'top center' }} />
+              <circle cx="0" cy="60" r="8" fill="white" stroke="black" strokeWidth="2" className="dark:fill-gray-900 dark:stroke-white" />
             </g>
 
             <g transform="translate(130, 90)">
-              <rect x="0" y="0" width="60" height="30" fill="url(#switch-bg-gradient)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" rx="4" />
-              <defs>
-                <linearGradient id="switch-bg-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" style={{ stopColor: '#6366f1', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#4f46e5', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-              <rect ref={switchRef} x="5" y="5" width="20" height="20" fill="#818cf8" rx="2" />
+              <rect x="0" y="0" width="60" height="30" fill="white" stroke="black" strokeWidth="2" className="dark:fill-gray-800 dark:stroke-white" />
+              <rect ref={switchRef} x="5" y="5" width="20" height="20" fill="black" className="dark:fill-white" />
             </g>
 
+            {/* Full Name Input Field */}
             <foreignObject x="220" y="50" width="350" height="90">
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-white drop-shadow block">Full Name</label>
+                <label className="text-sm font-medium text-black dark:text-white block">Full Name</label>
                 <Input
                   type="text"
                   placeholder="John Doe"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full h-14 px-4 bg-white/20 backdrop-blur-md border-2 border-white/30 text-white placeholder:text-white/60 rounded-xl focus:border-white/60 focus:ring-2 focus:ring-white/40 transition-all"
+                  className="w-full h-12 px-4 border-2 border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   data-testid="input-fullname"
                 />
               </div>
             </foreignObject>
 
-            <g ref={gear1Ref} transform="translate(120, 230)">
-              <circle cx="0" cy="0" r="35" fill="url(#gear1-grad)" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
-              <defs>
-                <linearGradient id="gear1-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#f59e0b', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#f97316', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
+            {/* Middle - Gears and Conveyor (Email Trigger) */}
+            <g ref={gear1Ref} transform="translate(120, 200)">
+              <circle cx="0" cy="0" r="35" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
               {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                <rect key={i} x="-3" y="-45" width="6" height="18" fill="#fbbf24" transform={`rotate(${angle})`} />
+                <rect
+                  key={i}
+                  x="-3"
+                  y="-45"
+                  width="6"
+                  height="18"
+                  fill="black"
+                  className="dark:fill-white"
+                  transform={`rotate(${angle})`}
+                />
               ))}
-              <circle cx="0" cy="0" r="12" fill="white" />
+              <circle cx="0" cy="0" r="12" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-900 dark:stroke-white" />
             </g>
 
-            <g ref={gear2Ref} transform="translate(220, 240)">
-              <circle cx="0" cy="0" r="28" fill="url(#gear2-grad)" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
-              <defs>
-                <linearGradient id="gear2-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#14b8a6', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#0d9488', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
+            <g ref={gear2Ref} transform="translate(220, 210)">
+              <circle cx="0" cy="0" r="28" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
               {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                <rect key={i} x="-3" y="-38" width="6" height="14" fill="#2dd4bf" transform={`rotate(${angle})`} />
+                <rect
+                  key={i}
+                  x="-3"
+                  y="-38"
+                  width="6"
+                  height="14"
+                  fill="black"
+                  className="dark:fill-white"
+                  transform={`rotate(${angle})`}
+                />
               ))}
-              <circle cx="0" cy="0" r="10" fill="white" />
+              <circle cx="0" cy="0" r="10" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-900 dark:stroke-white" />
             </g>
 
             <g ref={conveyorRef}>
-              <rect x="280" y="220" width="100" height="8" fill="url(#conveyor-gradient)" rx="4" />
-              <defs>
-                <linearGradient id="conveyor-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" style={{ stopColor: '#64748b', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#475569', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
+              <rect x="280" y="190" width="100" height="8" fill="gray" className="dark:fill-gray-600" />
               {[290, 310, 330, 350, 370].map((x, i) => (
-                <rect key={i} x={x} y="222" width="8" height="4" fill="#cbd5e1" rx="1" />
+                <rect key={i} x={x} y="192" width="8" height="4" fill="darkgray" className="dark:fill-gray-400" />
               ))}
             </g>
 
-            <foreignObject x="420" y="180" width="400" height="90">
+            {/* Email Input Field */}
+            <foreignObject x="420" y="160" width="400" height="90">
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-white drop-shadow block">Email Address</label>
+                <label className="text-sm font-medium text-black dark:text-white block">Email</label>
                 <Input
                   type="email"
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full h-14 px-4 bg-white/20 backdrop-blur-md border-2 border-white/30 text-white placeholder:text-white/60 rounded-xl focus:border-white/60 focus:ring-2 focus:ring-white/40 transition-all"
+                  className="w-full h-12 px-4 border-2 border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                   data-testid="input-email"
                 />
               </div>
             </foreignObject>
 
-            <g ref={pulleyRef} transform="translate(750, 350)">
-              <circle cx="0" cy="0" r="32" fill="url(#pulley-grad)" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
-              <defs>
-                <linearGradient id="pulley-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#8b5cf6', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#7c3aed', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-              <circle cx="0" cy="0" r="22" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
-              <circle cx="0" cy="0" r="8" fill="white" />
+            {/* Pulley System (Password Trigger) */}
+            <g ref={pulleyRef} transform="translate(750, 330)">
+              <circle cx="0" cy="0" r="32" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
+              <circle cx="0" cy="0" r="22" fill="none" stroke="black" strokeWidth="2" className="dark:stroke-white" />
+              <circle cx="0" cy="0" r="8" fill="white" stroke="black" strokeWidth="2" className="dark:fill-gray-900 dark:stroke-white" />
             </g>
 
-            <line x1="750" y1="382" x2="750" y2="480" stroke="rgba(255,255,255,0.4)" strokeWidth="3" strokeDasharray="8,4" />
+            <line x1="750" y1="362" x2="750" y2="460" stroke="black" strokeWidth="2" strokeDasharray="8,4" className="dark:stroke-white" />
 
-            <g ref={weightRef} transform="translate(750, 480)">
-              <rect x="-22" y="0" width="44" height="38" fill="url(#weight-grad)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" rx="4" />
-              <defs>
-                <linearGradient id="weight-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#ec4899', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#db2777', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
+            <g ref={weightRef} transform="translate(750, 460)">
+              <rect x="-22" y="0" width="44" height="38" fill="gray" stroke="black" strokeWidth="2" className="dark:fill-gray-700 dark:stroke-white" />
               <text x="0" y="24" textAnchor="middle" fill="white" fontSize="13" fontWeight="bold">W</text>
             </g>
 
-            <foreignObject x="420" y="320" width="400" height="100">
+            {/* Password Input Field */}
+            <foreignObject x="420" y="300" width="400" height="100">
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-white drop-shadow block">Password</label>
+                <label className="text-sm font-medium text-black dark:text-white block">Password</label>
                 <div className="relative">
                   <Input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Enter your password"
+                    placeholder="Enter password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-14 px-4 pr-12 bg-white/20 backdrop-blur-md border-2 border-white/30 text-white placeholder:text-white/60 rounded-xl focus:border-white/60 focus:ring-2 focus:ring-white/40 transition-all"
+                    className="w-full h-12 px-4 pr-12 border-2 border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
                     data-testid="input-password"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-black dark:text-white"
                     data-testid="button-toggle-password"
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -407,79 +382,72 @@ export default function SignupPage() {
               </div>
             </foreignObject>
 
+            {/* Bottom - Lever and Bottle */}
             <g ref={leverRef} transform="translate(250, 550)">
-              <line x1="-70" y1="0" x2="70" y2="0" stroke="url(#lever-grad)" strokeWidth="8" strokeLinecap="round" />
-              <defs>
-                <linearGradient id="lever-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" style={{ stopColor: '#0ea5e9', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#0284c7', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-              <circle cx="0" cy="0" r="10" fill="white" stroke="rgba(255,255,255,0.5)" strokeWidth="3" />
+              <line x1="-70" y1="0" x2="70" y2="0" stroke="black" strokeWidth="6" strokeLinecap="round" className="dark:stroke-white" />
+              <circle cx="0" cy="0" r="10" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-900 dark:stroke-white" />
             </g>
 
-            <g ref={bottleRef} transform="translate(550, 520)">
-              <path d="M -18 0 L -18 55 L 18 55 L 18 0 L 14 0 L 14 -18 L -14 -18 L -14 0 Z" fill="url(#bottle-grad)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
-              <defs>
-                <linearGradient id="bottle-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.7 }} />
-                  <stop offset="100%" style={{ stopColor: '#2563eb', stopOpacity: 0.9 }} />
-                </linearGradient>
-              </defs>
+            <g ref={bottleRef} transform="translate(550, 510)">
+              <path d="M -18 0 L -18 55 L 18 55 L 18 0 L 14 0 L 14 -18 L -14 -18 L -14 0 Z" fill="none" stroke="black" strokeWidth="2" className="dark:stroke-white" />
               <path
                 ref={liquidRef}
                 d="M -16 28 L -16 53 L 16 53 L 16 28 Z"
-                fill="#60a5fa"
+                fill="gray"
                 opacity="0.6"
+                className="dark:fill-gray-600"
               />
             </g>
 
-            <circle ref={dropRef} cx="568" cy="575" r="4" fill="#60a5fa" opacity="0" />
+            <circle ref={dropRef} cx="568" cy="565" r="4" fill="gray" opacity="0" className="dark:fill-gray-400" />
 
-            <path d="M 100 130 Q 180 160, 220 120" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-            <path d="M 250 200 Q 350 220, 700 170" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
-            <path d="M 300 510 Q 400 520, 550 500" stroke="rgba(255,255,255,0.4)" strokeWidth="2" fill="none" strokeDasharray="5,5" />
+            {/* Connection lines */}
+            <path d="M 100 130 Q 180 160, 220 120" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
+            <path d="M 250 200 Q 350 220, 700 170" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
+            <path d="M 300 510 Q 400 520, 550 500" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
           </svg>
 
+          {/* Terms Checkbox and Submit Button */}
           <div className="mt-6 space-y-4">
             <div className="flex items-center gap-3">
               <Checkbox
                 id="terms"
                 checked={agreeTerms}
                 onCheckedChange={(checked) => setAgreeTerms(checked as boolean)}
-                className="border-white/40 data-[state=checked]:bg-cyan-400 data-[state=checked]:border-cyan-400"
+                className="border-2 border-black dark:border-white"
                 data-testid="checkbox-terms"
               />
-              <label htmlFor="terms" className="text-sm text-white/90 cursor-pointer">
+              <label htmlFor="terms" className="text-sm text-black dark:text-white cursor-pointer">
                 I agree to the terms and conditions
               </label>
             </div>
 
             <Button
               type="submit"
-              className="w-full h-16 text-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white shadow-xl rounded-2xl transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              className="w-full h-14 text-lg font-semibold bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"
               disabled={loading || !agreeTerms}
               data-testid="button-signup"
             >
               {loading ? (
-                <div className="flex items-center gap-3">
-                  <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin" />
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin" />
                   Creating account...
                 </div>
               ) : (
-                <div className="flex items-center gap-3">
-                  <UserPlus className="w-6 h-6" />
+                <div className="flex items-center gap-2">
+                  <UserPlus className="w-5 h-5" />
                   Complete Machine & Sign Up
                 </div>
               )}
             </Button>
           </div>
 
+          {/* Login link */}
           <div className="text-center mt-6">
-            <p className="text-base text-white/80 drop-shadow">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
               Already have an account?{' '}
               <Link href="/login">
-                <span className="font-bold text-cyan-300 hover:text-cyan-200 underline cursor-pointer transition-colors" data-testid="link-login">
+                <span className="font-semibold text-black dark:text-white hover:underline cursor-pointer" data-testid="link-login">
                   Log in
                 </span>
               </Link>
