@@ -11,6 +11,15 @@ interface ChangelogEntry {
 
 const changelogData: ChangelogEntry[] = [
   {
+    date: 'October 9, 2025',
+    version: 'v2.1.0',
+    category: 'Added',
+    title: 'Firebase Authentication with Rube Goldberg Machine Animations',
+    description:
+      'Implemented Firebase Authentication system with complex mechanical Rube Goldberg animations. Login page features 3-stage chain reaction (gears → pulley system → lever/spring/bottle sequence). Signup page showcases 5-stage ultimate sequence (mechanical arm → conveyor belt → gears → pulley → master celebration). Created 12 mechanical SVG components (Gears, Pulleys, Levers, Weights, Chains, Funnels, Bottles, Springs, Conveyor Belts, Mechanical Arms, Switches, Buttons) with GSAP timeline animations. Monochromatic design with grid blueprint background, full dark/light mode support, and complete testing attributes.',
+    link: '/login',
+  },
+  {
     date: 'October 8, 2025',
     version: 'v2.0.2',
     category: 'Improved',

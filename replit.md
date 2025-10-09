@@ -1,157 +1,7 @@
 # ToolShaala - Comprehensive Online Utility Platform
 
-## Project Overview
-A high-performance web platform offering 112+ professional tools across 35 categories with super-fast SPA architecture and PWA capabilities.
-
-## Project Status: PRODUCTION READY ✅
-
-### Key Achievements
-- **Brand Identity**: Complete rebrand to "ToolShaala" with custom SVG toolbox logo
-- **Performance**: Super-fast SPA with 38-70ms page load times
-- **Architecture**: Lazy loading, code splitting, intelligent preloading
-- **PWA Features**: Service worker, manifest.json, offline capabilities
-- **Analytics**: Real-time tracking with 15,600+ lifetime visits
-- **Design**: Responsive blue-purple gradient theme
-- **Database**: PostgreSQL integration with Drizzle ORM
-
-## Recent Changes (October 8, 2025)
-✓ Complete Tool Cards redesign with unique color palette system (Version 2.0.1)
-✓ Each tool displays different color from 16 vibrant options (blue, purple, pink, rose, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, indigo, violet, fuchsia)
-✓ Hash-based color assignment ensures same tool always has same color
-✓ Professional SVG icons in colored boxes matching category design
-✓ Improved layout with icon-title pairing and clean description display
-✓ Category badge and arrow navigation icon at bottom
-✓ Favorite heart icon repositioned to top-right with backdrop blur
-✓ Enhanced visual diversity and consistency across platform
-✓ All tool cards now match category card design language with unique colors
-
-## Previous Changes (October 8, 2025)
-✓ Added professional Keyword Research Tool for SEO & Content Strategy (Version 2.0.0)
-✓ Created comprehensive SEO keyword analysis tool with instant results
-✓ Automatic generation of 20+ keyword variations (prefixes, suffixes, long-tail)
-✓ Real-time search volume, CPC, and competition metrics display
-✓ Sortable data table with all columns (keyword, volume, CPC, competition, trend)
-✓ Color-coded competition indicators (green <30%, yellow 30-70%, red >70%)
-✓ Trend indicators with up/down/stable arrows
-✓ Copy to clipboard and CSV export functionality
-✓ Stats dashboard showing total search volume, average CPC, and average competition
-✓ Comprehensive description section explaining SEO metrics and how to use the tool
-✓ Professional gradient UI matching platform design standards
-✓ Fully responsive with dark/light mode support
-✓ Added to Changelog as v2.0.0 milestone
-✓ Platform now offers 123+ professional tools
-
-## Previous Changes (October 8, 2025)
-✓ Implemented major UX enhancement: Text & String Tools category redesign with sub-category navigation
-✓ Created 8 sub-categories for better tool organization:
-  - All Tools (default view showing all 35 tools)
-  - Encoding & Decoding (10 tools: URL, HTML, Base64, Netstring, Slash Escape/Unescape)
-  - Generators (2 tools: Random String, String from Regex)
-  - Regex & Pattern (3 tools: Extract Matches, Test Regex, Extract Substring)
-  - Converters (2 tools: String to Image, Printf)
-  - Manipulation (8 tools: Split, Join, Filter, Repeat, Reverse, Find/Replace, Truncate, Trim)
-  - Formatting (5 tools: Left-pad, Right-pad, Right-align, Center, Sort)
-  - Ciphers & Transform (5 tools: Rotate, ROT13, ROT47, Transpose, Slice)
-✓ Special category header with "Our Most Popular Tools" design (inspired by modern tool platforms)
-✓ Clickable sub-category tabs with icons for intuitive navigation
-✓ Real-time filtering - clicking sub-category instantly shows relevant tools
-✓ Fully responsive design with mobile, tablet, desktop support
-✓ Complete dark/light mode support with gradient backgrounds
-✓ Sub-category tabs use lucide-react icons for visual clarity
-✓ Smooth transitions and active state highlighting (primary color)
-✓ All sub-category buttons include data-testid for automated testing
-✓ CategoryPage component enhanced with special layout for text-string category only
-✓ Other categories remain unchanged with standard grid layout
-
-## Previous Changes (October 8, 2025)
-✓ Added 5 new advanced string manipulation and cipher tools (Version 1.9.0)
-✓ Created Rotate a String tool with circular shift (positive/negative rotation)
-✓ Built ROT13 a String tool for classic cipher encryption/decryption
-✓ Implemented ROT47 a String tool for extended ASCII cipher (94 characters)
-✓ Added Transpose a String tool for row/column matrix transformation
-✓ Created Slice a String tool with start/end indices and negative index support
-✓ All tools feature real-time processing with instant updates
-✓ Professional gradient UI with unique colors per tool (rose, violet, amber, emerald, sky)
-✓ Copy-to-clipboard functionality with toast notifications on all tools
-✓ Complete integration with App.tsx routing, page wrappers, and Changelog
-✓ Platform performance maintained with sub-100ms page load times
-✓ Total platform now offers 122+ professional tools (35 text & string tools)
-
-## Previous Changes (October 8, 2025)
-✓ Added 5 string formatting and alignment tools (Version 1.8.0)
-✓ Created Left-pad, Right-pad, Right-align, Center, and Sort Strings tools
-✓ Professional gradient UI with customizable options per tool
-
-## Previous Changes (October 8, 2025)
-✓ Added 5 essential string manipulation tools (Version 1.7.0)
-✓ Created Repeat a String tool with customizable repeat count up to 1000 times
-✓ Built Reverse a String tool with instant character reversal and Unicode support
-✓ Implemented Find and Replace a String tool with case-sensitive/insensitive options
-✓ Added Truncate a String tool with length limit and optional ellipsis
-✓ Created Trim a String tool with multiple trim modes (both, start, end, all, extra spaces)
-
-## Previous Changes (October 8, 2025)
-✓ Added 5 advanced string manipulation tools: Convert String to Image, Printf String, Split String, Join Strings, and Filter String Lines
-✓ Canvas-based image generation with customizable fonts and colors
-✓ Printf-style formatting with %s, %d, %f placeholders
-✓ Custom delimiter splitting and line joining capabilities
-✓ Advanced line filtering with multiple modes
-
-## Previous Changes (October 7, 2025)
-✓ Added 5 new string generation and regex manipulation tools
-✓ Created Generate Random String tool with customizable length and character type options
-✓ Built Generate String from Regex tool for pattern-based string generation
-✓ Implemented Extract Regex Matches tool to find and extract all pattern matches
-✓ Added Test String with Regex tool for pattern validation with detailed results
-✓ Created Extract Substring tool with start/end indices and visual preview
-✓ All tools feature real-time processing without process buttons
-✓ Professional centered UI with shadcn/ui Card components
-✓ Copy-to-clipboard functionality with toast notifications
-✓ All tools integrated with App.tsx routing and Changelog
-✓ Platform performance maintained with 32-124ms page load times
-✓ Total platform now offers 102+ professional tools (15 text & string tools)
-
-## Previous Changes (October 7, 2025)
-✓ Added 5 professional text encoding/decoding tools with UTF-8/Unicode support
-✓ Created Base64 Decode tool with proper UTF-8 handling using TextDecoder API
-✓ Built String to Netstring converter for length-prefixed string encoding
-✓ Implemented Netstring to String decoder with byte-accurate UTF-8 parsing
-✓ Added Slash Escape tool for escaping special characters in text
-✓ Created Slash Unescape tool for removing escape sequences
-✓ All tools feature real-time conversion with instant output updates
-✓ Complete emoji and multi-byte character support (CJK, Unicode)
-
-## Earlier Changes (September 12, 2025)
-✓ Added 5 additional professional converter tools: Viscosity-Kinematic, Surface Tension, Permeability, Luminance, and Luminous Intensity Converters
-✓ Created Viscosity - Kinematic Converter for fluid mechanics applications with m²/s, stokes, centistokes units
-✓ Built Surface Tension Converter for material science with N/m, dyn/cm, J/m² units
-✓ Implemented Permeability Converter for petroleum engineering with darcy, millidarcy, m² units
-✓ Added Luminance Converter for photometry with cd/m², nit, stilb, lambert units
-✓ Created Luminous Intensity Converter for optical applications with candela, lm/sr, carcel units
-✓ All new tools follow established Length Converter design pattern with shadcn/ui components
-✓ Complete integration with App.tsx lazy loading routes and page wrapper components
-✓ Fixed LSP diagnostics errors in page wrapper components
-✓ Platform performance maintained with sub-250ms load times
-✓ Total platform now offers 92+ professional tools
-
-## Earlier Changes (September 12, 2025)
-✓ Added 5 additional advanced converter tools continuing the professional toolset expansion
-✓ Created Flow - Molar Converter for chemical process engineering applications
-✓ Built Mass Flux Density Converter for engineering mass transfer calculations
-✓ Implemented Concentration - Molar Converter for chemistry and biochemistry work
-✓ Added Concentration - Solution Converter for analytical chemistry applications
-✓ Created Viscosity - Dynamic Converter for fluid mechanics and engineering
-✓ All new tools follow established Length Converter design pattern
-✓ Complete integration with App.tsx routing and tools.ts configuration
-✓ Platform performance maintained with sub-250ms load times
-
-## Previous Changes (Earlier September 12, 2025)
-✓ Added 5 thermal and flow converter tools: Heat Density, Heat Flux Density, Heat Transfer Coefficient, Flow, and Flow-Mass converters
-✓ All tools integrated with proper routing and configuration
-
-## Historical Changes (August 12, 2025)
-✓ Added 7 advanced converter tools: Torque, Fuel Efficiency (Mass & Volume), Temperature Interval, Thermal Expansion, Thermal Resistance, and Specific Heat Capacity converters
-✓ Center alignment issues resolved across all converter tools
+## Overview
+ToolShaala is a high-performance web platform designed to offer 122+ professional tools across 35 categories. Its core purpose is to provide a super-fast Single Page Application (SPA) experience with Progressive Web App (PWA) capabilities, focusing on utility, efficiency, and a modern user interface. The project aims to be a production-ready, comprehensive online utility platform with a strong emphasis on speed, user experience, and a distinct brand identity.
 
 ## User Preferences
 - **Language**: Bengali (Bangla) for communication
@@ -160,65 +10,41 @@ A high-performance web platform offering 112+ professional tools across 35 categ
 - **Design**: Blue-purple gradient theme preferred
 - **Analytics**: Lifetime accumulation counters (never decrease)
 
-## Project Architecture
+## System Architecture
 
-### Frontend (React + TypeScript)
-- **Framework**: React 18 with TypeScript
-- **Routing**: Wouter for client-side routing
-- **Styling**: Tailwind CSS + shadcn/ui components
-- **State**: TanStack Query for data fetching
-- **Animations**: Framer Motion for smooth interactions
-- **Performance**: React.lazy + Suspense for code splitting
+### UI/UX Decisions
+- **Design Theme**: Responsive blue-purple gradient theme with full dark/light mode support.
+- **Component Library**: shadcn/ui components for a consistent and professional look.
+- **Animations**: Framer Motion and GSAP for smooth interactions, including complex Rube Goldberg machine animations for authentication.
+- **Tool Cards**: Unique color palette system for tool cards, with each tool displaying a distinct color from 16 vibrant options, ensuring visual diversity and consistency. Professional SVG icons are used.
+- **Category Navigation**: Intuitive sub-category navigation with clickable tabs and icons for specific categories (e.g., Text & String Tools).
 
-### Backend (Express + Node.js)
-- **Server**: Express.js with TypeScript
-- **Database**: PostgreSQL with Drizzle ORM
-- **Session**: Express-session with connect-pg-simple
-- **API**: RESTful endpoints for tools and analytics
+### Technical Implementations
+- **Frontend**: React 18 with TypeScript, Wouter for routing, Tailwind CSS for styling.
+- **Backend**: Express.js with TypeScript.
+- **Database**: PostgreSQL integrated with Drizzle ORM.
+- **State Management**: TanStack Query for data fetching.
+- **Authentication**: Firebase Authentication with custom animated login/signup flows using SVG components and GSAP timelines. AuthContext manages global authentication state.
+- **Performance**: Lazy loading and code splitting using React.lazy + Suspense, intelligent preloading, and PWA features (service worker, manifest.json, offline capabilities).
+- **Analytics**: Real-time tracking and lifetime counters.
+- **Tool Development**: Real-time processing for most tools, copy-to-clipboard functionality, and CSV export where applicable.
 
-### Key Features
-1. **122+ Tools** across 35 categories
-2. **Real-time Analytics** with lifetime counters
-3. **PWA Support** with service worker
-4. **Mobile Responsive** design
-5. **SEO Optimized** with proper meta tags
-6. **Performance Optimized** with lazy loading
+### Feature Specifications
+- Over 122 tools across 35 categories, including comprehensive text manipulation, encoding/decoding, string generation, regex tools, and various converters (e.g., Viscosity, Surface Tension, Flow, Thermal).
+- Professional Keyword Research Tool with real-time SEO metrics (search volume, CPC, competition) and data export.
+- All form interactions trigger specific mechanical animations in the authentication process.
+- Error handling with animation reset on authentication failure; success states navigate to the homepage.
+- Full responsive design across mobile, tablet, and desktop.
+- SEO Optimized with proper meta tags.
 
-## Development Guidelines
-- Use `npm run dev` to start development server
-- Database operations through Drizzle ORM only
-- Components should be lazy-loaded for performance
-- Follow existing blue-purple gradient theme
-- Analytics counters only increment (never decrease)
-- All branding must use "ToolShaala" name
-
-## Deployment Information
-- **Repository**: https://github.com/tscmdabdurrakib/ToolNexas.git
-- **Environment**: Node.js with PostgreSQL
-- **Build**: `npm run build` for production
-- **Port**: Configurable (default 5000)
-
-## File Structure
-```
-├── client/           # React frontend
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── hooks/
-│   │   └── data/
-│   └── index.html
-├── server/           # Express backend
-├── shared/           # Shared schemas
-├── public/           # PWA assets
-└── Configuration files
-```
-
-## Current Status
-- ✅ Development completed
-- ✅ Performance optimized
-- ✅ Branding finalized
-- ✅ PWA ready
-- ⏳ Git deployment pending (manual upload required)
-- 🎯 Ready for production deployment
-
-Last Updated: October 8, 2025
+## External Dependencies
+- **Firebase Authentication**: For user authentication.
+- **PostgreSQL**: Relational database for data storage.
+- **Drizzle ORM**: Object-Relational Mapper for database interactions.
+- **Wouter**: Client-side routing library.
+- **Tailwind CSS**: Utility-first CSS framework.
+- **shadcn/ui**: UI component library.
+- **Framer Motion**: Animation library for React.
+- **GSAP (GreenSock Animation Platform)**: For complex, high-performance animations, especially in authentication.
+- **TanStack Query**: For server state management and data fetching.
+- **lucide-react**: Icon library for visual clarity in UI elements.
