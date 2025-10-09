@@ -4,7 +4,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Sparkles } from 'lucide-react';
 import gsap from 'gsap';
 
 export default function LoginPage() {
@@ -127,21 +127,20 @@ export default function LoginPage() {
     finalTimeline.to(
       liquidRef.current,
       {
-        opacity: 0.1,
-        y: 30,
-        duration: 0.8,
+        opacity: 1,
+        scaleY: 1.5,
+        duration: 0.5,
       },
-      '-=0.4'
+      '-=0.3'
     );
 
-    // Drops fall
+    // Drop falls
     finalTimeline.to(
       dropRef.current,
       {
-        opacity: 1,
-        y: 25,
-        duration: 0.25,
-        repeat: 4,
+        y: 100,
+        opacity: 0,
+        duration: 0.8,
         yoyo: true,
       },
       '-=0.5'
@@ -196,22 +195,31 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-4xl">
-        <div className="text-center mb-6">
-          <h1 className="text-4xl font-bold mb-2 text-black dark:text-white">Welcome Back</h1>
-          <p className="text-gray-600 dark:text-gray-400">Fill the form to activate the machine</p>
+    <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 dark:from-indigo-900 dark:via-purple-900 dark:to-pink-900">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS1vcGFjaXR5PSIwLjEiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-30"></div>
+      </div>
+
+      <div className="w-full max-w-6xl relative z-10">
+        <div className="text-center mb-8">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <Sparkles className="w-8 h-8 text-yellow-300 animate-pulse" />
+            <h1 className="text-5xl font-bold text-white drop-shadow-lg">Welcome Back</h1>
+            <Sparkles className="w-8 h-8 text-yellow-300 animate-pulse" />
+          </div>
+          <p className="text-xl text-white/90 drop-shadow">Fill the form to activate the Rube Goldberg machine</p>
         </div>
 
-        {/* Integrated Animation + Form Container */}
+        {/* Glass morphism container */}
         <form onSubmit={handleSubmit}>
-        <div className="relative border-2 border-black dark:border-white rounded-lg p-8 bg-white dark:bg-gray-900">
-          {/* Grid Background */}
-          <div className="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
+        <div className="relative backdrop-blur-xl bg-white/10 dark:bg-black/20 border border-white/20 rounded-3xl p-8 shadow-2xl">
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none rounded-3xl overflow-hidden">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="grid-login" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.5" />
+                <pattern id="grid-login" width="30" height="30" patternUnits="userSpaceOnUse">
+                  <path d="M 30 0 L 0 0 0 30" fill="none" stroke="white" strokeWidth="1" />
                 </pattern>
               </defs>
               <rect width="100%" height="100%" fill="url(#grid-login)" />
@@ -220,9 +228,15 @@ export default function LoginPage() {
 
           {/* Mechanical Diagram with Integrated Form */}
           <svg className="w-full h-[600px]" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
-            {/* Top Section - Gears (Email Trigger) */}
+            {/* Top Section - Colorful Gears (Email Trigger) */}
             <g ref={gear1Ref} transform="translate(150, 80)">
-              <circle cx="0" cy="0" r="40" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
+              <circle cx="0" cy="0" r="40" fill="url(#gear1-gradient)" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
+              <defs>
+                <linearGradient id="gear1-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#f59e0b', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#f97316', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
               {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
                 <rect
                   key={i}
@@ -230,149 +244,204 @@ export default function LoginPage() {
                   y="-50"
                   width="6"
                   height="20"
-                  fill="black"
-                  className="dark:fill-white"
+                  fill="#fb923c"
                   transform={`rotate(${angle})`}
                 />
               ))}
-              <circle cx="0" cy="0" r="15" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-900 dark:stroke-white" />
+              <circle cx="0" cy="0" r="15" fill="white" stroke="rgba(255,255,255,0.5)" strokeWidth="3" />
             </g>
 
             <g ref={gear2Ref} transform="translate(250, 90)">
-              <circle cx="0" cy="0" r="30" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
+              <circle cx="0" cy="0" r="30" fill="url(#gear2-gradient)" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
+              <defs>
+                <linearGradient id="gear2-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#0891b2', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
               {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
                 <rect
                   key={i}
-                  x="-2"
-                  y="-38"
-                  width="4"
+                  x="-3"
+                  y="-40"
+                  width="6"
                   height="15"
-                  fill="black"
-                  className="dark:fill-white"
+                  fill="#22d3ee"
                   transform={`rotate(${angle})`}
                 />
               ))}
-              <circle cx="0" cy="0" r="10" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-900 dark:stroke-white" />
+              <circle cx="0" cy="0" r="12" fill="white" stroke="rgba(255,255,255,0.5)" strokeWidth="3" />
             </g>
 
-            {/* Email Input Field - Positioned in the diagram */}
+            {/* Email Input Field with modern styling */}
             <foreignObject x="350" y="40" width="400" height="100">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-black dark:text-white block">Email</label>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full h-12 px-4 border-2 border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-                  data-testid="input-email"
-                />
+                <label className="text-sm font-semibold text-white drop-shadow block">Email Address</label>
+                <div className="relative">
+                  <Input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full h-14 px-4 bg-white/20 backdrop-blur-md border-2 border-white/30 text-white placeholder:text-white/60 rounded-xl focus:border-white/60 focus:ring-2 focus:ring-white/40 transition-all"
+                    data-testid="input-email"
+                  />
+                </div>
               </div>
             </foreignObject>
 
-            {/* Middle Section - Pulley System (Password Trigger) */}
-            <g ref={pulleyRef} transform="translate(650, 200)">
-              <circle cx="0" cy="0" r="35" fill="none" stroke="black" strokeWidth="3" className="dark:stroke-white" />
-              <circle cx="0" cy="0" r="8" fill="black" className="dark:fill-white" />
-              <line x1="0" y1="-35" x2="0" y2="-60" stroke="black" strokeWidth="2" className="dark:stroke-white" />
+            {/* Connection line */}
+            <path d="M 280 90 Q 320 90, 350 80" stroke="rgba(255,255,255,0.4)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
+
+            {/* Middle Section - Colorful Pulley System (Password Trigger) */}
+            <g ref={pulleyRef} transform="translate(650, 180)">
+              <circle cx="0" cy="0" r="35" fill="url(#pulley-gradient)" stroke="rgba(255,255,255,0.3)" strokeWidth="3" />
+              <defs>
+                <linearGradient id="pulley-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#8b5cf6', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#7c3aed', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <circle cx="0" cy="0" r="25" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="2" />
+              <circle cx="0" cy="0" r="8" fill="white" />
             </g>
 
-            <g ref={weightRef} transform="translate(650, 280)">
-              <rect x="-25" y="0" width="50" height="60" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-800 dark:stroke-white" />
-              <line x1="-15" y1="20" x2="15" y2="20" stroke="black" strokeWidth="2" className="dark:stroke-white" />
-              <line x1="-15" y1="40" x2="15" y2="40" stroke="black" strokeWidth="2" className="dark:stroke-white" />
-            </g>
+            <line x1="650" y1="215" x2="650" y2="320" stroke="rgba(255,255,255,0.4)" strokeWidth="3" strokeDasharray="8,4" />
 
-            <line x1="650" y1="235" x2="650" y2="280" stroke="black" strokeWidth="3" strokeDasharray="5,5" className="dark:stroke-white" />
+            <g ref={weightRef} transform="translate(650, 320)">
+              <rect x="-25" y="0" width="50" height="40" fill="url(#weight-gradient)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" rx="4" />
+              <defs>
+                <linearGradient id="weight-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#ec4899', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#db2777', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <text x="0" y="25" textAnchor="middle" fill="white" fontSize="14" fontWeight="bold">W</text>
+            </g>
 
             {/* Password Input Field */}
-            <foreignObject x="350" y="180" width="250" height="100">
+            <foreignObject x="350" y="160" width="400" height="100">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-black dark:text-white block">Password</label>
+                <label className="text-sm font-semibold text-white drop-shadow block">Password</label>
                 <div className="relative">
-                  <input
+                  <Input
                     type={showPassword ? 'text' : 'password'}
-                    placeholder="Enter password"
+                    placeholder="Enter your password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full h-12 px-4 pr-12 border-2 border-black dark:border-white bg-white dark:bg-gray-800 text-black dark:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full h-14 px-4 pr-12 bg-white/20 backdrop-blur-md border-2 border-white/30 text-white placeholder:text-white/60 rounded-xl focus:border-white/60 focus:ring-2 focus:ring-white/40 transition-all"
                     data-testid="input-password"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 p-2"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-colors"
                     data-testid="button-toggle-password"
                   >
-                    {showPassword ? (
-                      <EyeOff className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                    ) : (
-                      <Eye className="w-5 h-5 text-gray-600 dark:text-gray-400" />
-                    )}
+                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
             </foreignObject>
 
-            {/* Bottom Section - Final Mechanism (Submit Trigger) */}
-            <g ref={leverRef} transform="translate(120, 400)">
-              <line x1="0" y1="0" x2="140" y2="0" stroke="black" strokeWidth="4" className="dark:stroke-white" />
-              <circle cx="70" cy="0" r="8" fill="black" className="dark:fill-white" />
-              <polygon points="-10,-15 -10,15 10,0" fill="black" className="dark:fill-white" />
+            {/* Bottom Section - Lever & Bottle System */}
+            <g ref={leverRef} transform="translate(200, 400)">
+              <line x1="-80" y1="0" x2="80" y2="0" stroke="url(#lever-gradient)" strokeWidth="8" strokeLinecap="round" />
+              <defs>
+                <linearGradient id="lever-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style={{ stopColor: '#10b981', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#059669', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <circle cx="0" cy="0" r="12" fill="white" stroke="rgba(255,255,255,0.5)" strokeWidth="3" />
             </g>
 
             <g ref={bottleRef} transform="translate(500, 380)">
-              <rect x="0" y="0" width="50" height="80" fill="white" stroke="black" strokeWidth="3" className="dark:fill-gray-800 dark:stroke-white" />
-              <rect x="15" y="-15" width="20" height="20" fill="white" stroke="black" strokeWidth="2" className="dark:fill-gray-800 dark:stroke-white" />
+              <path d="M -20 0 L -20 60 L 20 60 L 20 0 L 15 0 L 15 -20 L -15 -20 L -15 0 Z" fill="url(#bottle-gradient)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" />
+              <defs>
+                <linearGradient id="bottle-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#3b82f6', stopOpacity: 0.7 }} />
+                  <stop offset="100%" style={{ stopColor: '#2563eb', stopOpacity: 0.9 }} />
+                </linearGradient>
+              </defs>
               <path
                 ref={liquidRef}
-                d="M 5 20 L 5 70 L 45 70 L 45 20 Z"
-                fill="black"
-                opacity="0.3"
-                className="dark:fill-white"
+                d="M -18 30 L -18 58 L 18 58 L 18 30 Z"
+                fill="#60a5fa"
+                opacity="0.6"
               />
             </g>
 
-            <circle ref={dropRef} cx="575" cy="480" r="6" fill="black" opacity="0" className="dark:fill-white" />
+            <circle
+              ref={dropRef}
+              cx="520"
+              cy="440"
+              r="4"
+              fill="#60a5fa"
+              opacity="0"
+            />
 
-            <g transform="translate(600, 500)">
-              <rect x="0" y="10" width="80" height="15" fill="black" className="dark:fill-white" />
-              <rect ref={buttonTopRef} x="5" y="0" width="70" height="15" fill="white" stroke="black" strokeWidth="2" className="dark:fill-gray-700 dark:stroke-white" />
+            {/* Final Button */}
+            <g transform="translate(400, 500)">
+              <rect x="-80" y="0" width="160" height="50" fill="url(#button-base-gradient)" stroke="rgba(255,255,255,0.3)" strokeWidth="2" rx="8" />
+              <defs>
+                <linearGradient id="button-base-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#4b5563', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#1f2937', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+              <rect
+                ref={buttonTopRef}
+                x="-70"
+                y="-8"
+                width="140"
+                height="50"
+                fill="url(#button-top-gradient)"
+                stroke="rgba(255,255,255,0.4)"
+                strokeWidth="2"
+                rx="8"
+              />
+              <defs>
+                <linearGradient id="button-top-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" style={{ stopColor: '#f59e0b', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#d97706', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
             </g>
 
-            {/* Login Button - Positioned in the diagram */}
-            <foreignObject x="280" y="480" width="220" height="80">
-              <Button
-                type="submit"
-                className="w-full h-14 text-lg font-semibold bg-black dark:bg-white text-white dark:text-black hover:bg-gray-800 dark:hover:bg-gray-200"
-                disabled={loading}
-                data-testid="button-login"
-              >
-                {loading ? (
-                  <div className="flex items-center gap-2">
-                    <div className="w-5 h-5 border-2 border-white dark:border-black border-t-transparent rounded-full animate-spin" />
-                    Logging in...
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-2">
-                    <LogIn className="w-5 h-5" />
-                    Activate Machine & Login
-                  </div>
-                )}
-              </Button>
-            </foreignObject>
-
             {/* Connection lines */}
-            <path d="M 180 110 Q 250 140, 350 120" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
-            <path d="M 260 420 Q 350 430, 500 400" stroke="black" strokeWidth="2" fill="none" strokeDasharray="5,5" className="dark:stroke-white" />
+            <path d="M 280 400 Q 350 410, 480 390" stroke="rgba(255,255,255,0.4)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
+            <path d="M 520 440 Q 450 460, 400 500" stroke="rgba(255,255,255,0.4)" strokeWidth="3" fill="none" strokeDasharray="5,5" />
           </svg>
 
-          {/* Sign up link below the integrated machine */}
+          {/* Submit Button */}
+          <div className="mt-6">
+            <Button
+              type="submit"
+              className="w-full h-16 text-xl font-bold bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white shadow-xl rounded-2xl transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+              disabled={loading}
+              data-testid="button-login"
+            >
+              {loading ? (
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin" />
+                  Activating Machine...
+                </div>
+              ) : (
+                <div className="flex items-center gap-3">
+                  <LogIn className="w-6 h-6" />
+                  Complete Machine & Login
+                </div>
+              )}
+            </Button>
+          </div>
+
+          {/* Sign up link */}
           <div className="text-center mt-6">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-base text-white/80 drop-shadow">
               Don't have an account?{' '}
               <Link href="/signup">
-                <span className="font-semibold text-black dark:text-white hover:underline cursor-pointer" data-testid="link-signup">
+                <span className="font-bold text-yellow-300 hover:text-yellow-200 underline cursor-pointer transition-colors" data-testid="link-signup">
                   Sign up
                 </span>
               </Link>
