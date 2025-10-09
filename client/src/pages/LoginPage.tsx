@@ -31,20 +31,28 @@ export default function LoginPage() {
   const emailAnimationActive = useRef(false);
   const passwordAnimationActive = useRef(false);
 
-  // Stage 1: Email input animation - Gears rotate
+  // Stage 1: Email input animation - Gears rotate with smooth start
   useEffect(() => {
     if (email && !emailAnimationActive.current) {
       emailAnimationActive.current = true;
+      
+      // Initial bounce to show activation
+      gsap.fromTo(gear1Ref.current, 
+        { scale: 1 },
+        { scale: 1.1, duration: 0.3, ease: 'back.out(2)', yoyo: true, repeat: 1 }
+      );
+      
+      // Smooth rotation start
       gsap.to(gear1Ref.current, {
         rotation: 360,
-        duration: 2,
-        ease: 'linear',
+        duration: 3,
+        ease: 'power1.inOut',
         repeat: -1,
       });
       gsap.to(gear2Ref.current, {
         rotation: -360,
-        duration: 2,
-        ease: 'linear',
+        duration: 2.5,
+        ease: 'power1.inOut',
         repeat: -1,
       });
     } else if (!email && emailAnimationActive.current) {
@@ -52,7 +60,9 @@ export default function LoginPage() {
       gsap.killTweensOf([gear1Ref.current, gear2Ref.current]);
       gsap.to([gear1Ref.current, gear2Ref.current], {
         rotation: 0,
-        duration: 0.5,
+        scale: 1,
+        duration: 0.6,
+        ease: 'back.out(1.5)',
       });
     }
   }, [email]);
@@ -61,16 +71,26 @@ export default function LoginPage() {
   useEffect(() => {
     if (password && email && !passwordAnimationActive.current) {
       passwordAnimationActive.current = true;
+      
+      // Pulley activation with bounce
+      gsap.fromTo(pulleyRef.current,
+        { scale: 1 },
+        { scale: 1.15, duration: 0.4, ease: 'elastic.out(1, 0.5)', yoyo: true, repeat: 1 }
+      );
+      
+      // Smooth pulley rotation
       gsap.to(pulleyRef.current, {
         rotation: 360,
-        duration: 2,
-        ease: 'linear',
+        duration: 2.5,
+        ease: 'power1.inOut',
         repeat: -1,
       });
+      
+      // Weight movement with realistic easing
       gsap.to(weightRef.current, {
         y: -60,
-        duration: 1.5,
-        ease: 'power1.inOut',
+        duration: 1.8,
+        ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
@@ -80,7 +100,9 @@ export default function LoginPage() {
       gsap.to([pulleyRef.current, weightRef.current], {
         rotation: 0,
         y: 0,
-        duration: 0.5,
+        scale: 1,
+        duration: 0.7,
+        ease: 'back.out(1.5)',
       });
     }
   }, [password, email]);
@@ -101,70 +123,95 @@ export default function LoginPage() {
     // Kill existing animations
     gsap.killTweensOf([gear1Ref.current, gear2Ref.current, pulleyRef.current, weightRef.current]);
 
-    // Final animation sequence
+    // Final animation sequence with smooth transitions
     const finalTimeline = gsap.timeline();
 
-    // Lever activates
+    // Lever activates with realistic physics
     finalTimeline.to(leverRef.current, {
       rotation: -35,
       transformOrigin: 'center',
-      duration: 0.6,
-      ease: 'power2.out',
+      duration: 0.5,
+      ease: 'power3.out',
     });
 
-    // Bottle tips
+    // Bottle tips with smooth motion
     finalTimeline.to(
       bottleRef.current,
       {
         rotation: 60,
         transformOrigin: 'bottom right',
-        duration: 0.7,
+        duration: 0.8,
+        ease: 'power2.inOut',
       },
       '-=0.2'
     );
 
-    // Liquid flows
+    // Liquid flows naturally
     finalTimeline.to(
       liquidRef.current,
       {
         opacity: 1,
         scaleY: 1.5,
-        duration: 0.5,
+        duration: 0.6,
+        ease: 'sine.in',
       },
-      '-=0.3'
+      '-=0.4'
     );
 
-    // Drop falls
+    // Drop falls with gravity
     finalTimeline.to(
       dropRef.current,
       {
         y: 100,
         opacity: 0,
-        duration: 0.8,
-        yoyo: true,
+        duration: 0.7,
+        ease: 'power2.in',
       },
       '-=0.5'
     );
 
-    // Button press
+    // Button press with satisfying click
     finalTimeline.to(
       buttonTopRef.current,
       {
         y: 8,
-        duration: 0.3,
+        duration: 0.15,
+        ease: 'power2.in',
       },
-      '-=0.2'
+      '-=0.3'
     );
 
-    // Celebration - gears spin fast
+    // Button release
     finalTimeline.to(
-      [gear1Ref.current, gear2Ref.current, pulleyRef.current],
+      buttonTopRef.current,
+      {
+        y: 0,
+        duration: 0.2,
+        ease: 'elastic.out(2, 0.3)',
+      }
+    );
+
+    // Celebration - gears spin fast with excitement
+    finalTimeline.to(
+      [gear1Ref.current, gear2Ref.current],
+      {
+        rotation: '+=1080',
+        duration: 1.2,
+        ease: 'power3.out',
+        scale: 1.1,
+      },
+      '-=0.1'
+    );
+
+    // Pulley spins fast too
+    finalTimeline.to(
+      pulleyRef.current,
       {
         rotation: '+=720',
         duration: 1,
-        ease: 'power2.out',
+        ease: 'power3.out',
       },
-      '-=0.1'
+      '<'
     );
 
     // Actual login

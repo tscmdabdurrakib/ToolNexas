@@ -38,30 +38,37 @@ export default function SignupPage() {
   const emailAnimationActive = useRef(false);
   const passwordAnimationActive = useRef(false);
 
-  // Stage 1: Full Name input - Mechanical arm moves
+  // Stage 1: Full Name input - Mechanical arm moves smoothly
   useEffect(() => {
     if (fullName && !nameAnimationActive.current) {
       nameAnimationActive.current = true;
       const tl = gsap.timeline();
+      
+      // Arm segment 1 moves with realistic motion
       tl.to(armSegment1Ref.current, {
         rotation: -30,
         transformOrigin: 'bottom center',
-        duration: 0.8,
+        duration: 0.7,
+        ease: 'power2.out',
       })
+        // Arm segment 2 follows smoothly
         .to(
           armSegment2Ref.current,
           {
             rotation: -20,
             transformOrigin: 'top center',
-            duration: 0.6,
+            duration: 0.5,
+            ease: 'power2.out',
           },
-          '-=0.4'
+          '-=0.3'
         )
+        // Switch slides with satisfying motion
         .to(
           switchRef.current,
           {
             x: 15,
-            duration: 0.4,
+            duration: 0.35,
+            ease: 'back.out(2)',
           },
           '-=0.2'
         );
@@ -70,31 +77,42 @@ export default function SignupPage() {
       gsap.to([armSegment1Ref.current, armSegment2Ref.current, switchRef.current], {
         rotation: 0,
         x: 0,
-        duration: 0.5,
+        duration: 0.6,
+        ease: 'power2.inOut',
       });
     }
   }, [fullName]);
 
-  // Stage 2: Email input - Gears and conveyor activate
+  // Stage 2: Email input - Gears and conveyor activate with visual feedback
   useEffect(() => {
     if (email && fullName && !emailAnimationActive.current) {
       emailAnimationActive.current = true;
+      
+      // Gear 1 starts with bounce
+      gsap.fromTo(gear1Ref.current,
+        { scale: 1 },
+        { scale: 1.12, duration: 0.35, ease: 'back.out(3)', yoyo: true, repeat: 1 }
+      );
+      
+      // Smooth gear rotations
       gsap.to(gear1Ref.current, {
         rotation: 360,
-        duration: 2,
-        ease: 'linear',
+        duration: 2.8,
+        ease: 'power1.inOut',
         repeat: -1,
       });
       gsap.to(gear2Ref.current, {
         rotation: -360,
-        duration: 2,
-        ease: 'linear',
+        duration: 2.3,
+        ease: 'power1.inOut',
         repeat: -1,
       });
+      
+      // Conveyor belt moves smoothly
       gsap.to(conveyorRef.current, {
         x: -100,
-        duration: 2,
-        ease: 'linear',
+        duration: 2.5,
+        ease: 'none',
         repeat: -1,
       });
     } else if (!email && emailAnimationActive.current) {
@@ -103,25 +121,37 @@ export default function SignupPage() {
       gsap.to([gear1Ref.current, gear2Ref.current, conveyorRef.current], {
         rotation: 0,
         x: 0,
-        duration: 0.5,
+        scale: 1,
+        duration: 0.65,
+        ease: 'back.out(1.5)',
       });
     }
   }, [email, fullName]);
 
-  // Stage 3: Password input - Pulley system activates
+  // Stage 3: Password input - Pulley system activates with elasticity
   useEffect(() => {
     if (password && email && fullName && !passwordAnimationActive.current) {
       passwordAnimationActive.current = true;
+      
+      // Pulley activation with elastic bounce
+      gsap.fromTo(pulleyRef.current,
+        { scale: 1 },
+        { scale: 1.18, duration: 0.45, ease: 'elastic.out(1.2, 0.4)', yoyo: true, repeat: 1 }
+      );
+      
+      // Smooth pulley rotation
       gsap.to(pulleyRef.current, {
         rotation: 360,
-        duration: 2,
-        ease: 'linear',
+        duration: 2.3,
+        ease: 'power1.inOut',
         repeat: -1,
       });
+      
+      // Weight moves with realistic physics
       gsap.to(weightRef.current, {
         y: -50,
-        duration: 1.5,
-        ease: 'power1.inOut',
+        duration: 1.7,
+        ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       });
@@ -131,7 +161,9 @@ export default function SignupPage() {
       gsap.to([pulleyRef.current, weightRef.current], {
         rotation: 0,
         y: 0,
-        duration: 0.5,
+        scale: 1,
+        duration: 0.7,
+        ease: 'back.out(1.5)',
       });
     }
   }, [password, email, fullName]);
@@ -160,53 +192,86 @@ export default function SignupPage() {
 
     gsap.killTweensOf([gear1Ref.current, gear2Ref.current, conveyorRef.current, pulleyRef.current, weightRef.current]);
 
+    // Final sequence with smooth, satisfying animations
     const finalTimeline = gsap.timeline();
 
+    // Lever activates with power
     finalTimeline.to(leverRef.current, {
       rotation: -40,
       transformOrigin: 'center',
-      duration: 0.7,
-      ease: 'power2.out',
+      duration: 0.6,
+      ease: 'power3.out',
     });
 
+    // Bottle tips smoothly
     finalTimeline.to(
       bottleRef.current,
       {
         rotation: 65,
         transformOrigin: 'bottom right',
-        duration: 0.8,
+        duration: 0.9,
+        ease: 'power2.inOut',
       },
-      '-=0.3'
+      '-=0.25'
     );
 
+    // Liquid flows naturally
     finalTimeline.to(
       liquidRef.current,
       {
         opacity: 1,
         scaleY: 1.6,
-        duration: 0.6,
+        duration: 0.7,
+        ease: 'sine.in',
       },
-      '-=0.4'
+      '-=0.45'
     );
 
+    // Drop falls with gravity
     finalTimeline.to(
       dropRef.current,
       {
         y: 120,
         opacity: 0,
-        duration: 0.9,
+        duration: 0.8,
+        ease: 'power2.in',
       },
-      '-=0.5'
+      '-=0.55'
     );
 
+    // Celebration - all parts spin with excitement
     finalTimeline.to(
-      [gear1Ref.current, gear2Ref.current, pulleyRef.current],
+      [gear1Ref.current, gear2Ref.current],
       {
-        rotation: '+=1080',
-        duration: 1.5,
+        rotation: '+=1440',
+        duration: 1.3,
+        ease: 'power3.out',
+        scale: 1.15,
+      },
+      '-=0.15'
+    );
+
+    // Pulley celebrates too
+    finalTimeline.to(
+      pulleyRef.current,
+      {
+        rotation: '+=900',
+        duration: 1.1,
+        ease: 'power3.out',
+        scale: 1.1,
+      },
+      '<'
+    );
+
+    // Conveyor speeds up
+    finalTimeline.to(
+      conveyorRef.current,
+      {
+        x: '-=150',
+        duration: 0.8,
         ease: 'power2.out',
       },
-      '-=0.2'
+      '<'
     );
 
     setLoading(true);
