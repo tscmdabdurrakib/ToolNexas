@@ -6,6 +6,7 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
+  base: "./",
   plugins: [
     react(),
     runtimeErrorOverlay(),
@@ -35,7 +36,7 @@ export default defineConfig({
   root: path.resolve(import.meta.dirname, "client"),
   server: {
     host: "0.0.0.0",
-    port: 5000,
+    port: 5173,
     allowedHosts: [".replit.dev", "localhost"],
   },
   build: {

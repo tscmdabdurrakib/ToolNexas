@@ -11,18 +11,15 @@ function AddanUnderlinetoText() {
   const [output, setOutput] = useState<string>('');
   const { toast } = useToast();
 
-  const underlineMap = {
-    'A': '𝐴', 'B': '𝐵', 'C': '𝐶', 'D': '𝐷', 'E': '𝐸', 'F': '𝐹', 'G': '𝐺', 'H': '𝐻', 'I': '𝐼',
-    'J': '𝐽', 'K': '𝐾', 'L': '𝐿', 'M': '𝑀', 'N': '𝑁', 'O': '𝑂', 'P': '𝑃', 'Q': '𝑄', 'R': '𝑅',
-    'S': '𝑆', 'T': '𝑇', 'U': '𝑈', 'V': '𝑉', 'W': '𝑊', 'X': '𝑋', 'Y': '𝑌', 'Z': '𝑍',
-    'a': '𝑎', 'b': '𝑏', 'c': '𝑐', 'd': '𝑑', 'e': '𝑒', 'f': '𝑓', 'g': '𝑔', 'h': 'ℎ', 'i': '𝑖',
-    'j': '𝑗', 'k': '𝑘', 'l': '𝑙', 'm': '𝑚', 'n': '𝑛', 'o': '𝑜', 'p': '𝑝', 'q': '𝑞', 'r': '𝑟',
-    's': '𝑠', 't': '𝑡', 'u': '𝑢', 'v': '𝑣', 'w': '𝑤', 'x': '𝑥', 'y': '𝑦', 'z': '𝑧',
-    '0': '0̲', '1': '1̲', '2': '2̲', '3': '3̲', '4': '4̲', '5': '5̲', '6': '6̲', '7': '7̲', '8': '8̲', '9': '9̲',
-    '!': '!̲', '@': '@̲', '#': '#̲', '$': '$̲', '%': '%̲', '^': '^̲', '&': '&̲', '*': '*̲', '(': '(̲', ')': ')̲',
-    '-': '-̲', '_': '_̲', '=': '=̲', '+': '+̲', '[': '[̲', ']': ']̲', '{': '{̲', '}': '}̲', '|': '|̲',
-    ';': ';̲', ':': ':̲', "'": "'̲", '"': '"̲', ',': ',̲', '<': '<̲', '.': '.̲', '>': '>̲', '/': '/̲', '?': '?̲',
-    '`': '`̲', '~': '~̲', '\\': '\\̲'
+  const addUnderline = (text: string): string => {
+    return text.replace(/./g, (char) => {
+      // Skip adding underline to newlines and carriage returns
+      if (char === '\n' || char === '\r') {
+        return char;
+      }
+      // Add combining underline (U+0332) to each character
+      return char + '\u0332';
+    });
   };
 
   useEffect(() => {
@@ -31,10 +28,7 @@ function AddanUnderlinetoText() {
       return;
     }
 
-    const underlinedText = inputText.replace(/./g, (char) => {
-      return underlineMap[char] || char;
-    });
-
+    const underlinedText = addUnderline(inputText);
     setOutput(underlinedText);
   }, [inputText]);
 
@@ -80,20 +74,20 @@ function AddanUnderlinetoText() {
           </div>
 
           <div>
-            <Label htmlFor="output">Underlined Text:</Label>
+            <Label htmlFor="output">U̲n̲d̲e̲r̲l̲i̲n̲e̲d̲ ̲T̲e̲x̲t̲:</Label>
             <Textarea
               id="output"
               data-testid="output-result"
               value={output}
               readOnly
               className="min-h-32 mt-2 bg-gray-50 dark:bg-gray-900"
-              placeholder="Underlined text will appear here..."
+              placeholder="U̲n̲d̲e̲r̲l̲i̲n̲e̲d̲ ̲t̲e̲x̲t̲ ̲w̲i̲l̲l̲ ̲a̲p̲p̲e̲a̲r̲ ̲h̲e̲r̲e̲.̲.̲.̲"
             />
           </div>
 
           <div className="bg-indigo-50 dark:bg-indigo-950/20 p-3 rounded-lg">
             <p className="text-sm text-indigo-700 dark:text-indigo-300">
-              <strong>Example:</strong> Convert "Hello World" to underlined text - perfect for emphasizing key points!
+              <strong>E̲x̲a̲m̲p̲l̲e̲:</strong> Convert "Hello World" to "H̲e̲l̲l̲o̲ ̲W̲o̲r̲l̲d̲" - perfect for emphasizing key points!
             </p>
           </div>
 

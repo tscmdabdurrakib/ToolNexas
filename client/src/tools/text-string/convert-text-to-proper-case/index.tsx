@@ -3,13 +3,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Copy, Strikethrough } from "lucide-react";
+import { Copy, Type } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-function AddaStrikethroughtoText() {
-  const [inputText, setInputText] = useState<string>('Strikethrough your completed tasks!\nPerfect for to-do lists\nGreat for showing removed content');
+function ConvertTextToProperCase() {
+  const [inputText, setInputText] = useState<string>('convert this text to proper case\nthis tool will capitalize the first letter of each word\nperfect for titles and names');
   const [output, setOutput] = useState<string>('');
   const { toast } = useToast();
+
+  const toProperCase = (text: string): string => {
+    return text.replace(/\w\S*/g, (txt) => 
+      txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    );
+  };
 
   useEffect(() => {
     if (!inputText) {
@@ -17,16 +23,8 @@ function AddaStrikethroughtoText() {
       return;
     }
 
-    // Add strikethrough using Unicode combining character
-    const strikethroughText = inputText.replace(/./g, (char) => {
-      // Skip adding strikethrough to newlines and spaces for better readability
-      if (char === '\n' || char === '\r') {
-        return char;
-      }
-      return char + '\u0336'; // Combining long stroke overlay
-    });
-
-    setOutput(strikethroughText);
+    const properCaseText = toProperCase(inputText);
+    setOutput(properCaseText);
   }, [inputText]);
 
   const copyToClipboard = async () => {
@@ -36,7 +34,7 @@ function AddaStrikethroughtoText() {
       await navigator.clipboard.writeText(output);
       toast({
         title: "Copied!",
-        description: "Strikethrough text copied to clipboard",
+        description: "Proper case text copied to clipboard",
       });
     } catch (err) {
       toast({
@@ -50,12 +48,12 @@ function AddaStrikethroughtoText() {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       <Card className="border-2 shadow-lg">
-        <CardHeader className="text-center space-y-2 pb-4 bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20">
+        <CardHeader className="text-center space-y-2 pb-4 bg-gradient-to-r from-teal-50 to-cyan-50 dark:from-teal-950/20 dark:to-cyan-950/20">
           <div className="flex items-center justify-center gap-2">
-            <Strikethrough className="h-6 w-6 text-red-600 dark:text-red-400" />
-            <CardTitle className="text-2xl">Add a Strikethrough to Text</CardTitle>
+            <Type className="h-6 w-6 text-teal-600 dark:text-teal-400" />
+            <CardTitle className="text-2xl">Convert Text to Proper Case</CardTitle>
           </div>
-          <CardDescription>Convert your text to strikethrough Unicode characters</CardDescription>
+          <CardDescription>Capitalize the first letter of each word</CardDescription>
         </CardHeader>
         <CardContent className="pt-6 space-y-4">
           <div>
@@ -71,20 +69,20 @@ function AddaStrikethroughtoText() {
           </div>
 
           <div>
-            <Label htmlFor="output">S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ ̶T̶e̶x̶t̶:</Label>
+            <Label htmlFor="output">Proper Case Text:</Label>
             <Textarea
               id="output"
               data-testid="output-result"
               value={output}
               readOnly
               className="min-h-32 mt-2 bg-gray-50 dark:bg-gray-900"
-              placeholder="S̶t̶r̶i̶k̶e̶t̶h̶r̶o̶u̶g̶h̶ ̶t̶e̶x̶t̶ ̶w̶i̶l̶l̶ ̶a̶p̶p̶e̶a̶r̶ ̶h̶e̶r̶e̶.̶.̶.̶"
+              placeholder="Proper case text will appear here..."
             />
           </div>
 
-          <div className="bg-red-50 dark:bg-red-950/20 p-3 rounded-lg">
-            <p className="text-sm text-red-700 dark:text-red-300">
-              <strong>E̶x̶a̶m̶p̶l̶e̶:</strong> Convert "Completed Task" to "C̶o̶m̶p̶l̶e̶t̶e̶d̶ ̶T̶a̶s̶k̶" - perfect for to-do lists!
+          <div className="bg-teal-50 dark:bg-teal-950/20 p-3 rounded-lg">
+            <p className="text-sm text-teal-700 dark:text-teal-300">
+              <strong>Example:</strong> Convert "hello world" to "Hello World" - perfect for titles, names, and headings!
             </p>
           </div>
 
@@ -103,4 +101,4 @@ function AddaStrikethroughtoText() {
   );
 }
 
-export default AddaStrikethroughtoText;
+export default ConvertTextToProperCase;

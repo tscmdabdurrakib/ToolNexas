@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { ToolsProvider } from "@/context/ToolsContext";
 import { ThemeProvider } from "@/lib/ThemeProvider";
 import { AuthProvider } from "@/context/AuthContext";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 import { Suspense, lazy } from "react";
 import { usePreloadComponents } from "@/hooks/usePreloadComponents";
 import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
@@ -260,6 +261,16 @@ const GenerateTinyTextPage = lazy(() => import("@/pages/tools/GenerateTinyTextPa
 const WriteTextInBoldPage = lazy(() => import("@/pages/tools/WriteTextInBoldPage"));
 const GenerateZalgoTextPage = lazy(() => import("@/pages/tools/GenerateZalgoTextPage"));
 const ConvertTextToTitleCasePage = lazy(() => import("@/pages/tools/ConvertTextToTitleCasePage"));
+
+// New Text Case and Line Break Tools
+const ChangeTextCasePage = lazy(() => import("@/pages/tools/ChangeTextCasePage"));
+const ConvertTextToProperCasePage = lazy(() => import("@/pages/tools/ConvertTextToProperCasePage"));
+const RandomizeTextCasePage = lazy(() => import("@/pages/tools/RandomizeTextCasePage"));
+const InvertTextCasePage = lazy(() => import("@/pages/tools/InvertTextCasePage"));
+const AddLineBreaksToTextPage = lazy(() => import("@/pages/tools/AddLineBreaksToTextPage"));
+const RemoveLineBreaksFromTextPage = lazy(() => import("@/pages/tools/RemoveLineBreaksFromTextPage"));
+const ReplaceLineBreaksInTextPage = lazy(() => import("@/pages/tools/ReplaceLineBreaksInTextPage"));
+const RandomizeLineBreaksInTextPage = lazy(() => import("@/pages/tools/RandomizeLineBreaksInTextPage"));
 
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
@@ -612,6 +623,16 @@ function AppRouter() {
             <Route path="/tools/generate-zalgo-text" component={GenerateZalgoTextPage} />
             <Route path="/tools/convert-text-to-title-case" component={ConvertTextToTitleCasePage} />
             
+            {/* New Text Case and Line Break Tools */}
+            <Route path="/tools/change-text-case" component={ChangeTextCasePage} />
+            <Route path="/tools/convert-text-to-proper-case" component={ConvertTextToProperCasePage} />
+            <Route path="/tools/randomize-text-case" component={RandomizeTextCasePage} />
+            <Route path="/tools/invert-text-case" component={InvertTextCasePage} />
+            <Route path="/tools/add-line-breaks-to-text" component={AddLineBreaksToTextPage} />
+            <Route path="/tools/remove-line-breaks-from-text" component={RemoveLineBreaksFromTextPage} />
+            <Route path="/tools/replace-line-breaks-in-text" component={ReplaceLineBreaksInTextPage} />
+            <Route path="/tools/randomize-line-breaks-in-text" component={RandomizeLineBreaksInTextPage} />
+            
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
             <Route path="/tools/pdf-editor" component={PDFEditorPage} />
@@ -737,8 +758,10 @@ function App() {
       <ThemeProvider defaultTheme="system">
         <AuthProvider>
           <ToolsProvider>
+            <FavoritesProvider>
               <AppRouter />
               <Toaster />
+            </FavoritesProvider>
           </ToolsProvider>
         </AuthProvider>
       </ThemeProvider>
