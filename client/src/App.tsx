@@ -217,6 +217,26 @@ const FilterTextSentencesPage = lazy(() => import("@/pages/tools/FilterTextSente
 
 // New Sorting and Randomization Tools
 const FilterTextParagraphsPage = lazy(() => import("@/pages/tools/FilterTextParagraphsPage"));
+
+// New Text String Tools
+const RandomizeTextLinesPage = lazy(() => import("@/pages/tools/RandomizeTextLinesPage"));
+const RandomizeTextSentencesPage = lazy(() => import("@/pages/tools/RandomizeTextSentencesPage"));
+const RandomizeTextParagraphsPage = lazy(() => import("@/pages/tools/RandomizeTextParagraphsPage"));
+const CalculateLetterSumPage = lazy(() => import("@/pages/tools/CalculateLetterSumPage"));
+const UnwrapTextLinesPage = lazy(() => import("@/pages/tools/UnwrapTextLinesPage"));
+const ExtractTextFragmentPage = lazy(() => import("@/pages/tools/ExtractTextFragmentPage"));
+const FindAndReplaceTextPage = lazy(() => import("@/pages/tools/FindAndReplaceTextPage"));
+const FindTheLengthOfTextPage = lazy(() => import("@/pages/tools/FindTheLengthOfTextPage"));
+const FindTopLettersInTextPage = lazy(() => import("@/pages/tools/FindTopLettersInTextPage"));
+
+// Additional Text String Tools - Second Batch
+const FindTopWordsInTextPage = lazy(() => import("@/pages/tools/FindTopWordsInTextPage"));
+const CalculateTextEntropyPage = lazy(() => import("@/pages/tools/CalculateTextEntropyPage"));
+const CountWordsInTextPage = lazy(() => import("@/pages/tools/CountWordsInTextPage"));
+const PrintTextStatisticsPage = lazy(() => import("@/pages/tools/PrintTextStatisticsPage"));
+const FindUniqueWordsInTextPage = lazy(() => import("@/pages/tools/FindUniqueWordsInTextPage"));
+const CountTextLinesPage = lazy(() => import("@/pages/tools/CountTextLinesPage"));
+const AddLineNumbersPage = lazy(() => import("@/pages/tools/AddLineNumbersPage"));
 const SortTextLinesPage = lazy(() => import("@/pages/tools/SortTextLinesPage"));
 const SortSentencesInTextPage = lazy(() => import("@/pages/tools/SortSentencesInTextPage"));
 const SortParagraphsInTextPage = lazy(() => import("@/pages/tools/SortParagraphsInTextPage"));
@@ -229,6 +249,17 @@ const RandomizeWordsInTextPage = lazy(() => import("@/pages/tools/RandomizeWords
 
 // SEO Tools
 const KeywordResearchPage = lazy(() => import("@/pages/tools/KeywordResearchPage"));
+
+// New Text & String Tools - Advanced Formatting
+const CreateImageFromTextPage = lazy(() => import("@/pages/tools/CreateImageFromTextPage"));
+const ChangeTextFontPage = lazy(() => import("@/pages/tools/ChangeTextFontPage"));
+const RemoveFancyTextFontPage = lazy(() => import("@/pages/tools/RemoveFancyTextFontPage"));
+const WriteTextInSuperscriptPage = lazy(() => import("@/pages/tools/WriteTextInSuperscriptPage"));
+const WriteTextInSubscriptPage = lazy(() => import("@/pages/tools/WriteTextInSubscriptPage"));
+const GenerateTinyTextPage = lazy(() => import("@/pages/tools/GenerateTinyTextPage"));
+const WriteTextInBoldPage = lazy(() => import("@/pages/tools/WriteTextInBoldPage"));
+const GenerateZalgoTextPage = lazy(() => import("@/pages/tools/GenerateZalgoTextPage"));
+const ConvertTextToTitleCasePage = lazy(() => import("@/pages/tools/ConvertTextToTitleCasePage"));
 
 const AccelerationConverterPage = lazy(() => import("@/pages/tools/AccelerationConverterPage"));
 const ImageResizerPage = lazy(() => import("@/pages/tools/ImageResizerPage"));
@@ -547,8 +578,39 @@ function AppRouter() {
             <Route path="/tools/scramble-words" component={ScrambleWordsPage} />
             <Route path="/tools/randomize-words-in-text" component={RandomizeWordsInTextPage} />
             
+            {/* New Text String Tools */}
+            <Route path="/tools/randomize-text-lines" component={RandomizeTextLinesPage} />
+            <Route path="/tools/randomize-text-sentences" component={RandomizeTextSentencesPage} />
+            <Route path="/tools/randomize-text-paragraphs" component={RandomizeTextParagraphsPage} />
+            <Route path="/tools/calculate-letter-sum" component={CalculateLetterSumPage} />
+            <Route path="/tools/unwrap-text-lines" component={UnwrapTextLinesPage} />
+            <Route path="/tools/extract-text-fragment" component={ExtractTextFragmentPage} />
+            <Route path="/tools/find-and-replace-text" component={FindAndReplaceTextPage} />
+            <Route path="/tools/find-the-length-of-text" component={FindTheLengthOfTextPage} />
+            <Route path="/tools/find-top-letters-in-text" component={FindTopLettersInTextPage} />
+            
+            {/* Additional Text String Tools - Second Batch */}
+            <Route path="/tools/find-top-words-in-text" component={FindTopWordsInTextPage} />
+            <Route path="/tools/calculate-text-entropy" component={CalculateTextEntropyPage} />
+            <Route path="/tools/count-words-in-text" component={CountWordsInTextPage} />
+            <Route path="/tools/print-text-statistics" component={PrintTextStatisticsPage} />
+            <Route path="/tools/find-unique-words-in-text" component={FindUniqueWordsInTextPage} />
+            <Route path="/tools/count-text-lines" component={CountTextLinesPage} />
+            <Route path="/tools/add-line-numbers" component={AddLineNumbersPage} />
+            
             {/* SEO Tools */}
             <Route path="/tools/keyword-research" component={KeywordResearchPage} />
+            
+            {/* New Text & String Tools - Advanced Formatting */}
+            <Route path="/tools/create-image-from-text" component={CreateImageFromTextPage} />
+            <Route path="/tools/change-text-font" component={ChangeTextFontPage} />
+            <Route path="/tools/remove-fancy-text-font" component={RemoveFancyTextFontPage} />
+            <Route path="/tools/write-text-in-superscript" component={WriteTextInSuperscriptPage} />
+            <Route path="/tools/write-text-in-subscript" component={WriteTextInSubscriptPage} />
+            <Route path="/tools/generate-tiny-text" component={GenerateTinyTextPage} />
+            <Route path="/tools/write-text-in-bold" component={WriteTextInBoldPage} />
+            <Route path="/tools/generate-zalgo-text" component={GenerateZalgoTextPage} />
+            <Route path="/tools/convert-text-to-title-case" component={ConvertTextToTitleCasePage} />
             
             <Route path="/tools/image-resizer" component={ImageResizerPage} />
             <Route path="/tools/image-cropper" component={ImageCropperPage} />
