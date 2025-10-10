@@ -39,7 +39,7 @@ export default defineConfig({
     allowedHosts: [".replit.dev", "localhost"],
   },
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
     rollupOptions: {
       output: {
