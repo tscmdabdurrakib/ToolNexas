@@ -11,7 +11,7 @@ function WriteTextinCursive() {
   const [output, setOutput] = useState<string>('');
   const { toast } = useToast();
 
-  const cursiveMap = {
+  const cursiveMap: { [key: string]: string } = {
     'A': '𝒜', 'B': 'ℬ', 'C': '𝒞', 'D': '𝒟', 'E': 'ℰ', 'F': 'ℱ', 'G': '𝒢', 'H': 'ℋ', 'I': 'ℐ',
     'J': '𝒥', 'K': '𝒦', 'L': 'ℒ', 'M': 'ℳ', 'N': '𝒩', 'O': '𝒪', 'P': '𝒫', 'Q': '𝒬', 'R': 'ℛ',
     'S': '𝒮', 'T': '𝒯', 'U': '𝒰', 'V': '𝒱', 'W': '𝒲', 'X': '𝒳', 'Y': '𝒴', 'Z': '𝒵',
@@ -28,7 +28,7 @@ function WriteTextinCursive() {
     }
 
     const cursiveText = inputText.replace(/./g, (char) => {
-      return cursiveMap[char] || char;
+      return char in cursiveMap ? cursiveMap[char] : char;
     });
 
     setOutput(cursiveText);
