@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Copy, Aa } from "lucide-react";
+import { Copy, CaseSensitive } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 function ConvertTextToTitleCase() {
@@ -61,7 +61,7 @@ function ConvertTextToTitleCase() {
       <Card className="border-2 shadow-lg">
         <CardHeader className="text-center space-y-2 pb-4 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/20 dark:to-purple-950/20">
           <div className="flex items-center justify-center gap-2">
-            <Aa className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
+            <CaseSensitive className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
             <CardTitle className="text-2xl">Convert Text to Title Case</CardTitle>
           </div>
           <CardDescription>Convert your text to proper title case with smart capitalization rules</CardDescription>
